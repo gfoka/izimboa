@@ -1,0 +1,69 @@
+name: Déploiement VPS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "infra/vps/**"
+      - ".github/workflows/deploy-vps.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-vps
+  cancel-in-progress: false
+
+env:
+  VPS_HOST: 212.47.78.167
+  VPS_USER: deploy
+  VPS_DIR: /srv/izimboa
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vérifier la configuration Compose
+        run: docker compose -f infra/vps/compose.yaml config -q
+
+      - name: Préparer la connexion SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          if [ -z "$VPS_SSH_KEY" ]; then
+            echo "::error::Le secret VPS_SSH_KEY n'est pas défini (Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cp infra/vps/known_hosts ~/.ssh/known_hosts
+
+      - name: Copier les fichiers sur le serveur
+        run: |
+          rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes" \
+            infra/vps/compose.yaml infra/vps/caddy infra/vps/site \
+            "$VPS_USER@$VPS_HOST:$VPS_DIR/"
+
+      - name: Relancer les services
+        run: |
+          ssh -o StrictHostKeyChecking=yes "$VPS_USER@$VPS_HOST" bash -s <<SCRIPT
+          set -euo pipefail
+          cd "$VPS_DIR"
+          rm -f Caddyfile   # ancien emplacement (avant le dossier caddy/)
+          docker compose pull --quiet
+          docker compose up -d --remove-orphans
+          docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile
+          docker compose ps
+          SCRIPT
+
+      - name: Vérifier que les sites répondent
+        run: |
+          sleep 5
+          curl -fsS https://api.izimboa.com/health
+          for d in delivery go fly buy auth; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://$d.izimboa.com/")
+            echo "$d.izimboa.com -> $code"
+            [ "$code" = "200" ]
+          done
