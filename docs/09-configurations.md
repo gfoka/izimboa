@@ -5,9 +5,9 @@
 ## 1. Domaine et DNS (fichier de zone)
 
 - [x] Gestion DNS d'izimboa.com transférée vers Cloudflare (registrar LWS ; NS everton/jean.ns.cloudflare.com ; DNSSEC désactivé chez LWS, à réactiver via Cloudflare)
-- [ ] Enregistrements de la vitrine : izimboa.com et www (redirection 301 www vers sans www)
+- [x] Vitrine : izimboa.com et www.izimboa.com sur Cloudflare Pages, redirection 301 www → izimboa.com
 - [x] Sous-domaines api, auth, delivery, go, fly, buy → 212.47.78.167 (DNS only)
-- [ ] HTTPS forcé (redirection 301 http vers https), HSTS
+- [x] HTTPS forcé (« Always Use HTTPS » activé), HSTS via `_headers` et Caddy
 - [ ] Enregistrements mail : MX (Microsoft 365), SPF unique combinant Microsoft 365 et Brevo, DKIM (Microsoft 365 et Brevo), DMARC (commencer en p=none, puis quarantine)
 - [ ] Enregistrements de vérification : Google Search Console (TXT), Microsoft 365, Brevo, Meta (WhatsApp)
 
@@ -45,12 +45,12 @@
 
 ## 6. Hébergement de la vitrine
 
-- [ ] Cloudflare Pages (ou Nginx sur le VPS) connecté au dépôt GitHub, dossier web/vitrine
-- [ ] Commande de build : npm run build, dossier publié : out
-- [ ] 404.html servi avec le statut 404
-- [ ] Redirection des adresses sans barre finale vers la forme avec barre finale
-- [ ] En-tête X-Robots-Tag: noindex sur les fichiers .txt (sauf robots.txt)
-- [ ] Cache long sur /\_next/static/
+- [x] Cloudflare Pages (projet `izimboa`) connecté au dépôt GitHub, dossier web/vitrine, déploiement à chaque push sur main
+- [x] Commande de build : npm run build, dossier publié : out (NODE_VERSION=22)
+- [x] 404.html servi avec le statut 404 (vérifié)
+- [x] Redirection des adresses sans barre finale vers la forme avec barre finale (vérifié)
+- [x] En-tête X-Robots-Tag: noindex sur les fichiers .txt (sauf robots.txt) — `public/_headers`
+- [x] Cache long sur /\_next/static/ — `public/_headers`
 
 ## 7. Serveur (VPS) et plateforme
 
