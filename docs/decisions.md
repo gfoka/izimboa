@@ -24,3 +24,6 @@
 | 20 | 2026-10 | Keycloak : realm séparé pour le SaaS (connexion à sa marque, domaines personnalisés). |
 | 21 | 2026-10 | Brevo comme fournisseur unique de départ pour e-mail, SMS et WhatsApp (derrière une interface remplaçable). |
 | 22 | 2026-10 | Logo : le « i » avec une flèche à la place du point ; une variante de point par produit. Piste « aigle » écartée. Couleurs bleu nuit / orange soleil, polices Outfit et Inter. |
+| 23 | 2026-10 | Projet régional : adresses `/<pays>/<langue>/<page>/`, Cameroun ouvert en premier, autres pays CEMAC « bientôt » sans pages publiées. |
+| 24 | 2026-10 | Vitrine : une page par sujet, adresses traduites, HTML statique (export Next.js), canonical + hreflang + sitemap ; règles dans `08-referencement.md`. |
+| 25 | 2026-10 | Blog plus tard dans un dossier du domaine (`/cm/fr/blog/`), articles étiquetés par produit ; contenus par pays via un CMS plus tard. |

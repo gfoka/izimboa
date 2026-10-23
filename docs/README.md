@@ -7,4 +7,5 @@
 5. [Feuille de route](05-feuille-de-route.md)
 6. [Projet SaaS de gestion commerciale](06-saas-gestion-commerciale.md)
 7. [Identité visuelle](07-identite-visuelle.md)
-8. [Journal des décisions](decisions.md)
+8. [Référencement (SEO)](08-referencement.md)
+9. [Journal des décisions](decisions.md)

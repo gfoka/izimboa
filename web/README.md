@@ -4,7 +4,7 @@ Applications prévues :
 
 | Application | Adresse | Statut |
 |---|---|---|
-| Vitrine | izimboa.com | **Première livraison** |
+| Vitrine | izimboa.com | **Développée** (`vitrine/`), à mettre en ligne |
 | Delivery | delivery.izimboa.com | À venir |
 | Go | go.izimboa.com | À venir |
 | Fly | fly.izimboa.com | À venir |

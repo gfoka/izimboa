@@ -4,7 +4,7 @@ On livre et on déploie au fur et à mesure.
 
 1. ✅ **Fondations** : structure du monorepo et documentation des décisions.
 2. 🟡 **Identité visuelle** (direction retenue, à affiner par un graphiste) : logo, couleurs, typographie Izimboa.
-3. ⬜ **Vitrine izimboa.com** : pages et textes, développement Next.js, mise en ligne. *Première livraison.*
+3. 🟡 **Vitrine izimboa.com** (pages FR/EN développées dans `web/vitrine`, mise en ligne à faire) : pages et textes, développement Next.js, mise en ligne. *Première livraison.*
 4. ⬜ **Infra de base** : VPS, Docker Compose, Keycloak (Google, WhatsApp, SMS), API Spring Boot vide.
 5. ⬜ **Izimboa Delivery** (MVP Douala) : app client, app livreur, administration, paiement Mobile Money, paiement à la livraison.
 6. ⬜ **Izimboa Go** : moteur de procédures paramétrables.
