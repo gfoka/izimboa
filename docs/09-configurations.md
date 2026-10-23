@@ -66,7 +66,9 @@
 
 - [x] Accès GitHub pour que Claude puisse pousser, **sur le modèle du projet Onacle** : application Claude installée sur le dépôt `gfoka/izimboa` (github.com/apps/claude) ou jeton « fine-grained » limité à ce dépôt (Contents: read and write)
 - [ ] Objectif : une consigne depuis le téléphone → Claude écrit le code, pousse → GitHub Actions compile, teste et déploie automatiquement
-- [ ] GitHub Actions : vérification et build à chaque commit (vitrine, backend)
+- [x] GitHub Actions : déploiement automatique du VPS (`.github/workflows/deploy-vps.yml`, clé SSH dédiée `VPS_SSH_KEY`, empreinte serveur vérifiée) — 1er déploiement réussi
+- [x] Vitrine : construite et publiée par Cloudflare Pages à chaque push
+- [ ] GitHub Actions : tests et build du backend à chaque commit (quand l'API existera)
 - [ ] Déploiement automatique : vitrine à chaque fusion sur main, backend par images Docker
 - [ ] Trois environnements : développement, préproduction, production
 - [ ] Secrets dans GitHub Actions (clés Brevo, base de données, Keycloak), jamais dans le code
