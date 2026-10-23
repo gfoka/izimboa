@@ -1,0 +1,289 @@
+{
+  "realm": "izimboa",
+  "enabled": true,
+  "displayName": "Izimboa",
+  "displayNameHtml": "<strong>izimboa</strong>",
+  "sslRequired": "external",
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "rememberMe": true,
+  "verifyEmail": false,
+  "bruteForceProtected": true,
+  "internationalizationEnabled": true,
+  "supportedLocales": [
+    "fr",
+    "en"
+  ],
+  "defaultLocale": "fr",
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 2592000,
+  "ssoSessionMaxLifespan": 7776000,
+  "offlineSessionIdleTimeout": 2592000,
+  "smtpServer": {
+    "host": "mailpit",
+    "port": "1025",
+    "from": "noreply@izimboa.local",
+    "fromDisplayName": "Izimboa",
+    "auth": "false",
+    "ssl": "false",
+    "starttls": "false"
+  },
+  "roles": {
+    "realm": [
+      {
+        "name": "client",
+        "description": "Client : commande des livraisons, suit ses dossiers"
+      },
+      {
+        "name": "vendeur",
+        "description": "Vendeur en ligne : livraisons avec paiement à la livraison"
+      },
+      {
+        "name": "livreur",
+        "description": "Livreur Izimboa Delivery"
+      },
+      {
+        "name": "conseiller",
+        "description": "Conseiller Izimboa Go"
+      },
+      {
+        "name": "admin",
+        "description": "Administration de la plateforme"
+      },
+      {
+        "name": "default-roles-izimboa",
+        "description": "Rôles attribués à tout nouveau compte",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "offline_access",
+            "uma_authorization",
+            "client"
+          ]
+        }
+      }
+    ]
+  },
+  "defaultRole": {
+    "name": "default-roles-izimboa"
+  },
+  "clients": [
+    {
+      "clientId": "izimboa-api",
+      "name": "API Izimboa (serveur de ressources)",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "izimboa-api-dev-secret",
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false
+    },
+    {
+      "clientId": "izimboa-web",
+      "name": "Sites web Izimboa",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "redirectUris": [
+        "http://localhost:3000/*",
+        "http://localhost:3001/*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:3000/*##http://localhost:3001/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "audience-izimboa-api",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "izimboa-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "izimboa-mobile",
+      "name": "Applications mobiles Izimboa",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "redirectUris": [
+        "izimboa://*",
+        "exp://*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "izimboa://*##exp://*"
+      },
+      "protocolMappers": [
+        {
+          "name": "audience-izimboa-api",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "izimboa-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "izimboa-dev",
+      "name": "Outils de test (DEV UNIQUEMENT)",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:8080/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "audience-izimboa-api",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "izimboa-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "client@izimboa.local",
+      "email": "client@izimboa.local",
+      "firstName": "Awa",
+      "lastName": "Client",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Izimboa-dev-2026",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "default-roles-izimboa"
+      ],
+      "attributes": {
+        "locale": [
+          "fr"
+        ]
+      }
+    },
+    {
+      "username": "vendeur@izimboa.local",
+      "email": "vendeur@izimboa.local",
+      "firstName": "Paul",
+      "lastName": "Vendeur",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Izimboa-dev-2026",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "default-roles-izimboa",
+        "vendeur"
+      ],
+      "attributes": {
+        "locale": [
+          "fr"
+        ]
+      }
+    },
+    {
+      "username": "livreur@izimboa.local",
+      "email": "livreur@izimboa.local",
+      "firstName": "Jean",
+      "lastName": "Livreur",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Izimboa-dev-2026",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "default-roles-izimboa",
+        "livreur"
+      ],
+      "attributes": {
+        "locale": [
+          "fr"
+        ]
+      }
+    },
+    {
+      "username": "admin@izimboa.local",
+      "email": "admin@izimboa.local",
+      "firstName": "Admin",
+      "lastName": "Izimboa",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Izimboa-dev-2026",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "default-roles-izimboa",
+        "admin"
+      ],
+      "attributes": {
+        "locale": [
+          "fr"
+        ]
+      }
+    }
+  ]
+}

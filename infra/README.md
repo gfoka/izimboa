@@ -8,4 +8,4 @@ Sauvegardes automatiques **hors du VPS**.
 
 Environnements : développement, préproduction, production.
 
-_Vide pour l'instant._
+**Développement local :** [`local/`](local/README.md) — `docker compose up -d` lance PostgreSQL, Redis, RabbitMQ, Keycloak (realm « izimboa ») et Mailpit.
