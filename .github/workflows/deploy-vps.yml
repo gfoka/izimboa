@@ -128,4 +128,6 @@ jobs:
 
       - name: En cas d'échec, journaux du serveur
         if: failure()
-        run: ssh "$VPS_USER@$VPS_HOST" "cd $VPS_DIR && docker compose ps && docker compose logs --tail=80 api keycloak"
+        run: |
+          ssh "$VPS_USER@$VPS_HOST" "cd $VPS_DIR && docker compose ps && docker compose logs --tail=60 api"
+          ssh "$VPS_USER@$VPS_HOST" "cd $VPS_DIR && docker compose logs --tail=400 keycloak | grep -E 'ERROR|FATAL|Caused by|Exception' | head -60"

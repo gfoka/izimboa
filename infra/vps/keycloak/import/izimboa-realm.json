@@ -26,6 +26,14 @@
   "roles": {
     "realm": [
       {
+        "name": "offline_access",
+        "description": "${role_offline-access}"
+      },
+      {
+        "name": "uma_authorization",
+        "description": "${role_uma_authorization}"
+      },
+      {
         "name": "client",
         "description": "Client : commande des livraisons, suit ses dossiers"
       },
