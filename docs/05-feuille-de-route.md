@@ -9,6 +9,8 @@ On livre et on déploie au fur et à mesure.
 5. ⬜ **Izimboa Delivery** (MVP Douala) : app client, app livreur, administration, paiement Mobile Money, paiement à la livraison.
 6. ⬜ **Izimboa Go** : moteur de procédures paramétrables.
 7. ⬜ **Izimboa Fly** : site de billetterie en partenariat IATA.
-8. ⬜ Migration progressive vers AWS.
+8. ⬜ **Izimboa Buy** : portail web d'achat à l'international.
+9. ⬜ **SaaS de gestion commerciale** (nom à définir) : après Delivery, sur lequel il s'appuie.
+10. ⬜ Migration progressive vers AWS.
 
 Délai visé pour une première version visible : 2 à 3 mois.

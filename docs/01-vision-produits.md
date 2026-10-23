@@ -4,6 +4,8 @@ Izimboa est une marque parapluie autour du **mouvement** : des colis comme des p
 Une seule marque porte tous les produits, pour que la confiance gagnée sur l'un profite aux autres.
 Un compte Izimboa unique donne accès à tous les produits.
 
+Force de la plateforme : chaque nouveau produit réutilise le même backend, la connexion centrale, les paiements et les notifications. Lancer un produit devient rapide, et on le teste sur le marché avant d'investir davantage.
+
 ## Les produits
 
 ### Izimboa Delivery — livraison de colis
@@ -25,12 +27,23 @@ Un compte Izimboa unique donne accès à tous les produits.
 - Démarrage en partenariat avec une agence agréée IATA (commission par billet), sans agrément propre au départ.
 - Un site web suffit au départ : `fly.izimboa.com`. Application seulement si la demande le justifie.
 
+### Izimboa Buy — achat à l'international pour le client
+- Besoin : beaucoup de personnes au Cameroun veulent des produits disponibles en France ou ailleurs (livres, produits divers, etc.).
+- Le client trouve son produit (ex. en collant un lien), reçoit un **devis tout compris** (prix, transport, douane), paie, et **Izimboa achète pour lui** puis le fait livrer jusqu'à sa porte.
+- Nom « Buy » : l'action d'acheter pour la personne. « Shop » écarté (évoque une boutique qui possède déjà les produits), « Import » écarté (évoque l'import-export).
+- L'envoi d'un produit **déjà acheté** par le client relève plutôt du transfert de colis : future option internationale d'Izimboa Delivery, pas de Buy.
+- **Portail web seulement** au départ, très bien référencé (ex. « acheter en France livré au Cameroun ») ; éventuellement installable (PWA), sans application mobile.
+- Point d'attention : les **médicaments** sont très réglementés à l'import ; vérifier ce qui est autorisé.
+- Adresse : `buy.izimboa.com`.
+
 ## Projet séparé : le SaaS de gestion commerciale
-- Outil de vente / facturation pour commerçants (restauration, e-commerce, etc.).
+- Suite complète de gestion commerciale (achats, ventes, stock, facturation, boutique en ligne, WhatsApp, centre d'appels) pour restaurants, supermarchés, commerces…
+- Détails : [06-saas-gestion-commerciale.md](06-saas-gestion-commerciale.md). Nom à définir.
 - **Marque séparée**, distincte d'Izimboa (métier différent), mais **connectée** : la livraison des commandes part automatiquement chez Izimboa Delivery.
+- **Même code et même plateforme** : nouveau module du backend dans ce monorepo.
 - Condition : Izimboa Delivery doit être solide en premier.
 
 ## Domaines
 - `izimboa.com` : vitrine du groupe (pages `/livraison`, `/go`, `/fly` pour le référencement)
-- Sous-domaines pour les applications : `delivery.`, `go.`, `fly.`, `admin.`, `api.`, `auth.`
+- Sous-domaines pour les applications : `delivery.`, `go.`, `fly.`, `buy.`, `admin.`, `api.`, `auth.`
 - Pas de nom de domaine différent par produit (dispersion de la marque).

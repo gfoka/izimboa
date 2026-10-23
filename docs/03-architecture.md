@@ -15,8 +15,8 @@ Objectif : une architecture **robuste, évolutive, de niveau bancaire**, puisque
 - **API Gateway** (Spring Cloud Gateway) : point d'entrée unique, vérification des jetons, limitation des abus.
 
 ## Monolithe modulaire → microservices
-- Démarrage en monolithe modulaire : modules `delivery`, `go`, `fly` + modules communs.
-- Une seule base PostgreSQL, **un schéma par produit** (`delivery`, `go`, `fly`, `common`).
+- Démarrage en monolithe modulaire : modules `delivery`, `go`, `fly`, `buy`, `saas` + modules communs.
+- Une seule base PostgreSQL, **un schéma par produit** (`delivery`, `go`, `fly`, `buy`, `saas`, `common`).
 - Règle d'or : un module ne lit jamais les tables d'un autre ; il passe par son service.
 - Découpage en microservices uniquement quand un produit doit grandir seul (on déplace alors son schéma dans sa propre base).
 
@@ -24,7 +24,7 @@ Objectif : une architecture **robuste, évolutive, de niveau bancaire**, puisque
 Le métier ne dépend que d'interfaces ; les implémentations se changent par configuration Spring, sans toucher au code métier :
 - Stockage : local / MinIO / S3
 - Paiement : Orange Money, MTN Mobile Money…
-- Notifications : SMS, WhatsApp, e-mail, push
+- Notifications : SMS, WhatsApp, e-mail, push — fournisseur unique au départ : **Brevo** (e-mail, SMS, WhatsApp, codes de connexion)
 - Messagerie : RabbitMQ / Kafka
 
 ## Authentification (SSO)
@@ -32,6 +32,7 @@ Le métier ne dépend que d'interfaces ; les implémentations se changent par co
 - Connexion unique pour tous les produits (comme Google : Gmail, YouTube, Drive).
 - Méthodes : **Google** (natif), **WhatsApp** (code via WhatsApp Business API, authentificateur Keycloak personnalisé — déjà testé sur un autre projet), **SMS** en secours. Un même compte peut lier plusieurs méthodes.
 - Rôles : client, livreur, conseiller immigration, administrateur.
+- **Realms** : un realm `izimboa` pour tous les produits Izimboa ; un **realm séparé** pour le SaaS de gestion commerciale (sa propre marque, sa propre page de connexion et son propre domaine). OpenID Connect fonctionne quel que soit le domaine ; les domaines personnalisés des boutiques sont déclarés comme adresses de retour autorisées.
 - Les comptes, mots de passe, rôles et sessions vivent **uniquement** dans Keycloak. Chaque produit ne stocke que son métier + l'identifiant utilisateur (et éventuellement un profil métier, ex. moto et zone du livreur).
 
 ## Suivi GPS en temps réel (Delivery)

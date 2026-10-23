@@ -18,3 +18,8 @@
 | 14 | 2026-10 | Hébergement : VPS 8 Go + Docker Compose + MinIO au départ, puis AWS Paris. |
 | 15 | 2026-10 | Vitrine statique sans base de données. |
 | 16 | 2026-10 | Fly démarre par un site web en partenariat avec une agence IATA. |
+| 17 | 2026-10 | Nouveau produit **Izimboa Buy** (achat à l'étranger pour le client), portail web seulement, sur buy.izimboa.com. |
+| 18 | 2026-10 | Le SaaS de gestion commerciale est une **suite complète** (achats, ventes, stock, facturation, boutique, WhatsApp, centre d'appels). Nom à définir. |
+| 19 | 2026-10 | Le SaaS vit dans le **même monorepo et le même backend** (module `saas`, schéma dédié), sous une marque séparée ; extraction possible plus tard. |
+| 20 | 2026-10 | Keycloak : realm séparé pour le SaaS (connexion à sa marque, domaines personnalisés). |
+| 21 | 2026-10 | Brevo comme fournisseur unique de départ pour e-mail, SMS et WhatsApp (derrière une interface remplaçable). |
