@@ -32,13 +32,13 @@ export const PHOTOS = {
     credit: { name: "Edouard Tamba", profile: "https://unsplash.com/@tamba", page: "https://unsplash.com/photos/g-I1MUt16dc" },
     focus: "50% 50%",
   },
-  airport: {
-    id: "photo-1693614076723-f96c711cbc4f",
-    width: 6000,
-    height: 3648,
-    alt: { fr: "Voyageuse devant le tableau des arrivées d'un aéroport", en: "Traveller looking at an airport arrivals board" },
-    credit: { name: "Bruno Vitor Gomes Prado", profile: "https://unsplash.com/@brunoprado", page: "https://unsplash.com/photos/XmbqEjTTHIk" },
-    focus: "40% 50%",
+  passport: {
+    id: "photo-1655722725332-9925c96dd627",
+    width: 6720,
+    height: 4480,
+    alt: { fr: "Passeport ouvert couvert de tampons de voyage", en: "Open passport covered in travel stamps" },
+    credit: { name: "Global Residence Index", profile: "https://unsplash.com/@globalresidenceindex", page: "https://unsplash.com/photos/LPdaW746WAw" },
+    focus: "50% 50%",
   },
   wing: {
     id: "photo-1530469641172-8ac15d0a7d6a",

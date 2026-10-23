@@ -126,7 +126,7 @@ const fr: Dict = {
       intro:
         "Partir étudier, travailler ou s'installer à l'étranger, par exemple au Canada, demande de nombreuses démarches. Izimboa Go les découpe en étapes claires : vous savez quoi fournir, quoi payer et où en est votre dossier.",
       status: "Lancement prochain au Cameroun",
-      photo: "airport",
+      photo: "passport",
       stepsTitle: "Comment ça marche",
       steps: [
         { title: "Choisissez votre procédure", text: "Destination et type de projet : études, travail, visite familiale ou installation." },

@@ -126,7 +126,7 @@ const en: Dict = {
       intro:
         "Studying, working or settling abroad, for example in Canada, involves many formalities. Izimboa Go breaks them into clear steps, so you know what to provide, what to pay and where your file stands.",
       status: "Launching soon in Cameroon",
-      photo: "airport",
+      photo: "passport",
       stepsTitle: "How it works",
       steps: [
         { title: "Choose your process", text: "Destination and type of project: study, work, family visit or settling abroad." },
