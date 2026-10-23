@@ -6,4 +6,5 @@
 4. [Hébergement et déploiement](04-hebergement.md)
 5. [Feuille de route](05-feuille-de-route.md)
 6. [Projet SaaS de gestion commerciale](06-saas-gestion-commerciale.md)
-7. [Journal des décisions](decisions.md)
+7. [Identité visuelle](07-identite-visuelle.md)
+8. [Journal des décisions](decisions.md)

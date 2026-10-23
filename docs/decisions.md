@@ -23,3 +23,4 @@
 | 19 | 2026-10 | Le SaaS vit dans le **même monorepo et le même backend** (module `saas`, schéma dédié), sous une marque séparée ; extraction possible plus tard. |
 | 20 | 2026-10 | Keycloak : realm séparé pour le SaaS (connexion à sa marque, domaines personnalisés). |
 | 21 | 2026-10 | Brevo comme fournisseur unique de départ pour e-mail, SMS et WhatsApp (derrière une interface remplaçable). |
+| 22 | 2026-10 | Logo : le « i » avec une flèche à la place du point ; une variante de point par produit. Piste « aigle » écartée. Couleurs bleu nuit / orange soleil, polices Outfit et Inter. |
