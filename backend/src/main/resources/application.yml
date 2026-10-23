@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: izimboa-api
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/izimboa}
+    username: ${DB_USER:izimboa}
+    password: ${DB_PASSWORD:izimboa}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    # Un schéma par module (+ common). Flyway les crée ; seul ce compte écrit les migrations.
+    schemas: common,delivery
+    default-schema: common
+    locations: classpath:db/migration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER:http://localhost:8081/realms/izimboa}
+          audiences: izimboa-api
+  mvc:
+    problemdetails:
+      enabled: true
+
+server:
+  port: ${PORT:8080}
+  forward-headers-strategy: framework
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+izimboa:
+  cors:
+    allowed-origin-patterns: https://izimboa.com,https://*.izimboa.com,http://localhost:3000,http://localhost:3001
