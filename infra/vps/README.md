@@ -46,3 +46,20 @@ et recharge Caddy sans coupure. Lancement manuel possible depuis l'onglet **Acti
 - Clé SSH dédiée : `~/.ssh/izimboa_deploy` (Mac) → secret GitHub **`VPS_SSH_KEY`** ; sa partie publique est dans
   `~deploy/.ssh/authorized_keys` sur le serveur.
 - Empreinte du serveur : `infra/vps/known_hosts` (évite toute connexion à un faux serveur).
+
+## Services en production
+
+| Service | Adresse publique | Rôle |
+|---|---|---|
+| Caddy | ports 80/443 | HTTPS automatique, aiguillage vers les services |
+| API (Spring Boot) | https://api.izimboa.com | `/health`, `/v1/...`, `/swagger-ui.html` |
+| Keycloak | https://auth.izimboa.com | connexion centrale, realm `izimboa` (console : `/admin`) |
+| PostgreSQL 17 | interne uniquement | bases `izimboa` et `keycloak` |
+
+- **Mots de passe** : `/srv/izimboa/.env`, créé automatiquement au premier déploiement, lisible seulement par
+  `deploy`. Mot de passe de la console Keycloak (utilisateur `admin`) :
+  `ssh deploy@212.47.78.167 'grep KEYCLOAK_ADMIN_PASSWORD /srv/izimboa/.env'`
+- **Realm de production** : `keycloak/import/izimboa-realm.json`, importé une seule fois (s'il n'existe pas).
+  Pas de comptes de test ni de connexion par mot de passe en ligne de commande, contrairement au local.
+- L'image de l'API est construite par GitHub Actions et envoyée directement sur le serveur (pas de registre).
+- **À faire** : sauvegardes automatiques de PostgreSQL hors du serveur (voir `docs/09-configurations.md`).

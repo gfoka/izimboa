@@ -1,10 +1,13 @@
 name: Déploiement VPS
 
+# Déploie sur le serveur : Caddy, PostgreSQL, Keycloak et l'API.
+# Se lance quand l'infrastructure ou le code de l'API change sur main (après les tests de l'API).
 on:
   push:
     branches: [main]
     paths:
       - "infra/vps/**"
+      - "backend/**"
       - ".github/workflows/deploy-vps.yml"
   workflow_dispatch:
 
@@ -18,14 +21,44 @@ env:
   VPS_DIR: /srv/izimboa
 
 jobs:
-  deploy:
+  test-api:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Tests de l'API (on ne déploie jamais une API qui échoue)
+        run: ./gradlew test --no-daemon
+
+  deploy:
+    needs: test-api
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
       - name: Vérifier la configuration Compose
-        run: docker compose -f infra/vps/compose.yaml config -q
+        run: |
+          printf 'POSTGRES_SUPERUSER_PASSWORD=x\nIZIMBOA_DB_PASSWORD=x\nKEYCLOAK_DB_PASSWORD=x\nKEYCLOAK_ADMIN_PASSWORD=x\n' > infra/vps/.env
+          docker compose -f infra/vps/compose.yaml config -q
+          rm infra/vps/.env
+
+      - uses: docker/setup-buildx-action@v3
+      - name: Construire l'image de l'API
+        uses: docker/build-push-action@v6
+        with:
+          context: backend
+          load: true
+          tags: izimboa-api:latest,izimboa-api:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Préparer la connexion SSH
         env:
@@ -40,10 +73,13 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           cp infra/vps/known_hosts ~/.ssh/known_hosts
 
+      - name: Envoyer l'image de l'API sur le serveur
+        run: docker save izimboa-api:latest izimboa-api:${{ github.sha }} | gzip | ssh "$VPS_USER@$VPS_HOST" 'gunzip | docker load'
+
       - name: Copier les fichiers sur le serveur
         run: |
           rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes" \
-            infra/vps/compose.yaml infra/vps/caddy infra/vps/site \
+            infra/vps/compose.yaml infra/vps/caddy infra/vps/site infra/vps/postgres infra/vps/keycloak \
             "$VPS_USER@$VPS_HOST:$VPS_DIR/"
 
       - name: Relancer les services
@@ -51,19 +87,45 @@ jobs:
           ssh -o StrictHostKeyChecking=yes "$VPS_USER@$VPS_HOST" bash -s <<SCRIPT
           set -euo pipefail
           cd "$VPS_DIR"
-          rm -f Caddyfile   # ancien emplacement (avant le dossier caddy/)
-          docker compose pull --quiet
+          rm -f Caddyfile
+          # Secrets générés une seule fois, sur le serveur uniquement (jamais dans Git ni dans GitHub).
+          if [ ! -f .env ]; then
+            umask 077
+            {
+              echo "POSTGRES_SUPERUSER_PASSWORD=\$(openssl rand -hex 24)"
+              echo "IZIMBOA_DB_PASSWORD=\$(openssl rand -hex 24)"
+              echo "KEYCLOAK_DB_PASSWORD=\$(openssl rand -hex 24)"
+              echo "KEYCLOAK_ADMIN_PASSWORD=\$(openssl rand -base64 18 | tr -d '/+=')"
+            } > .env
+            echo "Fichier .env créé avec de nouveaux mots de passe."
+          fi
+          docker compose pull --quiet caddy postgres keycloak
           docker compose up -d --remove-orphans
           docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile
+          docker image prune -f > /dev/null
           docker compose ps
           SCRIPT
 
-      - name: Vérifier que les sites répondent
+      - name: Vérifier que tout répond
         run: |
-          sleep 5
-          curl -fsS https://api.izimboa.com/health
-          for d in delivery go fly buy auth; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' "https://$d.izimboa.com/")
-            echo "$d.izimboa.com -> $code"
-            [ "$code" = "200" ]
+          echo "Attente de l'API et de Keycloak (jusqu'à 4 minutes)..."
+          for i in $(seq 1 48); do
+            api=$(curl -s -o /dev/null -w '%{http_code}' https://api.izimboa.com/health || true)
+            kc=$(curl -s -o /dev/null -w '%{http_code}' https://auth.izimboa.com/realms/izimboa/.well-known/openid-configuration || true)
+            echo "essai $i : api=$api auth=$kc"
+            if [ "$api" = "200" ] && [ "$kc" = "200" ]; then break; fi
+            sleep 5
           done
+          curl -fsS https://api.izimboa.com/health; echo
+          curl -fsS https://api.izimboa.com/v1/delivery/zones; echo
+          curl -fsS https://auth.izimboa.com/realms/izimboa/.well-known/openid-configuration | grep -o '"issuer":"[^"]*"'
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://api.izimboa.com/v1/me)
+          echo "/v1/me sans jeton -> $code"; [ "$code" = "401" ]
+          for d in delivery go fly buy; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://$d.izimboa.com/")
+            echo "$d.izimboa.com -> $code"; [ "$code" = "200" ]
+          done
+
+      - name: En cas d'échec, journaux du serveur
+        if: failure()
+        run: ssh "$VPS_USER@$VPS_HOST" "cd $VPS_DIR && docker compose ps && docker compose logs --tail=80 api keycloak"

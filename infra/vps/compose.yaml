@@ -1,7 +1,6 @@
 # Izimboa — services de production sur le VPS (dossier /srv/izimboa).
-# Étape 1 : Caddy seul. Il obtient et renouvelle automatiquement les certificats HTTPS
-# et sert une page « bientôt disponible » sur chaque sous-domaine produit.
-# L'API, Keycloak et les bases s'ajouteront ici au fur et à mesure.
+# Les mots de passe sont dans /srv/izimboa/.env, généré sur le serveur au premier déploiement
+# (jamais dans Git). Seul Caddy est exposé sur Internet ; les autres services restent internes.
 name: izimboa
 
 services:
@@ -19,6 +18,82 @@ services:
       - caddy-data:/data
       - caddy-config:/config
 
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_SUPERUSER_PASSWORD:?manquant dans .env}
+      IZIMBOA_DB_PASSWORD: ${IZIMBOA_DB_PASSWORD:?manquant dans .env}
+      KEYCLOAK_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?manquant dans .env}
+      TZ: Africa/Douala
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d izimboa"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3
+    restart: unless-stopped
+    command: ["start", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:?manquant dans .env}
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+      KC_HOSTNAME: https://auth.izimboa.com
+      KC_HTTP_ENABLED: "true"
+      KC_PROXY_HEADERS: xforwarded
+      KC_HEALTH_ENABLED: "true"
+      JAVA_OPTS_KC_HEAP: "-XX:MaxRAMPercentage=50"
+      TZ: Africa/Douala
+    volumes:
+      - ./keycloak/import:/opt/keycloak/data/import:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    mem_limit: 1536m
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          exec 3<>/dev/tcp/127.0.0.1/9000 &&
+          printf 'GET /health/ready HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 &&
+          grep -q '"status": "UP"' <&3
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  api:
+    # Image construite par GitHub Actions et chargée directement sur le serveur (pas de registre).
+    image: izimboa-api:latest
+    pull_policy: never
+    restart: unless-stopped
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/izimboa
+      DB_USER: izimboa
+      DB_PASSWORD: ${IZIMBOA_DB_PASSWORD}
+      KEYCLOAK_ISSUER: https://auth.izimboa.com/realms/izimboa
+      TZ: Africa/Douala
+    depends_on:
+      postgres:
+        condition: service_healthy
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8080/actuator/health/readiness | grep -q UP"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 40s
+
 volumes:
   caddy-data:
   caddy-config:
+  postgres-data:

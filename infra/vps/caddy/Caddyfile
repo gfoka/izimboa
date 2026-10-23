@@ -22,25 +22,36 @@ delivery.izimboa.com, go.izimboa.com, fly.izimboa.com, buy.izimboa.com {
 	file_server
 }
 
-# API commune à tous les produits (le backend Spring Boot prendra la place de cette réponse).
+# API commune à tous les produits (Spring Boot).
 api.izimboa.com {
 	import securite
 	header X-Robots-Tag "noindex"
+	# Contrôle de santé public et court.
 	handle /health {
-		header Content-Type application/json
-		respond `{"status":"ok","service":"izimboa-api"}` 200
+		rewrite * /actuator/health
+		reverse_proxy api:8080
+	}
+	# Le reste de /actuator n'est jamais exposé sur Internet.
+	handle /actuator/* {
+		respond 404
 	}
 	handle {
-		header Content-Type application/json
-		respond `{"error":"not_found"}` 404
+		reverse_proxy api:8080
 	}
 }
 
-# Connexion centrale (Keycloak prendra la place de cette page).
+# Connexion centrale (Keycloak).
 auth.izimboa.com {
 	import securite
 	header X-Robots-Tag "noindex"
-	root * /srv/site/bientot
-	try_files {path} /index.html
-	file_server
+	# Les points de gestion internes de Keycloak ne sont pas exposés.
+	handle /metrics* {
+		respond 404
+	}
+	handle /health* {
+		respond 404
+	}
+	handle {
+		reverse_proxy keycloak:8080
+	}
 }
