@@ -54,7 +54,9 @@
 
 ## 7. Serveur (VPS) et plateforme
 
-- [ ] VPS 8 Go de RAM minimum (Hetzner ou Contabo), accès SSH par clé uniquement, pare-feu
+- [x] VPS commandé : Contabo, 2e palier, IP 212.47.78.167 (Ubuntu 24.04 recommandé)
+- [ ] Préparation : `infra/vps/bootstrap.sh` (utilisateur deploy, clé SSH uniquement, pare-feu, fail2ban, Docker, swap)
+- [ ] Caddy (HTTPS automatique) + pages « bientôt disponible » sur les sous-domaines : `infra/vps/`
 - [ ] Docker Compose : PostgreSQL, Redis, RabbitMQ, Keycloak, stockage compatible S3, API Spring Boot
 - [ ] Keycloak sur auth.izimboa.com : realm, clients (web, mobile), fournisseurs Google, WhatsApp, SMS
 - [ ] Sauvegardes automatiques hors du VPS, avec un test de restauration
@@ -62,7 +64,8 @@
 
 ## 8. CI/CD (GitHub)
 
-- [ ] Jeton ou application GitHub pour que Claude puisse pousser
+- [ ] Accès GitHub pour que Claude puisse pousser, **sur le modèle du projet Onacle** : application Claude installée sur le dépôt `gfoka/izimboa` (github.com/apps/claude) ou jeton « fine-grained » limité à ce dépôt (Contents: read and write)
+- [ ] Objectif : une consigne depuis le téléphone → Claude écrit le code, pousse → GitHub Actions compile, teste et déploie automatiquement
 - [ ] GitHub Actions : vérification et build à chaque commit (vitrine, backend)
 - [ ] Déploiement automatique : vitrine à chaque fusion sur main, backend par images Docker
 - [ ] Trois environnements : développement, préproduction, production

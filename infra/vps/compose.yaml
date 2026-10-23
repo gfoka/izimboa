@@ -1,0 +1,23 @@
+# Izimboa — services de production sur le VPS (dossier /srv/izimboa).
+# Étape 1 : Caddy seul. Il obtient et renouvelle automatiquement les certificats HTTPS
+# et sert une page « bientôt disponible » sur chaque sous-domaine produit.
+# L'API, Keycloak et les bases s'ajouteront ici au fur et à mesure.
+name: izimboa
+
+services:
+  caddy:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./site:/srv/site:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  caddy-data:
+  caddy-config:

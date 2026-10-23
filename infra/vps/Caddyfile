@@ -1,0 +1,46 @@
+# Certificats HTTPS automatiques (Let's Encrypt) pour chaque domaine ci-dessous.
+{
+	email {$ACME_EMAIL:admin@izimboa.com}
+}
+
+(securite) {
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+	encode zstd gzip
+}
+
+# Sites produits : page « bientôt disponible », exclue de Google tant que le produit n'est pas lancé.
+delivery.izimboa.com, go.izimboa.com, fly.izimboa.com, buy.izimboa.com {
+	import securite
+	header X-Robots-Tag "noindex"
+	root * /srv/site/bientot
+	try_files {path} /index.html
+	file_server
+}
+
+# API commune à tous les produits (le backend Spring Boot prendra la place de cette réponse).
+api.izimboa.com {
+	import securite
+	header X-Robots-Tag "noindex"
+	handle /health {
+		header Content-Type application/json
+		respond `{"status":"ok","service":"izimboa-api"}` 200
+	}
+	handle {
+		header Content-Type application/json
+		respond `{"error":"not_found"}` 404
+	}
+}
+
+# Connexion centrale (Keycloak prendra la place de cette page).
+auth.izimboa.com {
+	import securite
+	header X-Robots-Tag "noindex"
+	root * /srv/site/bientot
+	try_files {path} /index.html
+	file_server
+}
