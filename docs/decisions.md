@@ -27,3 +27,5 @@
 | 23 | 2026-10 | Projet régional : adresses `/<pays>/<langue>/<page>/`, Cameroun ouvert en premier, autres pays CEMAC « bientôt » sans pages publiées. |
 | 24 | 2026-10 | Vitrine : une page par sujet, adresses traduites, HTML statique (export Next.js), canonical + hreflang + sitemap ; règles dans `08-referencement.md`. |
 | 25 | 2026-10 | Blog plus tard dans un dossier du domaine (`/cm/fr/blog/`), articles étiquetés par produit ; contenus par pays via un CMS plus tard. |
+| 26 | 2026-10 | Vitrine hébergée sur Cloudflare Pages (déploiement à chaque push) ; services du VPS déployés par GitHub Actions (SSH, clé dédiée). |
+| 27 | 2026-10 | API : Spring Boot 4.1 / Java 21 / Gradle 9, Spring Modulith pour vérifier les frontières entre modules, routes versionnées `/v1/...`. |
