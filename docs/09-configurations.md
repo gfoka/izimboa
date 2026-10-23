@@ -4,9 +4,9 @@
 
 ## 1. Domaine et DNS (fichier de zone)
 
-- [ ] Transférer la gestion DNS d'izimboa.com vers Cloudflare (serveurs de noms chez GoDaddy)
+- [x] Gestion DNS d'izimboa.com transférée vers Cloudflare (registrar LWS ; NS everton/jean.ns.cloudflare.com ; DNSSEC désactivé chez LWS, à réactiver via Cloudflare)
 - [ ] Enregistrements de la vitrine : izimboa.com et www (redirection 301 www vers sans www)
-- [ ] Sous-domaines : api, auth, delivery, go, fly, buy (créés au fur et à mesure)
+- [x] Sous-domaines api, auth, delivery, go, fly, buy → 212.47.78.167 (DNS only)
 - [ ] HTTPS forcé (redirection 301 http vers https), HSTS
 - [ ] Enregistrements mail : MX (Microsoft 365), SPF unique combinant Microsoft 365 et Brevo, DKIM (Microsoft 365 et Brevo), DMARC (commencer en p=none, puis quarantine)
 - [ ] Enregistrements de vérification : Google Search Console (TXT), Microsoft 365, Brevo, Meta (WhatsApp)
@@ -55,8 +55,8 @@
 ## 7. Serveur (VPS) et plateforme
 
 - [x] VPS commandé : Contabo, 2e palier, IP 212.47.78.167 (Ubuntu 24.04 recommandé)
-- [ ] Préparation : `infra/vps/bootstrap.sh` (utilisateur deploy, clé SSH uniquement, pare-feu, fail2ban, Docker, swap)
-- [ ] Caddy (HTTPS automatique) + pages « bientôt disponible » sur les sous-domaines : `infra/vps/`
+- [x] Préparation : `infra/vps/bootstrap.sh` (utilisateur deploy, clé SSH uniquement, pare-feu, fail2ban, Docker, swap)
+- [x] Caddy (HTTPS automatique) + pages « bientôt disponible » sur les sous-domaines : `infra/vps/`
 - [ ] Docker Compose : PostgreSQL, Redis, RabbitMQ, Keycloak, stockage compatible S3, API Spring Boot
 - [ ] Keycloak sur auth.izimboa.com : realm, clients (web, mobile), fournisseurs Google, WhatsApp, SMS
 - [ ] Sauvegardes automatiques hors du VPS, avec un test de restauration
@@ -64,7 +64,7 @@
 
 ## 8. CI/CD (GitHub)
 
-- [ ] Accès GitHub pour que Claude puisse pousser, **sur le modèle du projet Onacle** : application Claude installée sur le dépôt `gfoka/izimboa` (github.com/apps/claude) ou jeton « fine-grained » limité à ce dépôt (Contents: read and write)
+- [x] Accès GitHub pour que Claude puisse pousser, **sur le modèle du projet Onacle** : application Claude installée sur le dépôt `gfoka/izimboa` (github.com/apps/claude) ou jeton « fine-grained » limité à ce dépôt (Contents: read and write)
 - [ ] Objectif : une consigne depuis le téléphone → Claude écrit le code, pousse → GitHub Actions compile, teste et déploie automatiquement
 - [ ] GitHub Actions : vérification et build à chaque commit (vitrine, backend)
 - [ ] Déploiement automatique : vitrine à chaque fusion sur main, backend par images Docker
