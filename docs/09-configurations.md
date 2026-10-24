@@ -58,7 +58,9 @@
 - [x] Préparation : `infra/vps/bootstrap.sh` (utilisateur deploy, clé SSH uniquement, pare-feu, fail2ban, Docker, swap)
 - [x] Caddy (HTTPS automatique) + pages « bientôt disponible » sur les sous-domaines : `infra/vps/`
 - [ ] Docker Compose : PostgreSQL, Redis, RabbitMQ, Keycloak, stockage compatible S3, API Spring Boot
-- [ ] Keycloak sur auth.izimboa.com : realm, clients (web, mobile), fournisseurs Google, WhatsApp, SMS
+- [x] Keycloak sur auth.izimboa.com : realm `izimboa`, clients web et mobile (PKCE), page de connexion FR/EN
+- [ ] Keycloak : fournisseurs Google, WhatsApp, SMS ; e-mails (Brevo) ; thème aux couleurs d'Izimboa
+- [x] API sur api.izimboa.com + PostgreSQL 17 (interne), déployés par GitHub Actions
 - [ ] Sauvegardes automatiques hors du VPS, avec un test de restauration
 - [ ] Supervision : OpenTelemetry et Grafana, alertes
 
