@@ -9,4 +9,5 @@
 7. [Identité visuelle](07-identite-visuelle.md)
 8. [Référencement (SEO)](08-referencement.md)
 9. [Configurations de mise en ligne (checklist)](09-configurations.md)
-10. [Journal des décisions](decisions.md)
+10. [Stratégie commerciale et financement](10-strategie-commerciale.md)
+11. [Journal des décisions](decisions.md)

@@ -30,7 +30,7 @@
 
 - [ ] Compte Meta Business vérifié (documents de l'entreprise)
 - [ ] Numéro WhatsApp Business dédié (le numéro ne doit pas être actif sur l'application WhatsApp classique s'il passe par l'API)
-- [ ] Connexion via Brevo (ou API Cloud de Meta)
+- [ ] Connexion directe à l'API Cloud de Meta (décision n° 29) : numéro neutre Data Engineering Consulting pour les codes de connexion
 - [ ] Modèles de messages à faire approuver par Meta : code de connexion (OTP), suivi de livraison
 - [ ] Ajouter le numéro sur la vitrine (WHATSAPP\_NUMBER dans src/config/site.ts)
 
@@ -42,6 +42,7 @@
 - [ ] Google Analytics 4 : une propriété, un flux par site (vitrine, puis chaque produit)
 - [ ] Bandeau de consentement aux cookies avant d'activer Analytics
 - [ ] Lier Search Console et Analytics
+- [ ] Fiche **Google Business Profile** à Douala (recherches locales)
 
 ## 6. Hébergement de la vitrine
 
@@ -61,7 +62,7 @@
 - [x] Keycloak sur auth.izimboa.com : realm `izimboa`, clients web et mobile (PKCE), page de connexion FR/EN
 - [ ] Keycloak : fournisseurs Google, WhatsApp, SMS ; e-mails (Brevo) ; thème aux couleurs d'Izimboa
 - [x] API sur api.izimboa.com + PostgreSQL 17 (interne), déployés par GitHub Actions
-- [ ] Sauvegardes automatiques hors du VPS, avec un test de restauration
+- [ ] Sauvegardes automatiques hors du VPS, avec un test de restauration : bucket **Cloudflare R2** + clé d'accès (secret GitHub)
 - [ ] Supervision : OpenTelemetry et Grafana, alertes
 
 ## 8. CI/CD (GitHub)
@@ -87,3 +88,13 @@
 - [ ] Numéro WhatsApp Business
 - [ ] Mentions légales : raison sociale, forme, capital, siège, RCCM, numéro contribuable, directeur de publication, hébergeur
 - [ ] Vérifier la loi camerounaise sur les données personnelles
+
+## 11. Google Play (application livreur)
+
+- [ ] Créer l'application « Izimboa Livreur » dans la console (compte organisation existant)
+- [ ] Compte de service Google Cloud avec accès à la console Play → clé JSON en secret GitHub (publication automatique)
+- [ ] Clé de signature de l'application (upload key) en secret GitHub ; signature Play App Signing activée
+- [ ] Fiche : titre, descriptions FR / EN, icône, bannière, captures (dès que l'application tourne)
+- [ ] Politique de confidentialité publiée sur la vitrine (obligatoire)
+- [ ] Déclaration « localisation en arrière-plan » avec une courte vidéo (avant la production)
+- [ ] Piste de test interne : liste des testeurs
