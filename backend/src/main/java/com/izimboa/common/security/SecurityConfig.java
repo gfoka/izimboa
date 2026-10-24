@@ -31,7 +31,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/actuator/health/**", "/actuator/info").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .requestMatchers(HttpMethod.GET, "/v1/delivery/zones", "/v1/delivery/tariffs", "/v1/delivery/track/*").permitAll()
+                .requestMatchers(HttpMethod.GET, "/v1/delivery/zones", "/v1/delivery/tariffs", "/v1/delivery/track/*", "/v1/delivery/track/*/courier-position").permitAll()
                 .requestMatchers(HttpMethod.POST, "/v1/delivery/quotes").permitAll()
                 .requestMatchers("/actuator/**").hasRole("admin")
                 .anyRequest().authenticated())

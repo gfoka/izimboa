@@ -62,7 +62,19 @@ curl -H "Authorization: Bearer $TOKEN" http://localhost:8080/v1/me
 | POST | `.../{id}/unlock-handover` | `operateur`, `admin` |
 | GET | `/v1/delivery/track/{jeton}` | public : suivi du destinataire, sans données personnelles |
 | POST | `/v1/delivery/conditions` | `livreur` : « il pleut ici », « gros bouchon » |
+| GET | `/v1/delivery/courier/status` | `livreur` : en ligne ou non, dernière position |
+| POST | `/v1/delivery/courier/online`, `/offline` | `livreur` : passer en ligne (avec sa position) / hors ligne |
+| POST | `/v1/delivery/courier/positions` | `livreur` en ligne : points GPS (jusqu'à 200 par envoi, après coupure réseau) |
+| GET | `/v1/delivery/courier/offers/current` | `livreur` : course proposée (200) ou rien (204) |
+| POST | `/v1/delivery/courier/offers/{id}/accept`, `/decline` | `livreur` : accepter / refuser |
+| GET | `/v1/delivery/deliveries/{id}/courier-position` | expéditeur, opérateur : livreur en direct (dès l'attribution) |
+| GET | `/v1/delivery/track/{jeton}/courier-position` | public : livreur en direct, quand le colis est en route |
 | GET | `/v3/api-docs`, `/swagger-ui.html` | public |
+
+**Attribution automatique** (`delivery.dispatch`) : toutes les 3 s, chaque livraison en attente (express d'abord)
+est proposée au livreur libre le plus proche du ramassage (en ligne, position de moins de 2 min, sans colis en
+charge, dans un rayon de 8 km). Il a 30 s pour accepter ; refus ou silence → livreur suivant. Réglages :
+`izimboa.delivery.dispatch.*`.
 
 Erreurs au format Problem Details (RFC 9457), avec un champ `code` stable
 (`outside-service-area`, `quote-required`, `invalid-transition`, `wrong-handover-code`, `handover-locked`…).

@@ -98,3 +98,4 @@
 - [ ] Politique de confidentialité publiée sur la vitrine (obligatoire)
 - [ ] Déclaration « localisation en arrière-plan » avec une courte vidéo (avant la production)
 - [ ] Piste de test interne : liste des testeurs
+- [ ] Projet Firebase (Cloud Messaging) pour l'alerte de course qui sonne sur le téléphone du livreur

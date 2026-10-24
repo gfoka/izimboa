@@ -235,3 +235,15 @@ legend.card-title + * { clear: both; }
 .track-pay { justify-items: center; text-align: center; gap: 2px; }
 .track-amount { font-family: var(--font-display); font-weight: 800; font-size: 2rem; color: var(--navy); }
 .track-foot { margin-top: 12px; }
+
+/* ----- Suivi en direct ----- */
+.map-live { height: 280px; }
+@media (min-width: 640px) { .map-live { height: 340px; } }
+.courier-pin { background: none; border: 0; }
+.courier-pin span { display: block; width: 26px; height: 26px; border-radius: 50%; background: var(--sun); border: 4px solid #fff; box-shadow: 0 0 0 6px rgb(242 140 40 / 30%), 0 3px 8px rgb(0 0 0 / 30%); }
+.live-dot { margin-left: auto; font-family: var(--font-body); font-size: .8rem; font-weight: 600; color: var(--slate); display: inline-flex; align-items: center; gap: 6px; }
+.live-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.live-dot.on { color: var(--ok); }
+.live-dot.on::before { background: var(--ok); animation: pulse 1.6s infinite; }
+.card-title .live-dot { margin-left: 0; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgb(26 127 75 / 50%); } 70% { box-shadow: 0 0 0 8px rgb(26 127 75 / 0%); } 100% { box-shadow: 0 0 0 0 rgb(26 127 75 / 0%); } }

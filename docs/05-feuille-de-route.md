@@ -8,7 +8,7 @@ On livre et on déploie au fur et à mesure.
 4. ✅ **Infra de base** : environnement local Docker, VPS sécurisé + HTTPS, CI/CD, API et Keycloak en production (thème Izimboa). Reste à part : sauvegardes de la base, connexions Google / WhatsApp.
 5. 🟡 **Izimboa Delivery** (MVP Douala) :
    - ✅ Lot 1 — cœur de l'API : grille de prix modifiable, simulation de prix, création de livraison, étapes, code de remise, suivi public, relevés pluie / trafic.
-   - 🟡 Lot 2 — espace vendeur web (delivery.izimboa.com), attribution automatique au livreur le plus proche, position GPS en direct ; WhatsApp (lien de suivi + code) après la configuration Meta.
+   - 🟡 Lot 2 — ✅ espace vendeur web (delivery.izimboa.com), ✅ attribution automatique au livreur le plus proche, ✅ position GPS en direct (API + cartes vendeur et destinataire) ; ⬜ envoi WhatsApp automatique après la configuration Meta.
    - ⬜ Lot 3 — application livreur Android (Kotlin natif) publiée sur Google Play (test interne) ; écran opérateur ; partenaires de flotte ; application client (Expo).
    - ⬜ Lot 4 — argent : Mobile Money, reversements du soir, grand livre, primes pluie.
    - ⬜ Lot 5 — cartes OpenStreetMap hébergées (Valhalla, tuiles), PostGIS + TimescaleDB pour les tracés.

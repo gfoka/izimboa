@@ -35,6 +35,8 @@ public abstract class PostgresIntegrationTest {
 
     @DynamicPropertySource
     static void database(DynamicPropertyRegistry registry) {
+        // Les tests lancent eux-mêmes les tours d'attribution (résultats prévisibles).
+        registry.add("izimboa.delivery.dispatch.enabled", () -> "false");
         if (EXTERNAL_URL != null) {
             registry.add("spring.datasource.url", () -> EXTERNAL_URL);
             registry.add("spring.datasource.username", () -> envOr("TEST_DB_USER", "izimboa"));

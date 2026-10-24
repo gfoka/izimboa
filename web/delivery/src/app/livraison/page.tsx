@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { AppShell, RequireLogin } from "@/components/AppShell";
+import { LiveMap, type LivePosition } from "@/components/LiveMap";
 import { Progress, StatusBadge, Timeline } from "@/components/Status";
 import { api, ApiError, type Delivery } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -26,6 +27,7 @@ function DeliveryDetail() {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [courier, setCourier] = useState<LivePosition | null>(null);
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
@@ -53,6 +55,22 @@ function DeliveryDetail() {
     const t = setInterval(load, 15_000);
     return () => clearInterval(t);
   }, [d, load]);
+
+  // Position du livreur en direct, de l'attribution à la remise.
+  const live = d !== null && (d.status === "ASSIGNED" || d.status === "PICKED_UP" || d.status === "IN_TRANSIT");
+  useEffect(() => {
+    if (!live || !d) { setCourier(null); return; }
+    let stop = false;
+    const poll = async () => {
+      try {
+        const p = await api<LivePosition | undefined>(`/v1/delivery/deliveries/${d.id}/courier-position`, { token: await token() });
+        if (!stop) setCourier(p ?? null);
+      } catch { /* on réessaie au prochain tour */ }
+    };
+    poll();
+    const t = setInterval(poll, 10_000);
+    return () => { stop = true; clearInterval(t); };
+  }, [live, d?.id, token]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const cancel = async () => {
     if (!d || !window.confirm("Annuler cette livraison ? C'est gratuit tant que le colis n'est pas ramassé.")) return;
@@ -125,7 +143,8 @@ function DeliveryDetail() {
           )}
 
           <section className="card">
-            <h2 className="card-title">Trajet</h2>
+            <h2 className="card-title">Trajet{live && <span className={courier ? "live-dot on" : "live-dot"}>{courier ? "Livreur en direct" : "Position du livreur bientôt visible"}</span>}</h2>
+            <LiveMap pickup={d.pickup} dropoff={d.dropoff} courier={courier} />
             <div className="route">
               <div className="route-stop">
                 <span className="route-dot route-from" aria-hidden="true" />
