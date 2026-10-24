@@ -50,13 +50,29 @@ curl -H "Authorization: Bearer $TOKEN" http://localhost:8080/v1/me
 | GET | `/actuator/health` | public |
 | GET | `/v1/delivery/zones` | public |
 | GET | `/v1/me` | connecté (tout rôle) |
+| GET | `/v1/delivery/tariffs` | public : grille de prix |
+| PUT | `/v1/delivery/tariffs` | `admin` : remplacer la grille |
+| POST | `/v1/delivery/quotes` | public : simuler un prix (vitrine) |
+| POST | `/v1/delivery/deliveries` | `vendeur`, `client` (en-tête `Idempotency-Key` conseillé) |
+| GET | `/v1/delivery/deliveries?scope=&status=` | connecté : les siennes, celles attribuées (livreur), toutes (opérateur) |
+| GET | `/v1/delivery/deliveries/{id}` | expéditeur, livreur attribué, opérateur |
+| POST | `.../{id}/assign` | `operateur`, `admin` |
+| POST | `.../{id}/pickup`, `/depart`, `/deliver`, `/fail`, `/retry`, `/return` | livreur attribué (ou opérateur) |
+| POST | `.../{id}/cancel` | expéditeur ou opérateur, avant le ramassage |
+| POST | `.../{id}/unlock-handover` | `operateur`, `admin` |
+| GET | `/v1/delivery/track/{jeton}` | public : suivi du destinataire, sans données personnelles |
+| POST | `/v1/delivery/conditions` | `livreur` : « il pleut ici », « gros bouchon » |
 | GET | `/v3/api-docs`, `/swagger-ui.html` | public |
+
+Erreurs au format Problem Details (RFC 9457), avec un champ `code` stable
+(`outside-service-area`, `quote-required`, `invalid-transition`, `wrong-handover-code`, `handover-locked`…).
 
 ## Tests
 
-`./gradlew test` — unitaires, sécurité, frontières de modules. Les tests d'intégration (vrai PostgreSQL via
-Testcontainers) s'exécutent quand Docker est disponible, et toujours dans GitHub Actions
-(`.github/workflows/backend-ci.yml`).
+`./gradlew test` — unitaires, sécurité, frontières de modules, et parcours complets de livraison sur un vrai
+PostgreSQL : via Docker (Testcontainers) quand il est disponible, et toujours dans GitHub Actions
+(`.github/workflows/backend-ci.yml`). Sans Docker, pointer une base vide :
+`TEST_DB_URL=jdbc:postgresql://localhost:5432/izimboa_test ./gradlew test`.
 
 ## Variables d'environnement
 

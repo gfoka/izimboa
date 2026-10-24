@@ -53,3 +53,13 @@ Systèmes externes : Mobile Money, WhatsApp (API Meta), cartes OpenStreetMap, Ke
 - OpenStreetMap hébergé chez nous : itinéraires et distances (Valhalla ou OSRM) et affichage de la carte, sans coût par requête.
 - Le client suit le livreur en direct dans l'application, avec l'heure d'arrivée.
 - Nos propres données (adresses épinglées, repères, traces GPS) enrichissent la carte au fil du temps.
+
+## Parcours d'une livraison
+1. **Création** par le vendeur : ramassage, destination (épingle + repère), destinataire, montant à encaisser, express. Prix affiché tout de suite.
+2. **Confirmation** : le destinataire reçoit sur WhatsApp un lien de suivi et un code de remise à 4 chiffres *(envoi WhatsApp à brancher ; en attendant, le vendeur voit le code dans son espace)*.
+3. **Attribution** à un livreur par un opérateur *(plus tard : proposée automatiquement au livreur libre le plus proche, 30 s pour accepter)*.
+4. **Ramassage** puis **départ** ; le client suit le livreur en direct *(carte et GPS en direct à venir)*.
+5. **Remise** : encaissement si besoin, puis code du destinataire = preuve de livraison. 5 codes faux bloquent la remise jusqu'à ce qu'un opérateur débloque.
+6. **Reversement** le soir : encaissé − frais de livraison − commission *(Mobile Money à brancher)*.
+
+Si ça se passe mal : échec avec motif et position GPS → deuxième passage ou retour au vendeur (50 % de la course). Annulation gratuite avant le ramassage.

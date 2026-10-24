@@ -12,4 +12,9 @@ public record CurrentUser(UUID id, String email, String name, Set<String> roles)
     public boolean hasRole(String role) {
         return roles.contains(role);
     }
+
+    /** Opérateur ou administrateur. */
+    public boolean isStaff() {
+        return Roles.isStaff(roles);
+    }
 }

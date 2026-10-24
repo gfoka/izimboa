@@ -11,5 +11,10 @@ public final class Roles {
     public static final String PARTENAIRE = "partenaire";
     public static final String ADMIN = "admin";
 
+    /** Rôles qui peuvent tout voir et intervenir sur n'importe quelle livraison. */
+    public static boolean isStaff(java.util.Set<String> roles) {
+        return roles.contains(OPERATEUR) || roles.contains(ADMIN);
+    }
+
     private Roles() {}
 }
