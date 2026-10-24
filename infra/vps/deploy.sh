@@ -16,7 +16,8 @@ if [ ! -f .env ]; then
   echo "Fichier .env créé avec de nouveaux mots de passe."
 fi
 
-# 2. Services
+# 2. Services (apps/ : applications web statiques, déposées par leurs propres workflows)
+mkdir -p apps/delivery
 docker compose pull --quiet caddy postgres keycloak
 docker compose up -d --remove-orphans
 docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile

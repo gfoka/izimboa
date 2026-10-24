@@ -1,0 +1,3 @@
+# Application connectée : rien à référencer (seule la vitrine izimboa.com l'est).
+User-agent: *
+Disallow: /

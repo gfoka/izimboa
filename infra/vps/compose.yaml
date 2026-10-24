@@ -15,6 +15,7 @@ services:
       # Dossier monté (et non le fichier seul) : une nouvelle version est vue sans recréer le conteneur.
       - ./caddy:/etc/caddy:ro
       - ./site:/srv/site:ro
+      - ./apps:/srv/apps:ro
       - caddy-data:/data
       - caddy-config:/config
 

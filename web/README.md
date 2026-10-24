@@ -15,3 +15,5 @@ Applications prévues :
 La vitrine est un site statique (pas de base de données). Les parties dynamiques (contact, devis) appellent l'API, jamais la base directement.
 
 _Vide pour l'instant._
+
+- `delivery/` — espace vendeur Izimboa Delivery (delivery.izimboa.com), voir son README.

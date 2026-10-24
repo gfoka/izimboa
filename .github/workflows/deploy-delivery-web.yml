@@ -1,0 +1,72 @@
+name: Espace vendeur Delivery
+
+# Construit l'espace vendeur (web/delivery, export statique Next.js) et le dépose sur le VPS,
+# où Caddy le sert sur delivery.izimboa.com.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "web/delivery/**"
+      - ".github/workflows/deploy-delivery-web.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-delivery-web
+  cancel-in-progress: true
+
+env:
+  VPS_HOST: 212.47.78.167
+  VPS_USER: deploy
+  VPS_DIR: /srv/izimboa
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web/delivery
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/delivery/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - name: Construire (vérification TypeScript comprise)
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+
+      - name: Préparer la connexion SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cp "$GITHUB_WORKSPACE/infra/vps/known_hosts" ~/.ssh/known_hosts
+
+      - name: Déposer sur le serveur
+        run: |
+          ssh "$VPS_USER@$VPS_HOST" "mkdir -p $VPS_DIR/apps/delivery"
+          # Fichiers versionnés d'abord, pages ensuite : aucune page ne pointe vers un fichier absent.
+          rsync -az out/_next/ "$VPS_USER@$VPS_HOST:$VPS_DIR/apps/delivery/_next/"
+          rsync -az --delete out/ "$VPS_USER@$VPS_HOST:$VPS_DIR/apps/delivery/"
+
+      - name: Vérifier en ligne
+        run: |
+          for i in $(seq 1 40); do
+            if curl -fsS https://delivery.izimboa.com/ | grep -q "_next/static"; then break; fi
+            echo "essai $i : en attente de la configuration Caddy..."; sleep 10
+          done
+          curl -fsS https://delivery.izimboa.com/ | grep -q "_next/static"
+          for p in / /nouvelle/ /livraison/ /callback/ /suivi/abc123/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://delivery.izimboa.com$p")
+            echo "$p -> $code"; [ "$code" = "200" ]
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://delivery.izimboa.com/inexistant/)
+          echo "/inexistant/ -> $code"; [ "$code" = "404" ]
+          curl -fsS https://delivery.izimboa.com/robots.txt | grep -q "Disallow: /"
+          curl -fsSI https://delivery.izimboa.com/ | grep -i "x-robots-tag"
