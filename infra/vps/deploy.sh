@@ -40,6 +40,15 @@ kc() { docker compose exec -T keycloak /opt/keycloak/bin/kcadm.sh "$@" --config 
 kc config credentials --server http://localhost:8080 --realm master --user admin --password "$KEYCLOAK_ADMIN_PASSWORD" > /dev/null
 kc update realms/izimboa -s loginTheme=izimboa -s 'displayNameHtml=<strong>izimboa</strong>'
 echo "Realm izimboa : thème de connexion « izimboa » appliqué."
+# Rôles ajoutés après la création du realm (idempotent).
+for role in operateur:"Opérateur : suit les courses en direct, réassigne, support" \
+            partenaire:"Partenaire de flotte : gère ses motos et ses livreurs"; do
+  name=${role%%:*}; desc=${role#*:}
+  if ! kc get "roles/$name" -r izimboa > /dev/null 2>&1; then
+    kc create roles -r izimboa -s "name=$name" -s "description=$desc"
+    echo "Rôle « $name » créé."
+  fi
+done
 
 docker image prune -f > /dev/null
 docker compose ps

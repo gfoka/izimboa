@@ -58,6 +58,14 @@
         "description": "Conseiller Izimboa Go"
       },
       {
+        "name": "operateur",
+        "description": "Opérateur : suit les courses en direct, réassigne, support"
+      },
+      {
+        "name": "partenaire",
+        "description": "Partenaire de flotte : gère ses motos et ses livreurs"
+      },
+      {
         "name": "admin",
         "description": "Administration de la plateforme"
       },

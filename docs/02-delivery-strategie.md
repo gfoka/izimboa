@@ -28,3 +28,28 @@ Pistes de différenciation : adressage fiable (épingle sur la carte + repère d
 1. Application client : commande, prix immédiat, paiement, suivi en direct.
 2. Application livreur : réception des courses, ramassage, remise validée par code ou photo.
 3. Tableau de bord d'administration : livreurs, tarifs, litiges.
+
+## Les acteurs
+| Acteur | Rôle Keycloak | Ce qu'il fait |
+|---|---|---|
+| Vendeur (expéditeur) | `vendeur` | Crée les livraisons, paie, reçoit l'argent encaissé le jour même. |
+| Particulier | `client` | Envoie un colis de temps en temps. |
+| Destinataire | — (sans compte) | Suit le colis par un lien WhatsApp, paie si besoin, donne le code de remise. |
+| Livreur | `livreur` | Accepte les courses, ramasse, livre, encaisse, prend la preuve de remise. |
+| Partenaire de flotte | `partenaire` | Possède des motos et ses livreurs ; les gère, suit sa flotte, reçoit les gains de sa flotte et paie ses livreurs. |
+| Opérateur | `operateur` | Suit les courses en direct, réassigne, répond au support WhatsApp. |
+| Administrateur | `admin` | Tarifs, livreurs, primes, reversements, comptabilité. |
+
+Systèmes externes : Mobile Money, WhatsApp (API Meta), cartes OpenStreetMap, Keycloak, météo.
+
+## Tarifs (base provisoire)
+- **Prix au palier de distance**, connu d'avance et stable : 1 000 FCFA jusqu'à 3 km, 1 500 FCFA jusqu'à 7 km, 2 000 FCFA jusqu'à 12 km, au-delà sur devis.
+- **Express** : +500 FCFA, prise en charge prioritaire.
+- **Paiement à la livraison** : commission de 1,5 % du montant encaissé (risque + reversement le jour même).
+- **Pluie, bouchons** : le prix ne bouge pas. Izimboa paie une prime aux livreurs et le délai annoncé s'allonge.
+- Grille stockée en base et modifiable par l'administration. Chiffres à valider avec quelques vendeurs et livreurs.
+
+## Cartes et suivi
+- OpenStreetMap hébergé chez nous : itinéraires et distances (Valhalla ou OSRM) et affichage de la carte, sans coût par requête.
+- Le client suit le livreur en direct dans l'application, avec l'heure d'arrivée.
+- Nos propres données (adresses épinglées, repères, traces GPS) enrichissent la carte au fil du temps.
