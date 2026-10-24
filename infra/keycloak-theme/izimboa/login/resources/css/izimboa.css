@@ -1,0 +1,104 @@
+/* Izimboa — apparence des pages de connexion (Keycloak, thème keycloak.v2 / PatternFly 5). */
+
+@font-face {
+  font-family: "Outfit";
+  src: url("../fonts/outfit-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --izb-navy: #0b2545;
+  --izb-navy-2: #13345e;
+  --izb-sun: #f28c28;
+  --izb-cloud: #f4f6f9;
+  --izb-line: #e3e8ef;
+  --izb-slate: #4a5a70;
+  --pf-v5-global--FontFamily--text: "Inter", system-ui, sans-serif;
+  --pf-v5-global--FontFamily--heading: "Outfit", system-ui, sans-serif;
+  --pf-v5-global--FontFamily--redhat-updated--sans-serif: "Inter", system-ui, sans-serif;
+  --pf-v5-global--FontFamily--redhat-updated--heading--sans-serif: "Outfit", system-ui, sans-serif;
+  --pf-v5-global--primary-color--100: var(--izb-navy);
+  --pf-v5-global--primary-color--200: var(--izb-navy-2);
+  --pf-v5-global--link--Color: var(--izb-navy);
+  --pf-v5-global--link--Color--hover: var(--izb-navy-2);
+  --pf-v5-global--active-color--100: var(--izb-navy);
+  --pf-v5-global--BorderRadius--sm: 10px;
+}
+
+body#keycloak-bg {
+  background: var(--izb-navy);
+  background-image: radial-gradient(circle at 85% 10%, rgb(242 140 40 / 18%) 0, transparent 40%);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* En-tête : symbole + « izimboa » */
+#kc-header { padding-block: 32px 24px; }
+#kc-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-transform: lowercase;
+}
+#kc-header-wrapper::before {
+  content: "";
+  width: 46px;
+  height: 46px;
+  background: url("../img/symbole.svg") center / contain no-repeat;
+}
+#kc-header-wrapper strong { font-weight: 600; }
+
+/* Carte */
+.pf-v5-c-login__main {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgb(0 0 0 / 30%);
+  overflow: hidden;
+}
+#kc-page-title {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--izb-navy);
+  letter-spacing: -0.02em;
+}
+.pf-v5-c-login__main-footer-band { background: var(--izb-cloud); }
+
+/* Champs */
+.pf-v5-c-form-control {
+  --pf-v5-c-form-control--BorderRadius: 10px;
+  --pf-v5-c-form-control--after--BorderBottomColor: var(--izb-line);
+  --pf-v5-c-form-control--hover--after--BorderBottomColor: var(--izb-navy);
+  --pf-v5-c-form-control--focus--after--BorderBottomColor: var(--izb-navy);
+  border-radius: 10px;
+}
+.pf-v5-c-form__label-text { font-weight: 600; color: var(--izb-navy); }
+
+/* Boutons */
+.pf-v5-c-button.pf-m-primary {
+  --pf-v5-c-button--m-primary--BackgroundColor: var(--izb-navy);
+  --pf-v5-c-button--m-primary--hover--BackgroundColor: var(--izb-navy-2);
+  --pf-v5-c-button--m-primary--focus--BackgroundColor: var(--izb-navy-2);
+  --pf-v5-c-button--m-primary--active--BackgroundColor: var(--izb-navy-2);
+  min-height: 48px;
+  border-radius: 999px;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.pf-v5-c-button.pf-m-secondary { border-radius: 999px; }
+:focus-visible { outline: 3px solid var(--izb-sun); outline-offset: 2px; }
+
+/* Liens */
+#kc-registration a, .pf-v5-c-helper-text__item-text a { font-weight: 600; }

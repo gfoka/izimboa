@@ -55,6 +55,7 @@ services:
       TZ: Africa/Douala
     volumes:
       - ./keycloak/import:/opt/keycloak/data/import:ro
+      - ./keycloak-theme/izimboa:/opt/keycloak/themes/izimboa:ro
     depends_on:
       postgres:
         condition: service_healthy

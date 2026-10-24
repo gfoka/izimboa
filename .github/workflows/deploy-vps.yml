@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - "infra/vps/**"
+      - "infra/keycloak-theme/**"
       - "backend/**"
       - ".github/workflows/deploy-vps.yml"
   workflow_dispatch:
@@ -79,32 +80,12 @@ jobs:
       - name: Copier les fichiers sur le serveur
         run: |
           rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes" \
-            infra/vps/compose.yaml infra/vps/caddy infra/vps/site infra/vps/postgres infra/vps/keycloak \
+            infra/vps/compose.yaml infra/vps/deploy.sh infra/vps/caddy infra/vps/site infra/vps/postgres infra/vps/keycloak \
+            infra/keycloak-theme \
             "$VPS_USER@$VPS_HOST:$VPS_DIR/"
 
       - name: Relancer les services
-        run: |
-          ssh -o StrictHostKeyChecking=yes "$VPS_USER@$VPS_HOST" bash -s <<SCRIPT
-          set -euo pipefail
-          cd "$VPS_DIR"
-          rm -f Caddyfile
-          # Secrets générés une seule fois, sur le serveur uniquement (jamais dans Git ni dans GitHub).
-          if [ ! -f .env ]; then
-            umask 077
-            {
-              echo "POSTGRES_SUPERUSER_PASSWORD=\$(openssl rand -hex 24)"
-              echo "IZIMBOA_DB_PASSWORD=\$(openssl rand -hex 24)"
-              echo "KEYCLOAK_DB_PASSWORD=\$(openssl rand -hex 24)"
-              echo "KEYCLOAK_ADMIN_PASSWORD=\$(openssl rand -base64 18 | tr -d '/+=')"
-            } > .env
-            echo "Fichier .env créé avec de nouveaux mots de passe."
-          fi
-          docker compose pull --quiet caddy postgres keycloak
-          docker compose up -d --remove-orphans
-          docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile
-          docker image prune -f > /dev/null
-          docker compose ps
-          SCRIPT
+        run: ssh -o StrictHostKeyChecking=yes "$VPS_USER@$VPS_HOST" "bash $VPS_DIR/deploy.sh"
 
       - name: Vérifier que tout répond
         run: |
