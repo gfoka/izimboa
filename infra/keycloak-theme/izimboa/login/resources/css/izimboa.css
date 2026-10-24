@@ -62,6 +62,8 @@ body#keycloak-bg {
 
 /* Carte */
 .pf-v5-c-login__main {
+  --pf-v5-c-login__main--BorderTopColor: var(--izb-sun);
+  border-top-color: var(--izb-sun);
   background: #fff;
   border-radius: 24px;
   box-shadow: 0 30px 80px rgb(0 0 0 / 30%);
@@ -73,7 +75,7 @@ body#keycloak-bg {
   color: var(--izb-navy);
   letter-spacing: -0.02em;
 }
-.pf-v5-c-login__main-footer-band { background: var(--izb-cloud); }
+.pf-v5-c-login__main-footer-band { background: var(--izb-cloud); border-radius: 12px; }
 
 /* Champs */
 .pf-v5-c-form-control {
