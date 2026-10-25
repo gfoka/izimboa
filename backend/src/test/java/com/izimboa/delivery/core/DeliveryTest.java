@@ -106,6 +106,25 @@ class DeliveryTest {
     }
 
     @Test
+    void uneActionFaiteSansReseauGardeSonHeureReelle() {
+        var d = nouvelle(0);
+        d.assign(LIVREUR, OPERATEUR, T);
+        var envoi = T.plusSeconds(1800);                       // réseau revenu 30 min plus tard
+        d.pickUp(LIVREUR, new Delivery.Position(4.05, 9.76, T.plusSeconds(300)), envoi);
+        assertThat(d.getEvents().getLast().occurredAt()).isEqualTo(T.plusSeconds(300));
+        assertThat(d.pickedUpAt()).isEqualTo(T.plusSeconds(300));
+
+        // Horloge du téléphone en avance : on garde l'heure du serveur.
+        d.depart(LIVREUR, new Delivery.Position(null, null, envoi.plusSeconds(3600)), envoi);
+        assertThat(d.getEvents().getLast().occurredAt()).isEqualTo(envoi);
+
+        // Jamais avant l'étape précédente.
+        d.fail("Absent", LIVREUR, new Delivery.Position(null, null, T), envoi.plusSeconds(60));
+        assertThat(d.getEvents().getLast().occurredAt()).isEqualTo(envoi);
+        assertThat(d.finishedAt()).isNull();
+    }
+
+    @Test
     void uneCourseSurDevisNePeutPasEtreCreee() {
         var ids = new Delivery.Identifiers(UUID.randomUUID(), "IZ-ABC235", "jeton2", "1111");
         var details = new Delivery.Details(new Delivery.Stop(4.05, 9.76, "A", null), "+237699000001",

@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import java.net.URI;
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
@@ -94,13 +95,13 @@ class DeliveryController {
     @PostMapping("/deliveries/{id}/deliver")
     @PreAuthorize("hasAnyRole('livreur', 'operateur', 'admin')")
     DeliveryViews.DeliveryView deliver(@PathVariable UUID id, @Valid @RequestBody DeliverRequest body, CurrentUser user) {
-        return service.deliver(id, body.code(), new Delivery.Position(body.lat(), body.lng()), user);
+        return service.deliver(id, body.code(), new Delivery.Position(body.lat(), body.lng(), body.occurredAt()), user);
     }
 
     @PostMapping("/deliveries/{id}/fail")
     @PreAuthorize("hasAnyRole('livreur', 'operateur', 'admin')")
     DeliveryViews.DeliveryView fail(@PathVariable UUID id, @Valid @RequestBody FailRequest body, CurrentUser user) {
-        return service.fail(id, body.reason(), new Delivery.Position(body.lat(), body.lng()), user);
+        return service.fail(id, body.reason(), new Delivery.Position(body.lat(), body.lng(), body.occurredAt()), user);
     }
 
     @PostMapping("/deliveries/{id}/retry")
@@ -151,19 +152,23 @@ class DeliveryController {
 
     record ReasonRequest(@Size(max = 300) String reason) {}
 
+    /** {@code occurredAt} : heure du téléphone, quand l'action a été faite sans réseau et envoyée plus tard. */
     record PositionRequest(@DecimalMin("-90") @DecimalMax("90") Double lat,
-                           @DecimalMin("-180") @DecimalMax("180") Double lng) {}
+                           @DecimalMin("-180") @DecimalMax("180") Double lng,
+                           Instant occurredAt) {}
 
     record DeliverRequest(@NotBlank @Pattern(regexp = "\\d{4}", message = "4 chiffres") String code,
                           @DecimalMin("-90") @DecimalMax("90") Double lat,
-                          @DecimalMin("-180") @DecimalMax("180") Double lng) {}
+                          @DecimalMin("-180") @DecimalMax("180") Double lng,
+                          Instant occurredAt) {}
 
     record FailRequest(@NotBlank @Size(max = 300) String reason,
                        @DecimalMin("-90") @DecimalMax("90") Double lat,
-                       @DecimalMin("-180") @DecimalMax("180") Double lng) {}
+                       @DecimalMin("-180") @DecimalMax("180") Double lng,
+                       Instant occurredAt) {}
 
     private static Delivery.Position position(PositionRequest p) {
-        return p == null ? null : new Delivery.Position(p.lat(), p.lng());
+        return p == null ? null : new Delivery.Position(p.lat(), p.lng(), p.occurredAt());
     }
 
     private static String blankToNull(String s) {

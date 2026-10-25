@@ -6,6 +6,7 @@ import com.izimboa.delivery.core.DeliveryAssignments;
 import com.izimboa.delivery.core.DeliveryStatus;
 import jakarta.validation.constraints.Size;
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,27 @@ class LiveTrackingController {
     ResponseEntity<LivePosition> forRecipient(@PathVariable @Size(max = 32) String token) {
         var id = deliveries.byTrackingToken(token).orElseThrow(DeliveryProblem::notFound);
         return live(id, true);
+    }
+
+    /** Chemin parcouru depuis le ramassage (jamais avant : la vie du livreur ne regarde personne). */
+    @GetMapping("/v1/delivery/deliveries/{id}/trace")
+    List<CourierService.TracePoint> traceForSender(@PathVariable UUID id, CurrentUser user) {
+        if (!deliveries.visibleTo(id, user.id(), user.isStaff())) throw DeliveryProblem.notFound();
+        return trace(id, false);
+    }
+
+    /** Le destinataire voit le chemin seulement pendant que le colis est en route vers lui. */
+    @GetMapping("/v1/delivery/track/{token}/trace")
+    List<CourierService.TracePoint> traceForRecipient(@PathVariable @Size(max = 32) String token) {
+        var id = deliveries.byTrackingToken(token).orElseThrow(DeliveryProblem::notFound);
+        return trace(id, true);
+    }
+
+    private List<CourierService.TracePoint> trace(UUID deliveryId, boolean recipient) {
+        return deliveries.traceWindow(deliveryId)
+                .filter(w -> !recipient || w.status() == DeliveryStatus.IN_TRANSIT)
+                .map(w -> couriers.trace(w.courierId(), w.from(), w.to()))
+                .orElse(List.of());
     }
 
     private ResponseEntity<LivePosition> live(UUID deliveryId, boolean recipient) {

@@ -105,10 +105,25 @@ class DispatchAndLiveTrackingIntegrationTest extends PostgresIntegrationTest {
         mvc.perform(get("/v1/delivery/track/" + token + "/courier-position")).andExpect(status().isNoContent());
         mvc.perform(get("/v1/delivery/deliveries/" + id + "/courier-position").with(proche)).andExpect(status().isNotFound());
 
+        // Avant le ramassage, pas de tracé : la vie du livreur ne regarde personne.
+        mvc.perform(get("/v1/delivery/deliveries/" + id + "/trace").with(vendeur))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(0));
+
         postJson("/v1/delivery/deliveries/" + id + "/pickup", suivant, "{}").andExpect(status().isOk());
         postJson("/v1/delivery/deliveries/" + id + "/depart", suivant, "{}").andExpect(status().isOk());
         mvc.perform(get("/v1/delivery/track/" + token + "/courier-position"))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.lng").isNumber());
+
+        // Chemin parcouru depuis le ramassage : vendeur et destinataire (colis en route).
+        Thread.sleep(5);
+        postJson("/v1/delivery/courier/positions", suivant,
+                "{\"points\":[" + point(4.0770, 9.6630) + "," + point(4.0785, 9.6660) + "]}").andExpect(status().isOk());
+        mvc.perform(get("/v1/delivery/deliveries/" + id + "/trace").with(vendeur))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[0].lat").value(4.0770));
+        mvc.perform(get("/v1/delivery/track/" + token + "/trace"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(2));
+        mvc.perform(get("/v1/delivery/deliveries/" + id + "/trace").with(proche)).andExpect(status().isNotFound());
 
         // 5. Hors ligne : plus de position envoyée ni montrée.
         mvc.perform(post("/v1/delivery/courier/offline").with(suivant))
@@ -157,6 +172,10 @@ class DispatchAndLiveTrackingIntegrationTest extends PostgresIntegrationTest {
     void seulsLesLivreursUtilisentLesRoutesLivreur() throws Exception {
         mvc.perform(post("/v1/delivery/courier/online").with(vendeur)).andExpect(status().isForbidden());
         mvc.perform(get("/v1/delivery/courier/offers/current").with(vendeur)).andExpect(status().isForbidden());
+        // Attente longue : sans course, la réponse vide arrive au bout du délai demandé.
+        long t0 = System.nanoTime();
+        mvc.perform(get("/v1/delivery/courier/offers/current?wait=1").with(lointain)).andExpect(status().isNoContent());
+        org.assertj.core.api.Assertions.assertThat(System.nanoTime() - t0).isGreaterThan(900_000_000L);
         mvc.perform(get("/v1/delivery/courier/status").with(lointain))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.online").value(false));
     }

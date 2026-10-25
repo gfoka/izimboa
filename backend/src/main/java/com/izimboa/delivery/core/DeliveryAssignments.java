@@ -96,6 +96,17 @@ public class DeliveryAssignments {
         return repository.findByTrackingToken(token).map(Delivery::getId);
     }
 
+    /** Période du tracé à montrer : du ramassage à la fin de la course (ou maintenant). */
+    public record TraceWindow(UUID courierId, DeliveryStatus status, java.time.Instant from, java.time.Instant to) {}
+
+    @Transactional(readOnly = true)
+    public Optional<TraceWindow> traceWindow(UUID deliveryId) {
+        return repository.findById(deliveryId)
+                .filter(d -> d.getCourierId() != null && d.pickedUpAt() != null)
+                .map(d -> new TraceWindow(d.getCourierId(), d.getStatus(), d.pickedUpAt(),
+                        d.finishedAt() != null ? d.finishedAt() : clock.instant()));
+    }
+
     /** Qui suit quelle livraison : le livreur attribué, si l'étape s'y prête. */
     @Transactional(readOnly = true)
     public Optional<Active> trackable(UUID deliveryId) {

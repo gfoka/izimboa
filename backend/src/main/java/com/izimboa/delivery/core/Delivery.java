@@ -207,7 +207,27 @@ public class Delivery {
 
     // ---- Interne ----
 
-    record Position(Double lat, Double lng) {}
+    /**
+     * Où et quand l'action a eu lieu. {@code at} : heure du téléphone, pour une action faite sans réseau
+     * et envoyée plus tard (null = maintenant).
+     */
+    record Position(Double lat, Double lng, Instant at) {
+        Position(Double lat, Double lng) { this(lat, lng, null); }
+    }
+
+    /** Une action envoyée en retard garde son heure réelle, dans des limites raisonnables et sans remonter le temps. */
+    static final java.time.Duration MAX_OFFLINE_DELAY = java.time.Duration.ofHours(24);
+    static final java.time.Duration MAX_CLOCK_AHEAD = java.time.Duration.ofMinutes(5);
+
+    private Instant occurredAt(Position at, Instant now) {
+        Instant requested = at == null ? null : at.at();
+        if (requested == null || requested.isAfter(now.plus(MAX_CLOCK_AHEAD)) || requested.isBefore(now.minus(MAX_OFFLINE_DELAY))) {
+            requested = now;
+        }
+        Instant last = events.isEmpty() ? null : events.getLast().occurredAt();
+        if (last != null && requested.isBefore(last)) requested = last;
+        return requested.isAfter(now) ? now : requested;
+    }
 
     private void require(String action, DeliveryStatus... allowed) {
         for (var s : allowed) if (status == s) return;
@@ -220,7 +240,8 @@ public class Delivery {
     }
 
     private void record(DeliveryStatus s, UUID actor, Position at, String note, Instant now) {
-        events.add(new DeliveryEvent(this, s, actor, at == null ? null : at.lat(), at == null ? null : at.lng(), note, now));
+        events.add(new DeliveryEvent(this, s, actor, at == null ? null : at.lat(), at == null ? null : at.lng(), note,
+                occurredAt(at, now)));
         this.updatedAt = now;
     }
 
@@ -263,6 +284,17 @@ public class Delivery {
     public Instant getCreatedAt() { return createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }
     List<DeliveryEvent> getEvents() { return Collections.unmodifiableList(events); }
+
+    /** Heure du ramassage (début du tracé montré au vendeur et au destinataire), si elle a eu lieu. */
+    Instant pickedUpAt() {
+        return events.stream().filter(e -> e.status() == DeliveryStatus.PICKED_UP).map(DeliveryEvent::occurredAt)
+                .reduce((a, b) -> b).orElse(null);
+    }
+
+    /** Fin du tracé : la remise, le retour ou l'annulation (null tant que la course continue). */
+    Instant finishedAt() {
+        return status.isFinal() ? events.getLast().occurredAt() : null;
+    }
 
     /** Course seule (hors commission), base des frais de retour. */
     long courseFee() { return basePrice + expressSurcharge; }

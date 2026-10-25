@@ -33,6 +33,11 @@ public class CourierService {
 
     public record Status(boolean online, Instant onlineSince, Position lastPosition) {}
 
+    public record TracePoint(double lat, double lng, Instant at) {}
+
+    /** Au-delà, on garde un point sur n : la carte reste légère sur les téléphones et les petits forfaits. */
+    static final int MAX_TRACE_POINTS = 500;
+
     private final CourierPresenceRepository presences;
     private final CourierPositionRepository positions;
     private final DeliveryAssignments deliveries;
@@ -93,6 +98,18 @@ public class CourierService {
         return presences.findById(courierId)
                 .filter(p -> p.online() && p.positionAt() != null && p.positionAt().isAfter(limit))
                 .map(this::position);
+    }
+
+    /** Chemin parcouru par un livreur entre deux instants, allégé si besoin. */
+    @Transactional(readOnly = true)
+    public List<TracePoint> trace(UUID courierId, Instant from, Instant to) {
+        var all = positions.trace(courierId, from, to);
+        if (all.size() <= MAX_TRACE_POINTS) return all;
+        int step = (int) Math.ceil(all.size() / (double) MAX_TRACE_POINTS);
+        var thinned = new java.util.ArrayList<TracePoint>();
+        for (int i = 0; i < all.size(); i += step) thinned.add(all.get(i));
+        if (!thinned.getLast().equals(all.getLast())) thinned.add(all.getLast());
+        return thinned;
     }
 
     private int record(CourierPresence p, List<Point> points, Instant now) {
