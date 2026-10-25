@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { LiveMap, type LivePosition } from "@/components/LiveMap";
+import { LiveMap, type LivePosition, type TracePoint } from "@/components/LiveMap";
 import { Logo } from "@/components/Logo";
 import { Progress, Timeline } from "@/components/Status";
 import { api, ApiError, type Tracking } from "@/lib/api";
@@ -16,6 +16,7 @@ export default function TrackingPage() {
   const [t, setT] = useState<Tracking | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [courier, setCourier] = useState<LivePosition | null>(null);
+  const [trace, setTrace] = useState<TracePoint[]>([]);
 
   useEffect(() => {
     const fromPath = window.location.pathname.split("/").filter(Boolean)[1];
@@ -49,8 +50,12 @@ export default function TrackingPage() {
     let stop = false;
     const poll = async () => {
       try {
-        const p = await api<LivePosition | undefined>(`/v1/delivery/track/${encodeURIComponent(token)}/courier-position`);
-        if (!stop) setCourier(p ?? null);
+        const base = `/v1/delivery/track/${encodeURIComponent(token)}`;
+        const [p, path] = await Promise.all([
+          api<LivePosition | undefined>(`${base}/courier-position`),
+          api<TracePoint[]>(`${base}/trace`),
+        ]);
+        if (!stop) { setCourier(p ?? null); setTrace(path ?? []); }
       } catch { /* prochain tour */ }
     };
     poll();
@@ -75,7 +80,8 @@ export default function TrackingPage() {
             {enRoute && courier && (
               <div className="card">
                 <h2 className="card-title"><span className="live-dot on">Votre livreur en direct</span></h2>
-                <LiveMap courier={courier} />
+                <p className="muted small">En orange : le chemin parcouru depuis le ramassage de votre colis.</p>
+                <LiveMap courier={courier} trace={trace} />
               </div>
             )}
             {t.amountToPay > 0 && !FINAL.includes(t.status) && (

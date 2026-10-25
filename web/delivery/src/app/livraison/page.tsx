@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { AppShell, RequireLogin } from "@/components/AppShell";
-import { LiveMap, type LivePosition } from "@/components/LiveMap";
+import { LiveMap, type LivePosition, type TracePoint } from "@/components/LiveMap";
 import { Progress, StatusBadge, Timeline } from "@/components/Status";
 import { api, ApiError, type Delivery } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -28,6 +28,7 @@ function DeliveryDetail() {
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
   const [courier, setCourier] = useState<LivePosition | null>(null);
+  const [trace, setTrace] = useState<TracePoint[]>([]);
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
@@ -63,8 +64,12 @@ function DeliveryDetail() {
     let stop = false;
     const poll = async () => {
       try {
-        const p = await api<LivePosition | undefined>(`/v1/delivery/deliveries/${d.id}/courier-position`, { token: await token() });
-        if (!stop) setCourier(p ?? null);
+        const t = await token();
+        const [p, path] = await Promise.all([
+          api<LivePosition | undefined>(`/v1/delivery/deliveries/${d.id}/courier-position`, { token: t }),
+          api<TracePoint[]>(`/v1/delivery/deliveries/${d.id}/trace`, { token: t }),
+        ]);
+        if (!stop) { setCourier(p ?? null); setTrace(path ?? []); }
       } catch { /* on réessaie au prochain tour */ }
     };
     poll();
@@ -144,7 +149,7 @@ function DeliveryDetail() {
 
           <section className="card">
             <h2 className="card-title">Trajet{live && <span className={courier ? "live-dot on" : "live-dot"}>{courier ? "Livreur en direct" : "Position du livreur bientôt visible"}</span>}</h2>
-            <LiveMap pickup={d.pickup} dropoff={d.dropoff} courier={courier} />
+            <LiveMap pickup={d.pickup} dropoff={d.dropoff} courier={courier} trace={trace} />
             <div className="route">
               <div className="route-stop">
                 <span className="route-dot route-from" aria-hidden="true" />
