@@ -9,7 +9,7 @@ On livre et on déploie au fur et à mesure.
 5. 🟡 **Izimboa Delivery** (MVP Douala) :
    - ✅ Lot 1 — cœur de l'API : grille de prix modifiable, simulation de prix, création de livraison, étapes, code de remise, suivi public, relevés pluie / trafic.
    - 🟡 Lot 2 — ✅ espace vendeur web (delivery.izimboa.com), ✅ attribution automatique au livreur le plus proche, ✅ position GPS en direct (API + cartes vendeur et destinataire) ; ⬜ envoi WhatsApp automatique après la configuration Meta.
-   - ⬜ Lot 3 — application livreur Android (Kotlin natif) publiée sur Google Play (test interne) ; écran opérateur ; partenaires de flotte ; application client (Expo).
+   - 🟡 Lot 3 — ✅ application livreur Android (Kotlin natif) : connexion, en ligne, courses qui sonnent, étapes, code ; ⬜ publication Google Play (test interne, après configuration) ; ⬜ écran opérateur ; ⬜ partenaires de flotte ; ⬜ application client (Expo).
    - ⬜ Lot 4 — argent : Mobile Money, reversements du soir, grand livre, primes pluie.
    - ⬜ Lot 5 — cartes OpenStreetMap hébergées (Valhalla, tuiles), PostGIS + TimescaleDB pour les tracés.
    - ⬜ Lot 6 — confiance : plafond de liquide par livreur, retenue sur gains, niveaux de confiance, stock confié au livreur.

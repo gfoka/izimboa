@@ -1,8 +1,8 @@
-# mobile — Applications React Native (Expo)
+# mobile — applications mobiles Izimboa
 
-- **Izimboa Delivery** : clients (et, plus tard, une application livreur séparée)
-- **Izimboa Go** : accompagnement d'immigration
+| Dossier | Application | Technique |
+|---|---|---|
+| `livreur-android/` | **Izimboa Livreur** (Android) | Kotlin natif, Jetpack Compose (décision n° 38) |
+| _à venir_ | Application client Delivery, Izimboa Go | React Native + Expo (Android et iPhone) |
 
-Points clés : suivi GPS en arrière-plan, mode hors connexion avec synchronisation, mises à jour instantanées via Expo, bilingue FR/EN.
-
-_Vide pour l'instant._
+Voir le README de chaque application.
