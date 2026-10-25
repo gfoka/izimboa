@@ -75,13 +75,15 @@ fun DeliveryScreen(
     onReturn: () -> Unit,
     onClose: () -> Unit,
     onDismiss: () -> Unit,
+    info: String? = null,
+    pendingActions: Long = 0,
 ) {
     var mode by remember(d.id, d.status) { mutableStateOf(Mode.MAIN) }
     when {
         d.status == Status.DELIVERED || d.status == Status.RETURNED || d.status == Status.CANCELLED -> DoneScreen(d, onClose)
         mode == Mode.CODE -> CodeScreen(d, busy, message, onSubmit = onDeliver, onBack = { mode = Mode.MAIN; onDismiss() })
         mode == Mode.PROBLEM -> ProblemScreen(busy, onReason = { onFail(it); mode = Mode.MAIN }, onBack = { mode = Mode.MAIN })
-        else -> MainStep(d, busy, message, onPickUp, onDepart, { mode = Mode.CODE }, { mode = Mode.PROBLEM }, onRetry, onReturn, onDismiss)
+        else -> MainStep(d, busy, message, onPickUp, onDepart, { mode = Mode.CODE }, { mode = Mode.PROBLEM }, onRetry, onReturn, onDismiss, info, pendingActions)
     }
 }
 
@@ -92,6 +94,7 @@ private fun MainStep(
     d: Delivery, busy: Boolean, message: String?,
     onPickUp: () -> Unit, onDepart: () -> Unit, onEnterCode: () -> Unit, onProblem: () -> Unit,
     onRetry: () -> Unit, onReturn: () -> Unit, onDismiss: () -> Unit,
+    info: String?, pendingActions: Long,
 ) {
     val context = LocalContext.current
     val toPickup = headingToPickup(d.status)
@@ -141,6 +144,11 @@ private fun MainStep(
                 Banner("Échec signalé. Faites une nouvelle tentative ou rapportez le colis au vendeur.")
             }
             if (message != null) Banner(message, onClose = onDismiss)
+            else if (info != null) Banner(info, error = false, onClose = onDismiss)
+            if (pendingActions > 0 && info == null) {
+                Text("⏳ $pendingActions action(s) en attente de réseau, envoi automatique.",
+                    style = MaterialTheme.typography.bodyMedium, color = Brand.Slate, modifier = Modifier.padding(horizontal = 4.dp))
+            }
         }
 
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {

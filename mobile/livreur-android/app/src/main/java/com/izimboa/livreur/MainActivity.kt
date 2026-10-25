@@ -78,11 +78,12 @@ class MainActivity : ComponentActivity() {
             s == null -> LoginScreen(onLogin = { loginMessage = null; login.launch(app.auth.loginIntent()) }, message = loginMessage)
             "livreur" !in s.roles -> NotCourierScreen(
                 name = s.name,
-                onLogout = { app.auth.logoutIntent()?.let { logout.launch(it) } },
+                onLogout = { app.signOut()?.let { logout.launch(it) } },
                 onRetry = { scope.launch { app.auth.accessToken() } },
             )
             delivery != null -> DeliveryScreen(
-                d = delivery, busy = state.busy, message = state.message,
+                d = delivery, busy = state.busy, message = state.message, info = state.info,
+                pendingActions = state.pendingActions,
                 onPickUp = { scope.launch { app.courier.pickUp() } },
                 onDepart = { scope.launch { app.courier.depart() } },
                 onDeliver = { code -> scope.launch { app.courier.deliver(code) } },
@@ -99,7 +100,7 @@ class MainActivity : ComponentActivity() {
                 onExpired = { app.courier.offerExpired() },
             )
             else -> HomeScreen(
-                name = s.name, online = state.online, busy = state.busy, message = state.message ?: loginMessage,
+                name = s.name, online = state.online, busy = state.busy, message = state.message ?: loginMessage, info = state.info,
                 onToggle = {
                     if (state.online) scope.launch { app.courier.goOffline() }
                     else {
@@ -113,7 +114,7 @@ class MainActivity : ComponentActivity() {
                         } else permissions.launch(needed.toTypedArray())
                     }
                 },
-                onLogout = { app.auth.logoutIntent()?.let { logout.launch(it) } },
+                onLogout = { app.signOut()?.let { logout.launch(it) } },
                 onDismiss = { app.courier.clearMessage(); loginMessage = null },
             )
         }

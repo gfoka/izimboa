@@ -85,11 +85,12 @@ data class PositionsBody(val points: List<PointBody>)
 @Serializable
 data class OnlineBody(val position: PointBody? = null)
 
+/** occurredAt : heure réelle de l'action (elle peut partir plus tard, après une coupure réseau). */
 @Serializable
-data class CodeBody(val code: String, val lat: Double? = null, val lng: Double? = null)
+data class CodeBody(val code: String, val lat: Double? = null, val lng: Double? = null, val occurredAt: String? = null)
 
 @Serializable
-data class ReasonBody(val reason: String, val lat: Double? = null, val lng: Double? = null)
+data class ReasonBody(val reason: String, val lat: Double? = null, val lng: Double? = null, val occurredAt: String? = null)
 
 @Serializable
-data class LatLngBody(val lat: Double? = null, val lng: Double? = null)
+data class LatLngBody(val lat: Double? = null, val lng: Double? = null, val occurredAt: String? = null)

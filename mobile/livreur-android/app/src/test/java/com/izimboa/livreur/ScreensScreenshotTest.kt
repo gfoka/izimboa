@@ -25,7 +25,7 @@ import org.robolectric.annotation.GraphicsMode
 /** Rendu des écrans principaux (téléphone 6,5"), pour relire l'interface sans appareil. Images dans build/screens/. */
 @RunWith(RobolectricTestRunner::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-@Config(sdk = [35], qualifiers = "w393dp-h852dp-xxhdpi")
+@Config(sdk = [35], qualifiers = "w393dp-h852dp-xxhdpi", application = android.app.Application::class)
 class ScreensScreenshotTest {
 
     @get:Rule val compose = createComposeRule()

@@ -19,7 +19,7 @@ class ApiException(val status: Int, val code: String?, message: String) : Except
  * Client de l'API Izimboa. Chaque appel demande un jeton frais (renouvelé automatiquement).
  * Réseau mobile instable : délais courts, l'appelant réessaie au tour suivant.
  */
-class Api(private val token: suspend () -> String?) {
+class Api(private val token: suspend () -> String?) : com.izimboa.livreur.offline.Sync.Remote {
 
     val json = Json { ignoreUnknownKeys = true; explicitNulls = false; encodeDefaults = true }
     private val http = OkHttpClient.Builder()
@@ -28,14 +28,19 @@ class Api(private val token: suspend () -> String?) {
         .writeTimeout(15, TimeUnit.SECONDS)
         .retryOnConnectionFailure(true)
         .build()
+    /** Attente longue des courses : la connexion reste ouverte jusqu'à 25 s côté serveur. */
+    private val longPoll = http.newBuilder().readTimeout(40, TimeUnit.SECONDS).build()
     private val jsonType = "application/json".toMediaType()
 
     suspend fun status(): CourierStatus = call("GET", "/v1/delivery/courier/status")!!
     suspend fun online(at: PointBody?): CourierStatus = call("POST", "/v1/delivery/courier/online", json.encodeToString(OnlineBody(at)))!!
     suspend fun offline(): CourierStatus = call("POST", "/v1/delivery/courier/offline", "{}")!!
-    suspend fun positions(points: List<PointBody>) { call<Unit>("POST", "/v1/delivery/courier/positions", json.encodeToString(PositionsBody(points)), parse = false) }
+    override suspend fun goOffline() { offline() }
+    override suspend fun positions(points: List<PointBody>) { call<Unit>("POST", "/v1/delivery/courier/positions", json.encodeToString(PositionsBody(points)), parse = false) }
 
-    suspend fun currentOffer(): Offer? = call("GET", "/v1/delivery/courier/offers/current")
+    /** Attend jusqu'à [waitSeconds] qu'une course arrive (une seule requête au lieu de plusieurs : économie de batterie). */
+    suspend fun currentOffer(waitSeconds: Int = 0): Offer? =
+        call("GET", "/v1/delivery/courier/offers/current?wait=$waitSeconds", client = if (waitSeconds > 0) longPoll else http)
     suspend fun accept(offerId: String): Accepted = call("POST", "/v1/delivery/courier/offers/$offerId/accept", "{}")!!
     suspend fun decline(offerId: String) { call<Unit>("POST", "/v1/delivery/courier/offers/$offerId/decline", "{}", parse = false) }
 
@@ -49,11 +54,14 @@ class Api(private val token: suspend () -> String?) {
     suspend fun retry(id: String, at: LatLngBody): Delivery = step(id, "retry", json.encodeToString(at))
     suspend fun returnToSender(id: String, at: LatLngBody): Delivery = step(id, "return", json.encodeToString(at))
 
-    private suspend fun step(id: String, action: String, body: String): Delivery =
+    /** Étape envoyée depuis la file d'attente locale (corps JSON déjà préparé au moment de l'action). */
+    override suspend fun step(id: String, action: String, body: String): Delivery =
         call("POST", "/v1/delivery/deliveries/$id/$action", body)!!
 
     /** Retourne null pour une réponse 204 (rien à montrer). */
-    private suspend inline fun <reified T> call(method: String, path: String, body: String? = null, parse: Boolean = true): T? {
+    private suspend inline fun <reified T> call(
+        method: String, path: String, body: String? = null, parse: Boolean = true, client: OkHttpClient = http,
+    ): T? {
         val req = Request.Builder()
             .url(BuildConfig.API_URL + path)
             .header("Accept", "application/json")
@@ -61,7 +69,7 @@ class Api(private val token: suspend () -> String?) {
             .method(method, body?.toRequestBody(jsonType))
             .build()
         val response = try {
-            http.newCall(req).executeAsync()
+            client.newCall(req).executeAsync()
         } catch (e: IOException) {
             throw ApiException(0, "network", "Pas de réseau. Réessayez dans un instant.")
         }

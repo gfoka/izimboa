@@ -93,7 +93,7 @@ fun NotCourierScreen(name: String?, onLogout: () -> Unit, onRetry: () -> Unit) {
 
 /** Accueil : un énorme bouton rond pour passer en ligne. Rien d'autre à comprendre. */
 @Composable
-fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, onToggle: () -> Unit, onLogout: () -> Unit, onDismiss: () -> Unit) {
+fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, onToggle: () -> Unit, onLogout: () -> Unit, onDismiss: () -> Unit, info: String? = null) {
     Column(Modifier.fillMaxSize().background(if (online) Brand.Navy else Brand.Cloud).statusBarsPadding().navigationBarsPadding()) {
         Row(Modifier.fillMaxWidth().padding(start = 24.dp, end = 8.dp, top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
@@ -115,6 +115,7 @@ fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, 
 
         Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             if (message != null) Banner(message, onClose = onDismiss)
+            else if (info != null) Banner(info, error = false, onClose = onDismiss)
             Text(
                 if (online) "Gardez l'application ouverte ou en arrière-plan. Une course qui arrive sonne comme un appel."
                 else "Passez en ligne pour recevoir des courses près de vous. Votre position n'est partagée que lorsque vous êtes en ligne.",

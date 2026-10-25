@@ -43,6 +43,8 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // Téléphones réels uniquement (ARM) : SQLCipher embarque du code natif par processeur.
+            ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
             if (keystorePath != null) signingConfig = signingConfigs.getByName("release")
         }
         debug {
@@ -82,6 +84,9 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.coroutines)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.sqlcipher)          // base locale chiffrée (AES-256)
+    implementation(libs.androidx.sqlite)
+    implementation(libs.androidx.work)      // envoi automatique au retour du réseau, même application fermée
     debugImplementation(libs.compose.ui.tooling)
 
     testImplementation(libs.junit)
