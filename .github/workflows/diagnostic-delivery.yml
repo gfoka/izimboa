@@ -24,7 +24,7 @@ jobs:
           cp infra/vps/known_hosts ~/.ssh/known_hosts
       - name: État de Delivery
         run: |
-          ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose exec -T postgres psql -U postgres -d izimboa -P pager=off' <<'SQL'
+          ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose exec -T postgres psql -U postgres -d izimboa -P pager=off' > diag.txt 2>&1 <<'SQL'
           \echo === Livreurs (présence) ===
           select left(courier_id::text, 8) as livreur, online,
                  round(extract(epoch from now() - position_at)) as position_age_s,
@@ -53,4 +53,11 @@ jobs:
           where o.offered_at > now() - interval '2 hours' order by o.offered_at desc limit 20;
           SQL
       - name: Journal de l'attribution (API)
-        run: ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose logs --since 60m api 2>&1 | grep -E "proposée|attribution|ERROR|WARN" | tail -40 || true'
+        run: |
+          echo "=== Journal API (60 min) ===" >> diag.txt
+          ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose logs --since 60m --no-log-prefix api 2>&1 | grep -E "proposée|attribution|ERROR|WARN" | tail -30 || true' >> diag.txt
+      # Résultat aussi en annotation (lisible par l'API GitHub sans télécharger les journaux).
+      - name: Publier le résultat
+        run: |
+          cat diag.txt
+          python3 -c "import sys; t=open('diag.txt').read()[:60000]; print('::notice title=diagnostic::' + t.replace('%','%25').replace('\r','').replace('\n','%0A'))"
