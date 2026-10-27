@@ -23,7 +23,7 @@ class App : Application() {
         api = Api { auth.accessToken() }
         store = openStore()
         courier = Courier(this, api, store)
-        sync = Sync(store, api, onDelivery = courier::onServerDelivery, onRejected = courier::onRejected, scheduleRetry = { Sync.schedule(this) })
+        sync = Sync(store, api, onDelivery = courier::onServerDelivery, onRejected = courier::onRejected, scheduleRetry = { Sync.schedule(this) }, onPositionsSent = { courier.onPositionsSent(it) })
         courier.sync = sync
         Notifications.createChannels(this)
         if (sync.pending() > 0) Sync.schedule(this)

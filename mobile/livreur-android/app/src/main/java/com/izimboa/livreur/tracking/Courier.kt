@@ -41,6 +41,11 @@ class Courier(private val context: Context, private val api: Api, private val st
         val info: String? = null,           // message positif (ex. « enregistré, envoi au retour du réseau »)
         val lastLocation: Location? = null,
         val pendingActions: Long = 0,
+        // Indicateur affiché quand le livreur est en ligne (diagnostic sur le terrain).
+        val gpsAt: Long? = null,            // dernier point GPS obtenu (horloge du téléphone)
+        val sentAt: Long? = null,           // dernier envoi de positions réussi
+        val sendError: String? = null,
+        val locationEnabled: Boolean = true,
     )
 
     private val json = api.json
@@ -56,6 +61,12 @@ class Courier(private val context: Context, private val api: Api, private val st
 
     lateinit var sync: Sync
 
+    fun onPositionsSent(error: String?) = _state.update {
+        if (error == null) it.copy(sentAt = System.currentTimeMillis(), sendError = null) else it.copy(sendError = error)
+    }
+
+    fun onLocationSettings(enabled: Boolean) = _state.update { it.copy(locationEnabled = enabled) }
+
     fun clearMessage() = _state.update { it.copy(message = null, info = null) }
 
     // ---- Positions ----
@@ -66,7 +77,7 @@ class Courier(private val context: Context, private val api: Api, private val st
     fun recordLocation(l: Location) {
         store.addPosition(point(l))
         lastStoredAt = System.currentTimeMillis()
-        _state.update { it.copy(lastLocation = l) }
+        _state.update { it.copy(lastLocation = l, gpsAt = System.currentTimeMillis()) }
     }
 
     /**

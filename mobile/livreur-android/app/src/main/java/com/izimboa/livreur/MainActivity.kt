@@ -101,6 +101,7 @@ class MainActivity : ComponentActivity() {
             )
             else -> HomeScreen(
                 name = s.name, online = state.online, busy = state.busy, message = state.message ?: loginMessage, info = state.info,
+                gps = com.izimboa.livreur.ui.GpsStatus(state.locationEnabled, state.gpsAt, state.sentAt, state.sendError),
                 onToggle = {
                     if (state.online) scope.launch { app.courier.goOffline() }
                     else {

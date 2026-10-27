@@ -63,10 +63,27 @@ class TrackingService : LifecycleService() {
             lifecycleScope.launch {
                 app.courier.state.map { it.delivery != null }.distinctUntilChanged().collect { requestLocation(it) }
             }
+            firstFix()
             lifecycleScope.launch { uploadLoop() }
             lifecycleScope.launch { offersLoop() }
         }
         return START_STICKY
+    }
+
+    /** Première position tout de suite (sans attendre le rythme normal), envoyée aussitôt. */
+    @SuppressLint("MissingPermission")
+    private fun firstFix() {
+        val lm = getSystemService(android.location.LocationManager::class.java)
+        val enabled = androidx.core.location.LocationManagerCompat.isLocationEnabled(lm)
+        app.courier.onLocationSettings(enabled)
+        runCatching {
+            location.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null).addOnSuccessListener { l ->
+                if (l != null) {
+                    app.courier.recordLocation(l)
+                    lifecycleScope.launch { runCatching { app.sync.flush() } }
+                }
+            }
+        }
     }
 
     @SuppressLint("MissingPermission") // vérifiée par l'écran avant de passer en ligne
@@ -79,10 +96,10 @@ class TrackingService : LifecycleService() {
                 .setGranularity(Granularity.GRANULARITY_FINE)
                 .build()
         } else {
+            // En attente : précision « quartier » (Wi-Fi, antennes), un point par minute, sans paquets différés :
+            // le serveur doit toujours avoir une position de moins de 2 minutes pour proposer des courses.
             LocationRequest.Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, 60_000)
                 .setMinUpdateIntervalMillis(30_000)
-                .setMinUpdateDistanceMeters(50f)
-                .setMaxUpdateDelayMillis(120_000)
                 .build()
         }
         location.removeLocationUpdates(callback)
@@ -90,10 +107,13 @@ class TrackingService : LifecycleService() {
     }
 
     private suspend fun uploadLoop() {
+        delay(5_000)
         while (lifecycleScope.isActive) {
-            delay(if (delivering) 20_000 else 60_000)
+            val lm = getSystemService(android.location.LocationManager::class.java)
+            app.courier.onLocationSettings(androidx.core.location.LocationManagerCompat.isLocationEnabled(lm))
             if (!delivering) app.courier.heartbeat(everyMs = 55_000) // immobile : reste visible sans rallumer le GPS
             runCatching { app.sync.flush() }
+            delay(if (delivering) 20_000 else 45_000)
         }
     }
 

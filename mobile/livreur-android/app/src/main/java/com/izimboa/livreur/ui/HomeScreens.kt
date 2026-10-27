@@ -93,7 +93,7 @@ fun NotCourierScreen(name: String?, onLogout: () -> Unit, onRetry: () -> Unit) {
 
 /** Accueil : un énorme bouton rond pour passer en ligne. Rien d'autre à comprendre. */
 @Composable
-fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, onToggle: () -> Unit, onLogout: () -> Unit, onDismiss: () -> Unit, info: String? = null) {
+fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, onToggle: () -> Unit, onLogout: () -> Unit, onDismiss: () -> Unit, info: String? = null, gps: GpsStatus? = null) {
     Column(Modifier.fillMaxSize().background(if (online) Brand.Navy else Brand.Cloud).statusBarsPadding().navigationBarsPadding()) {
         Row(Modifier.fillMaxWidth().padding(start = 24.dp, end = 8.dp, top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
@@ -116,6 +116,7 @@ fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, 
         Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             if (message != null) Banner(message, onClose = onDismiss)
             else if (info != null) Banner(info, error = false, onClose = onDismiss)
+            if (online && gps != null) GpsLine(gps)
             Text(
                 if (online) "Gardez l'application ouverte ou en arrière-plan. Une course qui arrive sonne comme un appel."
                 else "Passez en ligne pour recevoir des courses près de vous. Votre position n'est partagée que lorsque vous êtes en ligne.",
@@ -153,4 +154,22 @@ private fun PowerButton(online: Boolean, busy: Boolean, onToggle: () -> Unit) {
             }
         }
     }
+}
+
+/** État de la position, visible par le livreur quand il est en ligne : il sait tout de suite si quelque chose cloche. */
+data class GpsStatus(val locationEnabled: Boolean, val gpsAt: Long?, val sentAt: Long?, val error: String?)
+
+@Composable
+private fun GpsLine(s: GpsStatus) {
+    val now = System.currentTimeMillis()
+    fun ago(t: Long) = ((now - t) / 1000).let { if (it < 60) "il y a $it s" else "il y a ${it / 60} min" }
+    val (text, bad) = when {
+        !s.locationEnabled -> "📍 Localisation coupée : activez-la dans le menu rapide du téléphone." to true
+        s.error != null -> "⚠️ ${s.error}" to true
+        s.gpsAt == null -> "📍 Recherche de votre position…" to false
+        s.sentAt == null -> "📍 Position trouvée ${ago(s.gpsAt)} · envoi en cours…" to false
+        else -> "📍 Position ${ago(s.gpsAt)} · envoyée ${ago(s.sentAt)}" to false
+    }
+    if (bad) Banner(text) else Text(text, style = MaterialTheme.typography.bodyMedium, color = Color.White.copy(alpha = 0.75f),
+        textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
 }

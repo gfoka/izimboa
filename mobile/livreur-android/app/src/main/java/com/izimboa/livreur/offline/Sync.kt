@@ -27,6 +27,8 @@ class Sync(
     private val onDelivery: (Delivery) -> Unit,
     private val onRejected: (String) -> Unit,
     private val scheduleRetry: () -> Unit,
+    /** Résultat du dernier envoi de positions : null = réussi, sinon le message (affiché à l'écran). */
+    private val onPositionsSent: (String?) -> Unit = {},
 ) {
     /** Ce que la synchronisation attend de la base locale (implémenté par [LocalStore], simulé dans les tests). */
     interface Queue {
@@ -51,7 +53,13 @@ class Sync(
 
     /** Retourne vrai si tout est parti. */
     suspend fun flush(): Boolean = lock.withLock {
-        val ok = sendPositions() && sendActions()
+        val ok = try {
+            sendPositions() && sendActions()
+        } catch (e: Exception) {
+            // Erreur inattendue (base locale, format…) : on la montre au lieu de l'avaler en silence.
+            onPositionsSent("Erreur interne : ${e.javaClass.simpleName} ${e.message ?: ""}".trim())
+            false
+        }
         if (!ok && pending() > 0) scheduleRetry()
         ok
     }
@@ -65,7 +73,10 @@ class Sync(
             if (batch.isEmpty()) return true
             try {
                 api.positions(batch.map { it.point })
+                onPositionsSent(null)
             } catch (e: ApiException) {
+                onPositionsSent(if (e.status == 0) "Pas de réseau : positions gardées sur le téléphone."
+                                else "Positions refusées (${e.status}) : ${e.message}")
                 if (e.status == 0 || e.status == 401 || e.status >= 500) return false
                 // Refus définitif (ex. livreur hors ligne côté serveur) : ces points ne seront jamais acceptés.
             }
