@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CourierService {
 
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CourierService.class);
+
     /** Une position plus ancienne ne sert ni à l'attribution ni au suivi. */
     public static final Duration FRESH = Duration.ofMinutes(2);
     /** Points d'un téléphone trop en avance sur l'heure du serveur : refusés. */
@@ -115,12 +117,19 @@ public class CourierService {
     private int record(CourierPresence p, List<Point> points, Instant now) {
         UUID deliveryId = deliveries.activeFor(p.courierId()).map(DeliveryAssignments.Active::deliveryId).orElse(null);
         int saved = 0;
+        int clamped = 0, dropped = 0;
         for (var pt : points) {
-            if (pt.recordedAt().isAfter(now.plus(CLOCK_SKEW)) || pt.recordedAt().isBefore(now.minus(MAX_AGE))) continue;
+            Instant at = pt.recordedAt();
+            if (at.isBefore(now.minus(MAX_AGE))) { dropped++; continue; }
+            // Horloge du téléphone en avance (réglage manuel) : la position reste juste, on prend l'heure de réception.
+            if (at.isAfter(now.plus(CLOCK_SKEW))) { at = now; clamped++; }
             positions.save(new CourierPosition(p.courierId(), deliveryId, pt.lat(), pt.lng(), pt.accuracyMeters(),
-                    pt.speedMps(), pt.headingDeg(), pt.recordedAt(), now));
-            p.moveTo(pt.lat(), pt.lng(), pt.accuracyMeters(), pt.recordedAt(), now);
+                    pt.speedMps(), pt.headingDeg(), at, now));
+            p.moveTo(pt.lat(), pt.lng(), pt.accuracyMeters(), at, now);
             saved++;
+        }
+        if (clamped + dropped > 0) {
+            log.warn("Livreur {} : {} point(s) à l'heure corrigée, {} trop ancien(s) ignoré(s)", p.courierId(), clamped, dropped);
         }
         return saved;
     }

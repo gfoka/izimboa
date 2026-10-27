@@ -36,7 +36,7 @@ jobs:
                  round(extract(epoch from now() - max(recorded_at))) as dernier_point_age_s,
                  round(extract(epoch from now() - max(received_at))) as derniere_reception_age_s
           from delivery.courier_position where received_at > now() - interval '30 minutes' group by 1;
-          \echo === Livraisons en attente d'un livreur ===
+          \echo === Livraisons en attente ===
           select reference, express, round(extract(epoch from now() - created_at)) as age_s,
                  round(pickup_lat::numeric, 2) as lat, round(pickup_lng::numeric, 2) as lng
           from delivery.delivery where status = 'CREATED' order by created_at desc limit 10;
@@ -55,7 +55,7 @@ jobs:
       - name: Journal de l'attribution (API)
         run: |
           echo "=== Journal API (60 min) ===" >> diag.txt
-          ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose logs --since 60m --no-log-prefix api 2>&1 | grep -E "proposée|attribution|ERROR|WARN" | tail -30 || true' >> diag.txt
+          ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose logs --since 60m --no-log-prefix api 2>&1 | grep -E "proposée|attribution|ERROR|WARN|API |Livreur " | tail -30 || true' >> diag.txt
       # Résultat aussi en annotation (lisible par l'API GitHub sans télécharger les journaux).
       - name: Publier le résultat
         run: |
