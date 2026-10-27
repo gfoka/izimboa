@@ -1,0 +1,56 @@
+name: Diagnostic Delivery (manuel)
+
+# Lecture seule : état des livreurs, positions, livraisons en attente et propositions.
+# Aucune donnée personnelle (pas de nom ni de téléphone) ; positions arrondies à ~1 km.
+on:
+  workflow_dispatch:
+
+env:
+  VPS_HOST: 212.47.78.167
+  VPS_USER: deploy
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Connexion SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+          cp infra/vps/known_hosts ~/.ssh/known_hosts
+      - name: État de Delivery
+        run: |
+          ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose exec -T postgres psql -U postgres -d izimboa -P pager=off' <<'SQL'
+          \echo === Livreurs (présence) ===
+          select left(courier_id::text, 8) as livreur, online,
+                 round(extract(epoch from now() - position_at)) as position_age_s,
+                 accuracy_m, round(lat::numeric, 2) as lat, round(lng::numeric, 2) as lng,
+                 round(extract(epoch from now() - updated_at)) as maj_age_s
+          from delivery.courier_presence order by updated_at desc limit 10;
+          \echo === Points GPS reçus (30 dernières minutes) ===
+          select left(courier_id::text, 8) as livreur, count(*) as points,
+                 round(extract(epoch from now() - max(recorded_at))) as dernier_point_age_s,
+                 round(extract(epoch from now() - max(received_at))) as derniere_reception_age_s
+          from delivery.courier_position where received_at > now() - interval '30 minutes' group by 1;
+          \echo === Livraisons en attente d'un livreur ===
+          select reference, express, round(extract(epoch from now() - created_at)) as age_s,
+                 round(pickup_lat::numeric, 2) as lat, round(pickup_lng::numeric, 2) as lng
+          from delivery.delivery where status = 'CREATED' order by created_at desc limit 10;
+          \echo === Distance (km) livreurs en ligne → ramassages en attente ===
+          select d.reference, left(p.courier_id::text, 8) as livreur,
+                 round((6371 * 2 * asin(sqrt(power(sin(radians(p.lat - d.pickup_lat) / 2), 2)
+                   + cos(radians(d.pickup_lat)) * cos(radians(p.lat)) * power(sin(radians(p.lng - d.pickup_lng) / 2), 2))))::numeric, 2) as km
+          from delivery.delivery d cross join delivery.courier_presence p
+          where d.status = 'CREATED' and p.online and p.lat is not null;
+          \echo === Propositions (2 dernières heures) ===
+          select o.status, left(o.courier_id::text, 8) as livreur, d.reference, o.distance_m,
+                 round(extract(epoch from now() - o.offered_at)) as age_s
+          from delivery.delivery_offer o join delivery.delivery d on d.id = o.delivery_id
+          where o.offered_at > now() - interval '2 hours' order by o.offered_at desc limit 20;
+          SQL
+      - name: Journal de l'attribution (API)
+        run: ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose logs --since 60m api 2>&1 | grep -E "proposée|attribution|ERROR|WARN" | tail -40 || true'
