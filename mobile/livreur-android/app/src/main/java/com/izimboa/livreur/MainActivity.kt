@@ -79,7 +79,7 @@ class MainActivity : ComponentActivity() {
             "livreur" !in s.roles -> NotCourierScreen(
                 name = s.name,
                 onLogout = { app.signOut()?.let { logout.launch(it) } },
-                onRetry = { scope.launch { app.auth.accessToken() } },
+                onRetry = { scope.launch { app.auth.reloadRoles() } },
             )
             delivery != null -> DeliveryScreen(
                 d = delivery, busy = state.busy, message = state.message, info = state.info,

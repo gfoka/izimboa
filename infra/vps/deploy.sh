@@ -41,6 +41,14 @@ kc() { docker compose exec -T keycloak /opt/keycloak/bin/kcadm.sh "$@" --config 
 kc config credentials --server http://localhost:8080 --realm master --user admin --password "$KEYCLOAK_ADMIN_PASSWORD" > /dev/null
 kc update realms/izimboa -s loginTheme=izimboa -s 'displayNameHtml=<strong>izimboa</strong>'
 echo "Realm izimboa : thème de connexion « izimboa » appliqué."
+# Adresses de retour des sites web (Keycloak n'accepte pas de joker dans le nom de domaine).
+web_id=$(kc get clients -r izimboa -q clientId=izimboa-web --fields id --format csv --noquotes | tail -1 || true)
+kc update "clients/$web_id" -r izimboa \
+  -s 'redirectUris=["https://izimboa.com/*","https://delivery.izimboa.com/*","https://go.izimboa.com/*","https://fly.izimboa.com/*","https://buy.izimboa.com/*"]' \
+  -s 'attributes."post.logout.redirect.uris"="https://izimboa.com/*##https://delivery.izimboa.com/*##https://go.izimboa.com/*##https://fly.izimboa.com/*##https://buy.izimboa.com/*"' \
+  && echo "Client izimboa-web : adresses de retour à jour." \
+  || echo "ATTENTION : adresses de retour de izimboa-web non mises à jour (à vérifier dans la console)."
+
 # Rôles ajoutés après la création du realm (idempotent).
 for role in operateur:"Opérateur : suit les courses en direct, réassigne, support" \
             partenaire:"Partenaire de flotte : gère ses motos et ses livreurs"; do

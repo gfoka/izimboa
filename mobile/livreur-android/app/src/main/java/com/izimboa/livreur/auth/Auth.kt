@@ -80,6 +80,12 @@ class Auth(context: Context) {
         }
     }
 
+    /** Force un nouveau jeton (ex. le rôle « livreur » vient d'être donné dans Keycloak). */
+    suspend fun reloadRoles() {
+        lock.withLock { state.needsTokenRefresh = true }
+        accessToken()
+    }
+
     fun logoutIntent(): Intent? {
         val idToken = state.idToken
         state = AuthState()

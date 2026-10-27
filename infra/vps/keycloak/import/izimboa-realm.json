@@ -91,7 +91,10 @@
       "serviceAccountsEnabled": false,
       "redirectUris": [
         "https://izimboa.com/*",
-        "https://*.izimboa.com/*"
+        "https://delivery.izimboa.com/*",
+        "https://go.izimboa.com/*",
+        "https://fly.izimboa.com/*",
+        "https://buy.izimboa.com/*"
       ],
       "webOrigins": [
         "https://izimboa.com",
@@ -102,7 +105,7 @@
       ],
       "attributes": {
         "pkce.code.challenge.method": "S256",
-        "post.logout.redirect.uris": "https://izimboa.com/*##https://*.izimboa.com/*"
+        "post.logout.redirect.uris": "https://izimboa.com/*##https://delivery.izimboa.com/*##https://go.izimboa.com/*##https://fly.izimboa.com/*##https://buy.izimboa.com/*"
       },
       "protocolMappers": [
         {
