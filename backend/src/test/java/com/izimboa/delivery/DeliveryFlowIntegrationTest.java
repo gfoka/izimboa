@@ -84,6 +84,10 @@ class DeliveryFlowIntegrationTest extends PostgresIntegrationTest {
                 .andExpect(status().isUnprocessableContent())
                 .andExpect(jsonPath("$.code").value("outside-service-area"));
 
+        // Une course dans Yaoundé est acceptée ; d'une ville à l'autre, non.
+        postJson("/v1/delivery/quotes", null, "{\"pickup\":" + YAOUNDE + ",\"dropoff\":{\"lat\":3.8667,\"lng\":11.5167}}")
+                .andExpect(status().isOk()).andExpect(jsonPath("$.onRequest").value(false));
+
         mvc.perform(get("/v1/delivery/tariffs")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.tiers[0].maxDistanceKm").value(3.0))
                 .andExpect(jsonPath("$.tiers[0].price").value(1000))

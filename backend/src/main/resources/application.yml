@@ -52,13 +52,19 @@ izimboa:
   delivery:
     # Vol d'oiseau × 1,35 ≈ distance par la route (en attendant notre moteur d'itinéraires OpenStreetMap).
     road-factor: 1.35
-    # Douala et environs (Bonabéri compris). Rectangle simple, remplacé plus tard par de vraies zones.
-    service-area:
-      name: Douala
-      south: 3.90
-      north: 4.20
-      west: 9.55
-      east: 9.90
+    # Villes desservies (rectangles simples, remplacés plus tard par de vraies zones).
+    # Ramassage et livraison doivent être dans la même ville.
+    service-areas:
+      - name: Douala            # Bonabéri compris
+        south: 3.90
+        north: 4.20
+        west: 9.55
+        east: 9.90
+      - name: Yaoundé
+        south: 3.70
+        north: 4.00
+        west: 11.38
+        east: 11.65
     tracking-base-url: https://delivery.izimboa.com/suivi/
   cors:
     allowed-origin-patterns: https://izimboa.com,https://*.izimboa.com,http://localhost:3000,http://localhost:3001

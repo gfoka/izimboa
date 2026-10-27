@@ -17,7 +17,7 @@ public class PricingService {
     private final TariffTierRepository tiers;
     private final PricingSettingsRepository settings;
     private final RouteDistance routeDistance;
-    private final DeliveryProperties.Area serviceArea;
+    private final DeliveryProperties areas;
     private final Clock clock;
 
     PricingService(TariffTierRepository tiers, PricingSettingsRepository settings, RouteDistance routeDistance,
@@ -25,7 +25,7 @@ public class PricingService {
         this.tiers = tiers;
         this.settings = settings;
         this.routeDistance = routeDistance;
-        this.serviceArea = properties.serviceArea();
+        this.areas = properties;
         this.clock = clock;
     }
 
@@ -44,8 +44,7 @@ public class PricingService {
     /** Prix d'une course entre deux points. Refuse les adresses hors de la zone desservie. */
     @Transactional(readOnly = true)
     public Quote quote(GeoPoint pickup, GeoPoint dropoff, boolean express, long codAmount) {
-        requireInServiceArea(pickup);
-        requireInServiceArea(dropoff);
+        requireSameServiceArea(pickup, dropoff);
         return currentTariff().quote(routeDistance.meters(pickup, dropoff), express, codAmount);
     }
 
@@ -59,9 +58,13 @@ public class PricingService {
         return tariff;
     }
 
-    private void requireInServiceArea(GeoPoint p) {
-        if (!serviceArea.contains(p.lat(), p.lng())) {
-            throw DeliveryProblem.outsideServiceArea(serviceArea.name());
+    /** Les deux adresses dans une même ville desservie (pas de course Douala → Yaoundé). */
+    private void requireSameServiceArea(GeoPoint pickup, GeoPoint dropoff) {
+        var from = areas.areaOf(pickup.lat(), pickup.lng());
+        var to = areas.areaOf(dropoff.lat(), dropoff.lng());
+        String served = String.join(", ", areas.serviceAreas().stream().map(DeliveryProperties.Area::name).toList());
+        if (from.isEmpty() || to.isEmpty() || !from.get().equals(to.get())) {
+            throw DeliveryProblem.outsideServiceArea(served);
         }
     }
 
