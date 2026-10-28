@@ -22,6 +22,37 @@ export type ProductContent = {
   faq: Faq[];
   notice?: string;
   cta: { title: string; text: string; button: string; subject: string };
+  /** Application en ligne : bouton principal vers l'espace du produit. */
+  app?: { button: string; team: string };
+  /** Formulaire « Entreprises » (demande enregistrée par l'API, e-mail à l'équipe). */
+  business?: BusinessForm;
+};
+
+export type BusinessForm = {
+  title: string;
+  lead: string;
+  points: string[];
+  company: string;
+  contactName: string;
+  phone: string;
+  phoneHint: string;
+  email: string;
+  emailHint: string;
+  city: string;
+  cities: string[];
+  activity: string;
+  activityPlaceholder: string;
+  volume: string;
+  volumes: { value: string; label: string }[];
+  message: string;
+  optional: string;
+  submit: string;
+  sending: string;
+  success: string;
+  successAgain: string;
+  error: string;
+  consent: string;
+  privacyLink: string;
 };
 
 export type Dict = {
@@ -46,6 +77,7 @@ export type Dict = {
     footerCompany: string;
     legal: string;
     privacy: string;
+    sellerSpace: string;
     rights: string;
   };
   home: {
@@ -68,6 +100,7 @@ export type Dict = {
     ctaTitle: string;
     ctaText: string;
     ctaButton: string;
+    ctaApp?: string;
   };
   products: Record<ProductKey, ProductContent>;
   about: {

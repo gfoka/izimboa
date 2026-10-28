@@ -83,6 +83,7 @@ services:
       DB_USER: izimboa
       DB_PASSWORD: ${IZIMBOA_DB_PASSWORD}
       KEYCLOAK_ISSUER: https://auth.izimboa.com/realms/izimboa
+      BREVO_API_KEY: ${BREVO_API_KEY:-}
       TZ: Africa/Douala
     depends_on:
       postgres:

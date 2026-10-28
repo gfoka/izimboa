@@ -9,6 +9,9 @@ export const BRAND = "Izimboa";
 
 /** À confirmer : adresse de contact publique. */
 export const CONTACT_EMAIL = "contact@izimboa.com";
+/** API Izimboa (formulaires du site). */
+export const API_URL = "https://api.izimboa.com";
+
 /** Numéro WhatsApp Business au format international (ex. "2376XXXXXXXX"). null = masqué. */
 export const WHATSAPP_NUMBER: string | null = null;
 
@@ -43,7 +46,7 @@ export function localeTag(lang: Lang, country: string): string {
 
 /** Applications produits : `live: false` tant qu'elles ne sont pas en ligne (aucun lien sortant cassé). */
 export const PRODUCT_APPS = {
-  delivery: { url: "https://delivery.izimboa.com", live: false },
+  delivery: { url: "https://delivery.izimboa.com", live: true },
   go: { url: "https://go.izimboa.com", live: false },
   fly: { url: "https://fly.izimboa.com", live: false },
   buy: { url: "https://buy.izimboa.com", live: false },

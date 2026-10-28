@@ -23,6 +23,8 @@
 - [ ] Authentifier le domaine (DKIM Brevo, ajout de Brevo au SPF)
 - [ ] Expéditeur : noreply@izimboa.com
 - [ ] Clé API stockée dans le gestionnaire de secrets (jamais dans le dépôt)
+- [ ] Clé API ajoutée sur le serveur : ligne `BREVO_API_KEY=...` dans `/srv/izimboa/.env`, puis redéploiement (active les e-mails du formulaire Entreprises du site ; d'ici là les demandes sont enregistrées en base et visibles via `GET /v1/contact-requests`)
+- [ ] Vérifier que contact@izimboa.com reçoit bien les e-mails (boîte Microsoft 365)
 - [ ] Expéditeur SMS (nom alphanumérique « Izimboa », vérifier les règles au Cameroun)
 - [ ] Modèles : code de connexion, confirmation de commande, livraison effectuée, reçu de paiement (FR et EN)
 

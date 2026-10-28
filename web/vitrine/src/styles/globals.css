@@ -289,3 +289,37 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .chooser-name { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--navy); }
 .chooser-langs { display: flex; gap: 8px; }
 .chooser-soon { margin-top: 20px; font-size: .9rem; color: var(--slate); }
+
+/* ===== Espace vendeur (en-tête) ===== */
+.header-cta { display: none; white-space: nowrap; }
+.nav-desktop .nav-mobile-only { display: none; }
+/* Tablette seulement : sur ordinateur, le menu occupe toute la largeur (les boutons de la page Livraison prennent le relais). */
+@media (min-width: 560px) and (max-width: 1079px) { .header-cta { display: inline-flex; } }
+
+/* ===== Formulaire « Entreprises » ===== */
+.biz-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
+@media (min-width: 960px) { .biz-grid { grid-template-columns: 1fr 1.1fr; gap: 56px; } }
+.biz-points { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 14px; }
+.biz-points li { display: flex; gap: 12px; align-items: center; font-weight: 500; }
+.biz-card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: clamp(20px, 4vw, 36px); }
+.biz-form { display: grid; gap: 16px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 520px) { .field-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.field label { font-weight: 600; color: var(--ink); }
+.field .optional { font-weight: 400; color: var(--slate); font-size: .9em; }
+.field small { color: var(--slate); font-size: .85rem; }
+.field input, .field select, .field textarea {
+  width: 100%; min-height: 52px; padding: 12px 14px; font: inherit; font-size: 1rem; color: var(--ink);
+  background: #fff; border: 1.5px solid var(--line); border-radius: 12px;
+}
+.field textarea { min-height: 96px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent); border-color: var(--accent-strong); }
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.biz-submit { width: 100%; min-height: 56px; font-size: 1.05rem; }
+.biz-submit:disabled { opacity: .7; cursor: progress; transform: none; }
+.form-error { background: #fdecec; color: #8a1c1c; border-radius: 12px; padding: 12px 14px; }
+.form-success { display: grid; gap: 16px; justify-items: start; padding: 8px 0; }
+.form-success p { font-size: 1.15rem; font-weight: 600; color: var(--ink); }
+.form-consent { font-size: .85rem; color: var(--slate); }
+.form-consent a { color: var(--slate); }

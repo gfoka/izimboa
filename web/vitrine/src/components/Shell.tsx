@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { COUNTRIES, CONTACT_EMAIL, PRODUCT_COLORS, PRODUCT_KEYS, getCountry, localeTag, type Lang } from "@/config/site";
+import { COUNTRIES, CONTACT_EMAIL, PRODUCT_APPS, PRODUCT_COLORS, PRODUCT_KEYS, getCountry, localeTag, type Lang } from "@/config/site";
 import { pathFor, type PageKey } from "@/config/routes";
 import type { Dict } from "@/content/types";
 import { Logo, ProductSymbol } from "./Logo";
@@ -41,6 +41,11 @@ export function Header(ctx: Ctx) {
           {dict.common.contact}
         </a>
       </li>
+      {PRODUCT_APPS.delivery.live && (
+        <li className="nav-mobile-only">
+          <a href={PRODUCT_APPS.delivery.url}>{dict.common.sellerSpace}</a>
+        </li>
+      )}
     </ul>
   );
 
@@ -54,6 +59,11 @@ export function Header(ctx: Ctx) {
           {navLinks}
         </nav>
         <div className="header-actions">
+          {PRODUCT_APPS.delivery.live && (
+            <a className="btn btn-sm btn-navy header-cta" href={PRODUCT_APPS.delivery.url}>
+              {dict.common.sellerSpace}
+            </a>
+          )}
           <LangSwitch {...ctx} />
           <details className="nav-mobile">
             <summary aria-label={dict.common.menu}>
@@ -98,6 +108,7 @@ export function Footer({ country, lang, dict, pageKey }: Ctx) {
             <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
             <li><a href={pathFor(country, lang, "legal")}>{dict.common.legal}</a></li>
             <li><a href={pathFor(country, lang, "privacy")}>{dict.common.privacy}</a></li>
+            {PRODUCT_APPS.delivery.live && <li><a href={PRODUCT_APPS.delivery.url}>{dict.common.sellerSpace}</a></li>}
           </ul>
         </div>
         <div>

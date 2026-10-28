@@ -66,5 +66,12 @@ izimboa:
         west: 11.38
         east: 11.65
     tracking-base-url: https://delivery.izimboa.com/suivi/
+  mail:
+    # Clé de l'API Brevo (e-mails transactionnels). Vide = e-mails seulement inscrits au journal.
+    brevo-api-key: ${BREVO_API_KEY:}
+    from: ${MAIL_FROM:noreply@izimboa.com}
+    from-name: Izimboa
+    # Adresse qui reçoit les demandes des formulaires du site.
+    team: ${MAIL_TEAM:contact@izimboa.com}
   cors:
     allowed-origin-patterns: https://izimboa.com,https://*.izimboa.com,http://localhost:3000,http://localhost:3001

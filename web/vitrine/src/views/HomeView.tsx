@@ -1,4 +1,4 @@
-import { COUNTRIES, PRODUCT_COLORS, PRODUCT_DARK, PRODUCT_KEYS, type Lang } from "@/config/site";
+import { COUNTRIES, PRODUCT_APPS, PRODUCT_COLORS, PRODUCT_DARK, PRODUCT_KEYS, type Lang } from "@/config/site";
 import { pathFor } from "@/config/routes";
 import type { Dict } from "@/content/types";
 import { Photo, PhotoCredit } from "@/components/Photo";
@@ -128,9 +128,16 @@ export function HomeView({ country, lang, dict }: { country: string; lang: Lang;
             <h2 className="section-title">{h.ctaTitle}</h2>
             <p className="section-lead">{h.ctaText}</p>
           </div>
-          <a className="btn btn-navy" href={pathFor(country, lang, "contact")}>
-            {h.ctaButton}
-          </a>
+          <div className="hero-actions">
+            {PRODUCT_APPS.delivery.live && h.ctaApp && (
+              <a className="btn btn-navy" href={PRODUCT_APPS.delivery.url}>
+                {h.ctaApp}
+              </a>
+            )}
+            <a className="btn btn-outline" href={pathFor(country, lang, "delivery") + "#entreprises"}>
+              {h.ctaButton}
+            </a>
+          </div>
         </div>
       </section>
     </>

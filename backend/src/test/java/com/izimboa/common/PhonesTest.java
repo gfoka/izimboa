@@ -1,4 +1,4 @@
-package com.izimboa.delivery.core;
+package com.izimboa.common;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

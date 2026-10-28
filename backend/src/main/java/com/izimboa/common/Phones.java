@@ -1,17 +1,17 @@
-package com.izimboa.delivery.core;
+package com.izimboa.common;
 
 import java.util.Optional;
 import java.util.regex.Pattern;
 
 /** Numéros de téléphone au format international (E.164), Cameroun par défaut. */
-final class Phones {
+public final class Phones {
 
     private static final Pattern E164 = Pattern.compile("\\+[1-9]\\d{7,14}");
 
     private Phones() {}
 
     /** « 6 99 12 34 56 », « 00237699123456 », « +237 699-12-34-56 » → « +237699123456 ». */
-    static Optional<String> normalize(String raw) {
+    public static Optional<String> normalize(String raw) {
         if (raw == null) return Optional.empty();
         String s = raw.trim();
         boolean plus = s.startsWith("+");

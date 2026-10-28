@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, PRODUCT_COLORS, PRODUCT_DARK, PRODUCT_KEYS, type Lang, type ProductKey } from "@/config/site";
+import { CONTACT_EMAIL, PRODUCT_APPS, PRODUCT_COLORS, PRODUCT_DARK, PRODUCT_KEYS, type Lang, type ProductKey } from "@/config/site";
 import { pathFor } from "@/config/routes";
 import type { Dict } from "@/content/types";
 import { Photo, PhotoCredit } from "@/components/Photo";
@@ -7,11 +7,14 @@ import { Icon } from "@/components/Icon";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { serviceLd } from "@/lib/seo";
+import { BusinessForm } from "@/components/BusinessForm";
 
 export function ProductView({ country, lang, dict, product }: { country: string; lang: Lang; dict: Dict; product: ProductKey }) {
   const p = dict.products[product];
   const color = PRODUCT_COLORS[product];
   const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(p.cta.subject)}`;
+  const appUrl = PRODUCT_APPS[product].live && p.app ? PRODUCT_APPS[product].url : null;
+  const teamHref = p.business ? "#entreprises" : mailto;
 
   return (
     <div style={{ ["--accent" as string]: color, ["--accent-strong" as string]: PRODUCT_DARK[product] }}>
@@ -37,12 +40,25 @@ export function ProductView({ country, lang, dict, product }: { country: string;
             {p.status}
           </p>
           <div className="hero-actions">
-            <a className="btn btn-accent" href={mailto}>
-              {p.cta.button}
-            </a>
-            <a className="btn btn-outline" href="#comment">
-              {p.stepsTitle}
-            </a>
+            {appUrl && p.app ? (
+              <>
+                <a className="btn btn-accent" href={appUrl}>
+                  {p.app.button}
+                </a>
+                <a className="btn btn-outline" href={teamHref}>
+                  {p.app.team}
+                </a>
+              </>
+            ) : (
+              <>
+                <a className="btn btn-accent" href={teamHref}>
+                  {p.cta.button}
+                </a>
+                <a className="btn btn-outline" href="#comment">
+                  {p.stepsTitle}
+                </a>
+              </>
+            )}
           </div>
         </div>
         <figure className="product-hero-media">
@@ -95,7 +111,31 @@ export function ProductView({ country, lang, dict, product }: { country: string;
         </div>
       </section>
 
-      <section className="section section-tint">
+      {p.business && (
+        <section id="entreprises" className="section section-tint biz-section" aria-labelledby="entreprises-titre">
+          <div className="container biz-grid">
+            <div>
+              <h2 id="entreprises-titre" className="section-title">{p.business.title}</h2>
+              <p className="section-lead">{p.business.lead}</p>
+              <ul className="biz-points">
+                {p.business.points.map((pt) => (
+                  <li key={pt}>
+                    <span className="feature-check">
+                      <Icon name="check" />
+                    </span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="biz-card">
+              <BusinessForm t={p.business} lang={lang} product={product} privacyHref={pathFor(country, lang, "privacy")} />
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className={p.business ? "section" : "section section-tint"}>
         <div className="container narrow">
           <h2 className="section-title">{p.faqTitle}</h2>
           <div className="faq">
@@ -118,8 +158,8 @@ export function ProductView({ country, lang, dict, product }: { country: string;
             <h2 className="section-title">{p.cta.title}</h2>
             <p className="section-lead">{p.cta.text}</p>
           </div>
-          <a className="btn btn-light" href={mailto}>
-            <Icon name="mail" /> {p.cta.button}
+          <a className="btn btn-light" href={appUrl ?? mailto}>
+            {appUrl ? <Icon name="arrow" /> : <Icon name="mail" />} {p.cta.button}
           </a>
         </div>
       </section>
