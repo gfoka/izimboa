@@ -47,7 +47,8 @@ class ContactService {
         throttle(clientKey, now);
         String phone = Phones.normalize(in.phone()).orElseThrow(() -> ContactProblem.invalid("Numéro de téléphone invalide."));
         String lang = "en".equals(in.lang()) ? "en" : "fr";
-        ContactRequest r = repository.save(new ContactRequest(now, in.product(), in.kind(), in.company().trim(),
+        if ("business".equals(in.kind()) && blankToNull(in.company()) == null) throw ContactProblem.invalid("Nom de l'entreprise obligatoire.");
+        ContactRequest r = repository.save(new ContactRequest(now, in.product(), in.kind(), blankToNull(in.company()),
                 in.contactName().trim(), phone, blankToNull(in.email()), blankToNull(in.city()), blankToNull(in.activity()),
                 blankToNull(in.volume()), blankToNull(in.message()), lang));
         Thread.ofVirtual().start(() -> notify(r));
@@ -80,16 +81,39 @@ class ContactService {
                 %s
 
                 Référence : %s
-                """.formatted(r.getKind(), r.getProduct(), WHEN.format(r.getCreatedAt()), r.getCompany(), r.getContactName(),
+                """.formatted(r.getKind(), r.getProduct(), WHEN.format(r.getCreatedAt()), dash(r.getCompany()), r.getContactName(),
                 r.getPhone(), dash(r.getEmail()), dash(r.getCity()), dash(r.getActivity()), dash(r.getVolume()),
                 dash(r.getMessage()), r.getId());
-        mailer.send(new Mailer.Message(teamEmail, "Izimboa", r.getEmail(),
-                "[Izimboa " + r.getProduct() + "] " + r.getCompany() + " - " + r.getContactName(), lines));
+        String who = r.getCompany() == null ? r.getContactName() + (r.getCity() == null ? "" : " (" + r.getCity() + ")") : r.getCompany() + " - " + r.getContactName();
+        mailer.send(new Mailer.Message(teamEmail, "Izimboa", r.getEmail(), "[Izimboa " + r.getProduct() + "] " + who, lines));
         if (r.getEmail() != null) mailer.send(acknowledgement(r));
     }
 
     private Mailer.Message acknowledgement(ContactRequest r) {
         boolean en = "en".equals(r.getLang());
+        if ("go".equals(r.getProduct())) {
+            String subject = en ? "Izimboa Go: we received your request" : "Izimboa Go : nous avons bien reçu votre demande";
+            String text = en ? """
+                    Hello %s,
+
+                    Thank you for taking the Izimboa Go eligibility test. An adviser will call you on %s within one business day to review your profile and the routes open to you.
+
+                    Reminder: Izimboa does not issue visas and nobody can guarantee one. Be wary of anyone who promises a visa for money.
+
+                    The Izimboa team
+                    %s
+                    """ : """
+                    Bonjour %s,
+
+                    Merci d'avoir fait le test d'éligibilité d'Izimboa Go. Un conseiller vous appelle au %s sous un jour ouvré pour faire le point sur votre profil et les voies qui s'offrent à vous.
+
+                    Rappel : Izimboa ne délivre pas de visas et personne ne peut en garantir un. Méfiez-vous de toute personne qui vous promet un visa contre paiement.
+
+                    L'équipe Izimboa
+                    %s
+                    """;
+            return new Mailer.Message(r.getEmail(), r.getContactName(), teamEmail, subject, text.formatted(r.getContactName(), r.getPhone(), teamEmail));
+        }
         String subject = en ? "Izimboa Delivery: we received your request" : "Izimboa Delivery : nous avons bien reçu votre demande";
         String text = en ? """
                 Hello %s,

@@ -16,7 +16,7 @@ public class ContactRequest {
     @Column(name = "created_at", nullable = false, updatable = false) private Instant createdAt;
     @Column(nullable = false) private String product;
     @Column(nullable = false) private String kind;
-    @Column(nullable = false) private String company;
+    private String company;
     @Column(name = "contact_name", nullable = false) private String contactName;
     @Column(nullable = false) private String phone;
     private String email;

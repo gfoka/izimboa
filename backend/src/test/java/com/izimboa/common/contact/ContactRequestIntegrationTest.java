@@ -44,6 +44,20 @@ class ContactRequestIntegrationTest extends PostgresIntegrationTest {
     }
 
     @Test
+    void unParticulierFaitLeTestDEligibiliteSansEntreprise() throws Exception {
+        String name = "Candidat " + UUID.randomUUID();
+        send("10.1.0.6", """
+            {"product":"go","kind":"eligibility","contactName":"%s","phone":"677123456","city":"Bertoua",
+             "activity":"Faire mes études","message":"Objectif : études","lang":"fr"}""".formatted(name))
+                .andExpect(status().isCreated());
+        send("10.1.0.6", """
+            {"product":"delivery","kind":"business","contactName":"Sans entreprise","phone":"677123456","lang":"fr"}""")
+                .andExpect(status().isUnprocessableContent());
+        mvc.perform(get("/v1/contact-requests").with(user(UUID.randomUUID(), "conseiller")))
+                .andExpect(jsonPath("$[*].contactName", hasItem(name)));
+    }
+
+    @Test
     void laListeEstReserveeALEquipe() throws Exception {
         mvc.perform(get("/v1/contact-requests").with(user(UUID.randomUUID(), "client", "vendeur"))).andExpect(status().isForbidden());
         mvc.perform(get("/v1/contact-requests")).andExpect(status().isUnauthorized());
@@ -53,7 +67,7 @@ class ContactRequestIntegrationTest extends PostgresIntegrationTest {
     void numeroInvalideOuChampManquantRefuses() throws Exception {
         send("10.1.0.2", body("Boutique", "12", "")).andExpect(status().isUnprocessableContent())
                 .andExpect(jsonPath("$.code").value("invalid-request"));
-        send("10.1.0.2", body("", "699123456", "")).andExpect(status().isBadRequest());
+        send("10.1.0.2", body("Boutique", "", "")).andExpect(status().isBadRequest());
     }
 
     @Test

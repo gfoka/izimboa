@@ -74,4 +74,5 @@ izimboa:
     # Adresse qui reçoit les demandes des formulaires du site.
     team: ${MAIL_TEAM:contact@izimboa.com}
   cors:
-    allowed-origin-patterns: https://izimboa.com,https://*.izimboa.com,http://localhost:3000,http://localhost:3001
+    # *.izimboa.pages.dev : préversions Cloudflare Pages du site (relecture avant mise en ligne).
+    allowed-origin-patterns: https://izimboa.com,https://*.izimboa.com,https://*.izimboa.pages.dev,http://localhost:3000,http://localhost:3001
