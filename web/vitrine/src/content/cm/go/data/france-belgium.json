@@ -1,1 +1,738 @@
-[]
+[
+  {
+    "key": "fr-study",
+    "destination": "fr",
+    "goal": "study",
+    "slug": {
+      "fr": "etudes-en-france-campus-france-cameroun",
+      "en": "study-in-france-from-cameroon"
+    },
+    "updated": "2026-10-28",
+    "sources": [
+      {
+        "label": "Campus France Cameroun – Calendriers de la campagne 2027-2028",
+        "url": "https://www.cameroun.campusfrance.org/fr/calendriers-de-la-campagne-de-candidature-2027-2028"
+      },
+      {
+        "label": "Campus France Cameroun – Procédure préconsulaire et choix définitif (frais 85 000 FCFA + 16 000 FCFA TLS)",
+        "url": "https://www.cameroun.campusfrance.org/fr/la-procedure-pre-consulaire-et-le-choix-definitif"
+      },
+      {
+        "label": "Campus France Cameroun – Demander son visa",
+        "url": "https://www.cameroun.campusfrance.org/fr/demander-son-visa"
+      },
+      {
+        "label": "Campus France Cameroun – Liste des pièces visa (ressources 877 €/mois, sept. 2026)",
+        "url": "https://www.cameroun.campusfrance.org/system/files/medias/documents/2026-09/Liste_documents_visa%20VF.pdf"
+      },
+      {
+        "label": "France-Visas – Cameroun (TLScontact Yaoundé, Douala, Garoua)",
+        "url": "https://france-visas.gouv.fr/fr/cameroun"
+      },
+      {
+        "label": "France-Visas – Étudiant (visa 50 € pays EEF, 964 h de travail)",
+        "url": "https://france-visas.gouv.fr/etudiant"
+      },
+      {
+        "label": "Service-Public – Étudiant étranger : VLS-TS (877,5 €/mois, taxe de validation 100 €)",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2231"
+      }
+    ],
+    "notes": "IMPORTANT : le montant de ressources n'est plus 615 €/mois. Service-Public (vérifié le 01/08/2026) indique 877,5 €/mois et la liste visa Campus France Cameroun (sept. 2026) indique 877 €/mois ; on affiche 877,5 €. Taxe de validation VLS-TS étudiant : 100 € selon Service-Public F2231 (un article de presse évoquait 150 € ; non retenu car non confirmé par une source officielle). Frais de service TLScontact pour le dépôt visa : 41 € selon la page France-Visas Cameroun (texte daté de 2023, à revérifier sur le site TLScontact). Frais Campus France : 85 000 FCFA + 16 000 FCFA de frais TLS, payés chez TLScontact après autorisation de paiement (72 h). La page Campus France 'Demander son visa' décrit encore l'ancienne validation OFII par courrier ; aujourd'hui la validation se fait en ligne (ANEF) selon Service-Public. Dates du calendrier préconsulaire Parcoursup/CampusArt sur la page Campus France contiennent des coquilles d'année (2026 au lieu de 2027) : non reprises.",
+    "fr": {
+      "name": "Études en France (procédure Campus France)",
+      "metaTitle": "Études en France depuis le Cameroun : Campus France",
+      "metaDescription": "Étudier en France depuis le Cameroun : procédure Études en France, frais Campus France 85 000 FCFA, calendrier 2027, ressources 877,5 €/mois, visa VLS-TS.",
+      "h1": "Étudier en France depuis le Cameroun : la procédure Campus France pas à pas",
+      "intro": "Que vous soyez à Douala, Yaoundé, Bafoussam, Garoua ou Bamenda, une candidature en licence, master ou école d'ingénieurs en France passe obligatoirement par la procédure « Études en France » gérée par Campus France Cameroun. Le calendrier est strict et le dossier financier est exigeant : nous vous aidons à vérifier si la France est la meilleure option pour votre profil et à préparer chaque étape à temps, sans promesse de résultat.",
+      "forWho": [
+        "Bacheliers (Baccalauréat, GCE A Level) qui visent une 1re année de licence ou une école d'architecture (procédure DAP)",
+        "Étudiants déjà inscrits au supérieur au Cameroun qui visent une licence 2 ou 3, un BUT, un master ou un diplôme d'ingénieur (procédure HDAP)",
+        "Candidats admis via Parcoursup (BTS, CPGE, DCG), CampusArt ou directement par un établissement, qui doivent suivre la procédure préconsulaire",
+        "Familles ou garants capables de justifier environ 575 600 FCFA par mois de ressources pour l'étudiant"
+      ],
+      "conditions": [
+        "Résider au Cameroun et créer un dossier sur la plateforme Études en France (etudesenfrance.diplomatie.gouv.fr)",
+        "Respecter les dates limites : 15 décembre 2026 (DAP, 1re année) et 1er février 2027 (HDAP, L2 et plus) pour la rentrée 2027",
+        "Payer les frais de procédure Campus France et passer l'entretien pédagogique dans une antenne Campus France (Yaoundé ou Douala)",
+        "Obtenir une acceptation d'un établissement français et confirmer son choix définitif avant le 31 mai 2027",
+        "Justifier de ressources d'au moins 877,5 € par mois (bourse, virement permanent irrévocable / compte bloqué, compte en France ou garant)",
+        "Fournir un justificatif d'hébergement, une assurance, une réservation de billet et un passeport valide",
+        "Valider le visa VLS-TS en ligne dans les 3 mois suivant l'arrivée en France"
+      ],
+      "steps": [
+        {
+          "title": "S'informer et créer son dossier (dès le 1er octobre 2026)",
+          "text": "Créez votre compte sur la plateforme Études en France, choisissez vos formations et téléversez diplômes et relevés (Probatoire, Baccalauréat ou GCE, relevés du supérieur). Le Centre d'information et d'orientation (CIO) de Campus France à Yaoundé et Douala peut vous aider gratuitement à vérifier votre projet."
+        },
+        {
+          "title": "Payer les frais de procédure chez TLScontact",
+          "text": "Après la première vérification de votre dossier, vous recevez une autorisation de paiement. Vous avez 72 heures pour payer 85 000 FCFA de frais Campus France + 16 000 FCFA de frais TLS, en présentant les originaux de vos documents. Paiement possible entre le 5 octobre 2026 et le 16 février 2027."
+        },
+        {
+          "title": "Soumettre le dossier et passer l'entretien",
+          "text": "Soumettez votre dossier avant le 15 décembre 2026 (DAP) ou le 1er février 2027 (HDAP). Après vérification (3 corrections possibles), vous êtes convoqué à un entretien pédagogique, entre le 12 octobre 2026 et le 1er mars 2027."
+        },
+        {
+          "title": "Recevoir les réponses et faire son choix définitif",
+          "text": "Les établissements répondent jusqu'au 30 avril 2027. Vous confirmez un seul choix avant le 31 mai 2027 ; ce choix ne peut plus être modifié."
+        },
+        {
+          "title": "Demander le visa étudiant",
+          "text": "Remplissez le formulaire sur france-visas.gouv.fr, prenez rendez-vous sur le site TLScontact et déposez un dossier complet (attestation d'acceptation, preuve de ressources, logement, assurance, billet). Un rendez-vous manqué ou un dossier incomplet peut mettre fin à la procédure."
+        },
+        {
+          "title": "Valider le VLS-TS en France",
+          "text": "Dans les 3 mois suivant votre arrivée, validez votre visa long séjour valant titre de séjour en ligne et payez la taxe de 100 €. Ensuite, vous pourrez travailler jusqu'à 964 heures par an, en complément de vos ressources."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Frais de procédure Campus France Cameroun",
+          "amount": "85 000 FCFA",
+          "fcfa": "85 000 FCFA"
+        },
+        {
+          "label": "Frais TLS liés au paiement Campus France",
+          "amount": "16 000 FCFA",
+          "fcfa": "16 000 FCFA"
+        },
+        {
+          "label": "Visa long séjour étudiant (pays à procédure Études en France)",
+          "amount": "50 €",
+          "fcfa": "≈ 32 800 FCFA"
+        },
+        {
+          "label": "Frais de service TLScontact pour le dépôt du visa (selon France-Visas)",
+          "amount": "41 €",
+          "fcfa": "≈ 26 900 FCFA"
+        },
+        {
+          "label": "Taxe de validation du VLS-TS étudiant (en France)",
+          "amount": "100 €",
+          "fcfa": "≈ 65 600 FCFA"
+        },
+        {
+          "label": "Ressources minimales à justifier (par mois)",
+          "amount": "877,5 €",
+          "fcfa": "≈ 575 600 FCFA"
+        }
+      ],
+      "delays": "Campus France Cameroun indique un traitement de 15 jours ouvrables maximum après l'entretien. France-Visas recommande de prévoir 1 mois entre le dépôt de la demande de visa long séjour et le départ, et les rendez-vous peuvent être plus longs à obtenir en période estivale.",
+      "biometrics": "Le paiement des frais Campus France et le dépôt du dossier visa (empreintes et photo) se font chez TLScontact, sur rendez-vous : Yaoundé (Immeuble Icon Platinium, Bastos), Douala (Grand Mall, Bonadiwoto) ou Garoua (sessions au centre de l'Hôtel Le Ribadou). Les résidents de l'Adamaoua, du Centre (hors Nyong-et-Kéllé), de l'Est, du Nord, de l'Extrême-Nord et du Sud (hors Océan) relèvent de l'Ambassade à Yaoundé ; ceux du Littoral, de l'Ouest, du Nord-Ouest, du Sud-Ouest, de l'Océan et du Nyong-et-Kéllé relèvent du Consulat général à Douala. Les entretiens Campus France ont lieu dans les antennes de Yaoundé et Douala.",
+      "faq": [
+        {
+          "q": "J'habite à Bamenda ou Bafoussam : où dois-je déposer mon visa ?",
+          "a": "Les régions du Nord-Ouest et de l'Ouest relèvent du Consulat général de France à Douala : vous déposez donc votre dossier au centre TLScontact de Douala, même si votre passeport a été délivré à Yaoundé."
+        },
+        {
+          "q": "Combien d'argent faut-il montrer pour le visa étudiant France ?",
+          "a": "Au moins 877,5 € par mois, soit environ 575 600 FCFA par mois (≈ 6,9 millions FCFA pour 12 mois). La preuve peut être une bourse, une attestation de virement permanent et irrévocable (compte bloqué), un compte bancaire en France ou une prise en charge par un garant avec justificatifs."
+        },
+        {
+          "q": "Les frais Campus France sont-ils remboursés en cas de refus de visa ?",
+          "a": "Non. Campus France Cameroun précise que les frais de procédure et les frais de visa ne sont pas remboursés en cas de refus. Une admission ne garantit pas non plus la délivrance du visa."
+        },
+        {
+          "q": "J'ai le GCE A Level : puis-je passer par Études en France ?",
+          "a": "Oui. Les candidats anglophones titulaires du GCE A Level suivent la même plateforme. Préparez des copies lisibles de vos diplômes et relevés (Results Slip, certificats) et, si une formation est en français, vérifiez le niveau de langue demandé par l'établissement."
+        },
+        {
+          "q": "Puis-je travailler en France pendant mes études ?",
+          "a": "Oui, les étudiants étrangers peuvent travailler 964 heures par an. France-Visas rappelle que ce revenu reste un complément et ne remplace pas les ressources exigées pour le visa."
+        }
+      ]
+    },
+    "en": {
+      "name": "Study in France (Campus France procedure)",
+      "metaTitle": "Study in France from Cameroon: Campus France guide",
+      "metaDescription": "Study in France from Cameroon: Études en France steps, 85,000 FCFA Campus France fee, 2027 deadlines, €877.50/month proof of funds and the VLS-TS visa.",
+      "h1": "Study in France from Cameroon: the Campus France procedure step by step",
+      "intro": "Whether you live in Douala, Yaoundé, Buea, Bamenda or Garoua, applying for a bachelor's, master's or engineering programme in France means going through the mandatory « Études en France » procedure run by Campus France Cameroon. Deadlines are strict and the financial file is demanding: we help you check whether France is the right route for your profile and prepare each step on time, without promising any outcome.",
+      "forWho": [
+        "Holders of the GCE A Level or Baccalauréat aiming for a first-year bachelor's degree or an architecture school (DAP procedure)",
+        "Students already in higher education in Cameroon aiming for a 2nd/3rd-year bachelor's, BUT, master's or engineering degree (HDAP procedure)",
+        "Applicants admitted through Parcoursup (BTS, CPGE, DCG), CampusArt or directly by a school, who must follow the pre-consular procedure",
+        "Families or sponsors able to show about 575,600 FCFA per month for the student"
+      ],
+      "conditions": [
+        "Live in Cameroon and create a file on the Études en France platform (etudesenfrance.diplomatie.gouv.fr)",
+        "Meet the deadlines: 15 December 2026 (DAP, first year) and 1 February 2027 (HDAP, second year and above) for the 2027 intake",
+        "Pay the Campus France procedure fee and attend an academic interview at a Campus France office (Yaoundé or Douala)",
+        "Get accepted by a French institution and confirm your final choice before 31 May 2027",
+        "Show at least €877.50 per month (scholarship, permanent irrevocable transfer / blocked account, French bank account or a sponsor)",
+        "Provide proof of accommodation, insurance, a flight reservation and a valid passport",
+        "Validate the VLS-TS visa online within 3 months of arriving in France"
+      ],
+      "steps": [
+        {
+          "title": "Get informed and create your file (from 1 October 2026)",
+          "text": "Open your account on the Études en France platform, choose your programmes and upload your certificates and transcripts (GCE O/A Level, Probatoire, Baccalauréat, university transcripts). Campus France's guidance centre (CIO) in Yaoundé and Douala can help you check your project free of charge."
+        },
+        {
+          "title": "Pay the procedure fee at TLScontact",
+          "text": "After a first check of your file you receive a payment authorisation. You then have 72 hours to pay 85,000 FCFA Campus France fee + 16,000 FCFA TLS fee, bringing your original documents. Payments are accepted between 5 October 2026 and 16 February 2027."
+        },
+        {
+          "title": "Submit your file and attend the interview",
+          "text": "Submit before 15 December 2026 (DAP) or 1 February 2027 (HDAP). After checks (up to 3 rounds of corrections), you are invited to an academic interview between 12 October 2026 and 1 March 2027."
+        },
+        {
+          "title": "Receive answers and make your final choice",
+          "text": "Institutions reply until 30 April 2027. You confirm one final choice before 31 May 2027; it cannot be changed afterwards."
+        },
+        {
+          "title": "Apply for the student visa",
+          "text": "Fill in the form on france-visas.gouv.fr, book on the TLScontact website and submit a complete file (acceptance letter, proof of funds, accommodation, insurance, ticket). A missed appointment or incomplete file can end the procedure."
+        },
+        {
+          "title": "Validate your VLS-TS in France",
+          "text": "Within 3 months of arrival, validate your long-stay visa online and pay the €100 tax. You may then work up to 964 hours a year as a complement to your funds."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Campus France Cameroon procedure fee",
+          "amount": "85,000 FCFA",
+          "fcfa": "85,000 FCFA"
+        },
+        {
+          "label": "TLS fee linked to the Campus France payment",
+          "amount": "16,000 FCFA",
+          "fcfa": "16,000 FCFA"
+        },
+        {
+          "label": "Long-stay student visa (Études en France countries)",
+          "amount": "€50",
+          "fcfa": "≈ 32,800 FCFA"
+        },
+        {
+          "label": "TLScontact service fee for the visa application (per France-Visas)",
+          "amount": "€41",
+          "fcfa": "≈ 26,900 FCFA"
+        },
+        {
+          "label": "VLS-TS student validation tax (in France)",
+          "amount": "€100",
+          "fcfa": "≈ 65,600 FCFA"
+        },
+        {
+          "label": "Minimum funds to show (per month)",
+          "amount": "€877.50",
+          "fcfa": "≈ 575,600 FCFA"
+        }
+      ],
+      "delays": "Campus France Cameroon states files are processed within 15 working days at most after the interview. France-Visas advises allowing 1 month between lodging a long-stay visa application and departure, and appointments can take longer to get in the summer peak.",
+      "biometrics": "The Campus France fee payment and the visa application (fingerprints and photo) take place at TLScontact, by appointment only: Yaoundé (Icon Platinium building, Bastos), Douala (Grand Mall, Bonadiwoto) or Garoua (sessions at the Hôtel Le Ribadou centre). Residents of Adamawa, Centre (except Nyong-et-Kéllé), East, North, Far North and South (except Océan) depend on the Embassy in Yaoundé; residents of Littoral, West, North-West, South-West, Océan and Nyong-et-Kéllé depend on the Consulate General in Douala. Campus France interviews are held at the Yaoundé and Douala offices.",
+      "faq": [
+        {
+          "q": "I live in Bamenda or Buea: where do I apply for my visa?",
+          "a": "The North-West and South-West regions depend on the French Consulate General in Douala, so you submit your file at the TLScontact centre in Douala, even if your passport was issued in Yaoundé."
+        },
+        {
+          "q": "How much money do I need to show for a French student visa?",
+          "a": "At least €877.50 per month, about 575,600 FCFA per month (≈ 6.9 million FCFA for 12 months). Proof can be a scholarship, a permanent irrevocable transfer certificate (blocked account), a French bank account or a sponsor with supporting documents."
+        },
+        {
+          "q": "Is the Campus France fee refunded if my visa is refused?",
+          "a": "No. Campus France Cameroon states that neither the procedure fee nor the visa fee is refunded after a refusal. An admission letter does not guarantee a visa either."
+        },
+        {
+          "q": "I hold the GCE A Level: can I use Études en France?",
+          "a": "Yes. English-speaking applicants use the same platform. Prepare clear copies of your certificates and Results Slips and, for programmes taught in French, check the language level the institution requires."
+        },
+        {
+          "q": "Can I work in France while studying?",
+          "a": "Yes, international students may work 964 hours a year. France-Visas stresses that this income is only a complement and does not replace the funds required for the visa."
+        }
+      ]
+    },
+    "status": "open"
+  },
+  {
+    "key": "fr-talent-work",
+    "destination": "fr",
+    "goal": "work",
+    "slug": {
+      "fr": "travailler-en-france-carte-talent-visa-salarie",
+      "en": "work-in-france-talent-permit-work-visa"
+    },
+    "updated": "2026-10-28",
+    "sources": [
+      {
+        "label": "Service-Public – Carte talent (vérifié le 01/06/2026)",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F16922"
+      },
+      {
+        "label": "Service-Public – Carte de séjour recherche d'emploi (seuils talent 2026, dont carte bleue européenne)",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F17319"
+      },
+      {
+        "label": "Service-Public – Autorisation de travail d'un salarié étranger (vérifié le 18/06/2026)",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2728"
+      },
+      {
+        "label": "Ministère de l'Intérieur – Immigration professionnelle et étudiante",
+        "url": "https://www.immigration.interieur.gouv.fr/limmigration-en-france/sejour-des-etrangers/limmigration-professionnelle-et-etudiante"
+      },
+      {
+        "label": "France-Visas – Activité salariée",
+        "url": "https://france-visas.gouv.fr/en/activite-salariee"
+      },
+      {
+        "label": "France-Visas – Frais de visa (long séjour 99 €)",
+        "url": "https://france-visas.gouv.fr/documents/d/france-visas/frais-de-visa-francais"
+      },
+      {
+        "label": "France-Visas – Cameroun (TLScontact)",
+        "url": "https://france-visas.gouv.fr/fr/cameroun"
+      }
+    ],
+    "notes": "Nom officiel : depuis la loi du 26 janvier 2024, le « passeport talent » est devenu la « carte de séjour pluriannuelle talent » (Service-Public parle de « carte talent »). Seuils 2026 vérifiés sur Service-Public : talent-salarié qualifié 39 582 € brut/an ; talent-professions médicales 41 386,48 € ; talent-carte bleue européenne 59 373 €. Coût de la carte talent : 350 € (50 € timbre + 300 € taxe). Le montant de la taxe de validation du VLS-TS « salarié » / « travailleur temporaire » n'a pas été confirmé sur une source officielle : non chiffré. Délai d'instruction de l'autorisation de travail non publié officiellement : non chiffré. Frais de service TLScontact 41 € selon page France-Visas Cameroun (texte de 2023), à revérifier.",
+    "fr": {
+      "name": "Travailler en France (carte talent et visa salarié)",
+      "metaTitle": "Travailler en France depuis le Cameroun : talent, salarié",
+      "metaDescription": "Travailler en France depuis le Cameroun : carte talent (ex-passeport talent), seuil 39 582 €/an, visa salarié avec autorisation de travail, dépôt TLS.",
+      "h1": "Travailler en France depuis le Cameroun : carte « talent » ou visa salarié",
+      "intro": "Pour travailler légalement en France depuis le Cameroun, il faut presque toujours une offre d'emploi d'un employeur français. Selon votre diplôme et votre salaire, deux grandes voies existent : la carte de séjour « talent » (ancien passeport talent) pour les profils qualifiés et bien rémunérés, ou le visa salarié avec une autorisation de travail demandée par l'employeur. Nous analysons votre profil pour vous orienter vers la voie la plus réaliste, sans garantie de résultat.",
+      "forWho": [
+        "Diplômés (master ou équivalent) ou cadres ayant une offre d'emploi en France d'au moins 39 582 € brut par an (talent-salarié qualifié)",
+        "Ingénieurs, informaticiens et cadres très qualifiés avec un salaire d'au moins 59 373 € brut par an (talent-carte bleue européenne)",
+        "Médecins et pharmaciens recrutés en France (talent-professions médicales et de la pharmacie, à partir de 41 386,48 € brut)",
+        "Chercheurs, créateurs d'entreprise, investisseurs ou artistes répondant aux catégories « talent »",
+        "Travailleurs qualifiés ou non qui ont un contrat d'un employeur français prêt à demander une autorisation de travail (visa salarié ou travailleur temporaire)"
+      ],
+      "conditions": [
+        "Avoir un contrat de travail ou une promesse d'embauche d'un employeur établi en France",
+        "Carte talent-salarié qualifié : contrat de plus de 3 mois et salaire brut annuel d'au moins 39 582 € (diplôme au moins équivalent au master ou critères de l'entreprise innovante selon la catégorie)",
+        "Visa salarié : l'employeur doit d'abord obtenir une autorisation de travail en ligne (ANEF) ; les titulaires d'une carte talent en sont dispensés",
+        "Situation de l'emploi : le poste doit figurer sur la liste des métiers en tension, ou l'offre doit avoir été publiée pendant 3 semaines auprès du service public de l'emploi",
+        "Rémunération conforme au droit du travail français (au moins le Smic) ; une taxe employeur est due par l'employeur",
+        "Passeport valide, casier judiciaire (pour une 1re carte talent) et dossier déposé auprès du centre TLScontact compétent au Cameroun",
+        "À l'arrivée : valider le VLS-TS en ligne dans les 3 mois, ou demander la carte de séjour dans les 2 mois si le visa est d'1 an ou plus"
+      ],
+      "steps": [
+        {
+          "title": "Vérifier la voie adaptée",
+          "text": "Comparez votre diplôme, votre métier et le salaire proposé aux seuils officiels : talent-salarié qualifié (39 582 €), carte bleue européenne (59 373 €), ou visa salarié classique. Un métier inscrit sur la liste des métiers en tension facilite l'autorisation de travail."
+        },
+        {
+          "title": "Trouver un employeur en France",
+          "text": "Obtenez un contrat de travail ou une promesse d'embauche signés. Pour la carte talent, l'employeur remplit aussi le formulaire relatif aux éléments du contrat de travail selon la catégorie."
+        },
+        {
+          "title": "Autorisation de travail (visa salarié uniquement)",
+          "text": "L'employeur dépose la demande d'autorisation de travail en ligne sur la plateforme ANEF, avec le contrat et les justificatifs de l'entreprise. Ce n'est pas au candidat de la déposer. La carte talent dispense de cette étape."
+        },
+        {
+          "title": "Demander le visa long séjour au Cameroun",
+          "text": "Remplissez le formulaire sur france-visas.gouv.fr, prenez rendez-vous chez TLScontact et déposez votre dossier avec passeport, contrat, diplômes, autorisation de travail (le cas échéant) et justificatifs. Les diplômes camerounais doivent être lisibles et, si besoin, traduits en français."
+        },
+        {
+          "title": "Arriver en France et régulariser son séjour",
+          "text": "Visa de moins de 12 mois : validez le VLS-TS en ligne dans les 3 mois. Visa « talent » d'un an ou plus : demandez votre carte de séjour talent en ligne dans les 2 mois suivant l'entrée ; la carte coûte 350 € et peut durer jusqu'à 4 ans. Votre conjoint et vos enfants mineurs peuvent bénéficier de la carte « talent-famille »."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Visa de long séjour (plein tarif)",
+          "amount": "99 €",
+          "fcfa": "≈ 64 900 FCFA"
+        },
+        {
+          "label": "Frais de service TLScontact (selon France-Visas)",
+          "amount": "41 €",
+          "fcfa": "≈ 26 900 FCFA"
+        },
+        {
+          "label": "Carte de séjour talent (timbre 50 € + taxe 300 €)",
+          "amount": "350 €",
+          "fcfa": "≈ 229 600 FCFA"
+        },
+        {
+          "label": "Salaire minimum talent-salarié qualifié (brut annuel)",
+          "amount": "39 582 €",
+          "fcfa": "≈ 26 millions FCFA"
+        },
+        {
+          "label": "Salaire minimum talent-carte bleue européenne (brut annuel)",
+          "amount": "59 373 €",
+          "fcfa": "≈ 38,9 millions FCFA"
+        }
+      ],
+      "delays": "Le délai dépend surtout de l'instruction de l'autorisation de travail par l'administration française et du rendez-vous visa ; aucun délai unique n'est garanti. France-Visas recommande de prévoir 1 mois entre le dépôt de la demande de visa long séjour et le départ.",
+      "biometrics": "Le dépôt du dossier et la prise d'empreintes se font sur rendez-vous chez TLScontact à Yaoundé, Douala ou Garoua (centre rattaché à l'Ambassade à Yaoundé). Le centre dépend de votre région de résidence : Yaoundé pour l'Adamaoua, le Centre, l'Est, le Nord, l'Extrême-Nord et le Sud ; Douala pour le Littoral, l'Ouest, le Nord-Ouest, le Sud-Ouest, l'Océan et le Nyong-et-Kéllé.",
+      "faq": [
+        {
+          "q": "Le « passeport talent » existe-t-il encore ?",
+          "a": "Il s'appelle désormais « carte de séjour pluriannuelle talent » (carte talent) depuis la loi du 26 janvier 2024. Les catégories restent proches : salarié qualifié, carte bleue européenne, chercheur, créateur d'entreprise, investisseur, artiste, renommée internationale, etc."
+        },
+        {
+          "q": "Puis-je demander moi-même l'autorisation de travail depuis le Cameroun ?",
+          "a": "Non. C'est l'employeur établi en France qui la demande en ligne sur l'ANEF avant votre demande de visa. Méfiez-vous des personnes qui vendent des « autorisations de travail » ou des contrats : seuls les services consulaires et les procédures officielles comptent."
+        },
+        {
+          "q": "Mon diplôme camerounais (BTS, licence, master) est-il accepté pour la carte talent ?",
+          "a": "La carte talent-salarié qualifié vise notamment les diplômes au moins équivalents au master. L'administration apprécie le diplôme fourni ; préparez des copies certifiées et une traduction si le document n'est pas en français."
+        },
+        {
+          "q": "Ma famille peut-elle me rejoindre ?",
+          "a": "Avec une carte talent, votre conjoint et vos enfants mineurs peuvent obtenir une carte « talent-famille » via une procédure simplifiée, sans passer par le regroupement familial. Avec un visa salarié classique, d'autres règles s'appliquent."
+        },
+        {
+          "q": "Faut-il passer une visite médicale à Yaoundé ou Douala ?",
+          "a": "L'Ambassade rappelle que seul l'OFII est habilité à faire passer la visite médicale prévue pour certains salariés : ne payez jamais un « certificat médical » à un intermédiaire se présentant comme agent de l'ambassade."
+        }
+      ]
+    },
+    "en": {
+      "name": "Work in France (Talent permit and work visa)",
+      "metaTitle": "Work in France from Cameroon: Talent permit & work visa",
+      "metaDescription": "Work in France from Cameroon: Talent permit (ex-Passeport Talent) from €39,582/year, salaried visa with employer work authorisation, TLScontact.",
+      "h1": "Work in France from Cameroon: the « Talent » permit or the salaried work visa",
+      "intro": "To work legally in France from Cameroon you almost always need a job offer from a French employer. Depending on your degree and salary, there are two main routes: the « Talent » residence permit (formerly Passeport Talent) for qualified, well-paid profiles, or the salaried visa backed by a work authorisation requested by the employer. We review your profile to point you to the most realistic route, with no guaranteed outcome.",
+      "forWho": [
+        "Graduates (master's level or equivalent) or managers with a French job offer of at least €39,582 gross per year (Talent – qualified employee)",
+        "Engineers, IT specialists and highly qualified staff earning at least €59,373 gross per year (Talent – EU Blue Card)",
+        "Doctors and pharmacists recruited in France (Talent – medical and pharmacy professions, from €41,386.48 gross)",
+        "Researchers, business founders, investors or artists who fit a Talent category",
+        "Skilled or unskilled workers with a contract from a French employer willing to apply for a work authorisation (salaried or temporary worker visa)"
+      ],
+      "conditions": [
+        "Have an employment contract or job promise from an employer established in France",
+        "Talent – qualified employee: contract over 3 months and gross annual salary of at least €39,582 (master's-level degree or innovative-company criteria depending on the category)",
+        "Salaried visa: the employer must first obtain a work authorisation online (ANEF); Talent permit holders are exempt",
+        "Labour-market test: the job must be on the shortage-occupation list, or the vacancy must have been advertised for 3 weeks with the public employment service",
+        "Pay in line with French labour law (at least the minimum wage); the employer pays an employer tax",
+        "Valid passport, criminal record extract (for a first Talent permit) and a file lodged at the competent TLScontact centre in Cameroon",
+        "On arrival: validate the VLS-TS online within 3 months, or apply for the residence card within 2 months if the visa is for 1 year or more"
+      ],
+      "steps": [
+        {
+          "title": "Check the right route",
+          "text": "Compare your degree, occupation and offered salary with the official thresholds: Talent – qualified employee (€39,582), EU Blue Card (€59,373), or the standard salaried visa. A job on the shortage-occupation list makes the work authorisation easier."
+        },
+        {
+          "title": "Find an employer in France",
+          "text": "Get a signed employment contract or job promise. For the Talent permit, the employer also completes the form on the employment contract details required for the category."
+        },
+        {
+          "title": "Work authorisation (salaried visa only)",
+          "text": "The employer files the work authorisation online on the ANEF platform with the contract and company documents. The candidate does not file it. The Talent permit is exempt from this step."
+        },
+        {
+          "title": "Apply for the long-stay visa in Cameroon",
+          "text": "Fill in the form on france-visas.gouv.fr, book at TLScontact and submit your passport, contract, degrees, work authorisation (if required) and supporting documents. Cameroonian documents in English should be translated into French if requested."
+        },
+        {
+          "title": "Arrive in France and secure your status",
+          "text": "Visa under 12 months: validate the VLS-TS online within 3 months. Talent visa of 1 year or more: apply online for your Talent residence card within 2 months of entry; the card costs €350 and can last up to 4 years. Your spouse and minor children may get a « Talent – family » card."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Long-stay visa (full rate)",
+          "amount": "€99",
+          "fcfa": "≈ 64,900 FCFA"
+        },
+        {
+          "label": "TLScontact service fee (per France-Visas)",
+          "amount": "€41",
+          "fcfa": "≈ 26,900 FCFA"
+        },
+        {
+          "label": "Talent residence card (€50 stamp duty + €300 tax)",
+          "amount": "€350",
+          "fcfa": "≈ 229,600 FCFA"
+        },
+        {
+          "label": "Minimum salary, Talent – qualified employee (gross per year)",
+          "amount": "€39,582",
+          "fcfa": "≈ 26 million FCFA"
+        },
+        {
+          "label": "Minimum salary, Talent – EU Blue Card (gross per year)",
+          "amount": "€59,373",
+          "fcfa": "≈ 38.9 million FCFA"
+        }
+      ],
+      "delays": "Timing depends mainly on how long the French administration takes to process the work authorisation and on visa appointment availability; no single timeframe is guaranteed. France-Visas advises allowing 1 month between lodging a long-stay visa application and departure.",
+      "biometrics": "Applications and fingerprints are taken by appointment at TLScontact in Yaoundé, Douala or Garoua (the Garoua centre is attached to the Embassy in Yaoundé). Your centre depends on where you live: Yaoundé for Adamawa, Centre, East, North, Far North and South; Douala for Littoral, West, North-West, South-West, Océan and Nyong-et-Kéllé.",
+      "faq": [
+        {
+          "q": "Does the « Passeport Talent » still exist?",
+          "a": "Since the law of 26 January 2024 it is called the multi-year « Talent » residence permit. The categories are similar: qualified employee, EU Blue Card, researcher, business founder, investor, artist, international renown and others."
+        },
+        {
+          "q": "Can I apply for the work authorisation myself from Cameroon?",
+          "a": "No. The employer established in France applies online on ANEF before your visa application. Beware of anyone selling « work permits » or contracts: only official procedures and consular services count."
+        },
+        {
+          "q": "Is my Cameroonian degree (HND, bachelor's, master's) accepted for the Talent permit?",
+          "a": "The Talent – qualified employee permit mainly targets degrees at least equivalent to a master's. The authorities assess the degree you provide; prepare certified copies and a French translation if needed."
+        },
+        {
+          "q": "Can my family join me?",
+          "a": "With a Talent permit, your spouse and minor children can get a « Talent – family » card through a simplified procedure, without family reunification. Other rules apply to a standard salaried visa."
+        },
+        {
+          "q": "Do I need a medical check in Yaoundé or Douala?",
+          "a": "The French Embassy states that only OFII is authorised to carry out the medical check required for some workers: never pay a « medical certificate » to an intermediary claiming to work for the embassy."
+        }
+      ]
+    },
+    "status": "open"
+  },
+  {
+    "key": "be-study",
+    "destination": "be",
+    "goal": "study",
+    "slug": {
+      "fr": "etudes-en-belgique-visa-etudiant-cameroun",
+      "en": "study-in-belgium-student-visa-cameroon"
+    },
+    "updated": "2026-10-28",
+    "sources": [
+      {
+        "label": "Ambassade de Belgique au Cameroun – Study in Belgium (mis à jour le 19/06/2026)",
+        "url": "https://cameroon.diplomatie.belgium.be/en/travel-belgium/studying-belgium"
+      },
+      {
+        "label": "Ambassade de Belgique au Cameroun – Visa for Belgium (visa D 180 €)",
+        "url": "https://cameroon.diplomatie.belgium.be/en/travel-belgium/visa-belgium"
+      },
+      {
+        "label": "Ambassade de Belgique – Pièces justificatives 2026 (établissement reconnu)",
+        "url": "https://cameroon.diplomatie.belgium.be/sites/default/files/2026-04/20260424%20SUPPORTING%20DOCUMENTS%20ART%2058.pdf"
+      },
+      {
+        "label": "Office des Étrangers – Moyens de subsistance suffisants (1 062 €/mois 2026-2027)",
+        "url": "https://dofi.ibz.be/fr/themes/ressortissants-dun-pays-tiers/etudes/favoris/moyens-de-subsistance-suffisants"
+      },
+      {
+        "label": "Office des Étrangers – Engagement de prise en charge (annexe 32)",
+        "url": "https://dofi.ibz.be/fr/themes/third-country-nationals/study/favorites/engagement-de-prise-en-charge"
+      },
+      {
+        "label": "Office des Étrangers – Redevance (montants 2026)",
+        "url": "https://dofi.ibz.be/fr/themes/faq/redevance"
+      },
+      {
+        "label": "Fédération Wallonie-Bruxelles – Équivalences secondaires : Cameroun",
+        "url": "https://equivalences.cfwb.be/equivalences-secondaires/equivalence/demander-une-equivalence/jai-termine-mes-etudes-secondaires/cameroun"
+      },
+      {
+        "label": "Fédération Wallonie-Bruxelles – Équivalences secondaires (dates de dépôt)",
+        "url": "https://equivalences.cfwb.be/equivalences-secondaires"
+      }
+    ],
+    "notes": "Pas de « Campus Belgique » officiel pour le Cameroun en 2026. L'ancienne étape Viabel (entretien à l'Institut français, documents 2025) n'apparaît plus sur la page de l'Ambassade mise à jour le 19/06/2026 : procédure actuelle = Visa On Web + TLScontact Yaoundé + questionnaire/entretien éventuel à l'ambassade + authentification des diplômes par GCE Board (anglophones, avant dépôt) ou OBC (francophones, après dépôt). Seul le centre TLScontact de Yaoundé accepte les visas étudiants (TLScontact Belgique a aussi un centre à Douala pour d'autres services, ex. légalisation). Frais de service TLScontact Belgique non vérifiés : non chiffrés. Délai de décision du visa étudiant non chiffré (pas de source officielle consultée). Montant du garant : 3 235,88 €/mois, puis 3 279,47 €/mois à partir du 01/09/2026 (on affiche ce dernier). Le site FWB précise que les titulaires du Baccalauréat camerounais sont soumis à un processus de sélection pour l'équivalence. Date limite d'admission pour étudiants hors UE : fixée par chaque établissement, non chiffrée.",
+    "fr": {
+      "name": "Études en Belgique (visa D étudiant)",
+      "metaTitle": "Études en Belgique depuis le Cameroun : visa étudiant",
+      "metaDescription": "Étudier en Belgique depuis le Cameroun : équivalence FWB, visa D à TLScontact Yaoundé, 1 062 €/mois en 2026-2027, compte bloqué ou garant annexe 32.",
+      "h1": "Étudier en Belgique depuis le Cameroun : équivalence, solvabilité et visa D",
+      "intro": "La Belgique francophone (Fédération Wallonie-Bruxelles) attire de nombreux bacheliers et étudiants camerounais, mais la procédure est différente de la France : pas de plateforme centrale, une équivalence de diplôme à demander soi-même et une preuve de solvabilité élevée. Où que vous soyez au Cameroun, le dossier de visa étudiant se dépose uniquement à Yaoundé. Nous vous aidons à comparer cette voie avec les autres destinations et à préparer un dossier complet, sans promesse de visa.",
+      "forWho": [
+        "Titulaires du Baccalauréat, du BT ou du GCE A Level qui veulent entrer en bachelier (1re année) dans une université ou haute école belge",
+        "Étudiants camerounais déjà diplômés (BTS, licence, master) qui visent un master ou une spécialisation en Belgique",
+        "Candidats aux études de médecine ou de dentisterie qui doivent d'abord passer l'examen d'entrée (visa court séjour spécifique)",
+        "Familles pouvant déposer environ 8,36 millions FCFA sur un compte bloqué, ou disposant d'un garant solvable en Belgique ou ailleurs"
+      ],
+      "conditions": [
+        "Une attestation d'inscription ou d'admission d'un établissement d'enseignement supérieur (modèle officiel), à plein temps",
+        "Pour un 1er cycle (bachelier) : l'équivalence de votre Baccalauréat / GCE au CESS belge, demandée auprès de la Fédération Wallonie-Bruxelles",
+        "Des moyens de subsistance d'au moins 1 062 € net par mois pour l'année académique 2026-2027 (compte bloqué de 12 × 1 062 €, bourse ou garant)",
+        "La preuve du paiement de la redevance à l'Office des Étrangers (251 € pour un établissement public, 242 € pour un établissement privé)",
+        "Un certificat médical, une assurance maladie couvrant les risques en Belgique et, si vous avez plus de 18 ans, un extrait de casier judiciaire de moins de 6 mois légalisé (MINREX puis Ambassade de Belgique)",
+        "Un passeport valable pour la durée du séjour et, pour les mineurs, une autorisation parentale légalisée par l'Ambassade de Belgique à Yaoundé"
+      ],
+      "steps": [
+        {
+          "title": "Choisir la formation et demander l'admission",
+          "text": "Choisissez une université ou une haute école reconnue et suivez sa procédure d'admission pour étudiants hors Union européenne. Les dates limites varient selon l'établissement : renseignez-vous tôt."
+        },
+        {
+          "title": "Demander l'équivalence (bachelier)",
+          "text": "Pour la rentrée 2027-2028, le dossier d'équivalence se dépose auprès de la Fédération Wallonie-Bruxelles du 15 novembre 2026 au 15 juillet 2027 au plus tard (frais de 150 €, non remboursables). Les bacheliers de 2027 peuvent déposer avec le relevé de notes ou le Results Slip ; les attestations de non-délivrance de l'OBC doivent dater de 2027."
+        },
+        {
+          "title": "Préparer la preuve de solvabilité",
+          "text": "Ouvrez un compte bloqué via l'établissement ou une société spécialisée avec 12 × 1 062 € (12 744 €), ou faites signer un engagement de prise en charge (annexe 32) par un garant justifiant au moins 3 279,47 € net par mois. Une bourse reconnue est aussi acceptée."
+        },
+        {
+          "title": "Faire le formulaire Visa On Web et prendre rendez-vous",
+          "text": "Créez votre compte sur Visa On Web (VOW), remplissez la demande de visa D et réservez votre rendez-vous TLScontact uniquement via VOW. Légalisez votre casier judiciaire avant le dépôt (MINREX, puis rendez-vous de légalisation TLScontact pour l'ambassade)."
+        },
+        {
+          "title": "Déposer le dossier à TLScontact Yaoundé",
+          "text": "Déposez un dossier complet : seuls les documents de la liste officielle sont acceptés. Copies du Bac/GCE et des relevés, originaux des diplômes du supérieur. Anglophones : authentification au GCE Board avant le dépôt ; francophones : dépôt du diplôme et du relevé à l'Office du Baccalauréat (OBC) avec le reçu TLScontact."
+        },
+        {
+          "title": "Questionnaire, entretien éventuel et décision",
+          "text": "Le jour du dépôt, l'ambassade peut vous demander de remplir un questionnaire (apportez votre carte nationale d'identité originale). Un entretien avec un agent consulaire belge peut ensuite être fixé à TLScontact Yaoundé avant la décision."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Visa long séjour D (payable en FCFA)",
+          "amount": "180 €",
+          "fcfa": "≈ 118 100 FCFA"
+        },
+        {
+          "label": "Redevance Office des Étrangers – établissement public",
+          "amount": "251 €",
+          "fcfa": "≈ 164 600 FCFA"
+        },
+        {
+          "label": "Redevance Office des Étrangers – établissement privé",
+          "amount": "242 €",
+          "fcfa": "≈ 158 700 FCFA"
+        },
+        {
+          "label": "Équivalence du diplôme secondaire (FWB)",
+          "amount": "150 €",
+          "fcfa": "≈ 98 400 FCFA"
+        },
+        {
+          "label": "Moyens de subsistance minimum 2026-2027 (par mois)",
+          "amount": "1 062 €",
+          "fcfa": "≈ 696 600 FCFA"
+        },
+        {
+          "label": "Compte bloqué pour 12 mois (12 × 1 062 €)",
+          "amount": "12 744 €",
+          "fcfa": "≈ 8,36 millions FCFA"
+        }
+      ],
+      "delays": "L'ambassade ne publie pas de délai fixe : il faut compter avec l'authentification des diplômes (GCE Board ou OBC), un éventuel entretien et l'examen du dossier. Déposez dès que vous avez votre attestation d'inscription et votre équivalence (ou la preuve de dépôt).",
+      "biometrics": "Les empreintes et la photo sont obligatoires pour tous les visas étudiants. Seul le centre TLScontact de Yaoundé est autorisé à recevoir les demandes de visa pour études, quelle que soit votre ville (Douala, Bafoussam, Bamenda, Garoua, Maroua...). Le rendez-vous se prend uniquement via Visa On Web. Le casier judiciaire peut aussi être légalisé auprès du consulat honoraire à Douala, selon la liste de l'ambassade.",
+      "faq": [
+        {
+          "q": "J'habite à Douala : puis-je déposer mon visa étudiant Belgique à Douala ?",
+          "a": "Non. Selon l'Ambassade de Belgique, seul le centre TLScontact de Yaoundé accepte les demandes de visa pour études. Prévoyez le déplacement à Yaoundé pour le dépôt et un éventuel entretien."
+        },
+        {
+          "q": "Faut-il encore passer par Viabel ?",
+          "a": "La page de l'Ambassade de Belgique mise à jour en juin 2026 ne mentionne plus d'entretien Viabel : la procédure passe par Visa On Web, TLScontact Yaoundé, puis un questionnaire ou un entretien éventuel à l'ambassade. Vérifiez toujours la page officielle avant de commencer."
+        },
+        {
+          "q": "Combien faut-il sur le compte bloqué pour la Belgique en 2026-2027 ?",
+          "a": "12 fois 1 062 €, soit 12 744 € (environ 8,36 millions FCFA), sur un compte bloqué ouvert par l'établissement ou par une société spécialisée. À défaut, un garant peut signer l'annexe 32 s'il justifie au moins 3 279,47 € net par mois."
+        },
+        {
+          "q": "Mon Bac 2026 n'est pas encore délivré : comment faire l'équivalence ?",
+          "a": "La FWB accepte le relevé de notes avec une attestation de non-délivrance de l'Office du Baccalauréat datée de 2027 (ou, pour le GCE, le document « Non availability of Certificates » avec le Results Slip). Le document « Confirmation of results » n'est pas accepté."
+        },
+        {
+          "q": "Dois-je payer une agence pour obtenir le visa belge ?",
+          "a": "L'ambassade déconseille fortement les services payants de tiers et précise qu'ils ne donnent aucun avantage. Un accompagnement sérieux sert à vérifier votre dossier et votre stratégie, jamais à « acheter » un rendez-vous ou un visa."
+        }
+      ]
+    },
+    "en": {
+      "name": "Study in Belgium (student D visa)",
+      "metaTitle": "Study in Belgium from Cameroon: student visa guide",
+      "metaDescription": "Study in Belgium from Cameroon: FWB equivalence, student D visa at TLScontact Yaoundé, €1,062/month in 2026-2027, blocked account or Annex 32 sponsor.",
+      "h1": "Study in Belgium from Cameroon: equivalence, proof of funds and the D visa",
+      "intro": "French-speaking Belgium (Wallonia-Brussels Federation) attracts many Cameroonian students, but the process differs from France: there is no central platform, you request your diploma equivalence yourself and the proof of funds is high. Wherever you live in Cameroon, the student visa file is lodged only in Yaoundé. We help you compare this route with other destinations and prepare a complete file, with no visa guarantee.",
+      "forWho": [
+        "Holders of the GCE A Level, Baccalauréat or BT who want to start a bachelor's degree at a Belgian university or university college",
+        "Cameroonian graduates (HND, BTS, bachelor's, master's) aiming for a master's or specialisation in Belgium",
+        "Candidates for medicine or dentistry who must first sit the entrance exam (a specific short-stay visa)",
+        "Families able to place about 8.36 million FCFA in a blocked account, or with a solvent sponsor"
+      ],
+      "conditions": [
+        "A registration or admission certificate from a higher education institution (official model), for full-time studies",
+        "For a first-cycle (bachelor's) programme: equivalence of your GCE / Baccalauréat to the Belgian CESS, requested from the Wallonia-Brussels Federation",
+        "Means of subsistence of at least €1,062 net per month for the 2026-2027 academic year (blocked account of 12 × €1,062, scholarship or sponsor)",
+        "Proof of payment of the Immigration Office fee (€251 for a public institution, €242 for a private institution)",
+        "A medical certificate, health insurance covering all risks in Belgium and, if over 18, a criminal record extract under 6 months old, legalised by MINREX then the Belgian Embassy",
+        "A passport valid for the length of stay and, for minors, parental consent legalised by the Belgian Embassy in Yaoundé"
+      ],
+      "steps": [
+        {
+          "title": "Choose a programme and apply for admission",
+          "text": "Pick a recognised university or university college and follow its admission procedure for non-EU students. Deadlines vary by institution, so start early."
+        },
+        {
+          "title": "Apply for equivalence (bachelor's)",
+          "text": "For the 2027-2028 academic year, the equivalence file is lodged with the Wallonia-Brussels Federation from 15 November 2026 to 15 July 2027 at the latest (€150 fee, non-refundable). 2027 candidates may apply with their Results Slip or transcript; OBC non-issuance certificates must be dated 2027."
+        },
+        {
+          "title": "Prepare your proof of funds",
+          "text": "Open a blocked account through the institution or a specialised company with 12 × €1,062 (€12,744), or have a sponsor sign an undertaking of financial support (Annex 32) showing at least €3,279.47 net per month. A recognised scholarship is also accepted."
+        },
+        {
+          "title": "Complete Visa On Web and book",
+          "text": "Create your Visa On Web (VOW) account, fill in the D visa application and book your TLScontact appointment only via VOW. Have your criminal record legalised before lodging (MINREX, then a TLScontact legalisation appointment for the embassy)."
+        },
+        {
+          "title": "Lodge your file at TLScontact Yaoundé",
+          "text": "Submit a complete file: only documents on the official list are accepted. Copies of the GCE/Bac and transcripts, originals of higher education degrees. English-speaking applicants: authentication at the GCE Board before lodging; French-speaking applicants: submit the diploma and transcript to the Office du Baccalauréat (OBC) with the TLScontact receipt."
+        },
+        {
+          "title": "Questionnaire, possible interview and decision",
+          "text": "On the day you lodge, the embassy may ask you to fill in a questionnaire (bring your original national ID card). An interview with a Belgian consular officer may then be scheduled at TLScontact Yaoundé before the decision."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Long-stay D visa (payable in FCFA)",
+          "amount": "€180",
+          "fcfa": "≈ 118,100 FCFA"
+        },
+        {
+          "label": "Immigration Office fee – public institution",
+          "amount": "€251",
+          "fcfa": "≈ 164,600 FCFA"
+        },
+        {
+          "label": "Immigration Office fee – private institution",
+          "amount": "€242",
+          "fcfa": "≈ 158,700 FCFA"
+        },
+        {
+          "label": "Secondary diploma equivalence (FWB)",
+          "amount": "€150",
+          "fcfa": "≈ 98,400 FCFA"
+        },
+        {
+          "label": "Minimum means of subsistence 2026-2027 (per month)",
+          "amount": "€1,062",
+          "fcfa": "≈ 696,600 FCFA"
+        },
+        {
+          "label": "Blocked account for 12 months (12 × €1,062)",
+          "amount": "€12,744",
+          "fcfa": "≈ 8.36 million FCFA"
+        }
+      ],
+      "delays": "The embassy does not publish a fixed processing time: allow for diploma authentication (GCE Board or OBC), a possible interview and the review of your file. Lodge as soon as you have your registration certificate and equivalence (or proof that you applied).",
+      "biometrics": "Fingerprints and photo are compulsory for all student visas. Only the TLScontact centre in Yaoundé may accept study visa applications, whatever your city (Douala, Buea, Bamenda, Bafoussam, Garoua...). Appointments are booked only via Visa On Web. The criminal record can also be legalised at the honorary consulate in Douala, according to the embassy's list.",
+      "faq": [
+        {
+          "q": "I live in Douala or Buea: can I lodge my Belgian student visa there?",
+          "a": "No. According to the Belgian Embassy, only the TLScontact centre in Yaoundé accepts study visa applications. Plan the trip to Yaoundé for lodging and any interview."
+        },
+        {
+          "q": "Do I still need to go through Viabel?",
+          "a": "The Belgian Embassy page updated in June 2026 no longer mentions a Viabel interview: the process is Visa On Web, TLScontact Yaoundé, then a possible questionnaire or interview with the embassy. Always check the official page before you start."
+        },
+        {
+          "q": "How much must be in the blocked account for 2026-2027?",
+          "a": "12 times €1,062, i.e. €12,744 (about 8.36 million FCFA), in a blocked account opened by the institution or a specialised company. Alternatively, a sponsor can sign Annex 32 if they show at least €3,279.47 net per month."
+        },
+        {
+          "q": "My 2026 GCE certificate has not been issued yet: how do I get equivalence?",
+          "a": "The FWB accepts the « Non availability of Certificates » document with your Results Slip (for French-speaking candidates, an OBC non-issuance certificate dated 2027 with the transcript). The « Confirmation of results » document is not accepted."
+        },
+        {
+          "q": "Should I pay an agency to get a Belgian visa?",
+          "a": "The embassy strongly advises against paid third-party services and says they give no advantage. Serious support is about checking your file and strategy, never about « buying » an appointment or a visa."
+        }
+      ]
+    },
+    "status": "open"
+  }
+]
