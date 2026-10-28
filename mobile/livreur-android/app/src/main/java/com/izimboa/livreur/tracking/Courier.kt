@@ -67,6 +67,14 @@ class Courier(private val context: Context, private val api: Api, private val st
 
     fun onLocationSettings(enabled: Boolean) = _state.update { it.copy(locationEnabled = enabled) }
 
+    /** Android a refusé de démarrer le service en arrière-plan : il repartira à la réouverture de l'application. */
+    fun onServiceRefused() = _state.update { it.copy(sendError = "Service en ligne interrompu par Android : rouvrez l'application.") }
+
+    /** Démarre le service « en ligne » sans jamais faire planter l'application. */
+    private fun startService(): Boolean = runCatching {
+        ContextCompat.startForegroundService(context, Intent(context, TrackingService::class.java))
+    }.isSuccess
+
     fun clearMessage() = _state.update { it.copy(message = null, info = null) }
 
     // ---- Positions ----
@@ -99,13 +107,13 @@ class Courier(private val context: Context, private val api: Api, private val st
         val l = _state.value.lastLocation
         api.online(l?.let { point(it) })
         setOnline(true)
-        ContextCompat.startForegroundService(context, Intent(context, TrackingService::class.java))
+        if (!startService()) throw ApiException(0, "service", "Android n'a pas permis de démarrer le suivi. Rouvrez l'application et réessayez.")
         refreshDelivery()
     }
 
     /** Hors ligne : possible même sans réseau (le serveur sera prévenu au retour du réseau, après les positions). */
     suspend fun goOffline() {
-        context.stopService(Intent(context, TrackingService::class.java))
+        runCatching { context.stopService(Intent(context, TrackingService::class.java)) }
         setOnline(false)
         _state.update { it.copy(offer = null) }
         store.enqueue(Sync.OFFLINE, null, "{}")
@@ -118,7 +126,7 @@ class Courier(private val context: Context, private val api: Api, private val st
         runCatching {
             val s = api.status()
             if (store.pendingActions() == 0L) setOnline(s.online)
-            if (_state.value.online) ContextCompat.startForegroundService(context, Intent(context, TrackingService::class.java))
+            if (_state.value.online) startService()
             refreshDelivery()
         }
     }
@@ -246,6 +254,12 @@ class Courier(private val context: Context, private val api: Api, private val st
         } catch (e: ApiException) {
             _state.update { it.copy(message = e.message) }
             if (e.code == "invalid-transition" || e.status == 404) runCatching { refreshDelivery() }
+        } catch (e: kotlinx.coroutines.CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            // Jamais de plantage pour une action : on affiche l'erreur et on la signale.
+            _state.update { it.copy(message = "Erreur inattendue (${e.javaClass.simpleName}). Réessayez.") }
+            com.izimboa.livreur.diagnostics.Reports.recordError(context, e)
         } finally {
             _state.update { it.copy(busy = false) }
         }

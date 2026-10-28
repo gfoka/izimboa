@@ -55,7 +55,7 @@ jobs:
       - name: Journal de l'attribution (API)
         run: |
           echo "=== Journal API (60 min) ===" >> diag.txt
-          ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose logs --since 60m --no-log-prefix api 2>&1 | grep -E "proposée|attribution|ERROR|WARN|API |Livreur " | tail -30 || true' >> diag.txt
+          ssh "$VPS_USER@$VPS_HOST" 'cd /srv/izimboa && docker compose logs --since 60m --no-log-prefix api 2>&1 | grep -E -A12 "proposée|attribution|ERROR|WARN|API |Livreur |Mobile " | tail -150 || true' >> diag.txt
       # Résultat aussi en annotation (lisible par l'API GitHub sans télécharger les journaux).
       - name: Publier le résultat
         run: |

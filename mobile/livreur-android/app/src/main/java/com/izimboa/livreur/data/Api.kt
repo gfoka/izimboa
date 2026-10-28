@@ -32,6 +32,11 @@ class Api(private val token: suspend () -> String?) : com.izimboa.livreur.offlin
     private val longPoll = http.newBuilder().readTimeout(40, TimeUnit.SECONDS).build()
     private val jsonType = "application/json".toMediaType()
 
+    /** Rapport technique (démarrage, plantage) : voir diagnostics.Reports. */
+    suspend fun report(r: com.izimboa.livreur.diagnostics.Reports.Report) {
+        call<Unit>("POST", "/v1/mobile/reports", json.encodeToString(r), parse = false)
+    }
+
     suspend fun status(): CourierStatus = call("GET", "/v1/delivery/courier/status")!!
     suspend fun online(at: PointBody?): CourierStatus = call("POST", "/v1/delivery/courier/online", json.encodeToString(OnlineBody(at)))!!
     suspend fun offline(): CourierStatus = call("POST", "/v1/delivery/courier/offline", "{}")!!

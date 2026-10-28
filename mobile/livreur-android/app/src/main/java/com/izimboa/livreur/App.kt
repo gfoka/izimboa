@@ -1,6 +1,7 @@
 package com.izimboa.livreur
 
 import android.app.Application
+import kotlinx.coroutines.launch
 import com.izimboa.livreur.auth.Auth
 import com.izimboa.livreur.data.Api
 import com.izimboa.livreur.offline.LocalStore
@@ -19,6 +20,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        com.izimboa.livreur.diagnostics.Reports.install(this)
         auth = Auth(this)
         api = Api { auth.accessToken() }
         store = openStore()
@@ -27,6 +29,9 @@ class App : Application() {
         courier.sync = sync
         Notifications.createChannels(this)
         if (sync.pending() > 0) Sync.schedule(this)
+        kotlinx.coroutines.MainScope().launch(kotlinx.coroutines.Dispatchers.IO) {
+            com.izimboa.livreur.diagnostics.Reports.sendAtStartup(this@App, api)
+        }
     }
 
     /** Déconnexion : plus rien du livreur ne reste sur le téléphone. */
