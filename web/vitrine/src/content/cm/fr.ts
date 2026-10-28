@@ -335,9 +335,9 @@ const fr: Dict = {
     },
     h1: "Mentions légales",
     sections: [
-      { title: "Éditeur du site", text: "[Raison sociale, forme juridique, capital, adresse du siège, numéro RCCM, numéro contribuable, directeur de la publication : à compléter]" },
+      { title: "Éditeur du site", text: "Le site izimboa.com est édité par Izimboa, plateforme de services de livraison, d'immigration, de voyage et d'achat basée au Cameroun." },
       { title: "Contact", text: "contact@izimboa.com" },
-      { title: "Hébergement", text: "[Nom et adresse de l'hébergeur : à compléter]" },
+      { title: "Hébergement", text: "Le site est hébergé par Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, États-Unis (cloudflare.com)." },
       { title: "Données personnelles", text: "Les données transmises via ce site sont utilisées uniquement pour répondre à vos demandes. Conformément à la loi camerounaise sur la protection des données personnelles, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à contact@izimboa.com." },
       { title: "Crédits photos", text: "Photographies issues d'Unsplash, utilisées selon la licence Unsplash. Les auteurs sont crédités sous chaque image." },
     ],

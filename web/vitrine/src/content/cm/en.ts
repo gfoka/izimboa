@@ -335,9 +335,9 @@ const en: Dict = {
     },
     h1: "Legal notice",
     sections: [
-      { title: "Publisher", text: "[Company name, legal form, share capital, registered address, RCCM number, taxpayer number, publication director: to be completed]" },
+      { title: "Publisher", text: "The izimboa.com website is published by Izimboa, a delivery, immigration, travel and shopping services platform based in Cameroon." },
       { title: "Contact", text: "contact@izimboa.com" },
-      { title: "Hosting", text: "[Hosting provider name and address: to be completed]" },
+      { title: "Hosting", text: "The website is hosted by Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, United States (cloudflare.com)." },
       { title: "Personal data", text: "Data sent through this site is used only to answer your requests. In accordance with Cameroonian personal data protection law, you may request access to, correction or deletion of your data by writing to contact@izimboa.com." },
       { title: "Photo credits", text: "Photographs from Unsplash, used under the Unsplash licence. Authors are credited under each image." },
     ],
