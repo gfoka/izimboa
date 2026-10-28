@@ -11,6 +11,8 @@ import { ProductSymbol } from "@/components/Logo";
 import { ProgramGrid, type GridItem } from "@/components/ProgramGrid";
 import { EligibilityTest, type ProgramCard } from "@/components/EligibilityTest";
 import { TrackedLink } from "@/components/TrackedLink";
+import { QuickCallback } from "@/components/QuickCallback";
+import { GUIDES, type Guide } from "@/content/cm/go/guides";
 import { faqLd, goServiceLd } from "@/lib/seo";
 
 type Ctx = { country: string; lang: Lang; dict: Dict };
@@ -38,6 +40,47 @@ function programCards(country: string, lang: Lang): ProgramCard[] {
     conditions: p[lang].conditions.slice(0, 2),
     source: p.sources[0],
   }));
+}
+
+export const guideHref = (country: string, lang: Lang, g: Guide) => subPathFor(country, lang, "go", g.slug[lang]);
+
+/** Demande de rappel rapide, placée tôt dans chaque page (avant le test, plus long). */
+export function GoCallback({ country, lang, interest, city, place, title }: Ctx & { interest: string; city?: string; place: string; title?: string }) {
+  const ui = goUi(lang);
+  return (
+    <section className="section section-callback" aria-label={title ?? ui.callback.title}>
+      <div className="container">
+        <QuickCallback
+          t={title ? { ...ui.callback, title } : ui.callback}
+          lang={lang}
+          cities={ui.cityOptions}
+          interest={interest}
+          defaultCity={city}
+          privacyHref={pathFor(country, lang, "privacy")}
+          place={place}
+        />
+      </div>
+    </section>
+  );
+}
+
+function GuideLinks({ country, lang, exclude }: Ctx & { exclude?: string }) {
+  const ui = goUi(lang);
+  return (
+    <div className="guide-links">
+      <h3>{ui.guidesTitle}</h3>
+      <ul className="mini-grid">
+        {GUIDES.filter((g) => g.key !== exclude).map((g) => (
+          <li key={g.key}>
+            <a href={guideHref(country, lang, g)} className="mini-card">
+              <span><strong>{g[lang].h1}</strong><small>{g[lang].metaDescription.split(":")[0]}</small></span>
+              <Icon name="arrow" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 /** Test d'éligibilité, présent sur la page Go, chaque programme et chaque ville (ancre #test). */
@@ -96,6 +139,7 @@ export function GoHub(ctx: Ctx) {
   }));
   return (
     <>
+      <GoCallback {...ctx} interest={lang === "fr" ? "Page Izimboa Go" : "Izimboa Go page"} place="hub" />
       <section id="programmes" className="section">
         <div className="container">
           <div className="section-head">
@@ -121,10 +165,10 @@ export function GoHub(ctx: Ctx) {
               {ui.hub.compareLink}
             </a>
           </div>
+          <GuideLinks {...ctx} />
         </div>
       </section>
       <GoTest {...ctx} />
-      <GoTrust {...ctx} />
       {CITIES.length > 0 && (
         <section className="section" aria-labelledby="villes-titre">
           <div className="container">
@@ -135,33 +179,6 @@ export function GoHub(ctx: Ctx) {
         </section>
       )}
     </>
-  );
-}
-
-/** Ce que fait Izimboa Go et ses limites : information, orientation, assistance, conseil réglementé. */
-export function GoTrust({ country, lang }: Ctx) {
-  const t = goUi(lang).trust;
-  return (
-    <section className="section" aria-labelledby="confiance-titre">
-      <div className="container">
-        <h2 id="confiance-titre" className="section-title">{t.title}</h2>
-        <p className="section-lead">{t.lead}</p>
-        <ul className="trust-grid">
-          {t.items.map((i) => (
-            <li key={i.title} className="trust-item">
-              <h3>{i.title}</h3>
-              <p>{i.text}</p>
-            </li>
-          ))}
-        </ul>
-        <p className="notice" role="note">
-          <Icon name="info" />
-          <span>
-            {t.notAffiliated} <a href={pathFor(country, lang, "legal")}>{t.legalLink}</a>
-          </span>
-        </p>
-      </div>
-    </section>
   );
 }
 
@@ -241,6 +258,7 @@ export function ProgramView(ctx: Ctx & { program: Program }) {
           <a className="btn btn-outline" href={pathFor(country, lang, "go") + "#programmes"}>{ui.program.hubLink}</a>
         </div>
       </GoPageHead>
+      <GoCallback {...ctx} interest={t.name} place="program" />
 
       <section className="section section-tint">
         <div className="container two-cols">
@@ -373,6 +391,7 @@ export function CityView(ctx: Ctx & { city: City }) {
           <a className="btn btn-outline" href={pathFor(country, lang, "go") + "#programmes"}>{ui.program.hubLink}</a>
         </div>
       </GoPageHead>
+      <GoCallback {...ctx} interest={c.name} city={lang === "en" && c.name === "Limbé" ? "Limbe" : c.name} place="city" />
 
       <section className="section section-tint">
         <div className="container two-cols">
@@ -508,6 +527,56 @@ export function CompareView(ctx: Ctx) {
 
       <GoTest {...ctx} />
       <Faq title={ui.program.faq} faq={c.faq} />
+    </div>
+  );
+}
+
+export function GuideView(ctx: Ctx & { guide: Guide }) {
+  const { country, lang, guide: g } = ctx;
+  const ui = goUi(lang);
+  const t = g[lang];
+  const url = absoluteUrl(guideHref(country, lang, g));
+  const byKey = (k: string) => PROGRAMS.find((p) => p.key === k);
+  return (
+    <div style={accent()}>
+      <JsonLd data={goServiceLd({ name: t.h1, description: t.metaDescription, url, country, lang, cities: CITIES.map((c) => c.name) })} />
+      <GoPageHead ctx={ctx} crumbs={[{ name: t.h1, href: guideHref(country, lang, g) }]} title={t.h1} intro={t.intro}>
+        <div className="hero-actions">
+          <TrackedLink className="btn btn-accent" href="#test" cta="evaluate_profile">{ui.test.cta}</TrackedLink>
+          <a className="btn btn-outline" href="#rappel">{ui.callback.submit}</a>
+        </div>
+      </GoPageHead>
+      {t.sections.map((sec, i) => (
+        <section key={sec.title} className={i % 2 === 0 ? "section section-tint" : "section"}>
+          <div className="container">
+            <h2 className="section-title section-title-sm">{sec.title}</h2>
+            <p className="section-lead">{sec.text}</p>
+            {sec.programs && (
+              <ul className="mini-grid guide-programs">
+                {sec.programs.map(byKey).filter((p): p is Program => !!p).map((o) => (
+                  <li key={o.key}>
+                    <a href={programHref(country, lang, o)} className="mini-card">
+                      <span className="dest-chip">{ui.destinations[o.destination]}</span>
+                      <span><strong>{o[lang].name}</strong><small>{ui.goals[o.goal]}</small></span>
+                      <Icon name="arrow" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </section>
+      ))}
+      <div id="rappel">
+        <GoCallback {...ctx} interest={t.h1} place={"guide-" + g.key} title={t.callbackTitle} />
+      </div>
+      <GoTest {...ctx} />
+      <Faq title={ui.program.faq} faq={t.faq} />
+      <section className="section section-tint">
+        <div className="container">
+          <GuideLinks {...ctx} exclude={g.key} />
+        </div>
+      </section>
     </div>
   );
 }

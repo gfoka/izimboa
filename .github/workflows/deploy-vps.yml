@@ -80,7 +80,7 @@ jobs:
       - name: Copier les fichiers sur le serveur
         run: |
           rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes" \
-            infra/vps/compose.yaml infra/vps/deploy.sh infra/vps/caddy infra/vps/site infra/vps/postgres infra/vps/keycloak \
+            infra/vps/compose.yaml infra/vps/deploy.sh infra/vps/backup.sh infra/vps/caddy infra/vps/site infra/vps/postgres infra/vps/keycloak \
             infra/keycloak-theme \
             "$VPS_USER@$VPS_HOST:$VPS_DIR/"
 

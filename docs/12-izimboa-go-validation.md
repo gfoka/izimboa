@@ -13,6 +13,8 @@ Règle : une information non vérifiable est retirée ou signalée « à confirm
 - [ ] **WhatsApp Business** : aucun numéro configuré (`WHATSAPP_NUMBER = null`), donc aucun bouton WhatsApp. À ajouter quand le numéro existe.
 - [ ] **Témoignages** : aucun publié. N'en publier qu'avec l'accord écrit des clients et sans exagérer les résultats.
 
+- [ ] **Consultant réglementé (CICC) pour le Canada** : recherche à partir du 29/10/2026 ; argument de négociation : la base de prospects qualifiés (`GET /v1/contact-requests`).
+
 ## 2. Réserves des programmes (notes des recherches, non publiées)
 
 ### Entrée express (Canada) (`ca-express-entry`, vérifié le 2026-10-28, statut : open)

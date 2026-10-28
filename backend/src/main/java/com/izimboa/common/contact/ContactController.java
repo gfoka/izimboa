@@ -30,7 +30,7 @@ class ContactController {
 
     record Body(
             @NotBlank @Pattern(regexp = "delivery|go|fly|buy") String product,
-            @Pattern(regexp = "business|partner|eligibility|other") String kind,
+            @Pattern(regexp = "business|partner|eligibility|callback|other") String kind,
             @Size(max = 120) String company,
             @NotBlank @Size(max = 120) String contactName,
             @NotBlank @Size(max = 30) String phone,

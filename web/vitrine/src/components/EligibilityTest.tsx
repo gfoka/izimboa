@@ -16,13 +16,13 @@ export type ProgramCard = {
   conditions: string[];
   source?: { label: string; url: string };
 };
-type Answers = { goal?: Goal; education?: string; experience?: string; language?: string; budget?: string; age?: string; destination?: string };
+type Answers = { goal?: Goal; education?: string; experience?: string; language?: string; budget?: string; age?: string; family?: string; destination?: string };
 type Step = keyof Answers;
 
 /** L'expérience n'est demandée que pour les projets de travail ou d'installation : on ne collecte que l'utile. */
 function stepsFor(a: Answers): Step[] {
   const needsExperience = a.goal === "work" || a.goal === "permanent";
-  return ["goal", "education", ...(needsExperience ? (["experience"] as Step[]) : []), "language", "budget", "age", "destination"];
+  return ["goal", "education", ...(needsExperience ? (["experience"] as Step[]) : []), "language", "budget", "age", "family", "destination"];
 }
 
 /** Affinité de chaque programme avec chaque objectif (0 à 10). */
@@ -62,6 +62,11 @@ const ADJUST: Record<string, Record<string, Record<string, number>>> = {
     "18-24": { "ca-study-permit": 1, "de-study": 1, "fr-study": 1, "be-study": 1, "de-ausbildung": 1 },
     "36+": { "ca-express-entry": -3, "de-ausbildung": -1, "ca-study-permit": -1 },
   },
+  family: {
+    couple: { "ca-express-entry": 1, "ca-pnp": 1, "ca-quebec": 1, "ca-study-permit": -1, "de-study": -1, "fr-study": -1, "be-study": -1 },
+    family: { "ca-express-entry": 2, "ca-pnp": 2, "ca-quebec": 2, "ca-study-permit": -2, "de-study": -2, "fr-study": -2, "be-study": -2, "de-ausbildung": -1 },
+    later: { "ca-express-entry": 1, "ca-pnp": 1, "de-skilled-work": 1, "fr-talent-work": 1 },
+  },
   budget: {
     low: { "ca-study-permit": -6, "de-study": -3, "fr-study": -1, "be-study": -2, "de-ausbildung": 3, "ca-francophone-mobility": 1 },
     mid: { "ca-study-permit": -2 },
@@ -71,7 +76,7 @@ const ADJUST: Record<string, Record<string, Record<string, number>>> = {
 
 function score(p: ProgramCard, a: Answers) {
   let s = AFFINITY[p.key]?.[a.goal!] ?? (p.goal === a.goal ? 8 : 0);
-  for (const k of ["language", "education", "experience", "age", "budget"] as const) {
+  for (const k of ["language", "education", "experience", "age", "budget", "family"] as const) {
     const v = a[k];
     if (v) s += ADJUST[k][v]?.[p.key] ?? 0;
   }
@@ -100,6 +105,7 @@ function warningsFor(a: Answers, results: ProgramCard[]): string[] {
   if ((a.goal === "work" || a.goal === "permanent") && a.experience === "none") w.push("experience");
   if (results.some((r) => r.key === "ca-express-entry") && (a.age === "30-35" || a.age === "36+")) w.push("age");
   if ((a.goal === "study") && a.education === "secondary") w.push("secondary");
+  if (a.family && a.family !== "alone") w.push("family");
   if (a.destination && a.destination !== "any" && results.length > 0 && results[0].destination !== a.destination) w.push("destination");
   return w;
 }
@@ -148,6 +154,7 @@ export function EligibilityTest({ t, lang, programs, destinations, privacyHref, 
     language: t.languageOptions,
     budget: t.budgetOptions,
     destination: t.destinationOptions,
+    family: t.familyOptions,
   };
   const label = (k: Step) => options[k].find((o) => o.value === answers[k])?.label;
 

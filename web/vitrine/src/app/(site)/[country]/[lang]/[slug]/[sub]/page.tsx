@@ -6,7 +6,7 @@ import { getDict } from "@/content";
 import { findGoSub, goSubPages, goUi } from "@/content/cm/go";
 import { pathMetadata } from "@/lib/seo";
 import { Shell } from "@/components/Shell";
-import { CityView, CompareView, ProgramView } from "@/views/GoViews";
+import { CityView, CompareView, GuideView, ProgramView } from "@/views/GoViews";
 
 export const dynamicParams = false;
 
@@ -38,7 +38,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       ? { title: s.program[lang].metaTitle, description: s.program[lang].metaDescription }
       : s.kind === "city"
         ? { title: s.city[lang].metaTitle, description: s.city[lang].metaDescription }
-        : goUi(lang).compare.meta;
+        : s.kind === "guide"
+          ? { title: s.guide[lang].metaTitle, description: s.guide[lang].metaDescription }
+          : goUi(lang).compare.meta;
   return pathMetadata({ country, lang, paths: alt, meta: { title: meta.title.length <= 47 ? `${meta.title} | Izimboa Go` : meta.title, description: meta.description }, photo: "passport" });
 }
 
@@ -49,7 +51,15 @@ export default async function Page({ params }: { params: Params }) {
   const s = page.sub;
   return (
     <Shell {...ctx} pageKey="go" alt={alt}>
-      {s.kind === "program" ? <ProgramView {...ctx} program={s.program} /> : s.kind === "city" ? <CityView {...ctx} city={s.city} /> : <CompareView {...ctx} />}
+      {s.kind === "program" ? (
+        <ProgramView {...ctx} program={s.program} />
+      ) : s.kind === "city" ? (
+        <CityView {...ctx} city={s.city} />
+      ) : s.kind === "guide" ? (
+        <GuideView {...ctx} guide={s.guide} />
+      ) : (
+        <CompareView {...ctx} />
+      )}
     </Shell>
   );
 }

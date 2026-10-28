@@ -59,5 +59,29 @@ for role in operateur:"Opérateur : suit les courses en direct, réassigne, supp
   fi
 done
 
+# 5. Durcissement SSH : connexion par clé uniquement. Le fichier « 00- » passe avant celui de l'hébergeur
+#    (50-cloud-init.conf réactivait les mots de passe). Vérifié par « sshd -t » avant rechargement.
+want=$'PasswordAuthentication no\nKbdInteractiveAuthentication no\nPermitRootLogin no'
+if [ "$(sudo cat /etc/ssh/sshd_config.d/00-izimboa.conf 2>/dev/null || true)" != "$want" ]; then
+  printf '%s\n' "$want" | sudo tee /etc/ssh/sshd_config.d/00-izimboa.conf > /dev/null
+  if sudo sshd -t; then
+    sudo systemctl reload ssh 2>/dev/null || sudo systemctl reload sshd
+    echo "SSH : connexion par mot de passe désactivée."
+  else
+    sudo rm -f /etc/ssh/sshd_config.d/00-izimboa.conf
+    echo "ATTENTION : configuration SSH invalide, non appliquée."
+  fi
+fi
+
+# 6. Sauvegardes quotidiennes des bases (02:30, gardées 14 jours) + une première tout de suite.
+chmod 700 backup.sh
+cron='30 2 * * * deploy /srv/izimboa/backup.sh >> /srv/izimboa/backups/backup.log 2>&1'
+if [ "$(sudo cat /etc/cron.d/izimboa-backup 2>/dev/null || true)" != "$cron" ]; then
+  echo "$cron" | sudo tee /etc/cron.d/izimboa-backup > /dev/null
+  sudo chmod 644 /etc/cron.d/izimboa-backup
+  echo "Sauvegarde quotidienne programmée."
+fi
+ls backups/izimboa-"$(date +%F)"-*.sql.gz > /dev/null 2>&1 || ./backup.sh
+
 docker image prune -f > /dev/null
 docker compose ps

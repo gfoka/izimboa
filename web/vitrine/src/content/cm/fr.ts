@@ -167,11 +167,11 @@ const fr: Dict = {
       intro:
         "Vous vivez au Cameroun, à Douala, Yaoundé ou dans une autre ville ? Évaluez votre profil et découvrez les voies possibles vers votre destination, les principales conditions à remplir et les coûts à anticiper avant de vous engager.",
       heroPoints: ["Canada, Allemagne, France, Belgique", "Études, travail, formation en alternance, installation", "Informations vérifiées sur les sites officiels, frais en FCFA"],
-      status: "Orientation gratuite et indicative, partout au Cameroun",
+      status: "Évaluation gratuite de votre profil, partout au Cameroun",
       photo: "passport",
       stepsTitle: "Comment nous vous accompagnons",
       steps: [
-        { title: "Évaluez votre profil", text: "Quelques questions sur votre projet, vos diplômes, vos langues et votre budget : vous obtenez des pistes à étudier et les points d'attention. C'est une orientation indicative, pas une décision." },
+        { title: "Évaluez votre profil", text: "Quelques questions sur votre projet, vos diplômes, vos langues, votre budget et votre famille : vous obtenez des pistes à étudier et les points d'attention." },
         { title: "Échangez avec un conseiller", text: "Par téléphone ou WhatsApp, sans engagement, pour vérifier votre profil et choisir les pistes à approfondir." },
         { title: "Préparez votre dossier étape par étape", text: "Liste des documents, traductions, calendrier : chaque étape est claire. Les frais officiels sont payés directement aux autorités ou à leurs prestataires ; le prix d'un éventuel accompagnement est annoncé avant tout engagement." },
         { title: "Préparez vos rendez-vous", text: "Rendez-vous au centre de visa ou à l'ambassade, biométrie, parfois examen de langue : nous vous aidons à planifier ces déplacements pour limiter les allers-retours." },
@@ -185,12 +185,11 @@ const fr: Dict = {
       ],
       faqTitle: "Questions fréquentes sur l'accompagnement",
       faq: [
-        { q: "Izimboa délivre-t-il des visas ?", a: "Non. Les visas et permis sont délivrés uniquement par les autorités du pays de destination, et les admissions par les établissements. Izimboa vous aide à choisir une voie, à préparer et suivre votre dossier ; la décision finale leur appartient." },
+        { q: "Qui décide de mon visa ?", a: "Les autorités du pays de destination, et l'établissement pour une admission. Notre rôle : vous aider à choisir la bonne voie et à présenter un dossier complet et soigné, dans les délais." },
         { q: "Pour quelles destinations ?", a: "Le Canada, l'Allemagne, la France et la Belgique, pour les études, le travail, la formation en alternance et l'installation durable. D'autres destinations suivront." },
         { q: "Je n'habite ni à Douala ni à Yaoundé, est-ce possible ?", a: "Oui. Une grande partie de la préparation se fait à distance, par téléphone et WhatsApp. Certaines étapes demandent un déplacement (rendez-vous au centre de visa ou à l'ambassade, biométrie, parfois un examen de langue) : nous vous aidons à les planifier." },
-        { q: "Combien coûte l'accompagnement ?", a: "Les fiches et le test d'éligibilité sont gratuits. Les frais officiels (visa, biométrie, etc.) sont payés directement aux autorités ou à leurs prestataires. Si vous choisissez un accompagnement, son prix vous est annoncé avant tout engagement. Pour une demande au Canada, le conseil rémunéré est réservé aux représentants autorisés : voir « Ce que fait Izimboa Go »." },
+        { q: "Combien coûte l'accompagnement ?", a: "Les fiches et le test d'éligibilité sont gratuits. Les frais officiels (visa, biométrie, etc.) sont payés directement aux autorités ou à leurs prestataires. Si vous choisissez un accompagnement, son prix vous est annoncé avant tout engagement." },
       ],
-      notice: "Izimboa n'est pas une autorité de délivrance de visas et ne garantit pas l'issue d'une demande. Méfiez-vous de toute personne qui vous promet un visa contre paiement.",
       cta: {
         title: "Vous préparez un départ ?",
         text: "Évaluez votre profil : en deux minutes, vous saurez quelles pistes étudier et quels points vérifier.",

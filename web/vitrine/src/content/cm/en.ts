@@ -167,11 +167,11 @@ const en: Dict = {
       intro:
         "Living in Cameroon, in Douala, Yaoundé or another city? Assess your profile and discover the possible routes to your destination, the main requirements and the costs to plan for before you commit.",
       heroPoints: ["Canada, Germany, France, Belgium", "Study, work, vocational training, settling", "Information checked on official websites, fees in FCFA"],
-      status: "Free, indicative guidance, anywhere in Cameroon",
+      status: "Free profile assessment, anywhere in Cameroon",
       photo: "passport",
       stepsTitle: "How we support you",
       steps: [
-        { title: "Assess your profile", text: "A few questions about your plan, qualifications, languages and budget: you get routes worth exploring and points to watch. This is indicative guidance, not a decision." },
+        { title: "Assess your profile", text: "A few questions about your plan, qualifications, languages, budget and family: you get routes worth exploring and points to watch." },
         { title: "Talk to an adviser", text: "By phone or WhatsApp, with no commitment, to check your profile and choose which routes to explore." },
         { title: "Prepare your file step by step", text: "Documents, translations, calendar: every step is clear. Official fees are paid directly to the authorities or their providers; the price of any support is quoted before any commitment." },
         { title: "Prepare your appointments", text: "Visa centre or embassy appointment, biometrics, sometimes a language test: we help you plan these trips to limit return journeys." },
@@ -185,12 +185,11 @@ const en: Dict = {
       ],
       faqTitle: "Immigration support FAQ",
       faq: [
-        { q: "Does Izimboa issue visas?", a: "No. Visas and permits are issued only by the destination country's authorities, and admissions by institutions. Izimboa helps you choose a route, prepare and track your file; the final decision is theirs." },
+        { q: "Who decides on my visa?", a: "The destination country's authorities, and the institution for an admission. Our role: help you choose the right route and submit a complete, well-prepared file on time." },
         { q: "Which destinations?", a: "Canada, Germany, France and Belgium, for study, work, vocational training and settling long-term. More destinations will follow." },
         { q: "I live outside Douala and Yaoundé, is that possible?", a: "Yes. Much of the preparation is done remotely, by phone and WhatsApp. Some steps require travel (visa centre or embassy appointment, biometrics, sometimes a language test): we help you plan them." },
-        { q: "How much does the support cost?", a: "The guides and the eligibility test are free. Official fees (visa, biometrics, etc.) are paid directly to the authorities or their providers. If you choose support, its price is quoted before any commitment. For a Canadian application, paid advice is reserved for authorised representatives: see “What Izimboa Go does”." },
+        { q: "How much does the support cost?", a: "The guides and the eligibility test are free. Official fees (visa, biometrics, etc.) are paid directly to the authorities or their providers. If you choose support, its price is quoted before any commitment." },
       ],
-      notice: "Izimboa is not a visa-issuing authority and does not guarantee the outcome of any application. Beware of anyone who promises you a visa for money.",
       cta: {
         title: "Planning a move?",
         text: "Assess your profile: in two minutes you will know which routes to explore and which points to check.",

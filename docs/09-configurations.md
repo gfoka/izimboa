@@ -110,3 +110,15 @@
 - [x] Les préversions de branche (`*.izimboa.pages.dev`) reçoivent automatiquement l'en-tête `X-Robots-Tag: noindex` (comportement par défaut de Cloudflare Pages) et toutes nos pages déclarent `izimboa.com` comme adresse canonique.
 - [ ] L'adresse de production `izimboa.pages.dev` n'est pas en noindex : créer une redirection 301 vers `https://izimboa.com` (Cloudflare > Règles > Redirections groupées) pour éviter tout doublon.
 - Rappel : noindex n'est pas une protection. Ne jamais mettre de données privées sur une préversion.
+
+## 13. Sécurité du serveur (contrôle du 28/10/2026, workflow « Contrôle de sécurité du serveur »)
+
+- [x] Pare-feu : seuls 22, 80 et 443 ouverts ; base de données et API non joignables depuis Internet ; `.env` en 600.
+- [x] fail2ban actif (362 adresses bannies à ce jour) ; mises à jour de sécurité automatiques ; certificats valides jusqu'en janvier 2027 (renouvellement automatique).
+- [x] Corrigé : connexion SSH par mot de passe encore active (fichier de l'hébergeur prioritaire) → désactivée par `deploy.sh`.
+- [x] Corrigé : aucune sauvegarde → sauvegarde quotidienne de toutes les bases, 14 jours (`backup.sh`).
+- [x] Corrigé : documentation de l'API publique → masquée.
+- [ ] Copie des sauvegardes **hors du serveur**, chiffrée (Cloudflare R2) : à configurer.
+- [ ] Console d'administration Keycloak : remplacer l'administrateur temporaire par un compte nominatif avec double authentification.
+- [ ] Utilisateur système « ubuntu » de l'hébergeur : vérifier qu'il n'a pas de mot de passe ni de clé inutile.
+

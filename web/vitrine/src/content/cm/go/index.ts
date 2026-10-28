@@ -5,6 +5,7 @@ import germany from "./data/germany.json";
 import franceBelgium from "./data/france-belgium.json";
 import cities from "./data/cities.json";
 import { GO_UI } from "./ui";
+import { GUIDES, type Guide } from "./guides";
 
 /**
  * Izimboa Go au Cameroun : programmes vérifiés sur les sources officielles (data/*.json, date « updated »)
@@ -22,12 +23,14 @@ export function goUi(lang: Lang) {
 export type GoSub =
   | { kind: "program"; program: Program }
   | { kind: "city"; city: City }
-  | { kind: "compare" };
+  | { kind: "compare" }
+  | { kind: "guide"; guide: Guide };
 
 /** Toutes les sous-pages d'Izimboa Go, avec leur adresse dans chaque langue. */
 export function goSubPages(): { sub: GoSub; slug: Record<Lang, string> }[] {
   return [
     { sub: { kind: "compare" }, slug: { fr: GO_UI.fr.compare.slug, en: GO_UI.en.compare.slug } },
+    ...GUIDES.map((g) => ({ sub: { kind: "guide" as const, guide: g }, slug: g.slug })),
     ...PROGRAMS.map((p) => ({ sub: { kind: "program" as const, program: p }, slug: p.slug })),
     ...CITIES.map((c) => ({ sub: { kind: "city" as const, city: c }, slug: c.slug })),
   ];

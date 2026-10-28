@@ -61,6 +61,13 @@ api.izimboa.com {
 	handle /actuator/* {
 		respond 404
 	}
+	# Documentation de l'API : pas publique en production (la carte des points d'entrée aide les attaquants).
+	handle /v3/api-docs* {
+		respond 404
+	}
+	handle /swagger-ui* {
+		respond 404
+	}
 	handle {
 		reverse_proxy api:8080
 	}

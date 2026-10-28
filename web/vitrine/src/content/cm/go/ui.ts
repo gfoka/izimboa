@@ -40,13 +40,6 @@ export type GoUi = {
     limited: string;
     hubLink: string;
   };
-  trust: {
-    title: string;
-    lead: string;
-    items: { title: string; text: string }[];
-    notAffiliated: string;
-    legalLink: string;
-  };
   city: {
     travel: string;
     toYaounde: string;
@@ -57,6 +50,22 @@ export type GoUi = {
     others: string;
     faq: string;
   };
+  callback: {
+    title: string;
+    lead: string;
+    name: string;
+    phone: string;
+    phoneHint: string;
+    city: string;
+    submit: string;
+    sending: string;
+    success: string;
+    error: string;
+    phoneError: string;
+    consent: string;
+    privacyLink: string;
+  };
+  guidesTitle: string;
   test: {
     title: string;
     lead: string;
@@ -69,6 +78,7 @@ export type GoUi = {
       budget: string;
       experience: string;
       destination: string;
+      family: string;
     };
     goalOptions: { value: Goal; label: string }[];
     educationOptions: { value: string; label: string }[];
@@ -77,6 +87,7 @@ export type GoUi = {
     budgetOptions: { value: string; label: string }[];
     experienceOptions: { value: string; label: string }[];
     destinationOptions: { value: string; label: string }[];
+    familyOptions: { value: string; label: string }[];
     profileTitle: string;
     keyConditions: string;
     officialSource: string;
@@ -162,23 +173,11 @@ export const GO_UI: Record<Lang, GoUi> = {
       faq: "Questions fréquentes",
       sources: "Sources officielles",
       updated: "Informations vérifiées le",
-      disclaimer: "Izimboa n'est pas une autorité de délivrance de visas et ne garantit aucun résultat. Seules les autorités du pays de destination décident. Les règles changent souvent : vérifiez toujours sur les sources officielles ci-dessous.",
+      disclaimer: "Les règles changent souvent : chaque fiche indique ses sources officielles et sa date de vérification. La décision finale appartient aux autorités du pays de destination.",
       related: "Autres voies pour le même objectif",
       paused: "Programme suspendu ou fermé actuellement",
       limited: "Accès restreint ou règles récemment modifiées : lisez les conditions et la date de vérification",
       hubLink: "Tous les programmes",
-    },
-    trust: {
-      title: "Ce que fait Izimboa Go, et ce qu'il ne fait pas",
-      lead: "Pour choisir en confiance, voici exactement ce que nous proposons, et ses limites.",
-      items: [
-        { title: "Information générale", text: "Des fiches sur les programmes, rédigées à partir des sites officiels, avec leurs sources et leur date de vérification. Gratuit." },
-        { title: "Orientation", text: "Le test d'éligibilité et l'échange avec un conseiller vous indiquent des pistes à étudier. C'est une orientation indicative, pas une décision d'éligibilité : seules les autorités et les établissements décident." },
-        { title: "Assistance administrative", text: "Liste des pièces, organisation du dossier, calendrier, préparation des rendez-vous. Vous déposez votre demande et payez les frais officiels directement aux autorités ou à leurs prestataires." },
-        { title: "Conseil réglementé : le cas du Canada", text: "Pour une demande au Canada (y compris au Québec), seuls des représentants autorisés (avocats, notaires du Québec, consultants réglementés par le CICC) peuvent être rémunérés pour conseiller ou représenter un candidat. Izimboa Go ne représente pas les candidats auprès des autorités ; pour un conseil personnalisé rémunéré sur une demande canadienne, nous vous orientons vers un représentant autorisé." },
-      ],
-      notAffiliated: "Izimboa Go n'est ni un organisme gouvernemental, ni une ambassade, ni un centre de visa (VFS Global, TLScontact), ni Campus France, et n'a aucun lien officiel avec eux.",
-      legalLink: "Mentions légales",
     },
     city: {
       travel: "Se rendre au rendez-vous de visa",
@@ -190,10 +189,26 @@ export const GO_UI: Record<Lang, GoUi> = {
       others: "Nous accompagnons aussi",
       faq: "Questions fréquentes",
     },
+    callback: {
+      title: "Être rappelé par un conseiller",
+      lead: "Laissez votre numéro : un conseiller Izimboa vous rappelle pour parler de votre projet, où que vous soyez au Cameroun.",
+      name: "Votre nom",
+      phone: "Téléphone",
+      phoneHint: "De préférence votre numéro WhatsApp.",
+      city: "Votre ville",
+      submit: "Être rappelé",
+      sending: "Envoi en cours…",
+      success: "Merci ! Un conseiller Izimboa vous rappelle sous un jour ouvré.",
+      error: "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez, ou écrivez-nous à {email}.",
+      phoneError: "Numéro de téléphone invalide : saisissez un numéro camerounais (ex. 6 99 12 34 56) ou international avec l'indicatif.",
+      consent: "Vos coordonnées servent uniquement à vous recontacter.",
+      privacyLink: "Politique de confidentialité",
+    },
+    guidesTitle: "Nos guides",
     test: {
       title: "Évaluez gratuitement votre profil",
       cta: "Évaluer gratuitement mon profil",
-      lead: "Six questions environ, deux minutes. Vous obtenez des pistes à étudier, leurs principales conditions et les points d'attention, puis vous pouvez demander à être rappelé.",
+      lead: "Sept questions environ, deux minutes. Vous obtenez des pistes à étudier, leurs principales conditions et les points d'attention, puis vous pouvez demander à être rappelé.",
       q: {
         goal: "Quel est votre projet ?",
         education: "Votre plus haut diplôme ?",
@@ -202,6 +217,7 @@ export const GO_UI: Record<Lang, GoUi> = {
         budget: "Budget disponible pour le projet (hors billet d'avion) ?",
         experience: "Votre expérience professionnelle ?",
         destination: "Une destination en tête ?",
+        family: "Partez-vous seul ou en famille ?",
       },
       goalOptions: [
         { value: "study", label: "Faire mes études" },
@@ -244,7 +260,13 @@ export const GO_UI: Record<Lang, GoUi> = {
         { value: "fr", label: "France" },
         { value: "be", label: "Belgique" },
       ],
-      profileTitle: "Votre profil",
+      familyOptions: [
+        { value: "alone", label: "Seul(e)" },
+        { value: "couple", label: "Avec mon conjoint" },
+        { value: "family", label: "Avec mon conjoint et mes enfants" },
+        { value: "later", label: "D'abord seul(e), puis faire venir ma famille" },
+      ],
+      profileTitle: "Récapitulatif de vos réponses",
       keyConditions: "Principales conditions à vérifier",
       officialSource: "Source officielle",
       seeProgram: "Voir la fiche complète",
@@ -258,13 +280,14 @@ export const GO_UI: Record<Lang, GoUi> = {
         age: "Pour l'Entrée express (Canada), l'âge fait baisser le score à partir de 30 ans environ : d'autres voies peuvent être plus adaptées.",
         secondary: "Une admission à l'université demande en général le baccalauréat ou le GCE A Level.",
         destination: "Votre destination préférée ne ressort pas en premier pour votre profil : comparez avec les autres pistes avant de décider.",
+        family: "En famille, les frais et les fonds à prouver augmentent avec chaque personne. Certaines voies permettent d'inclure conjoint et enfants dès la demande, d'autres de les faire venir ensuite : voir notre guide « Partir en famille ».",
       },
       phoneError: "Numéro de téléphone invalide : saisissez un numéro camerounais (ex. 6 99 12 34 56) ou international avec l'indicatif.",
       next: "Suivant",
       back: "Retour",
       step: "Question",
       resultTitle: "Des pistes à étudier pour votre profil",
-      resultLead: "Orientation indicative calculée à partir de vos réponses, pas une décision d'éligibilité : les conditions exactes dépendent de votre dossier et des règles en vigueur.",
+      resultLead: "Calculé à partir de vos réponses : un conseiller confirme ensuite avec vous les conditions exactes pour votre dossier.",
       noResult: "Vos réponses ne permettent pas d'indiquer une piste fiable. Cela ne veut pas dire qu'aucune voie n'existe : un conseiller peut étudier votre situation.",
       contactTitle: "Être rappelé gratuitement",
       contactLead: "Un conseiller Izimboa vous appelle pour faire le point sur votre profil, où que vous soyez au Cameroun. Sans engagement ; vos coordonnées ne servent qu'à vous recontacter.",
@@ -281,7 +304,7 @@ export const GO_UI: Record<Lang, GoUi> = {
       consent: "Nous utilisons ces informations uniquement pour vous recontacter.",
       privacyLink: "Politique de confidentialité",
       restart: "Recommencer le test",
-      disclaimer: "Orientation indicative. Izimboa ne délivre pas de visa et ne garantit aucun résultat.",
+      disclaimer: "Résultat indicatif, à confirmer avec un conseiller.",
     },
     compare: {
       slug: "quel-pays-choisir",
@@ -304,7 +327,7 @@ export const GO_UI: Record<Lang, GoUi> = {
         { title: "Partez de votre objectif", text: "Études, travail, formation payée ou installation : chaque objectif ouvre des voies différentes, parfois plus rapides dans un autre pays que celui auquel vous pensiez." },
         { title: "Regardez la langue", text: "Le français ouvre la France, la Belgique, le Québec et des programmes réservés aux francophones au Canada. L'allemand ouvre l'Ausbildung et les études presque gratuites." },
         { title: "Calculez le vrai budget en FCFA", text: "Frais officiels, preuve de fonds ou compte bloqué, billet, logement : le budget réel décide souvent du pays." },
-        { title: "Méfiez-vous des promesses", text: "Personne ne peut garantir un visa. Une bonne orientation, un dossier complet et des délais respectés sont vos meilleurs atouts." },
+        { title: "Misez sur un dossier solide", text: "Une bonne orientation, un dossier complet et des délais respectés sont vos meilleurs atouts." },
       ],
       faq: [
         { q: "Quel est le pays le plus accessible depuis le Cameroun ?", a: "Cela dépend de votre profil : avec peu de budget et l'envie d'apprendre l'allemand, l'Ausbildung est souvent la plus accessible ; avec un diplôme et une bonne maîtrise du français, les programmes francophones du Canada sont intéressants. Le test d'éligibilité vous oriente en une minute." },
@@ -346,23 +369,11 @@ export const GO_UI: Record<Lang, GoUi> = {
       faq: "FAQ",
       sources: "Official sources",
       updated: "Information checked on",
-      disclaimer: "Izimboa is not a visa-issuing authority and does not guarantee any outcome. Only the destination country's authorities decide. Rules change often: always check the official sources below.",
+      disclaimer: "Rules change often: each guide shows its official sources and verification date. The final decision rests with the destination country's authorities.",
       related: "Other routes for the same goal",
       paused: "Program currently paused or closed",
       limited: "Restricted access or recently changed rules: read the requirements and verification date",
       hubLink: "All programs",
-    },
-    trust: {
-      title: "What Izimboa Go does, and what it does not",
-      lead: "To choose with confidence, here is exactly what we offer, and its limits.",
-      items: [
-        { title: "General information", text: "Program guides written from official websites, with their sources and verification date. Free." },
-        { title: "Guidance", text: "The eligibility test and a call with an adviser point you to routes worth exploring. This is indicative guidance, not an eligibility decision: only the authorities and institutions decide." },
-        { title: "Administrative assistance", text: "Document checklist, file organisation, calendar, appointment preparation. You submit your own application and pay official fees directly to the authorities or their providers." },
-        { title: "Regulated advice: the case of Canada", text: "For a Canadian application (including Québec), only authorised representatives (lawyers, Québec notaries, consultants regulated by the CICC) may be paid to advise or represent an applicant. Izimboa Go does not represent applicants before the authorities; for paid personalised advice on a Canadian application, we refer you to an authorised representative." },
-      ],
-      notAffiliated: "Izimboa Go is not a government body, an embassy, a visa centre (VFS Global, TLScontact) or Campus France, and has no official link with them.",
-      legalLink: "Legal notice",
     },
     city: {
       travel: "Getting to your visa appointment",
@@ -374,10 +385,26 @@ export const GO_UI: Record<Lang, GoUi> = {
       others: "We also support",
       faq: "FAQ",
     },
+    callback: {
+      title: "Get a call back from an adviser",
+      lead: "Leave your number: an Izimboa adviser will call you back to discuss your plan, wherever you are in Cameroon.",
+      name: "Your name",
+      phone: "Phone",
+      phoneHint: "Your WhatsApp number if possible.",
+      city: "Your city",
+      submit: "Call me back",
+      sending: "Sending…",
+      success: "Thank you! An Izimboa adviser will call you back within one business day.",
+      error: "Your request could not be sent. Check your connection and try again, or write to us at {email}.",
+      phoneError: "Invalid phone number: enter a Cameroonian number (e.g. 6 99 12 34 56) or an international one with the country code.",
+      consent: "Your details are only used to get back to you.",
+      privacyLink: "Privacy policy",
+    },
+    guidesTitle: "Our guides",
     test: {
       title: "Assess your profile for free",
       cta: "Assess my profile for free",
-      lead: "About six questions, two minutes. You get routes worth exploring, their main requirements and points to watch, then you can ask for a call back.",
+      lead: "About seven questions, two minutes. You get routes worth exploring, their main requirements and points to watch, then you can ask for a call back.",
       q: {
         goal: "What is your plan?",
         education: "Your highest qualification?",
@@ -386,6 +413,7 @@ export const GO_UI: Record<Lang, GoUi> = {
         budget: "Budget available for the project (excluding the flight)?",
         experience: "Your work experience?",
         destination: "A destination in mind?",
+        family: "Are you going alone or with family?",
       },
       goalOptions: [
         { value: "study", label: "Study" },
@@ -428,7 +456,13 @@ export const GO_UI: Record<Lang, GoUi> = {
         { value: "fr", label: "France" },
         { value: "be", label: "Belgium" },
       ],
-      profileTitle: "Your profile",
+      familyOptions: [
+        { value: "alone", label: "Alone" },
+        { value: "couple", label: "With my spouse" },
+        { value: "family", label: "With my spouse and children" },
+        { value: "later", label: "Alone first, then bring my family" },
+      ],
+      profileTitle: "Summary of your answers",
       keyConditions: "Main requirements to check",
       officialSource: "Official source",
       seeProgram: "See the full guide",
@@ -442,13 +476,14 @@ export const GO_UI: Record<Lang, GoUi> = {
         age: "For Express Entry (Canada), age lowers the score from about 30: other routes may fit better.",
         secondary: "University admission usually requires the GCE A Level or Baccalauréat.",
         destination: "Your preferred destination does not come first for your profile: compare it with the other routes before deciding.",
+        family: "With family, fees and the funds to prove increase with each person. Some routes include your spouse and children from the start, others let you bring them later: see our guide \"Move with your family\".",
       },
       phoneError: "Invalid phone number: enter a Cameroonian number (e.g. 6 99 12 34 56) or an international one with the country code.",
       next: "Next",
       back: "Back",
       step: "Question",
       resultTitle: "Routes worth exploring for your profile",
-      resultLead: "Indicative guidance based on your answers, not an eligibility decision: exact requirements depend on your file and the rules in force.",
+      resultLead: "Based on your answers: an adviser then confirms the exact requirements for your file with you.",
       noResult: "Your answers do not allow us to point to a reliable route. This does not mean none exists: an adviser can review your situation.",
       contactTitle: "Get a free call back",
       contactLead: "An Izimboa adviser will call you to review your profile, wherever you are in Cameroon. No commitment; your details are only used to get back to you.",
@@ -465,7 +500,7 @@ export const GO_UI: Record<Lang, GoUi> = {
       consent: "We only use this information to get back to you.",
       privacyLink: "Privacy policy",
       restart: "Restart the test",
-      disclaimer: "Indicative guidance. Izimboa does not issue visas and does not guarantee any outcome.",
+      disclaimer: "Indicative result, to be confirmed with an adviser.",
     },
     compare: {
       slug: "which-country",
@@ -488,7 +523,7 @@ export const GO_UI: Record<Lang, GoUi> = {
         { title: "Start from your goal", text: "Study, work, paid training or settling: each goal opens different routes, sometimes faster in another country than the one you had in mind." },
         { title: "Look at the language", text: "French opens France, Belgium, Québec and French-speaker programs in Canada. German opens Ausbildung and almost free studies." },
         { title: "Work out the real budget in FCFA", text: "Official fees, proof of funds or blocked account, flight, housing: the real budget often decides the country." },
-        { title: "Beware of promises", text: "Nobody can guarantee a visa. Good guidance, a complete file and respected deadlines are your best assets." },
+        { title: "Build a strong file", text: "Good guidance, a complete file and respected deadlines are your best assets." },
       ],
       faq: [
         { q: "Which country is the most accessible from Cameroon?", a: "It depends on your profile: with a small budget and willingness to learn German, Ausbildung is often the most accessible; with a degree and strong French, Canada's francophone programs are attractive. The eligibility test guides you in one minute." },

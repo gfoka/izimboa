@@ -96,18 +96,14 @@ class ContactService {
             String text = en ? """
                     Hello %s,
 
-                    Thank you for taking the Izimboa Go eligibility test. An adviser will call you on %s within one business day to review your profile and the routes open to you.
-
-                    Reminder: Izimboa does not issue visas and nobody can guarantee one. Be wary of anyone who promises a visa for money.
+                    Thank you for your request to Izimboa Go. An adviser will call you on %s within one business day to discuss your plan and the routes open to you.
 
                     The Izimboa team
                     %s
                     """ : """
                     Bonjour %s,
 
-                    Merci d'avoir fait le test d'éligibilité d'Izimboa Go. Un conseiller vous appelle au %s sous un jour ouvré pour faire le point sur votre profil et les voies qui s'offrent à vous.
-
-                    Rappel : Izimboa ne délivre pas de visas et personne ne peut en garantir un. Méfiez-vous de toute personne qui vous promet un visa contre paiement.
+                    Merci pour votre demande à Izimboa Go. Un conseiller vous appelle au %s sous un jour ouvré pour parler de votre projet et des voies qui s'offrent à vous.
 
                     L'équipe Izimboa
                     %s
