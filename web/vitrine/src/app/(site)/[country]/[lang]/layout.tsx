@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import "@fontsource-variable/outfit";
 import "@fontsource-variable/inter";
 import "@/styles/globals.css";
-import { OPEN_COUNTRIES, getCountry, localeTag, type Lang } from "@/config/site";
+import { GA_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION, OPEN_COUNTRIES, getCountry, localeTag, type Lang } from "@/config/site";
+import { pathFor } from "@/config/routes";
+import { Analytics } from "@/components/Analytics";
 
 export const dynamicParams = false;
 
@@ -22,8 +24,12 @@ export default async function SiteLayout({ children, params }: { children: React
     <html lang={localeTag(lang as Lang, country)}>
       <head>
         <link rel="preconnect" href="https://images.unsplash.com" />
+        {GOOGLE_SITE_VERIFICATION && <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />}
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics id={GA_MEASUREMENT_ID} lang={lang as Lang} privacyHref={pathFor(country, lang as Lang, "privacy")} />
+      </body>
     </html>
   );
 }

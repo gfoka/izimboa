@@ -26,6 +26,8 @@ export type ProductContent = {
   app?: { button: string; team: string };
   /** Formulaire « Entreprises » (demande enregistrée par l'API, e-mail à l'équipe). */
   business?: BusinessForm;
+  /** Le bouton d'équipe mène au test d'éligibilité de la page (#test). */
+  testAnchor?: boolean;
 };
 
 export type BusinessForm = {

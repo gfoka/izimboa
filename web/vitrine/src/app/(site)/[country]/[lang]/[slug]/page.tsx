@@ -8,6 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 import { Shell } from "@/components/Shell";
 import { ProductView } from "@/views/ProductView";
 import { AboutView, ContactView, LegalView } from "@/views/InfoViews";
+import { GoHub } from "@/views/GoViews";
 
 export const dynamicParams = false;
 
@@ -45,7 +46,8 @@ export default async function Page({ params }: { params: Params }) {
   const ctx = { country, lang, dict };
 
   let body;
-  if ((PRODUCT_KEYS as string[]).includes(key)) body = <ProductView {...ctx} product={key as ProductKey} />;
+  if ((PRODUCT_KEYS as string[]).includes(key))
+    body = <ProductView {...ctx} product={key as ProductKey} extra={key === "go" && country === "cm" ? <GoHub {...ctx} /> : undefined} />;
   else if (key === "about") body = <AboutView {...ctx} />;
   else if (key === "contact") body = <ContactView {...ctx} />;
   else if (key === "privacy") body = <LegalView {...ctx} page="privacy" />;

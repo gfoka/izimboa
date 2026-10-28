@@ -9,6 +9,14 @@ export const BRAND = "Izimboa";
 
 /** À confirmer : adresse de contact publique. */
 export const CONTACT_EMAIL = "contact@izimboa.com";
+/**
+ * Google Analytics 4 (identifiant « G-XXXXXXX »). null = aucun suivi. Chargé seulement après accord du visiteur
+ * (bandeau de consentement), avec le mode consentement de Google.
+ */
+export const GA_MEASUREMENT_ID: string | null = null;
+/** Jeton de validation Google Search Console (balise meta), si la validation DNS n'est pas utilisée. */
+export const GOOGLE_SITE_VERIFICATION: string | null = null;
+
 /** API Izimboa (formulaires du site). */
 export const API_URL = "https://api.izimboa.com";
 

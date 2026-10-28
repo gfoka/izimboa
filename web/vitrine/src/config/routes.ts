@@ -31,6 +31,11 @@ export function pathFor(country: string, lang: Lang, key: PageKey): string {
   return `/${country}/${lang}/${SLUGS[key][lang]}/`;
 }
 
+/** Sous-page d'une page (ex. un programme d'Izimboa Go) : /cm/fr/accompagnement-immigration/entree-express-canada/ */
+export function subPathFor(country: string, lang: Lang, key: Exclude<PageKey, "home">, sub: string): string {
+  return `${pathFor(country, lang, key)}${sub}/`;
+}
+
 export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path}`;
 }

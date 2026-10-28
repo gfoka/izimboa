@@ -1,0 +1,1096 @@
+[
+  {
+    "key": "ca-express-entry",
+    "destination": "ca",
+    "goal": "permanent",
+    "slug": {
+      "fr": "entree-express-canada",
+      "en": "canada-express-entry"
+    },
+    "updated": "2026-10-28",
+    "sources": [
+      {
+        "label": "IRCC – Entrée express",
+        "url": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express.html"
+      },
+      {
+        "label": "IRCC – Rondes d'invitations Entrée express",
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html"
+      },
+      {
+        "label": "IRCC – Frais de biométrie",
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/fees/immigration/general/biometric.html"
+      },
+      {
+        "label": "CIC News – Hausse des frais de RP au 30 avril 2026",
+        "url": "https://www.cicnews.com/2026/04/canada-hikes-permanent-resident-fees-0474769.html"
+      },
+      {
+        "label": "Immigration.ca – Tirage francophone du 16 octobre 2026 (récapitulatif 2026)",
+        "url": "https://immigration.ca/canada-invites-5000-french-speaking-candidates-express-entry-crs-435-october-16-2026/"
+      },
+      {
+        "label": "VFS Global – Centre de réception des demandes de visa du Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ],
+    "notes": "Taux utilisé : 1 CAD ≈ 420,1 FCFA (XAF), cours du 28/10/2026 (fxfeed.io). Statut : OUVERT. Tirages « compétence linguistique en français » 2026 : 11 rondes, 55 500 invitations au total ; seuils CRS entre 382 (19 août) et 435 (16 octobre, dernier tirage francophone). Les chiffres des tirages viennent de sites spécialisés (immigration.ca, CIC News) car la page canada.ca des rondes n'a pas pu être chargée : à revérifier sur canada.ca avant publication. Frais RP au 30/04/2026 : traitement 990 CAD + droit de résidence permanente 600 CAD (CIC News + Canadim, concordants) – à confirmer sur la grille officielle IRCC. Fonds d'établissement : 15 263 CAD pour une personne seule = dernier barème confirmé (juillet 2025) ; IRCC met à jour chaque année, mise à jour 2026 non confirmée, donc chiffre volontairement non publié. VFS : seul centre au Cameroun = Yaoundé, nouvelle adresse après déménagement (sept. 2026) ; nouveaux frais de service VFS au 1er novembre 2026 (montants non vérifiés, non publiés).",
+    "fr": {
+      "name": "Entrée express (Canada)",
+      "metaTitle": "Entrée express Canada depuis le Cameroun (2026)",
+      "metaDescription": "Entrée express 2026 depuis le Cameroun : tirages francophones, score CRS, TEF/TCF Canada, frais en FCFA et biométrie à Yaoundé. Les étapes clairement.",
+      "h1": "Entrée express : obtenir la résidence permanente au Canada depuis le Cameroun",
+      "intro": "Entrée express est le principal système fédéral pour devenir résident permanent du Canada comme travailleur qualifié. Pour les Camerounais francophones, c'est une voie particulièrement intéressante en 2026 : IRCC organise régulièrement des tirages réservés aux candidats qui parlent bien français, avec des seuils souvent plus bas que les tirages généraux. Que vous soyez à Douala, Yaoundé, Bafoussam, Garoua ou Buea, tout se fait en ligne, sauf la biométrie.",
+      "forWho": [
+        "Diplômés (licence, master, BTS/HND…) ayant au moins un an d'expérience professionnelle qualifiée",
+        "Francophones capables d'obtenir au moins NCLC 7 au TEF Canada ou au TCF Canada",
+        "Bilingues français-anglais (francophones de l'Ouest et du Littoral, anglophones du Nord-Ouest et du Sud-Ouest ayant un bon français)",
+        "Personnes qui veulent s'installer au Canada hors Québec avec leur famille"
+      ],
+      "conditions": [
+        "Être admissible à un des programmes fédéraux : Travailleurs qualifiés (fédéral), Métiers spécialisés ou Expérience canadienne",
+        "Au moins un an d'expérience de travail qualifiée continue (ou équivalent à temps partiel) au cours des 10 dernières années pour le programme des travailleurs qualifiés",
+        "Résultats de test de langue valides de moins de 2 ans (TEF Canada ou TCF Canada pour le français ; IELTS General, CELPIP ou PTE Core pour l'anglais)",
+        "Évaluation des diplômes étrangers (EDE) par un organisme désigné par IRCC pour faire valoir vos diplômes camerounais",
+        "Preuve de fonds d'établissement suffisants (montant fixé et mis à jour chaque année par IRCC), sauf exceptions",
+        "Pour les tirages francophones : un niveau NCLC 7 ou plus dans les 4 compétences en français"
+      ],
+      "steps": [
+        {
+          "title": "Passer les tests et faire évaluer ses diplômes",
+          "text": "Passez le TEF Canada ou le TCF Canada (et éventuellement un test d'anglais) et lancez l'évaluation de vos diplômes (Baccalauréat, licence, master…) auprès d'un organisme désigné. Comptez plusieurs semaines pour l'EDE."
+        },
+        {
+          "title": "Créer son profil Entrée express",
+          "text": "Créez votre profil en ligne sur le portail d'IRCC. Le système calcule votre score CRS (âge, études, langues, expérience). Un bon niveau de français peut ajouter jusqu'à 50 points supplémentaires."
+        },
+        {
+          "title": "Attendre une invitation (ITA)",
+          "text": "IRCC invite les meilleurs profils lors de tirages réguliers, dont des tirages réservés aux francophones. Un profil reste valide 12 mois."
+        },
+        {
+          "title": "Déposer la demande de résidence permanente",
+          "text": "Après une invitation, vous avez 60 jours pour soumettre la demande complète : passeport, relevés de compte, attestations de travail, examen médical auprès d'un médecin agréé, casier judiciaire (extrait de casier judiciaire du Cameroun et des pays où vous avez vécu)."
+        },
+        {
+          "title": "Donner sa biométrie à Yaoundé",
+          "text": "IRCC envoie une lettre d'instructions pour la biométrie. Prenez rendez-vous au centre VFS Global de Yaoundé dans le délai indiqué."
+        },
+        {
+          "title": "Confirmation de résidence permanente",
+          "text": "Si la demande est acceptée, vous payez le droit de résidence permanente (si ce n'est pas déjà fait) et recevez votre confirmation de résidence permanente et le visa pour voyager."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Frais de traitement – demandeur principal",
+          "amount": "990 CAD",
+          "fcfa": "≈ 415 900 FCFA"
+        },
+        {
+          "label": "Droit de résidence permanente – par adulte",
+          "amount": "600 CAD",
+          "fcfa": "≈ 252 100 FCFA"
+        },
+        {
+          "label": "Frais de traitement – époux ou conjoint",
+          "amount": "990 CAD",
+          "fcfa": "≈ 415 900 FCFA"
+        },
+        {
+          "label": "Frais de traitement – enfant à charge",
+          "amount": "270 CAD",
+          "fcfa": "≈ 113 400 FCFA"
+        },
+        {
+          "label": "Biométrie – par personne (max. 170 CAD par famille)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        }
+      ],
+      "delays": "Il n'y a pas de délai garanti pour recevoir une invitation : tout dépend de votre score et des tirages. Une fois la demande soumise, IRCC traite la plupart des demandes complètes Entrée express en environ 6 mois ; le délai actuel est affiché dans l'outil officiel des délais de traitement d'IRCC.",
+      "biometrics": "Au Cameroun, la biométrie pour le Canada se fait uniquement au Centre de réception des demandes de visa (CRDV) géré par VFS Global à Yaoundé (5e étage, Immeuble Ekang, en face du Palais des Sports de Warda), du lundi au vendredi, de 8 h à 17 h, sur rendez-vous après réception de la lettre d'instructions d'IRCC. Les candidats de Douala, Bamenda, Garoua ou Maroua doivent donc prévoir le déplacement à Yaoundé. La prise de rendez-vous est gratuite.",
+      "faq": [
+        {
+          "q": "Les tirages pour francophones sont-ils encore organisés en 2026 ?",
+          "a": "Oui. En 2026, IRCC a déjà organisé plusieurs tirages « compétence linguistique en français », avec des seuils CRS qui ont varié d'environ 380 à 435 points selon les rondes. Les seuils changent à chaque tirage et rien n'est garanti."
+        },
+        {
+          "q": "Où passer le TEF Canada ou le TCF Canada au Cameroun ?",
+          "a": "Ces tests sont organisés par des centres agréés, notamment à Yaoundé et Douala. Vérifiez sur le site de l'organisme du test (France Éducation international pour le TCF, CCI Paris Île-de-France pour le TEF) que le centre et la version « Canada » sont bien reconnus par IRCC."
+        },
+        {
+          "q": "Mon Baccalauréat et ma licence camerounais sont-ils reconnus ?",
+          "a": "Ils doivent passer par une évaluation des diplômes étrangers (EDE) auprès d'un organisme désigné par IRCC. Les documents en anglais ou en français sont acceptés ; prévoyez l'envoi des relevés de notes directement par votre université si l'organisme l'exige."
+        },
+        {
+          "q": "Faut-il une offre d'emploi pour Entrée express ?",
+          "a": "Non, ce n'est pas obligatoire. Depuis 2025, une offre d'emploi ne donne d'ailleurs plus de points CRS supplémentaires. Votre score repose surtout sur l'âge, les études, les langues et l'expérience."
+        },
+        {
+          "q": "Comment payer les frais d'IRCC depuis le Cameroun ?",
+          "a": "Les frais d'IRCC se paient en ligne par carte bancaire (Visa ou Mastercard acceptant les paiements internationaux). Assurez-vous que votre carte est activée pour les paiements en ligne à l'étranger avant de soumettre votre demande."
+        }
+      ]
+    },
+    "en": {
+      "name": "Express Entry (Canada)",
+      "metaTitle": "Canada Express Entry from Cameroon (2026 guide)",
+      "metaDescription": "Express Entry 2026 from Cameroon: French-language draws, CRS score, TEF/TCF Canada, fees in FCFA and biometrics in Yaoundé. Clear steps for your profile.",
+      "h1": "Express Entry: getting Canadian permanent residence from Cameroon",
+      "intro": "Express Entry is Canada's main federal system for skilled workers who want permanent residence. For French-speaking Cameroonians it is especially relevant in 2026: IRCC regularly holds draws reserved for candidates with strong French, often with lower cut-offs than general draws. Whether you live in Douala, Yaoundé, Bafoussam, Garoua or Buea, everything is done online except biometrics.",
+      "forWho": [
+        "Graduates (bachelor's, master's, BTS/HND…) with at least one year of skilled work experience",
+        "French speakers able to reach at least CLB/NCLC 7 on TEF Canada or TCF Canada",
+        "French-English bilinguals, including anglophones from the North-West and South-West with good French",
+        "People who want to settle in Canada outside Québec with their family"
+      ],
+      "conditions": [
+        "Be eligible for one of the federal programs: Federal Skilled Worker, Federal Skilled Trades or Canadian Experience Class",
+        "At least one year of continuous skilled work experience (or part-time equivalent) in the last 10 years for the Federal Skilled Worker Program",
+        "Valid language test results less than 2 years old (TEF Canada or TCF Canada for French; IELTS General, CELPIP or PTE Core for English)",
+        "An Educational Credential Assessment (ECA) from an IRCC-designated organization for your Cameroonian diplomas",
+        "Proof of sufficient settlement funds (amount set and updated yearly by IRCC), unless exempt",
+        "For French-language draws: NCLC 7 or higher in all 4 French skills"
+      ],
+      "steps": [
+        {
+          "title": "Take your tests and assess your diplomas",
+          "text": "Sit the TEF Canada or TCF Canada (and an English test if useful) and start your Educational Credential Assessment for your Baccalauréat, GCE, degree, etc. The ECA can take several weeks."
+        },
+        {
+          "title": "Create your Express Entry profile",
+          "text": "Create your online profile on the IRCC portal. The system calculates your CRS score (age, education, languages, experience). Strong French can add up to 50 extra points."
+        },
+        {
+          "title": "Wait for an Invitation to Apply (ITA)",
+          "text": "IRCC invites top profiles in regular draws, including draws reserved for French speakers. A profile stays valid for 12 months."
+        },
+        {
+          "title": "Submit your permanent residence application",
+          "text": "After an ITA, you have 60 days to submit the full application: passport, bank statements, employment letters, medical exam with an approved panel physician, police certificates (Cameroon and other countries where you lived)."
+        },
+        {
+          "title": "Give biometrics in Yaoundé",
+          "text": "IRCC sends a biometric instruction letter. Book an appointment at the VFS Global centre in Yaoundé within the deadline."
+        },
+        {
+          "title": "Confirmation of permanent residence",
+          "text": "If approved, you pay the Right of Permanent Residence Fee (if not paid yet) and receive your Confirmation of Permanent Residence and travel visa."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Processing fee – principal applicant",
+          "amount": "990 CAD",
+          "fcfa": "≈ 415 900 FCFA"
+        },
+        {
+          "label": "Right of Permanent Residence Fee – per adult",
+          "amount": "600 CAD",
+          "fcfa": "≈ 252 100 FCFA"
+        },
+        {
+          "label": "Processing fee – spouse or partner",
+          "amount": "990 CAD",
+          "fcfa": "≈ 415 900 FCFA"
+        },
+        {
+          "label": "Processing fee – dependent child",
+          "amount": "270 CAD",
+          "fcfa": "≈ 113 400 FCFA"
+        },
+        {
+          "label": "Biometrics – per person (max. 170 CAD per family)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        }
+      ],
+      "delays": "There is no guaranteed time to receive an invitation: it depends on your score and on draws. Once submitted, IRCC processes most complete Express Entry applications in about 6 months; current times are shown in IRCC's official processing-times tool.",
+      "biometrics": "In Cameroon, biometrics for Canada are taken only at the Canada Visa Application Centre run by VFS Global in Yaoundé (5th floor, Immeuble Ekang, opposite Palais des Sports de Warda), Monday to Friday, 08:00–17:00, by appointment after you receive IRCC's biometric instruction letter. Applicants from Douala, Bamenda, Garoua or Maroua need to plan a trip to Yaoundé. Booking the appointment is free.",
+      "faq": [
+        {
+          "q": "Are French-language draws still happening in 2026?",
+          "a": "Yes. In 2026 IRCC has held several French-language proficiency draws, with CRS cut-offs ranging from about 380 to 435 depending on the round. Cut-offs change every draw and nothing is guaranteed."
+        },
+        {
+          "q": "Where can I take TEF Canada or TCF Canada in Cameroon?",
+          "a": "Approved test centres operate in Cameroon, including in Yaoundé and Douala. Check on the test provider's website (France Éducation international for TCF, CCI Paris Île-de-France for TEF) that the centre and the 'Canada' version are recognized by IRCC."
+        },
+        {
+          "q": "Are my GCE, Baccalauréat and degree recognized?",
+          "a": "They need an Educational Credential Assessment (ECA) from an IRCC-designated organization. Documents in English or French are accepted; your university may have to send transcripts directly to the organization."
+        },
+        {
+          "q": "Do I need a job offer for Express Entry?",
+          "a": "No. Since 2025 a job offer no longer gives extra CRS points. Your score mainly depends on age, education, languages and experience."
+        },
+        {
+          "q": "How do I pay IRCC fees from Cameroon?",
+          "a": "IRCC fees are paid online by bank card (Visa or Mastercard enabled for international payments). Make sure your card works for online payments abroad before submitting."
+        }
+      ]
+    },
+    "status": "open"
+  },
+  {
+    "key": "ca-study-permit",
+    "destination": "ca",
+    "goal": "study",
+    "slug": {
+      "fr": "permis-etudes-canada",
+      "en": "canada-study-permit"
+    },
+    "updated": "2026-10-28",
+    "sources": [
+      {
+        "label": "IRCC – Permis d'études",
+        "url": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/etudier-canada/permis-etudes.html"
+      },
+      {
+        "label": "IRCC – Allocations 2026 dans le cadre du plafond des étudiants étrangers",
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/2026-provincial-territorial-allocations-under-international-student-cap.html"
+      },
+      {
+        "label": "CIC News – Hausse de la preuve de fonds au 1er septembre 2026",
+        "url": "https://www.cicnews.com/2026/08/canada-hikes-funds-needed-by-study-permit-applicants-0879805.html"
+      },
+      {
+        "label": "SFU – New financial requirements for study permit applications",
+        "url": "https://www.sfu.ca/students/isap/news/newsletters/new-financial-requirements-for-study-permit-application--effecti.html"
+      },
+      {
+        "label": "Québec – Frais d'immigration 2026 (PDF)",
+        "url": "https://cdn-contenu.quebec.ca/cdn-contenu/immigration/publications/fr/TAB_frais_2026.pdf"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ],
+    "notes": "Taux : 1 CAD ≈ 420,1 FCFA (28/10/2026). Statut : OUVERT mais PLAFONNÉ (2026 : 408 000 permis au total, dont 180 000 soumis à la PAL/LAT ; 309 670 places de demandes PAL réparties entre provinces). Changement 2026 : les étudiants de maîtrise et doctorat dans un établissement public sont exemptés de PAL depuis le 1er janvier 2026. Preuve de fonds hors frais de scolarité : 23 448 CAD (1 personne) + 6 318 CAD par membre de famille, pour les demandes reçues à partir du 1er septembre 2026 (CIC News, SFU, PIE News concordants ; page canada.ca non chargée directement). Québec : 24 617 CAD (1 personne) selon barème du 1er janvier 2026 (via CIC News). Frais CAQ : tableau officiel 2026 « Étudiant étranger » 135 CAD (catégorie sélection temporaire). Depuis juillet 2026, les agents doivent vérifier l'origine des fonds dans tous les dossiers (CIC News). Délais de traitement depuis le Cameroun non vérifiés (outil dynamique IRCC).",
+    "fr": {
+      "name": "Permis d'études (Canada)",
+      "metaTitle": "Permis d'études Canada depuis le Cameroun (2026)",
+      "metaDescription": "Permis d'études Canada 2026 depuis le Cameroun : PAL, CAQ pour le Québec, preuve de fonds (≈ 9,85 M FCFA), frais et biométrie à Yaoundé. Guide clair.",
+      "h1": "Permis d'études au Canada depuis le Cameroun : règles 2026",
+      "intro": "Pour étudier plus de 6 mois au Canada, il faut un permis d'études délivré par IRCC. En 2026, les règles sont plus strictes : nombre de permis plafonné, lettre d'attestation provinciale (PAL) pour la plupart des étudiants, preuve de fonds plus élevée et contrôle renforcé de l'origine de l'argent. Un dossier bien préparé depuis le Cameroun fait toute la différence.",
+      "forWho": [
+        "Bacheliers (Baccalauréat, GCE A Level) admis dans un collège ou une université canadienne",
+        "Titulaires d'une licence ou d'un master visant une maîtrise ou un doctorat au Canada",
+        "Étudiants admis dans un cégep ou une université au Québec (CAQ requis)",
+        "Familles capables de prouver le financement des études et du séjour"
+      ],
+      "conditions": [
+        "Une lettre d'acceptation d'un établissement d'enseignement désigné (EED)",
+        "Une lettre d'attestation provinciale ou territoriale (PAL/LAT), sauf exemptions (notamment maîtrise et doctorat dans un établissement public depuis le 1er janvier 2026)",
+        "Pour le Québec : un Certificat d'acceptation du Québec (CAQ) délivré par le ministère de l'Immigration du Québec",
+        "Preuve de fonds : frais de scolarité de la 1re année + 23 448 CAD pour vivre (≈ 9,85 millions FCFA) pour une personne seule, + 6 318 CAD (≈ 2,65 millions FCFA) par membre de la famille ; au Québec, barème du Québec (24 617 CAD pour une personne en 2026)",
+        "Explication claire de l'origine des fonds et, pour un programme de plus d'un an, de la manière de payer les années suivantes",
+        "Passeport valide, examen médical si demandé, et convaincre l'agent que vous respecterez les conditions du permis"
+      ],
+      "steps": [
+        {
+          "title": "Obtenir l'admission",
+          "text": "Postulez dans un établissement désigné (EED) et obtenez votre lettre d'acceptation. Préparez vos relevés de notes, diplômes (Probatoire, Baccalauréat, GCE, licence) et traductions si nécessaire."
+        },
+        {
+          "title": "Obtenir la PAL ou le CAQ",
+          "text": "Hors Québec, l'établissement vous aide généralement à obtenir la lettre d'attestation provinciale. Pour le Québec, demandez le CAQ en ligne auprès du ministère de l'Immigration du Québec."
+        },
+        {
+          "title": "Réunir la preuve de fonds",
+          "text": "Relevés bancaires sur plusieurs mois, attestations de prise en charge du garant, justificatifs de revenus (salaire, activité commerciale, terrain loué…). L'agent vérifie l'origine de l'argent, pas seulement le solde."
+        },
+        {
+          "title": "Soumettre la demande en ligne",
+          "text": "Créez votre compte IRCC, téléversez les documents et payez les frais de permis d'études et de biométrie en ligne."
+        },
+        {
+          "title": "Biométrie à Yaoundé",
+          "text": "Après la lettre d'instructions, prenez rendez-vous au centre VFS Global de Yaoundé pour les empreintes digitales et la photo."
+        },
+        {
+          "title": "Décision et passeport",
+          "text": "En cas d'approbation, IRCC vous demande votre passeport pour apposer le visa, à déposer au centre VFS. Le permis d'études est remis à l'arrivée au Canada."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Permis d'études (IRCC)",
+          "amount": "150 CAD",
+          "fcfa": "≈ 63 000 FCFA"
+        },
+        {
+          "label": "Biométrie (IRCC)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        },
+        {
+          "label": "CAQ pour études au Québec (frais 2026)",
+          "amount": "135 CAD",
+          "fcfa": "≈ 56 700 FCFA"
+        }
+      ],
+      "delays": "Les délais varient selon le pays et la période (ils augmentent avant les rentrées de septembre et janvier). Consultez l'outil officiel des délais de traitement d'IRCC pour le Cameroun et déposez votre demande le plus tôt possible après l'admission.",
+      "biometrics": "La biométrie se fait au Centre de réception des demandes de visa du Canada géré par VFS Global à Yaoundé (5e étage, Immeuble Ekang, en face du Palais des Sports de Warda), du lundi au vendredi de 8 h à 17 h, sur rendez-vous. C'est le seul centre au Cameroun : les étudiants de Douala, Bafoussam, Bamenda, Ngaoundéré ou Maroua doivent s'y rendre. Depuis le 12 octobre 2026, le dépôt du passeport en personne se fait aussi sur rendez-vous.",
+      "faq": [
+        {
+          "q": "Combien d'argent faut-il prouver pour étudier au Canada en 2026 ?",
+          "a": "Pour une demande reçue depuis le 1er septembre 2026 : les frais de scolarité de la première année plus 23 448 CAD (≈ 9,85 millions FCFA) pour une personne seule, hors frais de voyage. Pour le Québec, c'est le barème du Québec qui s'applique (24 617 CAD pour une personne en 2026)."
+        },
+        {
+          "q": "Ai-je besoin d'une PAL pour un master ?",
+          "a": "Depuis le 1er janvier 2026, les étudiants de maîtrise et de doctorat inscrits dans un établissement public sont exemptés de la lettre d'attestation provinciale. Pour un diplôme collégial ou une licence (bachelor), la PAL reste en général obligatoire."
+        },
+        {
+          "q": "Mon garant au Cameroun peut-il financer mes études ?",
+          "a": "Oui, mais il faut prouver le lien avec le garant, sa capacité financière et l'origine des fonds (bulletins de salaire, registre de commerce, avis d'imposition, relevés bancaires). Des dépôts importants et récents sans explication sont souvent mal vus."
+        },
+        {
+          "q": "Faut-il traduire mes documents ?",
+          "a": "Les documents en français ou en anglais sont acceptés tels quels. Les documents dans une autre langue doivent être accompagnés d'une traduction certifiée."
+        },
+        {
+          "q": "Où faire l'examen médical au Cameroun ?",
+          "a": "Uniquement chez un médecin désigné par IRCC. La liste officielle des médecins agréés au Cameroun est disponible sur le site d'IRCC ; un examen fait ailleurs n'est pas accepté."
+        }
+      ]
+    },
+    "en": {
+      "name": "Study permit (Canada)",
+      "metaTitle": "Canada study permit from Cameroon (2026 rules)",
+      "metaDescription": "Canada study permit 2026 from Cameroon: PAL, CAQ for Québec, proof of funds (≈ 9.85M FCFA), fees and biometrics in Yaoundé. A clear step-by-step guide.",
+      "h1": "Canada study permit from Cameroon: 2026 rules",
+      "intro": "To study in Canada for more than 6 months you need a study permit issued by IRCC. In 2026 the rules are stricter: permits are capped, most students need a provincial attestation letter (PAL), the proof of funds is higher and officers check where the money comes from. A well-prepared file from Cameroon makes all the difference.",
+      "forWho": [
+        "Baccalauréat or GCE A Level holders admitted to a Canadian college or university",
+        "Bachelor's or master's graduates aiming for a master's or PhD in Canada",
+        "Students admitted to a CEGEP or university in Québec (CAQ required)",
+        "Families able to prove funding for studies and living costs"
+      ],
+      "conditions": [
+        "A letter of acceptance from a designated learning institution (DLI)",
+        "A provincial or territorial attestation letter (PAL/TAL), unless exempt (including master's and PhD students at public institutions since January 1, 2026)",
+        "For Québec: a Québec Acceptance Certificate (CAQ) from Québec's immigration ministry",
+        "Proof of funds: first-year tuition + 23,448 CAD living costs (≈ 9.85 million FCFA) for one person, + 6,318 CAD (≈ 2.65 million FCFA) per family member; in Québec, Québec's own scale applies (24,617 CAD for one person in 2026)",
+        "A clear explanation of the source of funds and, for programs longer than one year, how you will pay for the following years",
+        "A valid passport, a medical exam if requested, and satisfying the officer that you will respect permit conditions"
+      ],
+      "steps": [
+        {
+          "title": "Get admitted",
+          "text": "Apply to a designated learning institution (DLI) and get your letter of acceptance. Prepare transcripts, diplomas (GCE, Probatoire, Baccalauréat, degree) and translations if needed."
+        },
+        {
+          "title": "Get your PAL or CAQ",
+          "text": "Outside Québec, the institution usually helps you get the provincial attestation letter. For Québec, apply online for the CAQ with Québec's immigration ministry."
+        },
+        {
+          "title": "Gather proof of funds",
+          "text": "Several months of bank statements, sponsor's commitment letter, proof of income (salary, business, rental income…). Officers check the source of the money, not just the balance."
+        },
+        {
+          "title": "Apply online",
+          "text": "Create your IRCC account, upload documents and pay the study permit and biometrics fees online."
+        },
+        {
+          "title": "Biometrics in Yaoundé",
+          "text": "After the instruction letter, book an appointment at the VFS Global centre in Yaoundé for fingerprints and photo."
+        },
+        {
+          "title": "Decision and passport",
+          "text": "If approved, IRCC requests your passport to place the visa, submitted through the VFS centre. The study permit itself is issued when you arrive in Canada."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Study permit (IRCC)",
+          "amount": "150 CAD",
+          "fcfa": "≈ 63 000 FCFA"
+        },
+        {
+          "label": "Biometrics (IRCC)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        },
+        {
+          "label": "CAQ for studies in Québec (2026 fee)",
+          "amount": "135 CAD",
+          "fcfa": "≈ 56 700 FCFA"
+        }
+      ],
+      "delays": "Processing times vary by country and season (they rise before the September and January intakes). Check IRCC's official processing-times tool for Cameroon and apply as soon as possible after admission.",
+      "biometrics": "Biometrics are taken at the Canada Visa Application Centre run by VFS Global in Yaoundé (5th floor, Immeuble Ekang, opposite Palais des Sports de Warda), Monday to Friday 08:00–17:00, by appointment. It is the only centre in Cameroon, so students from Douala, Bafoussam, Bamenda, Ngaoundéré or Maroua must travel there. Since October 12, 2026, in-person passport submission also requires an appointment.",
+      "faq": [
+        {
+          "q": "How much money do I need to show to study in Canada in 2026?",
+          "a": "For applications received since September 1, 2026: first-year tuition plus 23,448 CAD (≈ 9.85 million FCFA) for one person, excluding travel. For Québec, Québec's own scale applies (24,617 CAD for one person in 2026)."
+        },
+        {
+          "q": "Do I need a PAL for a master's degree?",
+          "a": "Since January 1, 2026, master's and PhD students at public institutions are exempt from the provincial attestation letter. For college diplomas and bachelor's degrees, a PAL is generally still required."
+        },
+        {
+          "q": "Can my sponsor in Cameroon fund my studies?",
+          "a": "Yes, but you must prove your relationship, the sponsor's financial capacity and the source of funds (payslips, business registration, tax notices, bank statements). Large recent deposits without explanation are often viewed negatively."
+        },
+        {
+          "q": "Do I need to translate my documents?",
+          "a": "Documents in English or French are accepted as they are. Documents in any other language need a certified translation."
+        },
+        {
+          "q": "Where do I do the medical exam in Cameroon?",
+          "a": "Only with an IRCC-approved panel physician. The official list of panel physicians in Cameroon is on the IRCC website; exams done elsewhere are not accepted."
+        }
+      ]
+    },
+    "status": "limited"
+  },
+  {
+    "key": "ca-francophone-mobility",
+    "destination": "ca",
+    "goal": "work",
+    "slug": {
+      "fr": "mobilite-francophone-canada",
+      "en": "canada-francophone-mobility"
+    },
+    "updated": "2026-10-28",
+    "sources": [
+      {
+        "label": "IRCC – Mobilité francophone : vérifier l'admissibilité",
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/special-instructions/francophone-mobility/eligibility.html"
+      },
+      {
+        "label": "IRCC – Mobilité francophone : comment présenter une demande",
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/francophone-mobility.html"
+      },
+      {
+        "label": "IRCC – Code de dispense C16 (instructions aux agents)",
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/temporary-residents/foreign-workers/exemption-codes/canadian-interests-significant-benefit-mobilite-francophone-r205-exemption-code-c16.html"
+      },
+      {
+        "label": "IRCC – Frais de biométrie",
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/fees/immigration/general/biometric.html"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ],
+    "notes": "Taux : 1 CAD ≈ 420,1 FCFA (28/10/2026). Statut : OUVERT, aucun changement ni pause annoncé (page d'admissibilité IRCC modifiée le 20 avril 2026 : NCLC 5 à l'oral, tous les niveaux FEER sauf agriculture primaire FEER 4-5, hors Québec). Frais permis de travail 155 CAD (Canadim, grille au 30/04/2026) ; frais de conformité employeur 230 CAD (IRCC). Délais depuis le Cameroun non vérifiés. Je n'ai pas vérifié si un permis ouvert pour le conjoint est automatiquement accessible : non publié.",
+    "fr": {
+      "name": "Mobilité francophone (Canada)",
+      "metaTitle": "Mobilité francophone Canada depuis le Cameroun",
+      "metaDescription": "Mobilité francophone 2026 : permis de travail sans EIMT pour francophones du Cameroun, hors Québec. Conditions NCLC 5, offre d'emploi, frais et biométrie.",
+      "h1": "Mobilité francophone : travailler au Canada hors Québec quand on parle français",
+      "intro": "Le volet Mobilité francophone permet à un employeur canadien situé hors Québec d'embaucher un travailleur francophone sans passer par une étude d'impact sur le marché du travail (EIMT). Pour les Camerounais qui parlent français, c'est une des voies de travail les plus accessibles, mais elle exige une vraie offre d'emploi. Une expérience canadienne peut ensuite aider pour la résidence permanente.",
+      "forWho": [
+        "Francophones ou bilingues ayant une offre d'emploi d'un employeur au Canada hors Québec",
+        "Travailleurs de tous niveaux de compétence (FEER 0 à 5), à l'exception des emplois agricoles primaires de niveaux FEER 4 et 5",
+        "Personnes qui visent ensuite la résidence permanente via Entrée express ou un programme provincial",
+        "Professionnels de la santé, de l'éducation, des métiers, du commerce ou des services recrutés par un employeur canadien"
+      ],
+      "conditions": [
+        "Une offre d'emploi d'un employeur situé dans une province ou un territoire hors Québec",
+        "Un niveau de français intermédiaire à l'oral (expression et compréhension), équivalent à NCLC 5 ou plus",
+        "L'employeur doit soumettre l'offre dans le Portail des employeurs d'IRCC sous le code C16 et payer 230 CAD de frais de conformité",
+        "Le numéro d'offre d'emploi à 7 caractères fourni par l'employeur",
+        "Satisfaire aux exigences générales du permis de travail (passeport, examen médical si requis, casier judiciaire, intention de respecter la durée du séjour)"
+      ],
+      "steps": [
+        {
+          "title": "Trouver un employeur hors Québec",
+          "text": "Cherchez un emploi auprès d'employeurs canadiens (Guichet-Emplois, salons de recrutement francophones, sites des provinces). Préparez un CV au format canadien."
+        },
+        {
+          "title": "Prouver votre niveau de français",
+          "text": "Un test officiel (TEF Canada ou TCF Canada) est la façon la plus sûre de démontrer le niveau NCLC 5 à l'oral."
+        },
+        {
+          "title": "L'employeur dépose l'offre",
+          "text": "L'employeur soumet l'offre dans le Portail des employeurs sous le code C16, paie les frais de conformité et vous transmet le numéro d'offre d'emploi."
+        },
+        {
+          "title": "Demander le permis de travail en ligne",
+          "text": "Créez votre compte IRCC, remplissez la demande avec le numéro d'offre, téléversez vos documents et payez les frais."
+        },
+        {
+          "title": "Biométrie et passeport",
+          "text": "Donnez vos empreintes au centre VFS Global de Yaoundé, puis déposez votre passeport si la demande est approuvée. Le permis est remis à l'arrivée au Canada."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Permis de travail (payé par le travailleur)",
+          "amount": "155 CAD",
+          "fcfa": "≈ 65 100 FCFA"
+        },
+        {
+          "label": "Biométrie (par personne)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        },
+        {
+          "label": "Frais de conformité de l'employeur (payés par l'employeur)",
+          "amount": "230 CAD",
+          "fcfa": "≈ 96 600 FCFA"
+        }
+      ],
+      "delays": "Les délais dépendent du pays de résidence et du volume de demandes. Consultez l'outil officiel des délais de traitement d'IRCC pour les permis de travail présentés depuis le Cameroun.",
+      "biometrics": "La biométrie se fait au Centre de réception des demandes de visa du Canada (VFS Global) à Yaoundé, 5e étage, Immeuble Ekang, en face du Palais des Sports de Warda, du lundi au vendredi de 8 h à 17 h, sur rendez-vous gratuit après la lettre d'instructions d'IRCC. Il n'y a pas d'autre centre au Cameroun.",
+      "faq": [
+        {
+          "q": "Puis-je utiliser la Mobilité francophone pour travailler au Québec ?",
+          "a": "Non. Ce volet couvre uniquement les emplois dans les 9 provinces et 3 territoires hors Québec. Le Québec a ses propres règles pour les travailleurs étrangers."
+        },
+        {
+          "q": "Mon français camerounais suffit-il ?",
+          "a": "Le critère est un niveau NCLC 5 à l'oral, c'est-à-dire intermédiaire. La plupart des francophones scolarisés en français l'atteignent, mais un test officiel (TEF Canada ou TCF Canada) reste la preuve la plus solide."
+        },
+        {
+          "q": "Faut-il un diplôme universitaire ?",
+          "a": "Pas forcément. Depuis juin 2023, tous les niveaux d'emploi FEER sont admissibles (sauf l'agriculture primaire FEER 4-5). Il faut surtout répondre aux exigences de l'emploi offert."
+        },
+        {
+          "q": "Est-ce une voie vers la résidence permanente ?",
+          "a": "Le permis est temporaire, mais l'expérience de travail acquise au Canada peut ensuite compter pour Entrée express (catégorie de l'expérience canadienne, tirages francophones) ou pour un programme provincial. Aucun résultat n'est garanti."
+        },
+        {
+          "q": "Comment éviter les arnaques aux offres d'emploi ?",
+          "a": "Un vrai employeur obtient un numéro d'offre d'emploi via le portail d'IRCC. Méfiez-vous de toute personne qui vous demande de l'argent pour une « offre garantie » : IRCC ne vend pas d'emplois."
+        }
+      ]
+    },
+    "en": {
+      "name": "Francophone Mobility (Canada)",
+      "metaTitle": "Francophone Mobility Canada from Cameroon",
+      "metaDescription": "Francophone Mobility 2026: LMIA-exempt Canadian work permit for French speakers in Cameroon, outside Québec. NCLC 5, job offer, fees, Yaoundé biometrics.",
+      "h1": "Francophone Mobility: working in Canada outside Québec as a French speaker",
+      "intro": "The Francophone Mobility stream lets an employer outside Québec hire a French-speaking worker without a Labour Market Impact Assessment (LMIA). For Cameroonians who speak French it is one of the most accessible work routes, but it requires a genuine job offer. Canadian work experience can later help toward permanent residence.",
+      "forWho": [
+        "French speakers or bilinguals with a job offer from an employer outside Québec",
+        "Workers at any skill level (TEER 0 to 5), except primary agriculture jobs at TEER 4 and 5",
+        "People aiming for permanent residence later through Express Entry or a provincial program",
+        "Health, education, trades, retail or service workers recruited by a Canadian employer"
+      ],
+      "conditions": [
+        "A job offer from an employer located in a province or territory outside Québec",
+        "Intermediate spoken French (speaking and listening), equivalent to NCLC 5 or higher",
+        "The employer must submit the offer in IRCC's Employer Portal under code C16 and pay a 230 CAD compliance fee",
+        "The 7-character offer of employment number provided by the employer",
+        "Meet general work permit requirements (passport, medical exam if required, police certificate, intention to respect your authorized stay)"
+      ],
+      "steps": [
+        {
+          "title": "Find an employer outside Québec",
+          "text": "Look for jobs with Canadian employers (Job Bank, francophone recruitment fairs, provincial websites). Prepare a Canadian-style CV."
+        },
+        {
+          "title": "Prove your French level",
+          "text": "An official test (TEF Canada or TCF Canada) is the safest way to show NCLC 5 in speaking and listening."
+        },
+        {
+          "title": "The employer submits the offer",
+          "text": "The employer submits the offer in the Employer Portal under code C16, pays the compliance fee and gives you the offer of employment number."
+        },
+        {
+          "title": "Apply for the work permit online",
+          "text": "Create your IRCC account, complete the application with the offer number, upload documents and pay the fees."
+        },
+        {
+          "title": "Biometrics and passport",
+          "text": "Give biometrics at the VFS Global centre in Yaoundé, then submit your passport if approved. The permit is issued on arrival in Canada."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Work permit (paid by the worker)",
+          "amount": "155 CAD",
+          "fcfa": "≈ 65 100 FCFA"
+        },
+        {
+          "label": "Biometrics (per person)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        },
+        {
+          "label": "Employer compliance fee (paid by the employer)",
+          "amount": "230 CAD",
+          "fcfa": "≈ 96 600 FCFA"
+        }
+      ],
+      "delays": "Processing times depend on your country of residence and application volumes. Check IRCC's official processing-times tool for work permits submitted from Cameroon.",
+      "biometrics": "Biometrics are taken at the Canada Visa Application Centre (VFS Global) in Yaoundé, 5th floor, Immeuble Ekang, opposite Palais des Sports de Warda, Monday to Friday 08:00–17:00, by free appointment after IRCC's instruction letter. There is no other centre in Cameroon.",
+      "faq": [
+        {
+          "q": "Can I use Francophone Mobility to work in Québec?",
+          "a": "No. It only covers jobs in the 9 provinces and 3 territories outside Québec. Québec has its own rules for foreign workers."
+        },
+        {
+          "q": "Is my French good enough?",
+          "a": "The requirement is NCLC 5 in speaking and listening, an intermediate level. Most people educated in French reach it, but an official test (TEF Canada or TCF Canada) is the strongest proof."
+        },
+        {
+          "q": "Do I need a university degree?",
+          "a": "Not necessarily. Since June 2023 all TEER levels are eligible (except primary agriculture at TEER 4-5). You mainly need to meet the requirements of the job offered."
+        },
+        {
+          "q": "Does it lead to permanent residence?",
+          "a": "The permit is temporary, but Canadian work experience can later count for Express Entry (Canadian Experience Class, French-language draws) or a provincial program. No outcome is guaranteed."
+        },
+        {
+          "q": "How do I avoid job-offer scams?",
+          "a": "A real employer gets an offer of employment number through IRCC's portal. Be wary of anyone asking for money for a 'guaranteed job': IRCC does not sell jobs."
+        }
+      ]
+    },
+    "status": "open"
+  },
+  {
+    "key": "ca-pnp",
+    "destination": "ca",
+    "goal": "permanent",
+    "slug": {
+      "fr": "programme-candidats-provinces-canada",
+      "en": "canada-provincial-nominee-program"
+    },
+    "updated": "2026-10-28",
+    "sources": [
+      {
+        "label": "IRCC – Programme des candidats des provinces",
+        "url": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/candidats-provinces.html"
+      },
+      {
+        "label": "Nouveau-Brunswick – Initiative stratégique (voies francophones)",
+        "url": "https://www.gnb.ca/fr/sujet/famille-foyer-collectivite/immigration/programme-candidats-nb/initiative-strategique.html"
+      },
+      {
+        "label": "Nouveau-Brunswick – Invitations et sélections 2026",
+        "url": "https://www.gnb.ca/fr/sujet/famille-foyer-collectivite/immigration/invitations-selections.html"
+      },
+      {
+        "label": "Immigration.ca – Refonte du PCNO de l'Ontario (2026)",
+        "url": "https://immigration.ca/ontarios-oinp-overhaul-what-changed-who-loses-who-gains-and-what-candidates-should-do-now/"
+      },
+      {
+        "label": "CIC News – Hausse des frais de RP au 30 avril 2026",
+        "url": "https://www.cicnews.com/2026/04/canada-hikes-permanent-resident-fees-0474769.html"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ],
+    "notes": "Taux : 1 CAD ≈ 420,1 FCFA (28/10/2026). Statut : OUVERT mais CHANGÉ. Ontario : le volet « Travailleurs qualifiés francophones » (Entrée express) est FERMÉ ; l'Ontario a fusionné ses 8 volets en un seul « Ontario Workforce Priority » (effectif 26 juin 2026) exigeant une offre d'emploi (sources : immigration.ca, moving2canada ; page ontario.ca non consultée directement – à confirmer). Nouveau-Brunswick : Initiative stratégique (Travailleurs francophones / Priorités francophones) active – dernier tirage 11 sept. 2026, 251 invitations ; NCLC 5 dans les 4 compétences, 65/100 points, frais de désignation 250 CAD (gnb.ca). La voie « Priorités francophones » pour les candidats à l'étranger passe par une lettre d'intérêt d'Immigration NB. Je n'ai pas vérifié d'autres provinces (Manitoba, Nouvelle-Écosse, Î.-P.-É.) pour 2026. Allocations PNP 2026 au niveau fédéral non vérifiées.",
+    "fr": {
+      "name": "Programmes des candidats des provinces (Canada)",
+      "metaTitle": "Programme des candidats des provinces depuis le Cameroun",
+      "metaDescription": "PCP Canada 2026 depuis le Cameroun : nomination provinciale, voies francophones du Nouveau-Brunswick, fermeture en Ontario, frais en FCFA et étapes clés.",
+      "h1": "Programmes des candidats des provinces (PCP) : immigrer via une province canadienne",
+      "intro": "Chaque province canadienne (sauf le Québec) peut « nommer » des candidats pour la résidence permanente selon ses besoins. Pour les francophones du Cameroun, certaines provinces recherchent activement des profils parlant français, mais les règles changent vite : en 2026, l'Ontario a fermé son volet francophone, tandis que le Nouveau-Brunswick continue d'inviter des candidats francophones.",
+      "forWho": [
+        "Francophones qui ne sont pas invités via Entrée express avec leur seul score CRS",
+        "Personnes ayant une offre d'emploi ou un lien avec une province (études, travail, famille)",
+        "Profils dans des métiers recherchés par une province (santé, éducation, construction, transport…)",
+        "Candidats prêts à s'installer durablement dans la province qui les nomme"
+      ],
+      "conditions": [
+        "Répondre aux critères du volet provincial choisi (chaque province a ses propres règles, souvent une offre d'emploi)",
+        "Avoir l'intention réelle de vivre dans la province qui vous nomme",
+        "Un test de langue officiel ; par exemple, au Nouveau-Brunswick, l'Initiative stratégique exige au moins NCLC 5 dans les 4 compétences en français",
+        "Diplôme d'études secondaires au minimum (souvent plus) et expérience de travail selon le volet",
+        "Preuve de fonds d'établissement lorsque la province ou le programme fédéral l'exige",
+        "Après la nomination : satisfaire aux exigences fédérales d'IRCC (examen médical, casier judiciaire, sécurité)"
+      ],
+      "steps": [
+        {
+          "title": "Choisir la bonne province",
+          "text": "Comparez les volets ouverts : Nouveau-Brunswick (voies francophones de l'Initiative stratégique), autres provinces selon votre métier. Vérifiez toujours qu'un volet n'est pas fermé ou suspendu."
+        },
+        {
+          "title": "Déclarer son intérêt",
+          "text": "La plupart des provinces utilisent une déclaration d'intérêt en ligne (gratuite au Nouveau-Brunswick). Certains volets sont liés à un profil Entrée express."
+        },
+        {
+          "title": "Recevoir une invitation et déposer la demande provinciale",
+          "text": "Si la province vous invite, déposez la demande complète et payez les frais provinciaux (ex. 250 CAD au Nouveau-Brunswick)."
+        },
+        {
+          "title": "Obtenir la nomination",
+          "text": "Avec un volet lié à Entrée express, la nomination ajoute 600 points au score CRS, ce qui mène presque toujours à une invitation fédérale. Sinon, vous déposez une demande papier/en ligne « de base » auprès d'IRCC."
+        },
+        {
+          "title": "Demande de résidence permanente à IRCC",
+          "text": "Soumettez la demande fédérale, payez les frais, passez l'examen médical et donnez votre biométrie à Yaoundé."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Frais de traitement RP – demandeur principal (IRCC)",
+          "amount": "990 CAD",
+          "fcfa": "≈ 415 900 FCFA"
+        },
+        {
+          "label": "Droit de résidence permanente – par adulte (IRCC)",
+          "amount": "600 CAD",
+          "fcfa": "≈ 252 100 FCFA"
+        },
+        {
+          "label": "Biométrie – par personne (IRCC)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        },
+        {
+          "label": "Exemple : demande de désignation au Nouveau-Brunswick",
+          "amount": "250 CAD",
+          "fcfa": "≈ 105 000 FCFA"
+        }
+      ],
+      "delays": "Le délai comprend deux étapes : la décision de la province (variable selon le volet) puis la demande fédérale. Les demandes via Entrée express sont généralement traitées plus vite que les demandes « de base » ; consultez l'outil des délais d'IRCC et le site de la province.",
+      "biometrics": "Pour la partie fédérale, la biométrie se fait au Centre de réception des demandes de visa du Canada (VFS Global) à Yaoundé, 5e étage, Immeuble Ekang, en face du Palais des Sports de Warda, du lundi au vendredi de 8 h à 17 h, sur rendez-vous. C'est l'unique centre au Cameroun.",
+      "faq": [
+        {
+          "q": "Le volet francophone de l'Ontario est-il encore ouvert en 2026 ?",
+          "a": "Non. En 2026, l'Ontario a fusionné ses volets en un seul volet axé sur les besoins de main-d'œuvre, qui exige une offre d'emploi. Le volet « Travailleurs qualifiés francophones » n'accepte plus de nouvelles déclarations."
+        },
+        {
+          "q": "Le Nouveau-Brunswick accepte-t-il des candidats qui vivent au Cameroun ?",
+          "a": "La voie « Priorités francophones » de l'Initiative stratégique peut concerner des candidats ayant reçu une lettre d'intérêt d'Immigration Nouveau-Brunswick (souvent après des activités de recrutement). La voie « Travailleurs francophones » exige une offre d'emploi d'un employeur de la province."
+        },
+        {
+          "q": "Peut-on cumuler Entrée express et un programme provincial ?",
+          "a": "Oui. Beaucoup de candidats gardent un profil Entrée express actif tout en déclarant leur intérêt auprès d'une province. Une nomination liée à Entrée express ajoute 600 points CRS."
+        },
+        {
+          "q": "Les frais provinciaux sont-ils remboursables ?",
+          "a": "En général non. Au Nouveau-Brunswick, par exemple, les frais de 250 CAD de la demande de désignation ne sont pas remboursables, même en cas de refus."
+        },
+        {
+          "q": "Le Québec fait-il partie des PCP ?",
+          "a": "Non. Le Québec sélectionne ses propres immigrants via ses programmes (comme le PSTQ) et délivre un Certificat de sélection du Québec (CSQ)."
+        }
+      ]
+    },
+    "en": {
+      "name": "Provincial Nominee Programs (Canada)",
+      "metaTitle": "Canada Provincial Nominee Program from Cameroon",
+      "metaDescription": "Canada PNP 2026 from Cameroon: provincial nomination, New Brunswick francophone pathways, Ontario stream closure, fees in FCFA and the key steps to apply.",
+      "h1": "Provincial Nominee Programs (PNP): immigrating through a Canadian province",
+      "intro": "Each Canadian province (except Québec) can nominate candidates for permanent residence based on its own needs. For French speakers in Cameroon, some provinces actively seek French-speaking profiles, but rules change fast: in 2026 Ontario closed its French-speaking stream, while New Brunswick keeps inviting francophone candidates.",
+      "forWho": [
+        "French speakers not invited through Express Entry on their CRS score alone",
+        "People with a job offer or a connection to a province (study, work, family)",
+        "Profiles in occupations a province needs (health, education, construction, transport…)",
+        "Candidates ready to settle long-term in the nominating province"
+      ],
+      "conditions": [
+        "Meet the criteria of the chosen provincial stream (each province has its own rules, often a job offer)",
+        "Genuinely intend to live in the nominating province",
+        "An official language test; for example, New Brunswick's Strategic Initiative requires at least NCLC 5 in all 4 French skills",
+        "At least a secondary school diploma (often more) and work experience depending on the stream",
+        "Proof of settlement funds where the province or the federal program requires it",
+        "After nomination: meet IRCC's federal requirements (medical exam, police certificates, security)"
+      ],
+      "steps": [
+        {
+          "title": "Choose the right province",
+          "text": "Compare open streams: New Brunswick (francophone pathways of the Strategic Initiative), other provinces depending on your occupation. Always check that a stream is not closed or paused."
+        },
+        {
+          "title": "Submit an expression of interest",
+          "text": "Most provinces use an online expression of interest (free in New Brunswick). Some streams are linked to an Express Entry profile."
+        },
+        {
+          "title": "Get invited and apply to the province",
+          "text": "If invited, submit the full provincial application and pay provincial fees (e.g. 250 CAD in New Brunswick)."
+        },
+        {
+          "title": "Receive the nomination",
+          "text": "With an Express Entry-linked stream, the nomination adds 600 CRS points, which almost always leads to a federal invitation. Otherwise you file a 'base' application with IRCC."
+        },
+        {
+          "title": "Apply to IRCC for permanent residence",
+          "text": "Submit the federal application, pay fees, do the medical exam and give biometrics in Yaoundé."
+        }
+      ],
+      "costs": [
+        {
+          "label": "PR processing fee – principal applicant (IRCC)",
+          "amount": "990 CAD",
+          "fcfa": "≈ 415 900 FCFA"
+        },
+        {
+          "label": "Right of Permanent Residence Fee – per adult (IRCC)",
+          "amount": "600 CAD",
+          "fcfa": "≈ 252 100 FCFA"
+        },
+        {
+          "label": "Biometrics – per person (IRCC)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        },
+        {
+          "label": "Example: New Brunswick nomination application",
+          "amount": "250 CAD",
+          "fcfa": "≈ 105 000 FCFA"
+        }
+      ],
+      "delays": "Timing has two stages: the province's decision (varies by stream) and then the federal application. Express Entry-linked applications are generally processed faster than 'base' ones; check IRCC's processing-times tool and the province's website.",
+      "biometrics": "For the federal stage, biometrics are taken at the Canada Visa Application Centre (VFS Global) in Yaoundé, 5th floor, Immeuble Ekang, opposite Palais des Sports de Warda, Monday to Friday 08:00–17:00, by appointment. It is the only centre in Cameroon.",
+      "faq": [
+        {
+          "q": "Is Ontario's French-Speaking Skilled Worker stream still open in 2026?",
+          "a": "No. In 2026 Ontario merged its streams into a single workforce-priority stream that requires a job offer. The French-Speaking Skilled Worker stream no longer accepts new expressions of interest."
+        },
+        {
+          "q": "Does New Brunswick accept candidates living in Cameroon?",
+          "a": "The 'Francophone Priorities' pathway of the Strategic Initiative can apply to candidates who received a letter of interest from Immigration New Brunswick (often after recruitment events). The 'Francophone Workers' pathway requires a job offer from a New Brunswick employer."
+        },
+        {
+          "q": "Can I combine Express Entry and a PNP?",
+          "a": "Yes. Many candidates keep an active Express Entry profile while expressing interest in a province. An Express Entry-linked nomination adds 600 CRS points."
+        },
+        {
+          "q": "Are provincial fees refundable?",
+          "a": "Generally not. In New Brunswick, for example, the 250 CAD nomination application fee is non-refundable, even if refused."
+        },
+        {
+          "q": "Is Québec part of the PNP?",
+          "a": "No. Québec selects its own immigrants through its programs (such as the PSTQ) and issues a Québec Selection Certificate (CSQ)."
+        }
+      ]
+    },
+    "status": "limited"
+  },
+  {
+    "key": "ca-quebec",
+    "destination": "ca",
+    "goal": "permanent",
+    "slug": {
+      "fr": "immigrer-au-quebec-pstq",
+      "en": "immigrate-to-quebec-pstq"
+    },
+    "updated": "2026-10-28",
+    "sources": [
+      {
+        "label": "Québec – Programme de sélection des travailleurs qualifiés (PSTQ)",
+        "url": "https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies"
+      },
+      {
+        "label": "Québec – Exigences du PSTQ",
+        "url": "https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies/exigences"
+      },
+      {
+        "label": "Québec – Invitations PSTQ 2026",
+        "url": "https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies/invitation/2026"
+      },
+      {
+        "label": "Québec – Plan d'immigration 2026",
+        "url": "https://www.quebec.ca/nouvelles/actualites/details/planification-pluriannuelle-et-plan-dimmigration-2026-quebec-baisse-ses-seuils-dimmigration-66857"
+      },
+      {
+        "label": "Québec – Frais d'immigration 2026 (PDF)",
+        "url": "https://cdn-contenu.quebec.ca/cdn-contenu/immigration/publications/fr/TAB_frais_2026.pdf"
+      },
+      {
+        "label": "CIC News – Hausse des frais de RP au 30 avril 2026",
+        "url": "https://www.cicnews.com/2026/04/canada-hikes-permanent-resident-fees-0474769.html"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ],
+    "notes": "Taux : 1 CAD ≈ 420,1 FCFA (28/10/2026). Statut : OUVERT mais TRÈS RESTREINT pour les candidats à l'étranger. Plan 2026 : ~45 000 admissions/an, dont 28 275 travailleurs qualifiés ; priorité aux personnes déjà au Québec ; PEQ fermé le 19 nov. 2025 ; PSTQ = seule voie de sélection des travailleurs qualifiés. Rondes 2026 : volets 1 et 2 (et la plupart du volet 3) réservés à des personnes « séjournant au Québec » ; quelques invitations au volet 3 (professions réglementées) et au volet 4 (talents d'exception, 21 en août, 7 en septembre) – des candidats hors Québec ont été invités selon pvtistes.net, chiffres non officiels. Dernière ronde : 24 sept. 2026. Frais Québec 2026 : demande de sélection permanente 940 CAD (requérant principal) + 201 CAD par membre de la famille. Montants du contrat d'autonomie financière non vérifiés (PDF séparé). Gratuité de la déclaration Arrima non vérifiée : non publiée.",
+    "fr": {
+      "name": "Immigrer au Québec (PSTQ)",
+      "metaTitle": "Immigrer au Québec depuis le Cameroun : PSTQ 2026",
+      "metaDescription": "Immigrer au Québec depuis le Cameroun en 2026 : PSTQ via Arrima, CSQ puis résidence permanente. Volets, niveau de français, frais en FCFA et réalité 2026.",
+      "h1": "Immigrer au Québec depuis le Cameroun : le PSTQ, le CSQ puis la résidence permanente",
+      "intro": "Le Québec choisit lui-même ses travailleurs qualifiés grâce au Programme de sélection des travailleurs qualifiés (PSTQ), géré via la plateforme Arrima. Le parcours se fait en deux temps : obtenir le Certificat de sélection du Québec (CSQ), puis demander la résidence permanente au fédéral. Attention : en 2026, le Québec réduit ses seuils et invite surtout des personnes qui vivent déjà au Québec ; les chances depuis le Cameroun sont aujourd'hui limitées.",
+      "forWho": [
+        "Francophones très qualifiés (niveau FEER 0, 1 ou 2) avec au moins un an d'expérience",
+        "Professionnels de professions réglementées (santé, ingénierie, éducation…) ayant entamé la reconnaissance de leurs diplômes au Québec",
+        "Personnes au parcours exceptionnel (recherche, arts, sport, secteurs économiques stratégiques)",
+        "Camerounais déjà au Québec (études ou permis de travail) qui veulent rester"
+      ],
+      "conditions": [
+        "Volet 1 (haute qualification) : français oral niveau 7 et écrit niveau 5 ou plus, diplôme menant à la profession, au moins 1 an d'expérience à temps plein dans les 5 dernières années",
+        "Volet 2 (compétences intermédiaires et manuelles) : français oral niveau 5, au moins 2 ans d'expérience dont 1 an au Québec",
+        "Volet 3 (professions réglementées) : autorisation d'exercer au Québec ou reconnaissance partielle ou complète de vos qualifications par l'ordre professionnel",
+        "Volet 4 (talents d'exception) : au moins 3 ans d'expérience et des réalisations reconnues",
+        "Époux ou conjoint accompagnant : français oral niveau 4 ou plus",
+        "Signer un contrat d'autonomie financière (3 mois de subsistance) et obtenir l'attestation d'apprentissage des valeurs démocratiques et des valeurs québécoises"
+      ],
+      "steps": [
+        {
+          "title": "Déclaration d'intérêt dans Arrima",
+          "text": "Créez votre profil dans Arrima (diplômes, expérience, français). Votre déclaration reste dans la banque en attendant une éventuelle invitation."
+        },
+        {
+          "title": "Invitation du ministère",
+          "text": "Le ministère de l'Immigration du Québec invite des profils selon des critères précis à chaque ronde (volet, profession, région, niveau de français, lieu de séjour)."
+        },
+        {
+          "title": "Demande de sélection permanente",
+          "text": "Après l'invitation, déposez la demande complète dans Arrima et payez les frais du Québec. Faites traduire tout document qui n'est pas en français ou en anglais."
+        },
+        {
+          "title": "Obtention du CSQ",
+          "text": "Si la demande est acceptée, le Québec délivre le Certificat de sélection du Québec (CSQ)."
+        },
+        {
+          "title": "Demande de résidence permanente au fédéral",
+          "text": "Avec le CSQ, demandez la résidence permanente à IRCC (examen médical, casier judiciaire, biométrie à Yaoundé)."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Demande de sélection permanente – requérant principal (Québec)",
+          "amount": "940 CAD",
+          "fcfa": "≈ 394 900 FCFA"
+        },
+        {
+          "label": "Demande de sélection permanente – par membre de la famille (Québec)",
+          "amount": "201 CAD",
+          "fcfa": "≈ 84 400 FCFA"
+        },
+        {
+          "label": "Frais de traitement RP – demandeur principal (IRCC)",
+          "amount": "990 CAD",
+          "fcfa": "≈ 415 900 FCFA"
+        },
+        {
+          "label": "Droit de résidence permanente – par adulte (IRCC)",
+          "amount": "600 CAD",
+          "fcfa": "≈ 252 100 FCFA"
+        },
+        {
+          "label": "Biométrie – par personne (IRCC)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        }
+      ],
+      "delays": "Il n'y a aucune garantie d'invitation : en 2026, les rondes PSTQ ont surtout visé des personnes séjournant au Québec. Après l'invitation, il faut compter le délai de traitement du Québec pour le CSQ, puis celui d'IRCC pour la résidence permanente, qui dépend aussi des places prévues dans le plan d'immigration du Québec.",
+      "biometrics": "Pour l'étape fédérale, la biométrie se fait au Centre de réception des demandes de visa du Canada (VFS Global) à Yaoundé, 5e étage, Immeuble Ekang, en face du Palais des Sports de Warda, du lundi au vendredi de 8 h à 17 h, sur rendez-vous. Aucune biométrie n'est demandée pour la seule étape du CSQ.",
+      "faq": [
+        {
+          "q": "Peut-on encore immigrer au Québec depuis le Cameroun en 2026 ?",
+          "a": "Le PSTQ reste ouvert et accepte les déclarations d'intérêt de l'étranger, mais en 2026 les invitations ont surtout visé des personnes déjà au Québec. Quelques candidats des volets 3 (professions réglementées) et 4 (talents d'exception) ont été invités. Pour beaucoup de profils, étudier ou travailler d'abord au Québec est aujourd'hui la voie la plus réaliste."
+        },
+        {
+          "q": "Quel test de français pour le Québec ?",
+          "a": "Le ministère accepte notamment le TEF Canada, le TCF Canada et le TCF Québec ; vérifiez la liste à jour sur Québec.ca. Votre niveau est évalué selon l'Échelle québécoise des niveaux de compétence en français."
+        },
+        {
+          "q": "Le Programme de l'expérience québécoise (PEQ) existe-t-il encore ?",
+          "a": "Non. Le PEQ a pris fin le 19 novembre 2025. Le PSTQ est désormais la seule voie de sélection des travailleurs qualifiés au Québec."
+        },
+        {
+          "q": "Mes diplômes camerounais sont-ils reconnus au Québec ?",
+          "a": "Une Évaluation comparative des études effectuées hors du Québec, délivrée par le ministère, aide à faire valoir vos diplômes. Pour une profession réglementée (médecin, infirmier, ingénieur…), il faut s'adresser à l'ordre professionnel concerné."
+        },
+        {
+          "q": "Faut-il passer par Entrée express pour aller au Québec ?",
+          "a": "Non. Le Québec a son propre système (Arrima et PSTQ). Entrée express ne permet pas de s'installer au Québec."
+        }
+      ]
+    },
+    "en": {
+      "name": "Immigrating to Québec (PSTQ)",
+      "metaTitle": "Immigrate to Québec from Cameroon: PSTQ 2026",
+      "metaDescription": "Immigrating to Québec from Cameroon in 2026: PSTQ through Arrima, CSQ then permanent residence. Streams, French level, fees in FCFA and the 2026 reality.",
+      "h1": "Immigrating to Québec from Cameroon: PSTQ, CSQ and permanent residence",
+      "intro": "Québec selects its own skilled workers through the Skilled Worker Selection Program (PSTQ), managed on the Arrima platform. The process has two stages: get the Québec Selection Certificate (CSQ), then apply for federal permanent residence. Note that in 2026 Québec is lowering its levels and mostly invites people already living in Québec, so chances from Cameroon are currently limited.",
+      "forWho": [
+        "Highly qualified French speakers (TEER 0, 1 or 2) with at least one year of experience",
+        "Regulated professionals (health, engineering, education…) who have started credential recognition in Québec",
+        "People with exceptional achievements (research, arts, sport, strategic economic sectors)",
+        "Cameroonians already in Québec (study or work permit) who want to stay"
+      ],
+      "conditions": [
+        "Stream 1 (high qualification): oral French level 7 and written level 5 or higher, a diploma leading to the occupation, at least 1 year of full-time experience in the last 5 years",
+        "Stream 2 (intermediate and manual skills): oral French level 5, at least 2 years of experience including 1 year in Québec",
+        "Stream 3 (regulated professions): authorization to practise in Québec or partial or full recognition by the professional order",
+        "Stream 4 (exceptional talent): at least 3 years of experience and recognized achievements",
+        "Accompanying spouse or partner: oral French level 4 or higher",
+        "Sign a financial self-sufficiency contract (3 months of living costs) and obtain the attestation of learning about democratic and Québec values"
+      ],
+      "steps": [
+        {
+          "title": "Expression of interest in Arrima",
+          "text": "Create your Arrima profile (education, experience, French). Your declaration stays in the pool until a possible invitation."
+        },
+        {
+          "title": "Invitation from the ministry",
+          "text": "Québec's immigration ministry invites profiles using specific criteria in each round (stream, occupation, region, French level, place of residence)."
+        },
+        {
+          "title": "Permanent selection application",
+          "text": "After an invitation, submit the full application in Arrima and pay Québec's fees. Translate any document that is not in French or English."
+        },
+        {
+          "title": "Receive the CSQ",
+          "text": "If approved, Québec issues the Québec Selection Certificate (CSQ)."
+        },
+        {
+          "title": "Federal permanent residence application",
+          "text": "With the CSQ, apply to IRCC for permanent residence (medical exam, police certificates, biometrics in Yaoundé)."
+        }
+      ],
+      "costs": [
+        {
+          "label": "Permanent selection application – principal applicant (Québec)",
+          "amount": "940 CAD",
+          "fcfa": "≈ 394 900 FCFA"
+        },
+        {
+          "label": "Permanent selection application – per family member (Québec)",
+          "amount": "201 CAD",
+          "fcfa": "≈ 84 400 FCFA"
+        },
+        {
+          "label": "PR processing fee – principal applicant (IRCC)",
+          "amount": "990 CAD",
+          "fcfa": "≈ 415 900 FCFA"
+        },
+        {
+          "label": "Right of Permanent Residence Fee – per adult (IRCC)",
+          "amount": "600 CAD",
+          "fcfa": "≈ 252 100 FCFA"
+        },
+        {
+          "label": "Biometrics – per person (IRCC)",
+          "amount": "85 CAD",
+          "fcfa": "≈ 35 700 FCFA"
+        }
+      ],
+      "delays": "There is no guaranteed invitation: in 2026, PSTQ rounds mainly targeted people living in Québec. After an invitation, allow for Québec's processing time for the CSQ, then IRCC's time for permanent residence, which also depends on the places set in Québec's immigration plan.",
+      "biometrics": "For the federal stage, biometrics are taken at the Canada Visa Application Centre (VFS Global) in Yaoundé, 5th floor, Immeuble Ekang, opposite Palais des Sports de Warda, Monday to Friday 08:00–17:00, by appointment. No biometrics are required for the CSQ stage itself.",
+      "faq": [
+        {
+          "q": "Can I still immigrate to Québec from Cameroon in 2026?",
+          "a": "The PSTQ is open and accepts expressions of interest from abroad, but in 2026 invitations mainly went to people already in Québec. A few Stream 3 (regulated professions) and Stream 4 (exceptional talent) candidates were invited. For many profiles, studying or working in Québec first is currently the most realistic route."
+        },
+        {
+          "q": "Which French test for Québec?",
+          "a": "The ministry accepts tests such as TEF Canada, TCF Canada and TCF Québec; check the current list on Québec.ca. Your level is assessed on the Québec French proficiency scale."
+        },
+        {
+          "q": "Does the Québec Experience Program (PEQ) still exist?",
+          "a": "No. The PEQ ended on November 19, 2025. The PSTQ is now the only selection route for skilled workers in Québec."
+        },
+        {
+          "q": "Are my Cameroonian diplomas recognized in Québec?",
+          "a": "A Comparative Evaluation for Studies Done Outside Québec, issued by the ministry, helps show the value of your diplomas. For a regulated profession (doctor, nurse, engineer…), contact the relevant professional order."
+        },
+        {
+          "q": "Do I need Express Entry to move to Québec?",
+          "a": "No. Québec has its own system (Arrima and PSTQ). Express Entry does not lead to settling in Québec."
+        }
+      ]
+    },
+    "status": "limited"
+  }
+]

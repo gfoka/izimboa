@@ -4,15 +4,16 @@ import { pathFor, type PageKey } from "@/config/routes";
 import type { Dict } from "@/content/types";
 import { Logo, ProductSymbol } from "./Logo";
 
-type Ctx = { country: string; lang: Lang; dict: Dict; pageKey: PageKey };
+/** `alt` : adresse de la même page dans les autres langues (sous-pages, ex. un programme d'Izimboa Go). */
+type Ctx = { country: string; lang: Lang; dict: Dict; pageKey: PageKey; alt?: Partial<Record<Lang, string>> };
 
-function LangSwitch({ country, lang, dict, pageKey }: Ctx) {
+function LangSwitch({ country, lang, dict, pageKey, alt }: Ctx) {
   const c = getCountry(country)!;
   const others = c.langs.filter((l) => l !== lang);
   return (
     <>
       {others.map((l) => (
-        <a key={l} className="lang-switch" href={pathFor(country, l, pageKey)} hrefLang={localeTag(l, country)} lang={l}>
+        <a key={l} className="lang-switch" href={alt?.[l] ?? pathFor(country, l, pageKey)} hrefLang={localeTag(l, country)} lang={l}>
           {dict.common.otherLanguage}
         </a>
       ))}

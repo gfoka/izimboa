@@ -323,3 +323,76 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .form-success p { font-size: 1.15rem; font-weight: 600; color: var(--ink); }
 .form-consent { font-size: .85rem; color: var(--slate); }
 .form-consent a { color: var(--slate); }
+
+/* ===== Izimboa Go : programmes, test, villes ===== */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 24px; }
+.chip { min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; font: inherit; font-weight: 600; color: var(--ink); cursor: pointer; }
+.chip.is-on { background: var(--accent-strong); border-color: var(--accent-strong); color: #fff; }
+.program-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 700px) { .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .program-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.program-card { display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 22px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); transition: box-shadow .2s ease, transform .2s ease; }
+.program-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: var(--ink); }
+.program-name { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.25; }
+.program-intro { color: var(--slate); font-size: .97rem; flex: 1; }
+.program-status { font-size: .85rem; font-weight: 600; color: #8a4b00; }
+.program-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.program-tags-lg { margin: 18px 0 8px; }
+.dest-chip, .goal-chip, .updated-chip { display: inline-flex; align-items: center; min-height: 28px; padding: 4px 12px; border-radius: 999px; font-size: .82rem; font-weight: 600; white-space: nowrap; }
+.dest-chip { background: var(--accent-strong); color: #fff; }
+.goal-chip { background: color-mix(in srgb, var(--accent) 14%, #fff); color: var(--accent-strong); }
+.updated-chip { background: var(--cloud); color: var(--slate); white-space: normal; }
+.compare-band { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin-top: 28px; padding: 24px; border-radius: var(--radius); background: var(--cloud); }
+.compare-band h3 { font-family: var(--font-display); font-size: 1.25rem; }
+.compare-band p { color: var(--slate); margin-top: 4px; }
+.city-links { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 760px) { .city-links { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.city-links a { display: grid; gap: 2px; min-height: 64px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 14px; background: #fff; text-decoration: none; color: var(--ink); }
+.city-links a:hover { border-color: var(--accent-strong); color: var(--ink); }
+.city-links small { color: var(--slate); }
+.two-cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+@media (min-width: 900px) { .two-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; } }
+.section-title-sm { font-size: clamp(1.35rem, 2.6vw, 1.7rem); margin-bottom: 16px; }
+.sub-title { font-family: var(--font-display); font-size: 1.15rem; margin: 22px 0 10px; }
+.check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.check-list li { display: flex; gap: 12px; align-items: flex-start; }
+.dot-list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+.stack { display: grid; gap: 28px; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 14px; border: 1px solid var(--line); background: #fff; }
+table.costs, table.compare { width: 100%; border-collapse: collapse; font-size: .97rem; }
+table.costs th, table.costs td, table.compare th, table.compare td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+table.costs thead th, table.compare thead th { background: var(--cloud); font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: var(--slate); }
+table.costs td:nth-child(n+2) { white-space: nowrap; }
+table.compare { min-width: 860px; }
+table.compare caption { caption-side: bottom; padding: 10px 14px; text-align: left; font-size: .85rem; color: var(--slate); }
+.small-note { font-size: .85rem; color: var(--slate); margin-top: 10px; }
+.travel { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin-top: 16px; }
+.travel dt { font-weight: 600; }
+.sources { display: grid; gap: 8px; padding-left: 1.2em; margin-bottom: 20px; word-break: break-word; }
+.dest-block { margin-top: 28px; }
+.go-head .hero-actions { margin-top: 20px; }
+/* Test d'éligibilité */
+.elig { display: grid; gap: 16px; }
+.elig-progress { display: grid; gap: 8px; font-size: .9rem; font-weight: 600; color: var(--slate); }
+.elig-bar { display: block; height: 6px; border-radius: 6px; background: var(--cloud); overflow: hidden; }
+.elig-bar span { display: block; height: 100%; background: var(--accent-strong); transition: width .25s ease; }
+.elig-q { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.25; color: var(--ink); }
+.elig-options { display: grid; gap: 10px; }
+.elig-option { min-height: 56px; padding: 14px 18px; text-align: left; font: inherit; font-size: 1.02rem; font-weight: 600; color: var(--ink); background: #fff; border: 1.5px solid var(--line); border-radius: 14px; cursor: pointer; }
+.elig-option:hover, .elig-option.is-selected { border-color: var(--accent-strong); background: color-mix(in srgb, var(--accent) 8%, #fff); }
+.elig-back { justify-self: start; min-height: 44px; padding: 8px 4px; background: none; border: 0; font: inherit; font-weight: 600; color: var(--slate); cursor: pointer; text-decoration: underline; }
+.elig-programs { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 10px; }
+.elig-program { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; min-height: 56px; padding: 12px 16px; border: 1.5px solid var(--accent-strong); border-radius: 14px; text-decoration: none; color: var(--ink); }
+.elig-program strong { flex: 1; min-width: 12ch; }
+.elig-result { display: grid; gap: 14px; }
+.elig-contact { display: grid; gap: 10px; margin-top: 10px; padding-top: 18px; border-top: 1px solid var(--line); }
+.elig-contact h3 { font-family: var(--font-display); font-size: 1.2rem; }
+.form-success-text { font-weight: 600; font-size: 1.1rem; }
+.elig-disclaimer { font-size: .82rem; color: var(--slate); }
+
+/* ===== Bandeau de consentement ===== */
+.consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 100; max-width: 640px; margin: 0 auto; display: grid; gap: 12px; padding: 18px 20px; background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 40px rgb(11 37 69 / 18%); font-size: .95rem; }
+.consent-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+.mini-card > span { min-width: 0; }
+.mini-card .goal-chip, .mini-card .dest-chip { display: inline-flex; flex-direction: row; flex-grow: 0; flex-shrink: 0; white-space: normal; max-width: 40%; text-align: center; }
+.section:not(.section-tint) .step { border: 1px solid var(--line); }

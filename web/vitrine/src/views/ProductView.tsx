@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { CONTACT_EMAIL, PRODUCT_APPS, PRODUCT_COLORS, PRODUCT_DARK, PRODUCT_KEYS, type Lang, type ProductKey } from "@/config/site";
 import { pathFor } from "@/config/routes";
 import type { Dict } from "@/content/types";
@@ -9,12 +10,12 @@ import { JsonLd } from "@/components/JsonLd";
 import { serviceLd } from "@/lib/seo";
 import { BusinessForm } from "@/components/BusinessForm";
 
-export function ProductView({ country, lang, dict, product }: { country: string; lang: Lang; dict: Dict; product: ProductKey }) {
+export function ProductView({ country, lang, dict, product, extra }: { country: string; lang: Lang; dict: Dict; product: ProductKey; extra?: ReactNode }) {
   const p = dict.products[product];
   const color = PRODUCT_COLORS[product];
   const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(p.cta.subject)}`;
   const appUrl = PRODUCT_APPS[product].live && p.app ? PRODUCT_APPS[product].url : null;
-  const teamHref = p.business ? "#entreprises" : mailto;
+  const teamHref = p.business ? "#entreprises" : p.testAnchor ? "#test" : mailto;
 
   return (
     <div style={{ ["--accent" as string]: color, ["--accent-strong" as string]: PRODUCT_DARK[product] }}>
@@ -68,6 +69,8 @@ export function ProductView({ country, lang, dict, product }: { country: string;
           </figcaption>
         </figure>
       </section>
+
+      {extra}
 
       <section id="comment" className="section section-tint">
         <div className="container">
@@ -158,8 +161,8 @@ export function ProductView({ country, lang, dict, product }: { country: string;
             <h2 className="section-title">{p.cta.title}</h2>
             <p className="section-lead">{p.cta.text}</p>
           </div>
-          <a className="btn btn-light" href={appUrl ?? mailto}>
-            {appUrl ? <Icon name="arrow" /> : <Icon name="mail" />} {p.cta.button}
+          <a className="btn btn-light" href={appUrl ?? (p.testAnchor ? "#test" : mailto)}>
+            {appUrl || p.testAnchor ? <Icon name="arrow" /> : <Icon name="mail" />} {p.cta.button}
           </a>
         </div>
       </section>

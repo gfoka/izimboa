@@ -18,18 +18,33 @@ export function pageMetadata(opts: {
 }): Metadata {
   const { country, lang, key, meta, photo } = opts;
   const c = getCountry(country)!;
-  const url = absoluteUrl(pathFor(country, lang, key));
+  const paths = Object.fromEntries(c.langs.map((l) => [l, pathFor(country, l, key)])) as Record<Lang, string>;
+  return pathMetadata({ country, lang, paths, meta, photo, noindex: NOINDEX_PAGES.includes(key), absoluteTitle: key === "home" });
+}
+
+/** Métadonnées à partir des chemins de la page dans chaque langue (pages et sous-pages). */
+export function pathMetadata(opts: {
+  country: string;
+  lang: Lang;
+  paths: Record<Lang, string>;
+  meta: Meta;
+  photo: PhotoKey;
+  noindex?: boolean;
+  absoluteTitle?: boolean;
+}): Metadata {
+  const { country, lang, paths, meta, photo, noindex = false, absoluteTitle = false } = opts;
+  const c = getCountry(country)!;
+  const url = absoluteUrl(paths[lang]);
 
   const languages: Record<string, string> = {};
-  for (const l of c.langs) languages[localeTag(l, country)] = absoluteUrl(pathFor(country, l, key));
+  for (const l of c.langs) languages[localeTag(l, country)] = absoluteUrl(paths[l]);
   languages["x-default"] = `${SITE_URL}/`;
 
-  const noindex = NOINDEX_PAGES.includes(key);
   const p = PHOTOS[photo];
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: key === "home" ? { absolute: meta.title } : meta.title,
+    title: absoluteTitle ? { absolute: meta.title } : meta.title,
     description: meta.description,
     alternates: { canonical: url, languages },
     robots: noindex ? { index: false, follow: true } : { index: true, follow: true },
@@ -110,5 +125,29 @@ export function breadcrumbLd(items: { name: string; url: string }[]) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.name, item: it.url })),
+  };
+}
+
+export function faqLd(faq: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
+}
+
+/** Service d'accompagnement rendu dans tout le pays, avec la liste des villes desservies. */
+export function goServiceLd(opts: { name: string; description: string; url: string; country: string; lang: Lang; cities: string[]; about?: string }) {
+  const c = getCountry(opts.country)!;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: opts.name,
+    serviceType: opts.lang === "fr" ? "Accompagnement immigration" : "Immigration support",
+    description: opts.description,
+    url: opts.url,
+    provider: { "@id": ORG_ID },
+    areaServed: [{ "@type": "Country", name: c.name[opts.lang] }, ...opts.cities.map((n) => ({ "@type": "City", name: n }))],
+    ...(opts.about ? { about: { "@type": "Thing", name: opts.about } } : {}),
   };
 }

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, getCountry, localeTag } from "@/config/site";
-import { NOINDEX_PAGES, absoluteUrl, allPublishedPages, pathFor } from "@/config/routes";
+import { NOINDEX_PAGES, absoluteUrl, allPublishedPages, pathFor, subPathFor } from "@/config/routes";
+import { goSubPages } from "@/content/cm/go";
 
 export const dynamic = "force-static";
 
@@ -22,5 +23,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages },
     };
   });
-  return [{ url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 0.5 }, ...entries];
+  // Sous-pages d'Izimboa Go au Cameroun : programmes, comparatif, villes.
+  const cm = getCountry("cm")!;
+  const goEntries: MetadataRoute.Sitemap = cm.open
+    ? cm.langs.flatMap((lang) =>
+        goSubPages().map((p) => {
+          const languages: Record<string, string> = {};
+          for (const l of cm.langs) languages[localeTag(l, "cm")] = absoluteUrl(subPathFor("cm", l, "go", p.slug[l]));
+          return { url: absoluteUrl(subPathFor("cm", lang, "go", p.slug[lang])), changeFrequency: "weekly" as const, priority: 0.7, alternates: { languages } };
+        }),
+      )
+    : [];
+  return [{ url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 0.5 }, ...entries, ...goEntries];
 }
