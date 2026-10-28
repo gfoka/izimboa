@@ -1,0 +1,55 @@
+name: Contrôle de sécurité du serveur (manuel)
+
+# Lecture seule : ports ouverts, pare-feu, SSH, fail2ban, mises à jour, certificats, sauvegardes.
+# N'affiche aucun secret ni aucune donnée personnelle.
+on:
+  workflow_dispatch:
+
+env:
+  VPS_HOST: 212.47.78.167
+  VPS_USER: deploy
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Connexion SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+          cp infra/vps/known_hosts ~/.ssh/known_hosts
+      - name: Contrôles sur le serveur
+        run: |
+          ssh "$VPS_USER@$VPS_HOST" 'bash -s' > check.txt 2>&1 <<'SH'
+          echo "=== Pare-feu (ufw) ==="; sudo ufw status verbose | head -20
+          echo "=== Ports en écoute (hors localhost) ==="; sudo ss -tlnpH | awk '{print $4, $6}' | grep -v -E '^(127\.|\[::1\])' | sort -u
+          echo "=== Ports publiés par Docker ==="; docker ps --format '{{.Names}} {{.Ports}}'
+          echo "=== SSH ==="; sudo sshd -T 2>/dev/null | grep -E '^(passwordauthentication|permitrootlogin|kbdinteractiveauthentication|pubkeyauthentication) '
+          echo "=== fail2ban ==="; sudo fail2ban-client status sshd 2>&1 | grep -E 'Currently|Total' || echo "fail2ban absent"
+          echo "=== Mises à jour automatiques ==="; systemctl is-active unattended-upgrades; ls /var/run/reboot-required 2>/dev/null && echo "REDÉMARRAGE NÉCESSAIRE" || echo "pas de redémarrage en attente"
+          echo "=== Paquets de sécurité en attente ==="; apt list --upgradable 2>/dev/null | grep -c -i security || true
+          echo "=== Fichier .env (droits) ==="; stat -c '%a %U %n' /srv/izimboa/.env
+          echo "=== Sauvegardes ==="; ls -la /srv/izimboa/backups 2>/dev/null | tail -5 || echo "AUCUNE SAUVEGARDE"
+          echo "=== Disque ==="; df -h / | tail -1
+          echo "=== Utilisateurs avec shell ==="; getent passwd | awk -F: '$7 ~ /(bash|sh)$/ {print $1}'
+          SH
+      - name: Certificats et en-têtes HTTPS (vu d'Internet)
+        run: |
+          for h in izimboa.com api.izimboa.com auth.izimboa.com delivery.izimboa.com; do
+            echo "=== $h ===" >> check.txt
+            echo | openssl s_client -servername $h -connect $h:443 2>/dev/null | openssl x509 -noout -enddate >> check.txt 2>&1
+            curl -sI https://$h/ | grep -i -E '^(strict-transport|x-content-type|content-security|x-frame|server):' >> check.txt || true
+          done
+          echo "=== Exposition de l'API ===" >> check.txt
+          for p in /actuator/env /actuator/health /v1/contact-requests /v3/api-docs; do echo "$p -> $(curl -s -o /dev/null -w '%{http_code}' https://api.izimboa.com$p)" >> check.txt; done
+          echo "=== Postgres depuis Internet (doit échouer) ===" >> check.txt
+          (timeout 5 bash -c "</dev/tcp/$VPS_HOST/5432" && echo "5432 OUVERT !") >> check.txt 2>&1 || echo "5432 fermé" >> check.txt
+          (timeout 5 bash -c "</dev/tcp/$VPS_HOST/8080" && echo "8080 OUVERT !") >> check.txt 2>&1 || echo "8080 fermé" >> check.txt
+      - name: Publier le résultat
+        run: |
+          cat check.txt
+          python3 -c "import sys; t=open('check.txt').read()[:60000]; print('::notice title=securite::' + t.replace('%','%25').replace('\r','').replace('\n','%0A'))"
