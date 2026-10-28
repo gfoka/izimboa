@@ -10,6 +10,7 @@ import { Icon } from "@/components/Icon";
 import { ProductSymbol } from "@/components/Logo";
 import { ProgramGrid, type GridItem } from "@/components/ProgramGrid";
 import { EligibilityTest, type ProgramCard } from "@/components/EligibilityTest";
+import { TrackedLink } from "@/components/TrackedLink";
 import { faqLd, goServiceLd } from "@/lib/seo";
 
 type Ctx = { country: string; lang: Lang; dict: Dict };
@@ -27,7 +28,16 @@ export const programHref = (country: string, lang: Lang, p: Program) => subPathF
 export const cityHref = (country: string, lang: Lang, c: City) => subPathFor(country, lang, "go", c.slug[lang]);
 
 function programCards(country: string, lang: Lang): ProgramCard[] {
-  return PROGRAMS.filter((p) => p.status !== "paused").map((p) => ({ key: p.key, name: p[lang].name, destination: p.destination, goal: p.goal, href: programHref(country, lang, p) }));
+  return PROGRAMS.filter((p) => p.status !== "paused").map((p) => ({
+    key: p.key,
+    name: p[lang].name,
+    destination: p.destination,
+    goal: p.goal,
+    href: programHref(country, lang, p),
+    status: p.status,
+    conditions: p[lang].conditions.slice(0, 2),
+    source: p.sources[0],
+  }));
 }
 
 /** Test d'éligibilité, présent sur la page Go, chaque programme et chaque ville (ancre #test). */
@@ -114,6 +124,7 @@ export function GoHub(ctx: Ctx) {
         </div>
       </section>
       <GoTest {...ctx} />
+      <GoTrust {...ctx} />
       {CITIES.length > 0 && (
         <section className="section" aria-labelledby="villes-titre">
           <div className="container">
@@ -124,6 +135,33 @@ export function GoHub(ctx: Ctx) {
         </section>
       )}
     </>
+  );
+}
+
+/** Ce que fait Izimboa Go et ses limites : information, orientation, assistance, conseil réglementé. */
+export function GoTrust({ country, lang }: Ctx) {
+  const t = goUi(lang).trust;
+  return (
+    <section className="section" aria-labelledby="confiance-titre">
+      <div className="container">
+        <h2 id="confiance-titre" className="section-title">{t.title}</h2>
+        <p className="section-lead">{t.lead}</p>
+        <ul className="trust-grid">
+          {t.items.map((i) => (
+            <li key={i.title} className="trust-item">
+              <h3>{i.title}</h3>
+              <p>{i.text}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="notice" role="note">
+          <Icon name="info" />
+          <span>
+            {t.notAffiliated} <a href={pathFor(country, lang, "legal")}>{t.legalLink}</a>
+          </span>
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -199,7 +237,7 @@ export function ProgramView(ctx: Ctx & { program: Program }) {
           </p>
         )}
         <div className="hero-actions">
-          <a className="btn btn-accent" href="#test">{ui.test.title}</a>
+          <TrackedLink className="btn btn-accent" href="#test" cta="evaluate_profile">{ui.test.cta}</TrackedLink>
           <a className="btn btn-outline" href={pathFor(country, lang, "go") + "#programmes"}>{ui.program.hubLink}</a>
         </div>
       </GoPageHead>
@@ -245,14 +283,19 @@ export function ProgramView(ctx: Ctx & { program: Program }) {
           <div>
             <h2 className="section-title section-title-sm">{ui.program.costs}</h2>
             {t.costs.length > 0 && (
-              <div className="table-wrap">
+              <div className="table-wrap" tabIndex={0} role="region" aria-label={ui.program.costs}>
                 <table className="costs">
                   <thead>
-                    <tr><th scope="col">{ui.program.costLabel}</th><th scope="col">{ui.program.costAmount}</th><th scope="col">{ui.program.costFcfa}</th></tr>
+                    <tr><th scope="col">{ui.program.costLabel}</th><th scope="col">{ui.program.costNature}</th><th scope="col">{ui.program.costAmount}</th><th scope="col">{ui.program.costFcfa}</th></tr>
                   </thead>
                   <tbody>
                     {t.costs.map((c) => (
-                      <tr key={c.label}><th scope="row">{c.label}</th><td>{c.amount}</td><td>{c.fcfa ?? "-"}</td></tr>
+                      <tr key={c.label} className={c.kind === "requirement" ? "is-requirement" : undefined}>
+                        <th scope="row">{c.label}</th>
+                        <td className="cost-kind" data-label={ui.program.costNature}>{ui.program.costKinds[c.kind ?? "official"]}</td>
+                        <td data-label={ui.program.costAmount}>{c.amount}{c.uncertain && <small className="uncertain"> ({ui.program.uncertain})</small>}</td>
+                        <td data-label={ui.program.costFcfa}>{c.fcfa ?? "-"}</td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>
@@ -326,7 +369,7 @@ export function CityView(ctx: Ctx & { city: City }) {
       <JsonLd data={goServiceLd({ name: t.h1, description: t.metaDescription, url, country, lang, cities: [c.name] })} />
       <GoPageHead ctx={ctx} crumbs={[{ name: c.name, href: cityHref(country, lang, c) }]} title={t.h1} intro={t.intro}>
         <div className="hero-actions">
-          <a className="btn btn-accent" href="#test">{ui.test.title}</a>
+          <TrackedLink className="btn btn-accent" href="#test" cta="evaluate_profile">{ui.test.cta}</TrackedLink>
           <a className="btn btn-outline" href={pathFor(country, lang, "go") + "#programmes"}>{ui.program.hubLink}</a>
         </div>
       </GoPageHead>
@@ -399,13 +442,13 @@ export function CompareView(ctx: Ctx) {
     <div style={accent()}>
       <GoPageHead ctx={ctx} crumbs={[{ name: c.h1.split(":")[0].trim(), href: subPathFor(country, lang, "go", c.slug) }]} title={c.h1} intro={c.intro}>
         <div className="hero-actions">
-          <a className="btn btn-accent" href="#test">{ui.test.title}</a>
+          <TrackedLink className="btn btn-accent" href="#test" cta="evaluate_profile">{ui.test.cta}</TrackedLink>
         </div>
       </GoPageHead>
 
       <section className="section section-tint">
         <div className="container">
-          <div className="table-wrap">
+          <div className="table-wrap" tabIndex={0} role="region" aria-label={c.tableCaption}>
             <table className="compare">
               <caption>{c.tableCaption}</caption>
               <thead>

@@ -85,27 +85,32 @@
         {
           "label": "Frais de traitement – demandeur principal",
           "amount": "990 CAD",
-          "fcfa": "≈ 415 900 FCFA"
+          "fcfa": "≈ 415 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Droit de résidence permanente – par adulte",
           "amount": "600 CAD",
-          "fcfa": "≈ 252 100 FCFA"
+          "fcfa": "≈ 252 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Frais de traitement – époux ou conjoint",
           "amount": "990 CAD",
-          "fcfa": "≈ 415 900 FCFA"
+          "fcfa": "≈ 415 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Frais de traitement – enfant à charge",
           "amount": "270 CAD",
-          "fcfa": "≈ 113 400 FCFA"
+          "fcfa": "≈ 113 400 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biométrie – par personne (max. 170 CAD par famille)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         }
       ],
       "delays": "Il n'y a pas de délai garanti pour recevoir une invitation : tout dépend de votre score et des tirages. Une fois la demande soumise, IRCC traite la plupart des demandes complètes Entrée express en environ 6 mois ; le délai actuel est affiché dans l'outil officiel des délais de traitement d'IRCC.",
@@ -183,27 +188,32 @@
         {
           "label": "Processing fee – principal applicant",
           "amount": "990 CAD",
-          "fcfa": "≈ 415 900 FCFA"
+          "fcfa": "≈ 415 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Right of Permanent Residence Fee – per adult",
           "amount": "600 CAD",
-          "fcfa": "≈ 252 100 FCFA"
+          "fcfa": "≈ 252 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Processing fee – spouse or partner",
           "amount": "990 CAD",
-          "fcfa": "≈ 415 900 FCFA"
+          "fcfa": "≈ 415 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Processing fee – dependent child",
           "amount": "270 CAD",
-          "fcfa": "≈ 113 400 FCFA"
+          "fcfa": "≈ 113 400 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biometrics – per person (max. 170 CAD per family)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         }
       ],
       "delays": "There is no guaranteed time to receive an invitation: it depends on your score and on draws. Once submitted, IRCC processes most complete Express Entry applications in about 6 months; current times are shown in IRCC's official processing-times tool.",
@@ -319,17 +329,20 @@
         {
           "label": "Permis d'études (IRCC)",
           "amount": "150 CAD",
-          "fcfa": "≈ 63 000 FCFA"
+          "fcfa": "≈ 63 000 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biométrie (IRCC)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         },
         {
           "label": "CAQ pour études au Québec (frais 2026)",
           "amount": "135 CAD",
-          "fcfa": "≈ 56 700 FCFA"
+          "fcfa": "≈ 56 700 FCFA",
+          "kind": "official"
         }
       ],
       "delays": "Les délais varient selon le pays et la période (ils augmentent avant les rentrées de septembre et janvier). Consultez l'outil officiel des délais de traitement d'IRCC pour le Cameroun et déposez votre demande le plus tôt possible après l'admission.",
@@ -407,17 +420,20 @@
         {
           "label": "Study permit (IRCC)",
           "amount": "150 CAD",
-          "fcfa": "≈ 63 000 FCFA"
+          "fcfa": "≈ 63 000 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biometrics (IRCC)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         },
         {
           "label": "CAQ for studies in Québec (2026 fee)",
           "amount": "135 CAD",
-          "fcfa": "≈ 56 700 FCFA"
+          "fcfa": "≈ 56 700 FCFA",
+          "kind": "official"
         }
       ],
       "delays": "Processing times vary by country and season (they rise before the September and January intakes). Check IRCC's official processing-times tool for Cameroon and apply as soon as possible after admission.",
@@ -524,17 +540,20 @@
         {
           "label": "Permis de travail (payé par le travailleur)",
           "amount": "155 CAD",
-          "fcfa": "≈ 65 100 FCFA"
+          "fcfa": "≈ 65 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biométrie (par personne)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         },
         {
           "label": "Frais de conformité de l'employeur (payés par l'employeur)",
           "amount": "230 CAD",
-          "fcfa": "≈ 96 600 FCFA"
+          "fcfa": "≈ 96 600 FCFA",
+          "kind": "employer"
         }
       ],
       "delays": "Les délais dépendent du pays de résidence et du volume de demandes. Consultez l'outil officiel des délais de traitement d'IRCC pour les permis de travail présentés depuis le Cameroun.",
@@ -607,17 +626,20 @@
         {
           "label": "Work permit (paid by the worker)",
           "amount": "155 CAD",
-          "fcfa": "≈ 65 100 FCFA"
+          "fcfa": "≈ 65 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biometrics (per person)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         },
         {
           "label": "Employer compliance fee (paid by the employer)",
           "amount": "230 CAD",
-          "fcfa": "≈ 96 600 FCFA"
+          "fcfa": "≈ 96 600 FCFA",
+          "kind": "employer"
         }
       ],
       "delays": "Processing times depend on your country of residence and application volumes. Check IRCC's official processing-times tool for work permits submitted from Cameroon.",
@@ -729,22 +751,26 @@
         {
           "label": "Frais de traitement RP – demandeur principal (IRCC)",
           "amount": "990 CAD",
-          "fcfa": "≈ 415 900 FCFA"
+          "fcfa": "≈ 415 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Droit de résidence permanente – par adulte (IRCC)",
           "amount": "600 CAD",
-          "fcfa": "≈ 252 100 FCFA"
+          "fcfa": "≈ 252 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biométrie – par personne (IRCC)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         },
         {
           "label": "Exemple : demande de désignation au Nouveau-Brunswick",
           "amount": "250 CAD",
-          "fcfa": "≈ 105 000 FCFA"
+          "fcfa": "≈ 105 000 FCFA",
+          "kind": "official"
         }
       ],
       "delays": "Le délai comprend deux étapes : la décision de la province (variable selon le volet) puis la demande fédérale. Les demandes via Entrée express sont généralement traitées plus vite que les demandes « de base » ; consultez l'outil des délais d'IRCC et le site de la province.",
@@ -818,22 +844,26 @@
         {
           "label": "PR processing fee – principal applicant (IRCC)",
           "amount": "990 CAD",
-          "fcfa": "≈ 415 900 FCFA"
+          "fcfa": "≈ 415 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Right of Permanent Residence Fee – per adult (IRCC)",
           "amount": "600 CAD",
-          "fcfa": "≈ 252 100 FCFA"
+          "fcfa": "≈ 252 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biometrics – per person (IRCC)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         },
         {
           "label": "Example: New Brunswick nomination application",
           "amount": "250 CAD",
-          "fcfa": "≈ 105 000 FCFA"
+          "fcfa": "≈ 105 000 FCFA",
+          "kind": "official"
         }
       ],
       "delays": "Timing has two stages: the province's decision (varies by stream) and then the federal application. Express Entry-linked applications are generally processed faster than 'base' ones; check IRCC's processing-times tool and the province's website.",
@@ -949,27 +979,32 @@
         {
           "label": "Demande de sélection permanente – requérant principal (Québec)",
           "amount": "940 CAD",
-          "fcfa": "≈ 394 900 FCFA"
+          "fcfa": "≈ 394 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Demande de sélection permanente – par membre de la famille (Québec)",
           "amount": "201 CAD",
-          "fcfa": "≈ 84 400 FCFA"
+          "fcfa": "≈ 84 400 FCFA",
+          "kind": "official"
         },
         {
           "label": "Frais de traitement RP – demandeur principal (IRCC)",
           "amount": "990 CAD",
-          "fcfa": "≈ 415 900 FCFA"
+          "fcfa": "≈ 415 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Droit de résidence permanente – par adulte (IRCC)",
           "amount": "600 CAD",
-          "fcfa": "≈ 252 100 FCFA"
+          "fcfa": "≈ 252 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biométrie – par personne (IRCC)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         }
       ],
       "delays": "Il n'y a aucune garantie d'invitation : en 2026, les rondes PSTQ ont surtout visé des personnes séjournant au Québec. Après l'invitation, il faut compter le délai de traitement du Québec pour le CSQ, puis celui d'IRCC pour la résidence permanente, qui dépend aussi des places prévues dans le plan d'immigration du Québec.",
@@ -1043,27 +1078,32 @@
         {
           "label": "Permanent selection application – principal applicant (Québec)",
           "amount": "940 CAD",
-          "fcfa": "≈ 394 900 FCFA"
+          "fcfa": "≈ 394 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Permanent selection application – per family member (Québec)",
           "amount": "201 CAD",
-          "fcfa": "≈ 84 400 FCFA"
+          "fcfa": "≈ 84 400 FCFA",
+          "kind": "official"
         },
         {
           "label": "PR processing fee – principal applicant (IRCC)",
           "amount": "990 CAD",
-          "fcfa": "≈ 415 900 FCFA"
+          "fcfa": "≈ 415 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Right of Permanent Residence Fee – per adult (IRCC)",
           "amount": "600 CAD",
-          "fcfa": "≈ 252 100 FCFA"
+          "fcfa": "≈ 252 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Biometrics – per person (IRCC)",
           "amount": "85 CAD",
-          "fcfa": "≈ 35 700 FCFA"
+          "fcfa": "≈ 35 700 FCFA",
+          "kind": "official"
         }
       ],
       "delays": "There is no guaranteed invitation: in 2026, PSTQ rounds mainly targeted people living in Québec. After an invitation, allow for Québec's processing time for the CSQ, then IRCC's time for permanent residence, which also depends on the places set in Québec's immigration plan.",

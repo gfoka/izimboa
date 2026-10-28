@@ -90,32 +90,39 @@
         {
           "label": "Frais de procédure Campus France Cameroun",
           "amount": "85 000 FCFA",
-          "fcfa": "85 000 FCFA"
+          "fcfa": "85 000 FCFA",
+          "kind": "official"
         },
         {
           "label": "Frais TLS liés au paiement Campus France",
           "amount": "16 000 FCFA",
-          "fcfa": "16 000 FCFA"
+          "fcfa": "16 000 FCFA",
+          "kind": "provider"
         },
         {
           "label": "Visa long séjour étudiant (pays à procédure Études en France)",
           "amount": "50 €",
-          "fcfa": "≈ 32 800 FCFA"
+          "fcfa": "≈ 32 800 FCFA",
+          "kind": "official"
         },
         {
           "label": "Frais de service TLScontact pour le dépôt du visa (selon France-Visas)",
           "amount": "41 €",
-          "fcfa": "≈ 26 900 FCFA"
+          "fcfa": "≈ 26 900 FCFA",
+          "kind": "provider",
+          "uncertain": true
         },
         {
           "label": "Taxe de validation du VLS-TS étudiant (en France)",
           "amount": "100 €",
-          "fcfa": "≈ 65 600 FCFA"
+          "fcfa": "≈ 65 600 FCFA",
+          "kind": "official"
         },
         {
           "label": "Ressources minimales à justifier (par mois)",
           "amount": "877,5 €",
-          "fcfa": "≈ 575 600 FCFA"
+          "fcfa": "≈ 575 600 FCFA",
+          "kind": "requirement"
         }
       ],
       "delays": "Campus France Cameroun indique un traitement de 15 jours ouvrables maximum après l'entretien. France-Visas recommande de prévoir 1 mois entre le dépôt de la demande de visa long séjour et le départ, et les rendez-vous peuvent être plus longs à obtenir en période estivale.",
@@ -194,32 +201,39 @@
         {
           "label": "Campus France Cameroon procedure fee",
           "amount": "85,000 FCFA",
-          "fcfa": "85,000 FCFA"
+          "fcfa": "85,000 FCFA",
+          "kind": "official"
         },
         {
           "label": "TLS fee linked to the Campus France payment",
           "amount": "16,000 FCFA",
-          "fcfa": "16,000 FCFA"
+          "fcfa": "16,000 FCFA",
+          "kind": "provider"
         },
         {
           "label": "Long-stay student visa (Études en France countries)",
           "amount": "€50",
-          "fcfa": "≈ 32,800 FCFA"
+          "fcfa": "≈ 32,800 FCFA",
+          "kind": "official"
         },
         {
           "label": "TLScontact service fee for the visa application (per France-Visas)",
           "amount": "€41",
-          "fcfa": "≈ 26,900 FCFA"
+          "fcfa": "≈ 26,900 FCFA",
+          "kind": "provider",
+          "uncertain": true
         },
         {
           "label": "VLS-TS student validation tax (in France)",
           "amount": "€100",
-          "fcfa": "≈ 65,600 FCFA"
+          "fcfa": "≈ 65,600 FCFA",
+          "kind": "official"
         },
         {
           "label": "Minimum funds to show (per month)",
           "amount": "€877.50",
-          "fcfa": "≈ 575,600 FCFA"
+          "fcfa": "≈ 575,600 FCFA",
+          "kind": "requirement"
         }
       ],
       "delays": "Campus France Cameroon states files are processed within 15 working days at most after the interview. France-Visas advises allowing 1 month between lodging a long-stay visa application and departure, and appointments can take longer to get in the summer peak.",
@@ -337,27 +351,33 @@
         {
           "label": "Visa de long séjour (plein tarif)",
           "amount": "99 €",
-          "fcfa": "≈ 64 900 FCFA"
+          "fcfa": "≈ 64 900 FCFA",
+          "kind": "official"
         },
         {
           "label": "Frais de service TLScontact (selon France-Visas)",
           "amount": "41 €",
-          "fcfa": "≈ 26 900 FCFA"
+          "fcfa": "≈ 26 900 FCFA",
+          "kind": "provider",
+          "uncertain": true
         },
         {
           "label": "Carte de séjour talent (timbre 50 € + taxe 300 €)",
           "amount": "350 €",
-          "fcfa": "≈ 229 600 FCFA"
+          "fcfa": "≈ 229 600 FCFA",
+          "kind": "official"
         },
         {
           "label": "Salaire minimum talent-salarié qualifié (brut annuel)",
           "amount": "39 582 €",
-          "fcfa": "≈ 26 millions FCFA"
+          "fcfa": "≈ 26 millions FCFA",
+          "kind": "requirement"
         },
         {
           "label": "Salaire minimum talent-carte bleue européenne (brut annuel)",
           "amount": "59 373 €",
-          "fcfa": "≈ 38,9 millions FCFA"
+          "fcfa": "≈ 38,9 millions FCFA",
+          "kind": "requirement"
         }
       ],
       "delays": "Le délai dépend surtout de l'instruction de l'autorisation de travail par l'administration française et du rendez-vous visa ; aucun délai unique n'est garanti. France-Visas recommande de prévoir 1 mois entre le dépôt de la demande de visa long séjour et le départ.",
@@ -433,27 +453,33 @@
         {
           "label": "Long-stay visa (full rate)",
           "amount": "€99",
-          "fcfa": "≈ 64,900 FCFA"
+          "fcfa": "≈ 64,900 FCFA",
+          "kind": "official"
         },
         {
           "label": "TLScontact service fee (per France-Visas)",
           "amount": "€41",
-          "fcfa": "≈ 26,900 FCFA"
+          "fcfa": "≈ 26,900 FCFA",
+          "kind": "provider",
+          "uncertain": true
         },
         {
           "label": "Talent residence card (€50 stamp duty + €300 tax)",
           "amount": "€350",
-          "fcfa": "≈ 229,600 FCFA"
+          "fcfa": "≈ 229,600 FCFA",
+          "kind": "official"
         },
         {
           "label": "Minimum salary, Talent – qualified employee (gross per year)",
           "amount": "€39,582",
-          "fcfa": "≈ 26 million FCFA"
+          "fcfa": "≈ 26 million FCFA",
+          "kind": "requirement"
         },
         {
           "label": "Minimum salary, Talent – EU Blue Card (gross per year)",
           "amount": "€59,373",
-          "fcfa": "≈ 38.9 million FCFA"
+          "fcfa": "≈ 38.9 million FCFA",
+          "kind": "requirement"
         }
       ],
       "delays": "Timing depends mainly on how long the French administration takes to process the work authorisation and on visa appointment availability; no single timeframe is guaranteed. France-Visas advises allowing 1 month between lodging a long-stay visa application and departure.",
@@ -577,32 +603,38 @@
         {
           "label": "Visa long séjour D (payable en FCFA)",
           "amount": "180 €",
-          "fcfa": "≈ 118 100 FCFA"
+          "fcfa": "≈ 118 100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Redevance Office des Étrangers – établissement public",
           "amount": "251 €",
-          "fcfa": "≈ 164 600 FCFA"
+          "fcfa": "≈ 164 600 FCFA",
+          "kind": "official"
         },
         {
           "label": "Redevance Office des Étrangers – établissement privé",
           "amount": "242 €",
-          "fcfa": "≈ 158 700 FCFA"
+          "fcfa": "≈ 158 700 FCFA",
+          "kind": "official"
         },
         {
           "label": "Équivalence du diplôme secondaire (FWB)",
           "amount": "150 €",
-          "fcfa": "≈ 98 400 FCFA"
+          "fcfa": "≈ 98 400 FCFA",
+          "kind": "official"
         },
         {
           "label": "Moyens de subsistance minimum 2026-2027 (par mois)",
           "amount": "1 062 €",
-          "fcfa": "≈ 696 600 FCFA"
+          "fcfa": "≈ 696 600 FCFA",
+          "kind": "requirement"
         },
         {
           "label": "Compte bloqué pour 12 mois (12 × 1 062 €)",
           "amount": "12 744 €",
-          "fcfa": "≈ 8,36 millions FCFA"
+          "fcfa": "≈ 8,36 millions FCFA",
+          "kind": "requirement"
         }
       ],
       "delays": "L'ambassade ne publie pas de délai fixe : il faut compter avec l'authentification des diplômes (GCE Board ou OBC), un éventuel entretien et l'examen du dossier. Déposez dès que vous avez votre attestation d'inscription et votre équivalence (ou la preuve de dépôt).",
@@ -680,32 +712,38 @@
         {
           "label": "Long-stay D visa (payable in FCFA)",
           "amount": "€180",
-          "fcfa": "≈ 118,100 FCFA"
+          "fcfa": "≈ 118,100 FCFA",
+          "kind": "official"
         },
         {
           "label": "Immigration Office fee – public institution",
           "amount": "€251",
-          "fcfa": "≈ 164,600 FCFA"
+          "fcfa": "≈ 164,600 FCFA",
+          "kind": "official"
         },
         {
           "label": "Immigration Office fee – private institution",
           "amount": "€242",
-          "fcfa": "≈ 158,700 FCFA"
+          "fcfa": "≈ 158,700 FCFA",
+          "kind": "official"
         },
         {
           "label": "Secondary diploma equivalence (FWB)",
           "amount": "€150",
-          "fcfa": "≈ 98,400 FCFA"
+          "fcfa": "≈ 98,400 FCFA",
+          "kind": "official"
         },
         {
           "label": "Minimum means of subsistence 2026-2027 (per month)",
           "amount": "€1,062",
-          "fcfa": "≈ 696,600 FCFA"
+          "fcfa": "≈ 696,600 FCFA",
+          "kind": "requirement"
         },
         {
           "label": "Blocked account for 12 months (12 × €1,062)",
           "amount": "€12,744",
-          "fcfa": "≈ 8.36 million FCFA"
+          "fcfa": "≈ 8.36 million FCFA",
+          "kind": "requirement"
         }
       ],
       "delays": "The embassy does not publish a fixed processing time: allow for diploma authentication (GCE Board or OBC), a possible interview and the review of your file. Lodge as soon as you have your registration certificate and equivalence (or proof that you applied).",

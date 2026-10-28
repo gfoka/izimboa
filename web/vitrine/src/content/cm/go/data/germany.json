@@ -3,15 +3,36 @@
     "key": "de-study",
     "destination": "de",
     "goal": "study",
-    "slug": { "fr": "etudier-en-allemagne", "en": "study-in-germany" },
+    "slug": {
+      "fr": "etudier-en-allemagne",
+      "en": "study-in-germany"
+    },
     "updated": "2026-10-28",
     "sources": [
-      { "label": "Ambassade d'Allemagne à Yaoundé – Student visa (documents, frais)", "url": "https://jaunde.diplo.de/cm-en/service/student-visa/2443914" },
-      { "label": "Ambassade d'Allemagne à Yaoundé – Rendez-vous et délais d'attente", "url": "https://jaunde.diplo.de/cm-en/service/-/2128610" },
-      { "label": "Ambassade d'Allemagne à Yaoundé – FAQ rendez-vous", "url": "https://jaunde.diplo.de/cm-en/service/-/2574796" },
-      { "label": "Make it in Germany – Financer ses études (compte bloqué)", "url": "https://www.make-it-in-germany.com/de/studium-ausbildung/studieren-in-deutschland/absolvieren/finanzierung-sichern/print" },
-      { "label": "uni-assist – Akademische Prüfstelle (APS)", "url": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/akademische-pruefstelle-aps/" },
-      { "label": "TUM – APS (pays concernés : Chine, Vietnam, Inde)", "url": "https://www.tum.de/en/studies/application/aps" }
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – Student visa (documents, frais)",
+        "url": "https://jaunde.diplo.de/cm-en/service/student-visa/2443914"
+      },
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – Rendez-vous et délais d'attente",
+        "url": "https://jaunde.diplo.de/cm-en/service/-/2128610"
+      },
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – FAQ rendez-vous",
+        "url": "https://jaunde.diplo.de/cm-en/service/-/2574796"
+      },
+      {
+        "label": "Make it in Germany – Financer ses études (compte bloqué)",
+        "url": "https://www.make-it-in-germany.com/de/studium-ausbildung/studieren-in-deutschland/absolvieren/finanzierung-sichern/print"
+      },
+      {
+        "label": "uni-assist – Akademische Prüfstelle (APS)",
+        "url": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/akademische-pruefstelle-aps/"
+      },
+      {
+        "label": "TUM – APS (pays concernés : Chine, Vietnam, Inde)",
+        "url": "https://www.tum.de/en/studies/application/aps"
+      }
     ],
     "notes": "Compte bloqué : 11 904 EUR/an (992 EUR/mois) confirmé sur Make it in Germany (mention « 2025 ») et repris comme montant 2026 inchangé par les prestataires (Expatrio, page du 07/10/2026). La réforme du BAföG prévue pour le semestre d'hiver 2026/27 (forfait logement 380 -> 440 EUR) pourrait relever ce montant : à revérifier avant publication et à chaque rentrée. APS : exigé seulement pour Chine, Vietnam, Inde (et non pour le Cameroun) d'après les sources consultées. Frais de visa : l'ambassade de Yaoundé affiche 50 000 XAF (adulte) / 25 000 XAF (mineur), gratuit pour boursiers de fonds publics (équivalent des 75 EUR). Délai de traitement après dépôt non publié pour Yaoundé. Règles d'accès Bac/GCE (Studienkolleg vs accès direct) à vérifier au cas par cas dans la base d'admission DAAD/anabin ; formulation volontairement prudente. Le recours gracieux (remonstration) contre un refus a été supprimé le 01/07/2025 (FAQ ambassade).",
     "fr": {
@@ -36,28 +57,86 @@
         "Pas de certificat APS pour le Cameroun : l'APS ne concerne que certains pays (Chine, Vietnam, Inde)"
       ],
       "steps": [
-        { "title": "Choisir le cursus et vérifier l'accès", "text": "Comparez les programmes (base DAAD) et vérifiez si votre Bac ou GCE donne un accès direct ou passe par un Studienkolleg. Après une ou deux années réussies à l'université au Cameroun, l'accès direct devient souvent possible : à confirmer pour chaque université." },
-        { "title": "Postuler (directement ou via uni-assist)", "text": "Beaucoup d'universités passent par uni-assist, qui contrôle vos diplômes. Préparez des copies certifiées et des traductions si nécessaire, et respectez les dates limites (souvent 15 juillet pour l'hiver, 15 janvier pour l'été)." },
-        { "title": "S'inscrire tôt sur la liste d'attente de l'ambassade", "text": "Inscrivez-vous en ligne sur le système de rendez-vous de l'ambassade à Yaoundé dans la bonne catégorie (avec ou sans admission). L'inscription est gratuite et le rendez-vous doit être confirmé dans les 7 jours suivant l'e-mail." },
-        { "title": "Ouvrir le compte bloqué et l'assurance", "text": "Ouvrez un compte bloqué auprès d'un prestataire agréé et virez le montant exigé depuis le Cameroun. Souscrivez une assurance maladie allemande valable dès l'arrivée." },
-        { "title": "Déposer le dossier à Yaoundé", "text": "Présentez-vous avec les originaux et une copie de chaque document, classés en deux chemises, sans agrafes. Les empreintes et la photo sont prises sur place, et les frais sont payés au guichet du consulat contre reçu." },
-        { "title": "Décision et départ", "text": "L'ambassade vous informe quand le visa est prêt. En Allemagne, déclarez votre domicile et demandez le titre de séjour avant l'expiration du visa." }
+        {
+          "title": "Choisir le cursus et vérifier l'accès",
+          "text": "Comparez les programmes (base DAAD) et vérifiez si votre Bac ou GCE donne un accès direct ou passe par un Studienkolleg. Après une ou deux années réussies à l'université au Cameroun, l'accès direct devient souvent possible : à confirmer pour chaque université."
+        },
+        {
+          "title": "Postuler (directement ou via uni-assist)",
+          "text": "Beaucoup d'universités passent par uni-assist, qui contrôle vos diplômes. Préparez des copies certifiées et des traductions si nécessaire, et respectez les dates limites (souvent 15 juillet pour l'hiver, 15 janvier pour l'été)."
+        },
+        {
+          "title": "S'inscrire tôt sur la liste d'attente de l'ambassade",
+          "text": "Inscrivez-vous en ligne sur le système de rendez-vous de l'ambassade à Yaoundé dans la bonne catégorie (avec ou sans admission). L'inscription est gratuite et le rendez-vous doit être confirmé dans les 7 jours suivant l'e-mail."
+        },
+        {
+          "title": "Ouvrir le compte bloqué et l'assurance",
+          "text": "Ouvrez un compte bloqué auprès d'un prestataire agréé et virez le montant exigé depuis le Cameroun. Souscrivez une assurance maladie allemande valable dès l'arrivée."
+        },
+        {
+          "title": "Déposer le dossier à Yaoundé",
+          "text": "Présentez-vous avec les originaux et une copie de chaque document, classés en deux chemises, sans agrafes. Les empreintes et la photo sont prises sur place, et les frais sont payés au guichet du consulat contre reçu."
+        },
+        {
+          "title": "Décision et départ",
+          "text": "L'ambassade vous informe quand le visa est prêt. En Allemagne, déclarez votre domicile et demandez le titre de séjour avant l'expiration du visa."
+        }
       ],
       "costs": [
-        { "label": "Frais de visa national (adulte)", "amount": "50 000 FCFA (≈ 75 €)", "fcfa": "50 000 FCFA" },
-        { "label": "Frais de visa national (mineur)", "amount": "25 000 FCFA", "fcfa": "25 000 FCFA" },
-        { "label": "uni-assist : premier vœu", "amount": "75 €", "fcfa": "≈ 49 000 FCFA" },
-        { "label": "uni-assist : chaque vœu supplémentaire", "amount": "30 €", "fcfa": "≈ 19 700 FCFA" },
-        { "label": "Rendez-vous à l'ambassade", "amount": "Gratuit", "fcfa": "0 FCFA" }
+        {
+          "label": "Frais de visa national (adulte)",
+          "amount": "50 000 FCFA (≈ 75 €)",
+          "fcfa": "50 000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "Frais de visa national (mineur)",
+          "amount": "25 000 FCFA",
+          "fcfa": "25 000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "uni-assist : premier vœu",
+          "amount": "75 €",
+          "fcfa": "≈ 49 000 FCFA",
+          "kind": "provider"
+        },
+        {
+          "label": "uni-assist : chaque vœu supplémentaire",
+          "amount": "30 €",
+          "fcfa": "≈ 19 700 FCFA",
+          "kind": "provider"
+        },
+        {
+          "label": "Rendez-vous à l'ambassade",
+          "amount": "Gratuit",
+          "fcfa": "0 FCFA",
+          "kind": "official"
+        }
       ],
       "delays": "Selon les délais indicatifs publiés par l'ambassade d'Allemagne à Yaoundé, l'attente pour un rendez-vous « études » dépasse un an (jusqu'à un an pour certaines qualifications spécifiques, environ un mois pour les boursiers). Le délai de traitement après le dépôt varie et n'est pas garanti : inscrivez-vous sur la liste d'attente dès que votre projet est sérieux.",
       "biometrics": "Le dossier se dépose uniquement à l'ambassade d'Allemagne à Yaoundé (pas de centre VFS ou TLS, pas de dépôt à Douala). Les empreintes et la photo y sont prises lors du rendez-vous, réservé gratuitement en ligne via la liste d'attente. Les candidats de Douala, Bafoussam, Bamenda, Garoua, Maroua ou Buea doivent donc prévoir le déplacement à Yaoundé.",
       "faq": [
-        { "q": "Faut-il un certificat APS pour étudier en Allemagne depuis le Cameroun ?", "a": "Non. L'APS n'est exigé que pour les diplômes de certains pays, comme la Chine, le Vietnam et l'Inde. Les Camerounais font généralement vérifier leurs diplômes par uni-assist ou directement par l'université." },
-        { "q": "Puis-je alimenter le compte bloqué depuis le Cameroun ?", "a": "Oui. Le compte s'ouvre en ligne auprès d'un prestataire agréé et se finance par virement international depuis une banque camerounaise. Prévoyez les frais bancaires et les délais de transfert, ainsi que les justificatifs demandés par votre banque." },
-        { "q": "Mon Bac ou mon GCE A-Level suffit-il pour entrer directement à l'université ?", "a": "Souvent, il faut d'abord passer par un Studienkolleg (année préparatoire). Avec une ou plusieurs années réussies dans une université camerounaise reconnue, l'accès direct est parfois possible. Vérifiez votre cas dans la base d'admission du DAAD et auprès de l'université." },
-        { "q": "Dois-je traduire mes documents ?", "a": "Les documents en français ou en anglais sont acceptés par l'ambassade ; les autres langues doivent être traduites en allemand. Votre université ou uni-assist peut toutefois exiger des copies certifiées ou des traductions : suivez ses consignes." },
-        { "q": "Un intermédiaire peut-il m'obtenir un rendez-vous plus vite ?", "a": "Non. L'ambassade rappelle que le rendez-vous est gratuit, qu'aucun paiement n'accélère la procédure et qu'elle n'est pas responsable des rendez-vous perdus via des « prestataires ». Inscrivez-vous vous-même avec une adresse e-mail que vous consultez." }
+        {
+          "q": "Faut-il un certificat APS pour étudier en Allemagne depuis le Cameroun ?",
+          "a": "Non. L'APS n'est exigé que pour les diplômes de certains pays, comme la Chine, le Vietnam et l'Inde. Les Camerounais font généralement vérifier leurs diplômes par uni-assist ou directement par l'université."
+        },
+        {
+          "q": "Puis-je alimenter le compte bloqué depuis le Cameroun ?",
+          "a": "Oui. Le compte s'ouvre en ligne auprès d'un prestataire agréé et se finance par virement international depuis une banque camerounaise. Prévoyez les frais bancaires et les délais de transfert, ainsi que les justificatifs demandés par votre banque."
+        },
+        {
+          "q": "Mon Bac ou mon GCE A-Level suffit-il pour entrer directement à l'université ?",
+          "a": "Souvent, il faut d'abord passer par un Studienkolleg (année préparatoire). Avec une ou plusieurs années réussies dans une université camerounaise reconnue, l'accès direct est parfois possible. Vérifiez votre cas dans la base d'admission du DAAD et auprès de l'université."
+        },
+        {
+          "q": "Dois-je traduire mes documents ?",
+          "a": "Les documents en français ou en anglais sont acceptés par l'ambassade ; les autres langues doivent être traduites en allemand. Votre université ou uni-assist peut toutefois exiger des copies certifiées ou des traductions : suivez ses consignes."
+        },
+        {
+          "q": "Un intermédiaire peut-il m'obtenir un rendez-vous plus vite ?",
+          "a": "Non. L'ambassade rappelle que le rendez-vous est gratuit, qu'aucun paiement n'accélère la procédure et qu'elle n'est pas responsable des rendez-vous perdus via des « prestataires ». Inscrivez-vous vous-même avec une adresse e-mail que vous consultez."
+        }
       ]
     },
     "en": {
@@ -82,28 +161,86 @@
         "No APS certificate for Cameroon: the APS only applies to certain countries (China, Vietnam, India)"
       ],
       "steps": [
-        { "title": "Choose a programme and check access", "text": "Compare programmes in the DAAD database and check whether your Bac or GCE gives direct access or requires a Studienkolleg. After one or two successful years at a Cameroonian university, direct access often becomes possible, but confirm with each university." },
-        { "title": "Apply (directly or via uni-assist)", "text": "Many universities use uni-assist to check your certificates. Prepare certified copies and translations where required, and respect deadlines (often 15 July for winter and 15 January for summer intake)." },
-        { "title": "Join the Embassy waiting list early", "text": "Register online in the Yaoundé Embassy appointment system under the right category (with or without admission). Registration is free, and you must confirm the appointment within 7 days of the email." },
-        { "title": "Open the blocked account and insurance", "text": "Open a blocked account with an approved provider and transfer the required amount from Cameroon. Take out German health insurance valid from your arrival." },
-        { "title": "Submit your file in Yaoundé", "text": "Bring originals plus one copy of each document, sorted in two folders and not stapled. Fingerprints and photo are taken on site, and the fee is paid at the consulate counter against a receipt." },
-        { "title": "Decision and departure", "text": "The Embassy informs you when the visa is ready. In Germany, register your address and apply for your residence permit before the visa expires." }
+        {
+          "title": "Choose a programme and check access",
+          "text": "Compare programmes in the DAAD database and check whether your Bac or GCE gives direct access or requires a Studienkolleg. After one or two successful years at a Cameroonian university, direct access often becomes possible, but confirm with each university."
+        },
+        {
+          "title": "Apply (directly or via uni-assist)",
+          "text": "Many universities use uni-assist to check your certificates. Prepare certified copies and translations where required, and respect deadlines (often 15 July for winter and 15 January for summer intake)."
+        },
+        {
+          "title": "Join the Embassy waiting list early",
+          "text": "Register online in the Yaoundé Embassy appointment system under the right category (with or without admission). Registration is free, and you must confirm the appointment within 7 days of the email."
+        },
+        {
+          "title": "Open the blocked account and insurance",
+          "text": "Open a blocked account with an approved provider and transfer the required amount from Cameroon. Take out German health insurance valid from your arrival."
+        },
+        {
+          "title": "Submit your file in Yaoundé",
+          "text": "Bring originals plus one copy of each document, sorted in two folders and not stapled. Fingerprints and photo are taken on site, and the fee is paid at the consulate counter against a receipt."
+        },
+        {
+          "title": "Decision and departure",
+          "text": "The Embassy informs you when the visa is ready. In Germany, register your address and apply for your residence permit before the visa expires."
+        }
       ],
       "costs": [
-        { "label": "National visa fee (adult)", "amount": "50,000 FCFA (≈ €75)", "fcfa": "50,000 FCFA" },
-        { "label": "National visa fee (minor)", "amount": "25,000 FCFA", "fcfa": "25,000 FCFA" },
-        { "label": "uni-assist: first choice", "amount": "€75", "fcfa": "≈ 49,000 FCFA" },
-        { "label": "uni-assist: each additional choice", "amount": "€30", "fcfa": "≈ 19,700 FCFA" },
-        { "label": "Embassy appointment", "amount": "Free", "fcfa": "0 FCFA" }
+        {
+          "label": "National visa fee (adult)",
+          "amount": "50,000 FCFA (≈ €75)",
+          "fcfa": "50,000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "National visa fee (minor)",
+          "amount": "25,000 FCFA",
+          "fcfa": "25,000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "uni-assist: first choice",
+          "amount": "€75",
+          "fcfa": "≈ 49,000 FCFA",
+          "kind": "provider"
+        },
+        {
+          "label": "uni-assist: each additional choice",
+          "amount": "€30",
+          "fcfa": "≈ 19,700 FCFA",
+          "kind": "provider"
+        },
+        {
+          "label": "Embassy appointment",
+          "amount": "Free",
+          "fcfa": "0 FCFA",
+          "kind": "official"
+        }
       ],
       "delays": "According to the indicative waiting times published by the German Embassy in Yaoundé, the wait for a study appointment is over one year (up to one year for some specific qualifications, about one month for scholarship holders). Processing time after submission varies and is not guaranteed, so join the waiting list as soon as your plan is serious.",
       "biometrics": "Applications are submitted only at the German Embassy in Yaoundé (no VFS or TLS centre, no submission in Douala). Fingerprints and photo are taken there at your appointment, which is booked free of charge through the online waiting list. Applicants from Douala, Bafoussam, Bamenda, Garoua, Maroua or Buea need to plan the trip to Yaoundé.",
       "faq": [
-        { "q": "Do I need an APS certificate to study in Germany from Cameroon?", "a": "No. The APS is only required for qualifications from certain countries such as China, Vietnam and India. Cameroonian applicants usually have their certificates checked by uni-assist or directly by the university." },
-        { "q": "Can I fund the blocked account from Cameroon?", "a": "Yes. The account is opened online with an approved provider and funded by international transfer from a Cameroonian bank. Allow for bank charges, transfer time and the supporting documents your bank may ask for." },
-        { "q": "Is my Bac or GCE A-Level enough for direct university entry?", "a": "Often you first need a Studienkolleg (preparatory year). With one or more successful years at a recognised Cameroonian university, direct entry is sometimes possible. Check your case in the DAAD admission database and with the university." },
-        { "q": "Do I need to translate my documents?", "a": "The Embassy accepts documents in French or English; other languages must be translated into German. Your university or uni-assist may still require certified copies or translations, so follow their instructions." },
-        { "q": "Can an agent get me an appointment faster?", "a": "No. The Embassy states that appointments are free, that no payment speeds up the process, and that it accepts no liability for appointments lost through \"service providers\". Register yourself with an email address you check regularly." }
+        {
+          "q": "Do I need an APS certificate to study in Germany from Cameroon?",
+          "a": "No. The APS is only required for qualifications from certain countries such as China, Vietnam and India. Cameroonian applicants usually have their certificates checked by uni-assist or directly by the university."
+        },
+        {
+          "q": "Can I fund the blocked account from Cameroon?",
+          "a": "Yes. The account is opened online with an approved provider and funded by international transfer from a Cameroonian bank. Allow for bank charges, transfer time and the supporting documents your bank may ask for."
+        },
+        {
+          "q": "Is my Bac or GCE A-Level enough for direct university entry?",
+          "a": "Often you first need a Studienkolleg (preparatory year). With one or more successful years at a recognised Cameroonian university, direct entry is sometimes possible. Check your case in the DAAD admission database and with the university."
+        },
+        {
+          "q": "Do I need to translate my documents?",
+          "a": "The Embassy accepts documents in French or English; other languages must be translated into German. Your university or uni-assist may still require certified copies or translations, so follow their instructions."
+        },
+        {
+          "q": "Can an agent get me an appointment faster?",
+          "a": "No. The Embassy states that appointments are free, that no payment speeds up the process, and that it accepts no liability for appointments lost through \"service providers\". Register yourself with an email address you check regularly."
+        }
       ]
     }
   },
@@ -111,14 +248,32 @@
     "key": "de-ausbildung",
     "destination": "de",
     "goal": "training",
-    "slug": { "fr": "ausbildung-allemagne", "en": "ausbildung-germany" },
+    "slug": {
+      "fr": "ausbildung-allemagne",
+      "en": "ausbildung-germany"
+    },
     "updated": "2026-10-28",
     "sources": [
-      { "label": "Ambassade d'Allemagne à Yaoundé – Formation professionnelle (documents, langue, ressources)", "url": "https://jaunde.diplo.de/cm-en/service/-/2593180" },
-      { "label": "Ambassade d'Allemagne à Yaoundé – Rendez-vous et délais d'attente", "url": "https://jaunde.diplo.de/cm-en/service/-/2128610" },
-      { "label": "Make it in Germany – Visa pour une formation professionnelle (fiche 2026)", "url": "https://www.make-it-in-germany.com/fileadmin/1_Rebrush_2022/a_Fachkraefte/PDF-Dateien/3_Visum_u_Aufenthalt/Visagrafik_EN/Visum_Absolvierung_Berufsausbildung_EN.pdf" },
-      { "label": "BIBB – Rémunération minimale des apprentis", "url": "https://www.bibb.de/mindestausbildungsverguetung" },
-      { "label": "Ambassade d'Allemagne à Yaoundé – Student visa (barème des frais)", "url": "https://jaunde.diplo.de/cm-en/service/student-visa/2443914" }
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – Formation professionnelle (documents, langue, ressources)",
+        "url": "https://jaunde.diplo.de/cm-en/service/-/2593180"
+      },
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – Rendez-vous et délais d'attente",
+        "url": "https://jaunde.diplo.de/cm-en/service/-/2128610"
+      },
+      {
+        "label": "Make it in Germany – Visa pour une formation professionnelle (fiche 2026)",
+        "url": "https://www.make-it-in-germany.com/fileadmin/1_Rebrush_2022/a_Fachkraefte/PDF-Dateien/3_Visum_u_Aufenthalt/Visagrafik_EN/Visum_Absolvierung_Berufsausbildung_EN.pdf"
+      },
+      {
+        "label": "BIBB – Rémunération minimale des apprentis",
+        "url": "https://www.bibb.de/mindestausbildungsverguetung"
+      },
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – Student visa (barème des frais)",
+        "url": "https://jaunde.diplo.de/cm-en/service/student-visa/2443914"
+      }
     ],
     "notes": "Langue : Make it in Germany (2026) indique B1 en règle générale, sauf si l'entreprise a déjà évalué vos compétences ; la page de l'ambassade de Yaoundé indique au minimum A2 (B1 pour le secteur de la santé), uniquement certificats ALTE (Goethe, ÖSD, telc, TestDaF). Ressources : Make it in Germany 2026 = rémunération d'au moins 822 EUR net (1 048 EUR brut) pour une formation en entreprise, ou 959 EUR net/mois pour une formation scolaire ; la page de l'ambassade de Yaoundé affiche encore 853 EUR/mois (page probablement plus ancienne) : à faire confirmer. Rémunération minimale légale 2026 (contrats débutant en 2026) : 724 EUR la 1re année (BIBB/presse spécialisée) ; 2027 : 764 / 902 / 1 031 / 1 070 EUR. Frais de visa : 50 000 XAF affichés par l'ambassade pour le visa national (page étudiant), équivalent 75 EUR. Reconnaissance des certificats scolaires : non exigée formellement selon les sources consultées, mais l'entreprise/l'école peut l'exiger ; formulation prudente.",
     "fr": {
@@ -142,26 +297,74 @@
         "Une assurance maladie (si elle n'est pas incluse dans le contrat) et une preuve de logement"
       ],
       "steps": [
-        { "title": "Apprendre l'allemand", "text": "Visez le niveau B1 et passez un examen reconnu (Goethe-Institut, ÖSD, telc). Prévoyez plusieurs mois : c'est souvent l'étape la plus longue." },
-        { "title": "Trouver une place d'Ausbildung", "text": "Cherchez une entreprise ou une école sur les plateformes officielles (par exemple la bourse d'emploi de l'Agence fédérale pour l'emploi ou Make it in Germany) et signez un contrat de formation." },
-        { "title": "S'inscrire sur la liste d'attente de l'ambassade", "text": "Dès que le projet est concret, inscrivez-vous gratuitement en ligne dans la catégorie « formation professionnelle » du système de rendez-vous de l'ambassade à Yaoundé, puis confirmez le rendez-vous dans les 7 jours." },
-        { "title": "Préparer le dossier", "text": "Rassemblez les originaux et deux photocopies de chaque document, faites traduire en allemand ce qui n'est ni en français, ni en anglais, ni en allemand." },
-        { "title": "Déposer la demande à Yaoundé", "text": "Au rendez-vous, l'ambassade relève vos empreintes, encaisse les frais contre reçu et transmet si besoin le dossier à l'Agence pour l'emploi et aux autorités en Allemagne." },
-        { "title": "Arriver et commencer la formation", "text": "En Allemagne, déclarez votre domicile, souscrivez l'assurance maladie allemande et demandez votre titre de séjour avant la fin du visa." }
+        {
+          "title": "Apprendre l'allemand",
+          "text": "Visez le niveau B1 et passez un examen reconnu (Goethe-Institut, ÖSD, telc). Prévoyez plusieurs mois : c'est souvent l'étape la plus longue."
+        },
+        {
+          "title": "Trouver une place d'Ausbildung",
+          "text": "Cherchez une entreprise ou une école sur les plateformes officielles (par exemple la bourse d'emploi de l'Agence fédérale pour l'emploi ou Make it in Germany) et signez un contrat de formation."
+        },
+        {
+          "title": "S'inscrire sur la liste d'attente de l'ambassade",
+          "text": "Dès que le projet est concret, inscrivez-vous gratuitement en ligne dans la catégorie « formation professionnelle » du système de rendez-vous de l'ambassade à Yaoundé, puis confirmez le rendez-vous dans les 7 jours."
+        },
+        {
+          "title": "Préparer le dossier",
+          "text": "Rassemblez les originaux et deux photocopies de chaque document, faites traduire en allemand ce qui n'est ni en français, ni en anglais, ni en allemand."
+        },
+        {
+          "title": "Déposer la demande à Yaoundé",
+          "text": "Au rendez-vous, l'ambassade relève vos empreintes, encaisse les frais contre reçu et transmet si besoin le dossier à l'Agence pour l'emploi et aux autorités en Allemagne."
+        },
+        {
+          "title": "Arriver et commencer la formation",
+          "text": "En Allemagne, déclarez votre domicile, souscrivez l'assurance maladie allemande et demandez votre titre de séjour avant la fin du visa."
+        }
       ],
       "costs": [
-        { "label": "Frais de visa national (adulte)", "amount": "50 000 FCFA (≈ 75 €)", "fcfa": "50 000 FCFA" },
-        { "label": "Titre de séjour en Allemagne", "amount": "jusqu'à 100 €", "fcfa": "≈ 66 000 FCFA maximum" },
-        { "label": "Rendez-vous à l'ambassade", "amount": "Gratuit", "fcfa": "0 FCFA" }
+        {
+          "label": "Frais de visa national (adulte)",
+          "amount": "50 000 FCFA (≈ 75 €)",
+          "fcfa": "50 000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "Titre de séjour en Allemagne",
+          "amount": "jusqu'à 100 €",
+          "fcfa": "≈ 66 000 FCFA maximum",
+          "kind": "official"
+        },
+        {
+          "label": "Rendez-vous à l'ambassade",
+          "amount": "Gratuit",
+          "fcfa": "0 FCFA",
+          "kind": "official"
+        }
       ],
       "delays": "L'ambassade d'Allemagne à Yaoundé indique une attente pouvant aller jusqu'à neuf mois pour un rendez-vous « formation professionnelle » (délai indicatif, non contractuel). Le traitement après le dépôt peut prendre plusieurs semaines supplémentaires, notamment pour l'accord de l'Agence pour l'emploi.",
       "biometrics": "La demande se dépose à l'ambassade d'Allemagne à Yaoundé, seule compétente pour les résidents du Cameroun ; il n'y a pas de centre VFS ou TLS ni de dépôt à Douala. Les empreintes sont prises lors du rendez-vous, réservé gratuitement en ligne via la liste d'attente de l'ambassade.",
       "faq": [
-        { "q": "Combien gagne un apprenti en Allemagne ?", "a": "La rémunération minimale légale est de 724 € brut par mois la première année pour les contrats débutant en 2026 (764 € en 2027), puis augmente chaque année. Beaucoup d'entreprises, surtout dans les soins, paient davantage. Pour le visa, la rémunération doit couvrir environ 1 048 € brut par mois, sinon il faut un complément." },
-        { "q": "Le Probatoire ou le GCE O-Level suffisent-ils ?", "a": "Il n'y a pas de diplôme minimum fixé par la loi pour une Ausbildung, mais l'entreprise choisit ses candidats et certains métiers (notamment dans la santé) demandent un niveau équivalent au Bac ou au GCE A-Level. Joignez tous vos bulletins et diplômes." },
-        { "q": "A2 ou B1 : quel niveau d'allemand faut-il vraiment ?", "a": "La règle générale est B1. L'ambassade de Yaoundé accepte au minimum A2 pour certains métiers, mais exige B1 pour la santé. Dans tous les cas, un niveau B1 ou B2 facilite la réussite de la formation et des cours à l'école professionnelle." },
-        { "q": "Faut-il faire reconnaître mon Bac ou mon GCE ?", "a": "Une reconnaissance officielle n'est en général pas exigée pour une Ausbildung, mais l'entreprise ou l'école peut demander une évaluation de vos diplômes. Gardez les originaux et des traductions en allemand si nécessaire." },
-        { "q": "Puis-je travailler en Allemagne après l'Ausbildung ?", "a": "Oui. Une fois la formation réussie, vous pouvez demander un titre de séjour pour travailler comme professionnel qualifié ou pour chercher un emploi dans votre métier." }
+        {
+          "q": "Combien gagne un apprenti en Allemagne ?",
+          "a": "La rémunération minimale légale est de 724 € brut par mois la première année pour les contrats débutant en 2026 (764 € en 2027), puis augmente chaque année. Beaucoup d'entreprises, surtout dans les soins, paient davantage. Pour le visa, la rémunération doit couvrir environ 1 048 € brut par mois, sinon il faut un complément."
+        },
+        {
+          "q": "Le Probatoire ou le GCE O-Level suffisent-ils ?",
+          "a": "Il n'y a pas de diplôme minimum fixé par la loi pour une Ausbildung, mais l'entreprise choisit ses candidats et certains métiers (notamment dans la santé) demandent un niveau équivalent au Bac ou au GCE A-Level. Joignez tous vos bulletins et diplômes."
+        },
+        {
+          "q": "A2 ou B1 : quel niveau d'allemand faut-il vraiment ?",
+          "a": "La règle générale est B1. L'ambassade de Yaoundé accepte au minimum A2 pour certains métiers, mais exige B1 pour la santé. Dans tous les cas, un niveau B1 ou B2 facilite la réussite de la formation et des cours à l'école professionnelle."
+        },
+        {
+          "q": "Faut-il faire reconnaître mon Bac ou mon GCE ?",
+          "a": "Une reconnaissance officielle n'est en général pas exigée pour une Ausbildung, mais l'entreprise ou l'école peut demander une évaluation de vos diplômes. Gardez les originaux et des traductions en allemand si nécessaire."
+        },
+        {
+          "q": "Puis-je travailler en Allemagne après l'Ausbildung ?",
+          "a": "Oui. Une fois la formation réussie, vous pouvez demander un titre de séjour pour travailler comme professionnel qualifié ou pour chercher un emploi dans votre métier."
+        }
       ]
     },
     "en": {
@@ -185,26 +388,74 @@
         "Health insurance (unless included in the contract) and proof of accommodation"
       ],
       "steps": [
-        { "title": "Learn German", "text": "Aim for B1 and pass a recognised exam (Goethe-Institut, ÖSD, telc). Allow several months: this is often the longest step." },
-        { "title": "Find a training place", "text": "Search for a company or school on official platforms (for example the Federal Employment Agency job board or Make it in Germany) and sign a training contract." },
-        { "title": "Join the Embassy waiting list", "text": "Once your plan is concrete, register free of charge online under the vocational training category of the Yaoundé Embassy appointment system, then confirm the appointment within 7 days." },
-        { "title": "Prepare your file", "text": "Gather originals plus two photocopies of each document, and have anything not in French, English or German translated into German." },
-        { "title": "Apply in Yaoundé", "text": "At the appointment, the Embassy takes your fingerprints, collects the fee against a receipt and, where needed, forwards the file to the Employment Agency and authorities in Germany." },
-        { "title": "Arrive and start training", "text": "In Germany, register your address, take out German health insurance and apply for your residence permit before the visa expires." }
+        {
+          "title": "Learn German",
+          "text": "Aim for B1 and pass a recognised exam (Goethe-Institut, ÖSD, telc). Allow several months: this is often the longest step."
+        },
+        {
+          "title": "Find a training place",
+          "text": "Search for a company or school on official platforms (for example the Federal Employment Agency job board or Make it in Germany) and sign a training contract."
+        },
+        {
+          "title": "Join the Embassy waiting list",
+          "text": "Once your plan is concrete, register free of charge online under the vocational training category of the Yaoundé Embassy appointment system, then confirm the appointment within 7 days."
+        },
+        {
+          "title": "Prepare your file",
+          "text": "Gather originals plus two photocopies of each document, and have anything not in French, English or German translated into German."
+        },
+        {
+          "title": "Apply in Yaoundé",
+          "text": "At the appointment, the Embassy takes your fingerprints, collects the fee against a receipt and, where needed, forwards the file to the Employment Agency and authorities in Germany."
+        },
+        {
+          "title": "Arrive and start training",
+          "text": "In Germany, register your address, take out German health insurance and apply for your residence permit before the visa expires."
+        }
       ],
       "costs": [
-        { "label": "National visa fee (adult)", "amount": "50,000 FCFA (≈ €75)", "fcfa": "50,000 FCFA" },
-        { "label": "Residence permit in Germany", "amount": "up to €100", "fcfa": "≈ 66,000 FCFA maximum" },
-        { "label": "Embassy appointment", "amount": "Free", "fcfa": "0 FCFA" }
+        {
+          "label": "National visa fee (adult)",
+          "amount": "50,000 FCFA (≈ €75)",
+          "fcfa": "50,000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "Residence permit in Germany",
+          "amount": "up to €100",
+          "fcfa": "≈ 66,000 FCFA maximum",
+          "kind": "official"
+        },
+        {
+          "label": "Embassy appointment",
+          "amount": "Free",
+          "fcfa": "0 FCFA",
+          "kind": "official"
+        }
       ],
       "delays": "The German Embassy in Yaoundé indicates a wait of up to nine months for a vocational training appointment (indicative, non-binding). Processing after submission can take several more weeks, especially for the Employment Agency approval.",
       "biometrics": "Applications are submitted at the German Embassy in Yaoundé, the only competent office for residents of Cameroon; there is no VFS or TLS centre and no submission in Douala. Fingerprints are taken at the appointment, booked free of charge through the Embassy's online waiting list.",
       "faq": [
-        { "q": "How much does an apprentice earn in Germany?", "a": "The legal minimum training allowance is €724 gross per month in the first year for contracts starting in 2026 (€764 in 2027), rising each year. Many companies, especially in care, pay more. For the visa, the allowance should cover about €1,048 gross per month, otherwise you need a top-up." },
-        { "q": "Is the Probatoire or GCE O-Level enough?", "a": "German law sets no minimum school certificate for an Ausbildung, but companies choose their trainees and some trades (especially in healthcare) expect a level equivalent to the Bac or GCE A-Level. Include all your report cards and certificates." },
-        { "q": "A2 or B1: which German level do I really need?", "a": "The general rule is B1. The Embassy in Yaoundé accepts at least A2 for some trades but requires B1 for healthcare. In any case, B1 or B2 makes it much easier to succeed in training and vocational school classes." },
-        { "q": "Do I need my Bac or GCE recognised?", "a": "Formal recognition is generally not required for an Ausbildung, but the company or school may ask for an evaluation of your certificates. Keep the originals and German translations where needed." },
-        { "q": "Can I work in Germany after the Ausbildung?", "a": "Yes. Once you complete the training, you can apply for a residence permit to work as a skilled worker or to look for a job in your field." }
+        {
+          "q": "How much does an apprentice earn in Germany?",
+          "a": "The legal minimum training allowance is €724 gross per month in the first year for contracts starting in 2026 (€764 in 2027), rising each year. Many companies, especially in care, pay more. For the visa, the allowance should cover about €1,048 gross per month, otherwise you need a top-up."
+        },
+        {
+          "q": "Is the Probatoire or GCE O-Level enough?",
+          "a": "German law sets no minimum school certificate for an Ausbildung, but companies choose their trainees and some trades (especially in healthcare) expect a level equivalent to the Bac or GCE A-Level. Include all your report cards and certificates."
+        },
+        {
+          "q": "A2 or B1: which German level do I really need?",
+          "a": "The general rule is B1. The Embassy in Yaoundé accepts at least A2 for some trades but requires B1 for healthcare. In any case, B1 or B2 makes it much easier to succeed in training and vocational school classes."
+        },
+        {
+          "q": "Do I need my Bac or GCE recognised?",
+          "a": "Formal recognition is generally not required for an Ausbildung, but the company or school may ask for an evaluation of your certificates. Keep the originals and German translations where needed."
+        },
+        {
+          "q": "Can I work in Germany after the Ausbildung?",
+          "a": "Yes. Once you complete the training, you can apply for a residence permit to work as a skilled worker or to look for a job in your field."
+        }
       ]
     }
   },
@@ -212,17 +463,44 @@
     "key": "de-skilled-work",
     "destination": "de",
     "goal": "work",
-    "slug": { "fr": "travailler-en-allemagne", "en": "work-in-germany" },
+    "slug": {
+      "fr": "travailler-en-allemagne",
+      "en": "work-in-germany"
+    },
     "updated": "2026-10-28",
     "sources": [
-      { "label": "Ambassade d'Allemagne à Yaoundé – Visa de travail (documents)", "url": "https://jaunde.diplo.de/cm-en/service/employment-visa/2446532" },
-      { "label": "Ambassade d'Allemagne à Yaoundé – Rendez-vous et délais d'attente", "url": "https://jaunde.diplo.de/cm-en/service/-/2128610" },
-      { "label": "Ambassade d'Allemagne à Yaoundé – Visa recherche d'emploi", "url": "https://jaunde.diplo.de/cm-en/service/job-seekers-visa/2446992" },
-      { "label": "Notice mission allemande « Blaue Karte EU » (janvier 2026, seuils 2026)", "url": "https://www.visametric.com/storage/images/pages/files2/697a05b563180-Blaue-Karte-EU-(eng).pdf" },
-      { "label": "The Local – Seuils Carte bleue européenne 2026 (cite digital.diplo.de)", "url": "https://www.thelocal.de/20251217/the-salary-you-need-in-germany-in-2026-to-get-an-eu-blue-card" },
-      { "label": "Ville de Heidelberg (service-bw) – Évaluation de diplôme ZAB : frais", "url": "https://www.heidelberg.de/-/Verfahrensbeschreibung/auslaendischer-hochschulabschluss---zeugnisbewertung-beantragen/vbid1949" },
-      { "label": "Ville de Munich – Procédure accélérée pour travailleurs qualifiés (§ 81a)", "url": "https://stadt.muenchen.de/service/info/beschleunigtes-fachkrafteverfahren/10308518/" },
-      { "label": "Make it in Germany – Carte d'opportunité (Chancenkarte)", "url": "https://www.make-it-in-germany.com/en/visa-residence/types/job-search-opportunity-card" }
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – Visa de travail (documents)",
+        "url": "https://jaunde.diplo.de/cm-en/service/employment-visa/2446532"
+      },
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – Rendez-vous et délais d'attente",
+        "url": "https://jaunde.diplo.de/cm-en/service/-/2128610"
+      },
+      {
+        "label": "Ambassade d'Allemagne à Yaoundé – Visa recherche d'emploi",
+        "url": "https://jaunde.diplo.de/cm-en/service/job-seekers-visa/2446992"
+      },
+      {
+        "label": "Notice mission allemande « Blaue Karte EU » (janvier 2026, seuils 2026)",
+        "url": "https://www.visametric.com/storage/images/pages/files2/697a05b563180-Blaue-Karte-EU-(eng).pdf"
+      },
+      {
+        "label": "The Local – Seuils Carte bleue européenne 2026 (cite digital.diplo.de)",
+        "url": "https://www.thelocal.de/20251217/the-salary-you-need-in-germany-in-2026-to-get-an-eu-blue-card"
+      },
+      {
+        "label": "Ville de Heidelberg (service-bw) – Évaluation de diplôme ZAB : frais",
+        "url": "https://www.heidelberg.de/-/Verfahrensbeschreibung/auslaendischer-hochschulabschluss---zeugnisbewertung-beantragen/vbid1949"
+      },
+      {
+        "label": "Ville de Munich – Procédure accélérée pour travailleurs qualifiés (§ 81a)",
+        "url": "https://stadt.muenchen.de/service/info/beschleunigtes-fachkrafteverfahren/10308518/"
+      },
+      {
+        "label": "Make it in Germany – Carte d'opportunité (Chancenkarte)",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/types/job-search-opportunity-card"
+      }
     ],
     "notes": "Seuils Carte bleue 2026 : 50 700 EUR brut/an (4 225 EUR/mois) et 45 934,20 EUR (3 827,85 EUR/mois) pour métiers en pénurie, jeunes diplômés (diplôme obtenu il y a moins de 3 ans) et informaticiens sans diplôme ; vérifiés via une notice de mission allemande (janvier 2026) et la presse citant digital.diplo.de. Je n'ai pas pu charger directement make-it-in-germany.com ni digital.diplo.de (non accessibles depuis l'outil). Chancenkarte : 1 091 EUR/mois (13 092 EUR pour 12 mois) en 2026, repris de sources secondaires qui citent Make it in Germany (ancien montant 1 027 EUR) : à revérifier sur make-it-in-germany.com avant publication. Grille de points tirée de sources secondaires concordantes (fondée sur § 20a AufenthG). L'ambassade de Yaoundé affiche encore une page « visa de recherche d'emploi » avec 853 EUR/mois (ancien dispositif). Frais de visa : 50 000 XAF (barème national affiché sur la page étudiant de l'ambassade, équivalent 75 EUR). Délais d'attente Yaoundé : Chancenkarte > 1 an ; emploi qualifié jusqu'à 1 mois ; procédure § 81a jusqu'à 4 semaines.",
     "fr": {
@@ -246,28 +524,86 @@
         "Une assurance maladie valable dès l'arrivée et un passeport valable au moins six mois"
       ],
       "steps": [
-        { "title": "Vérifier votre diplôme", "text": "Cherchez votre université et votre diplôme dans la base anabin. Si besoin, demandez une évaluation (Zeugnisbewertung) à la ZAB ou une reconnaissance professionnelle via le portail « Anerkennung in Deutschland »." },
-        { "title": "Choisir la bonne voie", "text": "Avec une offre d'emploi au-dessus du seuil : Carte bleue. Sans offre : Chancenkarte (calculez vos points). Avec une offre sous le seuil : visa de travailleur qualifié classique." },
-        { "title": "Préparer les preuves", "text": "Contrat de travail signé ou preuve de ressources (compte bloqué), certificats de langue, attestations d'expérience, CV et lettre de motivation. Traduisez en allemand ce qui n'est ni en français, ni en anglais, ni en allemand." },
-        { "title": "S'inscrire sur la liste d'attente de l'ambassade", "text": "Inscrivez-vous gratuitement en ligne dans la catégorie correspondante (emploi qualifié ou carte d'opportunité) du système de rendez-vous de l'ambassade à Yaoundé et confirmez dans les 7 jours." },
-        { "title": "Option : procédure accélérée", "text": "Votre employeur peut lancer en Allemagne la procédure accélérée (§ 81a), qui permet en principe un rendez-vous à l'ambassade dans un délai d'environ trois semaines après l'accord préalable." },
-        { "title": "Déposer le dossier à Yaoundé et partir", "text": "Déposez les originaux et deux copies au rendez-vous, payez les frais au guichet contre reçu. En Allemagne, déclarez votre domicile et demandez votre titre de séjour." }
+        {
+          "title": "Vérifier votre diplôme",
+          "text": "Cherchez votre université et votre diplôme dans la base anabin. Si besoin, demandez une évaluation (Zeugnisbewertung) à la ZAB ou une reconnaissance professionnelle via le portail « Anerkennung in Deutschland »."
+        },
+        {
+          "title": "Choisir la bonne voie",
+          "text": "Avec une offre d'emploi au-dessus du seuil : Carte bleue. Sans offre : Chancenkarte (calculez vos points). Avec une offre sous le seuil : visa de travailleur qualifié classique."
+        },
+        {
+          "title": "Préparer les preuves",
+          "text": "Contrat de travail signé ou preuve de ressources (compte bloqué), certificats de langue, attestations d'expérience, CV et lettre de motivation. Traduisez en allemand ce qui n'est ni en français, ni en anglais, ni en allemand."
+        },
+        {
+          "title": "S'inscrire sur la liste d'attente de l'ambassade",
+          "text": "Inscrivez-vous gratuitement en ligne dans la catégorie correspondante (emploi qualifié ou carte d'opportunité) du système de rendez-vous de l'ambassade à Yaoundé et confirmez dans les 7 jours."
+        },
+        {
+          "title": "Option : procédure accélérée",
+          "text": "Votre employeur peut lancer en Allemagne la procédure accélérée (§ 81a), qui permet en principe un rendez-vous à l'ambassade dans un délai d'environ trois semaines après l'accord préalable."
+        },
+        {
+          "title": "Déposer le dossier à Yaoundé et partir",
+          "text": "Déposez les originaux et deux copies au rendez-vous, payez les frais au guichet contre reçu. En Allemagne, déclarez votre domicile et demandez votre titre de séjour."
+        }
       ],
       "costs": [
-        { "label": "Frais de visa national (adulte)", "amount": "50 000 FCFA (≈ 75 €)", "fcfa": "50 000 FCFA" },
-        { "label": "Évaluation de diplôme ZAB (premier diplôme)", "amount": "200 €", "fcfa": "≈ 131 000 FCFA" },
-        { "label": "Évaluation ZAB, diplôme supplémentaire", "amount": "100 €", "fcfa": "≈ 65 600 FCFA" },
-        { "label": "Procédure accélérée § 81a (payée par l'employeur ou le candidat en Allemagne)", "amount": "411 €", "fcfa": "≈ 270 000 FCFA" },
-        { "label": "Rendez-vous à l'ambassade", "amount": "Gratuit", "fcfa": "0 FCFA" }
+        {
+          "label": "Frais de visa national (adulte)",
+          "amount": "50 000 FCFA (≈ 75 €)",
+          "fcfa": "50 000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "Évaluation de diplôme ZAB (premier diplôme)",
+          "amount": "200 €",
+          "fcfa": "≈ 131 000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "Évaluation ZAB, diplôme supplémentaire",
+          "amount": "100 €",
+          "fcfa": "≈ 65 600 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "Procédure accélérée § 81a (payée par l'employeur ou le candidat en Allemagne)",
+          "amount": "411 €",
+          "fcfa": "≈ 270 000 FCFA",
+          "kind": "employer"
+        },
+        {
+          "label": "Rendez-vous à l'ambassade",
+          "amount": "Gratuit",
+          "fcfa": "0 FCFA",
+          "kind": "official"
+        }
       ],
       "delays": "D'après les délais indicatifs de l'ambassade d'Allemagne à Yaoundé, l'attente est d'environ un mois pour un rendez-vous « emploi qualifié », jusqu'à quatre semaines avec un accord préalable (§ 81a), mais de plus d'un an pour la Chancenkarte. L'évaluation de diplôme par la ZAB prend en général environ trois mois.",
       "biometrics": "Toutes les demandes de visa national se déposent à l'ambassade d'Allemagne à Yaoundé, sur rendez-vous gratuit réservé en ligne ; il n'y a pas de centre VFS ou TLS au Cameroun. Un consul honoraire d'Allemagne existe à Douala, mais rien n'indique qu'il reçoive les demandes de visa. Les empreintes sont prises à Yaoundé lors du dépôt.",
       "faq": [
-        { "q": "Mon diplôme camerounais est-il reconnu en Allemagne ?", "a": "Vérifiez d'abord dans la base anabin si votre établissement est classé « H+ » et si votre diplôme y figure. Si ce n'est pas clair, une évaluation ZAB (200 €) donne une attestation officielle. Pour les métiers réglementés (médecin, infirmier…), il faut une reconnaissance professionnelle (Anerkennung)." },
-        { "q": "Combien de points faut-il pour la Chancenkarte ?", "a": "Au moins 6 points si votre diplôme n'est pas pleinement reconnu. Par exemple : moins de 35 ans (2 points), allemand B1 (2 points) et deux ans d'expérience récente (2 points) suffisent. Un diplôme pleinement reconnu dispense des points." },
-        { "q": "Puis-je travailler avec la Chancenkarte ?", "a": "Oui, à temps partiel : jusqu'à 20 heures par semaine en moyenne, et des périodes d'essai chez un employeur. Une fois un emploi qualifié trouvé, vous changez de titre de séjour en Allemagne." },
-        { "q": "Faut-il parler allemand pour la Carte bleue européenne ?", "a": "Aucun niveau d'allemand n'est exigé par la loi pour la Carte bleue, mais l'employeur peut en demander un. Un bon niveau d'allemand accélère aussi l'obtention du titre de séjour permanent." },
-        { "q": "Pourquoi l'attente est-elle si longue pour la Chancenkarte à Yaoundé ?", "a": "La demande est très forte et l'ambassade publie une attente de plus d'un an pour cette catégorie. Si vous obtenez une offre d'emploi entre-temps, la voie « emploi qualifié » ou la procédure accélérée (§ 81a) est généralement beaucoup plus rapide." }
+        {
+          "q": "Mon diplôme camerounais est-il reconnu en Allemagne ?",
+          "a": "Vérifiez d'abord dans la base anabin si votre établissement est classé « H+ » et si votre diplôme y figure. Si ce n'est pas clair, une évaluation ZAB (200 €) donne une attestation officielle. Pour les métiers réglementés (médecin, infirmier…), il faut une reconnaissance professionnelle (Anerkennung)."
+        },
+        {
+          "q": "Combien de points faut-il pour la Chancenkarte ?",
+          "a": "Au moins 6 points si votre diplôme n'est pas pleinement reconnu. Par exemple : moins de 35 ans (2 points), allemand B1 (2 points) et deux ans d'expérience récente (2 points) suffisent. Un diplôme pleinement reconnu dispense des points."
+        },
+        {
+          "q": "Puis-je travailler avec la Chancenkarte ?",
+          "a": "Oui, à temps partiel : jusqu'à 20 heures par semaine en moyenne, et des périodes d'essai chez un employeur. Une fois un emploi qualifié trouvé, vous changez de titre de séjour en Allemagne."
+        },
+        {
+          "q": "Faut-il parler allemand pour la Carte bleue européenne ?",
+          "a": "Aucun niveau d'allemand n'est exigé par la loi pour la Carte bleue, mais l'employeur peut en demander un. Un bon niveau d'allemand accélère aussi l'obtention du titre de séjour permanent."
+        },
+        {
+          "q": "Pourquoi l'attente est-elle si longue pour la Chancenkarte à Yaoundé ?",
+          "a": "La demande est très forte et l'ambassade publie une attente de plus d'un an pour cette catégorie. Si vous obtenez une offre d'emploi entre-temps, la voie « emploi qualifié » ou la procédure accélérée (§ 81a) est généralement beaucoup plus rapide."
+        }
       ]
     },
     "en": {
@@ -291,28 +627,86 @@
         "Health insurance valid from arrival and a passport valid for at least six months"
       ],
       "steps": [
-        { "title": "Check your degree", "text": "Look up your university and degree in the anabin database. If needed, request a statement of comparability (Zeugnisbewertung) from the ZAB or professional recognition via the \"Recognition in Germany\" portal." },
-        { "title": "Pick the right route", "text": "Job offer above the threshold: EU Blue Card. No offer yet: Opportunity Card (calculate your points). Offer below the threshold: standard skilled worker visa." },
-        { "title": "Prepare your evidence", "text": "Signed employment contract or proof of funds (blocked account), language certificates, proof of experience, CV and motivation letter. Translate into German anything not in French, English or German." },
-        { "title": "Join the Embassy waiting list", "text": "Register free of charge online under the matching category (skilled employment or Opportunity Card) in the Yaoundé Embassy appointment system and confirm within 7 days." },
-        { "title": "Option: fast-track procedure", "text": "Your employer can start the fast-track procedure (§ 81a) in Germany, which normally gives you an Embassy appointment within about three weeks of pre-approval." },
-        { "title": "Apply in Yaoundé and travel", "text": "Submit originals and two copies at your appointment and pay the fee at the counter against a receipt. In Germany, register your address and apply for your residence permit." }
+        {
+          "title": "Check your degree",
+          "text": "Look up your university and degree in the anabin database. If needed, request a statement of comparability (Zeugnisbewertung) from the ZAB or professional recognition via the \"Recognition in Germany\" portal."
+        },
+        {
+          "title": "Pick the right route",
+          "text": "Job offer above the threshold: EU Blue Card. No offer yet: Opportunity Card (calculate your points). Offer below the threshold: standard skilled worker visa."
+        },
+        {
+          "title": "Prepare your evidence",
+          "text": "Signed employment contract or proof of funds (blocked account), language certificates, proof of experience, CV and motivation letter. Translate into German anything not in French, English or German."
+        },
+        {
+          "title": "Join the Embassy waiting list",
+          "text": "Register free of charge online under the matching category (skilled employment or Opportunity Card) in the Yaoundé Embassy appointment system and confirm within 7 days."
+        },
+        {
+          "title": "Option: fast-track procedure",
+          "text": "Your employer can start the fast-track procedure (§ 81a) in Germany, which normally gives you an Embassy appointment within about three weeks of pre-approval."
+        },
+        {
+          "title": "Apply in Yaoundé and travel",
+          "text": "Submit originals and two copies at your appointment and pay the fee at the counter against a receipt. In Germany, register your address and apply for your residence permit."
+        }
       ],
       "costs": [
-        { "label": "National visa fee (adult)", "amount": "50,000 FCFA (≈ €75)", "fcfa": "50,000 FCFA" },
-        { "label": "ZAB degree evaluation (first qualification)", "amount": "€200", "fcfa": "≈ 131,000 FCFA" },
-        { "label": "ZAB evaluation, each additional qualification", "amount": "€100", "fcfa": "≈ 65,600 FCFA" },
-        { "label": "Fast-track procedure § 81a (paid in Germany by employer or applicant)", "amount": "€411", "fcfa": "≈ 270,000 FCFA" },
-        { "label": "Embassy appointment", "amount": "Free", "fcfa": "0 FCFA" }
+        {
+          "label": "National visa fee (adult)",
+          "amount": "50,000 FCFA (≈ €75)",
+          "fcfa": "50,000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "ZAB degree evaluation (first qualification)",
+          "amount": "€200",
+          "fcfa": "≈ 131,000 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "ZAB evaluation, each additional qualification",
+          "amount": "€100",
+          "fcfa": "≈ 65,600 FCFA",
+          "kind": "official"
+        },
+        {
+          "label": "Fast-track procedure § 81a (paid in Germany by employer or applicant)",
+          "amount": "€411",
+          "fcfa": "≈ 270,000 FCFA",
+          "kind": "employer"
+        },
+        {
+          "label": "Embassy appointment",
+          "amount": "Free",
+          "fcfa": "0 FCFA",
+          "kind": "official"
+        }
       ],
       "delays": "According to the German Embassy in Yaoundé's indicative waiting times, the wait is about one month for a skilled employment appointment and up to four weeks with a pre-approval (§ 81a), but over one year for the Opportunity Card. A ZAB degree evaluation usually takes about three months.",
       "biometrics": "All national visa applications are submitted at the German Embassy in Yaoundé, by free appointment booked online; there is no VFS or TLS centre in Cameroon. Germany has an honorary consul in Douala, but there is no indication that it accepts visa applications. Fingerprints are taken in Yaoundé when you submit.",
       "faq": [
-        { "q": "Is my Cameroonian degree recognised in Germany?", "a": "First check in the anabin database whether your institution is rated \"H+\" and your degree is listed. If unclear, a ZAB evaluation (€200) gives you an official statement. For regulated professions (doctor, nurse…), you need professional recognition (Anerkennung)." },
-        { "q": "How many points do I need for the Opportunity Card?", "a": "At least 6 points if your qualification is not fully recognised. For example: under 35 (2 points), German B1 (2 points) and two years of recent experience (2 points) are enough. A fully recognised qualification exempts you from the points." },
-        { "q": "Can I work with the Opportunity Card?", "a": "Yes, part-time: up to 20 hours per week on average, plus trial work with an employer. Once you find a qualified job, you switch to another residence permit in Germany." },
-        { "q": "Do I need German for the EU Blue Card?", "a": "The law sets no German requirement for the Blue Card, but the employer may ask for one. Good German also speeds up access to permanent residence." },
-        { "q": "Why is the Opportunity Card wait so long in Yaoundé?", "a": "Demand is very high and the Embassy publishes a wait of over one year for this category. If you get a job offer in the meantime, the skilled employment route or the fast-track procedure (§ 81a) is usually much faster." }
+        {
+          "q": "Is my Cameroonian degree recognised in Germany?",
+          "a": "First check in the anabin database whether your institution is rated \"H+\" and your degree is listed. If unclear, a ZAB evaluation (€200) gives you an official statement. For regulated professions (doctor, nurse…), you need professional recognition (Anerkennung)."
+        },
+        {
+          "q": "How many points do I need for the Opportunity Card?",
+          "a": "At least 6 points if your qualification is not fully recognised. For example: under 35 (2 points), German B1 (2 points) and two years of recent experience (2 points) are enough. A fully recognised qualification exempts you from the points."
+        },
+        {
+          "q": "Can I work with the Opportunity Card?",
+          "a": "Yes, part-time: up to 20 hours per week on average, plus trial work with an employer. Once you find a qualified job, you switch to another residence permit in Germany."
+        },
+        {
+          "q": "Do I need German for the EU Blue Card?",
+          "a": "The law sets no German requirement for the Blue Card, but the employer may ask for one. Good German also speeds up access to permanent residence."
+        },
+        {
+          "q": "Why is the Opportunity Card wait so long in Yaoundé?",
+          "a": "Demand is very high and the Embassy publishes a wait of over one year for this category. If you get a job offer in the meantime, the skilled employment route or the fast-track procedure (§ 81a) is usually much faster."
+        }
       ]
     }
   }

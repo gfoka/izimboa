@@ -396,3 +396,35 @@ table.compare caption { caption-side: bottom; padding: 10px 14px; text-align: le
 .mini-card > span { min-width: 0; }
 .mini-card .goal-chip, .mini-card .dest-chip { display: inline-flex; flex-direction: row; flex-grow: 0; flex-shrink: 0; white-space: normal; max-width: 40%; text-align: center; }
 .section:not(.section-tint) .step { border: 1px solid var(--line); }
+
+/* ===== Audit Izimboa Go : premier écran, confiance, résultat du test ===== */
+.hero-points { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 8px; font-weight: 500; color: var(--ink); }
+.hero-points li { display: flex; gap: 10px; align-items: flex-start; }
+.hero-points svg { flex-shrink: 0; margin-top: 3px; color: var(--accent-strong); }
+.trust-grid { list-style: none; padding: 0; margin: 24px 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 800px) { .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.trust-item { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.trust-item h3 { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 8px; }
+.trust-item p { color: var(--slate); }
+.elig-profile { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+.elig-profile summary { cursor: pointer; font-weight: 600; min-height: 32px; }
+.elig-profile dl { display: grid; gap: 8px; margin-top: 10px; }
+.elig-profile dt { font-size: .85rem; color: var(--slate); }
+.elig-profile dd { margin: 0; font-weight: 600; }
+.elig-program { display: grid; gap: 8px; padding: 16px; border: 1.5px solid var(--accent-strong); border-radius: 14px; }
+.elig-program-name { font-family: var(--font-display); font-size: 1.1rem; }
+.elig-small-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--slate); }
+.elig-links { display: grid; gap: 6px; font-weight: 600; word-break: break-word; }
+.elig-warnings { display: grid; gap: 8px; padding: 14px 16px; border-radius: 12px; background: #fff7e8; }
+.elig-q:focus { outline: none; }
+.cost-kind { font-size: .88rem; color: var(--slate); }
+tr.is-requirement th, tr.is-requirement td { background: #fbfcfd; }
+.uncertain { color: #8a4b00; font-weight: 600; }
+/* Tableau des frais en cartes sur téléphone : tout reste lisible sans défilement horizontal. */
+@media (max-width: 640px) {
+  table.costs thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  table.costs, table.costs tbody, table.costs tr, table.costs th, table.costs td { display: block; width: 100%; }
+  table.costs tr { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  table.costs th, table.costs td { padding: 2px 0; border: 0; white-space: normal !important; }
+  table.costs td::before { content: attr(data-label) " : "; color: var(--slate); font-size: .85rem; }
+}

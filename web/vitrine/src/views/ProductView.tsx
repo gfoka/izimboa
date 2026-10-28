@@ -9,6 +9,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { serviceLd } from "@/lib/seo";
 import { BusinessForm } from "@/components/BusinessForm";
+import { TrackedLink } from "@/components/TrackedLink";
 
 export function ProductView({ country, lang, dict, product, extra }: { country: string; lang: Lang; dict: Dict; product: ProductKey; extra?: ReactNode }) {
   const p = dict.products[product];
@@ -52,15 +53,24 @@ export function ProductView({ country, lang, dict, product, extra }: { country: 
               </>
             ) : (
               <>
-                <a className="btn btn-accent" href={teamHref}>
+                <TrackedLink className="btn btn-accent" href={teamHref} cta={`${product}_hero_primary`}>
                   {p.cta.button}
-                </a>
-                <a className="btn btn-outline" href="#comment">
-                  {p.stepsTitle}
-                </a>
+                </TrackedLink>
+                <TrackedLink className="btn btn-outline" href={p.heroSecondary?.href ?? "#comment"} cta={`${product}_hero_secondary`}>
+                  {p.heroSecondary?.label ?? p.stepsTitle}
+                </TrackedLink>
               </>
             )}
           </div>
+          {p.heroPoints && (
+            <ul className="hero-points">
+              {p.heroPoints.map((x) => (
+                <li key={x}>
+                  <Icon name="check" /> {x}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <figure className="product-hero-media">
           <Photo name={p.photo} lang={lang} sizes="(min-width: 960px) 50vw, 100vw" priority className="rounded-img" />

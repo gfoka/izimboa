@@ -2,6 +2,7 @@ import type { Lang } from "@/config/site";
 
 /** Destinations proposées par Izimboa Go (codes ISO). */
 export type Destination = "ca" | "de" | "fr" | "be";
+export type CostKind = "official" | "provider" | "employer" | "requirement";
 export type Goal = "study" | "work" | "permanent" | "training";
 
 export type ProgramText = {
@@ -13,7 +14,8 @@ export type ProgramText = {
   forWho: string[];
   conditions: string[];
   steps: { title: string; text: string }[];
-  costs: { label: string; amount: string; fcfa?: string }[];
+  /** kind : frais officiel, prestataire (centre de visa…), payé par l'employeur, ou condition de ressources (pas un frais). */
+  costs: { label: string; amount: string; fcfa?: string; kind?: CostKind; uncertain?: boolean }[];
   delays: string;
   biometrics: string;
   faq: { q: string; a: string }[];

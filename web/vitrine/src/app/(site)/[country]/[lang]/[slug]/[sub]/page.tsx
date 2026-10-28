@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       : s.kind === "city"
         ? { title: s.city[lang].metaTitle, description: s.city[lang].metaDescription }
         : goUi(lang).compare.meta;
-  return pathMetadata({ country, lang, paths: alt, meta: { title: meta.title.length <= 50 ? `${meta.title} | Izimboa Go` : meta.title, description: meta.description }, photo: "passport" });
+  return pathMetadata({ country, lang, paths: alt, meta: { title: meta.title.length <= 47 ? `${meta.title} | Izimboa Go` : meta.title, description: meta.description }, photo: "passport" });
 }
 
 export default async function Page({ params }: { params: Params }) {

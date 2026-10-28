@@ -104,3 +104,9 @@
 - [x] Déclarations faites : règles de confidentialité, annonces (aucune), identifiant publicitaire (non)
 - [ ] Déclarations restantes : informations de connexion (compte de test livreur pour Google), classification, cible et contenu, sécurité des données, applis gouvernementales, fonctionnalités financières, santé, service de premier plan (localisation, vidéo), intent plein écran
 - [ ] Projet Firebase (Cloud Messaging) pour l'alerte de course qui sonne sur le téléphone du livreur
+
+## 12. Référencement : domaines de préversion Cloudflare
+
+- [x] Les préversions de branche (`*.izimboa.pages.dev`) reçoivent automatiquement l'en-tête `X-Robots-Tag: noindex` (comportement par défaut de Cloudflare Pages) et toutes nos pages déclarent `izimboa.com` comme adresse canonique.
+- [ ] L'adresse de production `izimboa.pages.dev` n'est pas en noindex : créer une redirection 301 vers `https://izimboa.com` (Cloudflare > Règles > Redirections groupées) pour éviter tout doublon.
+- Rappel : noindex n'est pas une protection. Ne jamais mettre de données privées sur une préversion.

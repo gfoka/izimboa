@@ -1,5 +1,5 @@
 import type { Lang } from "@/config/site";
-import type { Destination, Goal } from "@/content/go-types";
+import type { CostKind, Destination, Goal } from "@/content/go-types";
 
 /** Textes de l'interface d'Izimboa Go (Cameroun). Les contenus des programmes et des villes sont dans data/. */
 export type GoUi = {
@@ -26,6 +26,9 @@ export type GoUi = {
     costAmount: string;
     costFcfa: string;
     costsNote: string;
+    costNature: string;
+    costKinds: Record<CostKind, string>;
+    uncertain: string;
     delays: string;
     biometrics: string;
     faq: string;
@@ -36,6 +39,13 @@ export type GoUi = {
     paused: string;
     limited: string;
     hubLink: string;
+  };
+  trust: {
+    title: string;
+    lead: string;
+    items: { title: string; text: string }[];
+    notAffiliated: string;
+    legalLink: string;
   };
   city: {
     travel: string;
@@ -50,18 +60,31 @@ export type GoUi = {
   test: {
     title: string;
     lead: string;
+    cta: string;
     q: {
       goal: string;
       education: string;
       age: string;
       language: string;
       budget: string;
+      experience: string;
+      destination: string;
     };
     goalOptions: { value: Goal; label: string }[];
     educationOptions: { value: string; label: string }[];
     ageOptions: { value: string; label: string }[];
     languageOptions: { value: string; label: string }[];
     budgetOptions: { value: string; label: string }[];
+    experienceOptions: { value: string; label: string }[];
+    destinationOptions: { value: string; label: string }[];
+    profileTitle: string;
+    keyConditions: string;
+    officialSource: string;
+    seeProgram: string;
+    restricted: string;
+    warningsTitle: string;
+    warnings: Record<string, string>;
+    phoneError: string;
     next: string;
     back: string;
     step: string;
@@ -119,7 +142,7 @@ export const GO_UI: Record<Lang, GoUi> = {
       compareText: "Langue, coût des études, possibilités de travail, résidence permanente : comparez les destinations côte à côte.",
       compareLink: "Comparer les pays",
       citiesTitle: "Partout au Cameroun",
-      citiesLead: "La procédure se fait presque entièrement à distance. Où que vous soyez, nous vous accompagnons et vous aidons à organiser le seul déplacement nécessaire : le rendez-vous au centre de visa.",
+      citiesLead: "Une grande partie de la préparation se fait à distance. Où que vous soyez, nous vous aidons à préparer votre dossier et à organiser les déplacements nécessaires (rendez-vous au centre de visa ou à l'ambassade, biométrie, parfois un examen de langue).",
       readMore: "Voir le programme",
     },
     program: {
@@ -130,7 +153,10 @@ export const GO_UI: Record<Lang, GoUi> = {
       costLabel: "Frais",
       costAmount: "Montant",
       costFcfa: "En FCFA",
-      costsNote: "Montants officiels à la date de vérification ; la conversion en FCFA est indicative. Les frais d'accompagnement d'Izimboa sont annoncés séparément, avant tout engagement.",
+      costsNote: "Montants publiés à la date de vérification ; la conversion en FCFA est indicative. Ce tableau ne représente pas le coût total du projet (billet d'avion, logement, assurance, traductions, examens de langue…). Les frais officiels sont payés directement aux autorités ou à leurs prestataires ; les éventuels frais d'accompagnement d'Izimboa sont distincts et annoncés avant tout engagement.",
+      costNature: "Nature",
+      costKinds: { official: "Frais officiel", provider: "Frais de prestataire", employer: "Payé par l'employeur", requirement: "Condition de ressources (pas un frais)" },
+      uncertain: "à confirmer",
       delays: "Délais",
       biometrics: "Rendez-vous et empreintes au Cameroun",
       faq: "Questions fréquentes",
@@ -139,8 +165,20 @@ export const GO_UI: Record<Lang, GoUi> = {
       disclaimer: "Izimboa n'est pas une autorité de délivrance de visas et ne garantit aucun résultat. Seules les autorités du pays de destination décident. Les règles changent souvent : vérifiez toujours sur les sources officielles ci-dessous.",
       related: "Autres voies pour le même objectif",
       paused: "Programme suspendu ou fermé actuellement",
-      limited: "Places limitées ou règles en cours de changement",
+      limited: "Accès restreint ou règles récemment modifiées : lisez les conditions et la date de vérification",
       hubLink: "Tous les programmes",
+    },
+    trust: {
+      title: "Ce que fait Izimboa Go, et ce qu'il ne fait pas",
+      lead: "Pour choisir en confiance, voici exactement ce que nous proposons, et ses limites.",
+      items: [
+        { title: "Information générale", text: "Des fiches sur les programmes, rédigées à partir des sites officiels, avec leurs sources et leur date de vérification. Gratuit." },
+        { title: "Orientation", text: "Le test d'éligibilité et l'échange avec un conseiller vous indiquent des pistes à étudier. C'est une orientation indicative, pas une décision d'éligibilité : seules les autorités et les établissements décident." },
+        { title: "Assistance administrative", text: "Liste des pièces, organisation du dossier, calendrier, préparation des rendez-vous. Vous déposez votre demande et payez les frais officiels directement aux autorités ou à leurs prestataires." },
+        { title: "Conseil réglementé : le cas du Canada", text: "Pour une demande au Canada (y compris au Québec), seuls des représentants autorisés (avocats, notaires du Québec, consultants réglementés par le CICC) peuvent être rémunérés pour conseiller ou représenter un candidat. Izimboa Go ne représente pas les candidats auprès des autorités ; pour un conseil personnalisé rémunéré sur une demande canadienne, nous vous orientons vers un représentant autorisé." },
+      ],
+      notAffiliated: "Izimboa Go n'est ni un organisme gouvernemental, ni une ambassade, ni un centre de visa (VFS Global, TLScontact), ni Campus France, et n'a aucun lien officiel avec eux.",
+      legalLink: "Mentions légales",
     },
     city: {
       travel: "Se rendre au rendez-vous de visa",
@@ -153,14 +191,17 @@ export const GO_UI: Record<Lang, GoUi> = {
       faq: "Questions fréquentes",
     },
     test: {
-      title: "Quel programme vous correspond ?",
-      lead: "Cinq questions, une minute. Nous vous indiquons les voies les plus adaptées à votre profil, puis un conseiller peut vous rappeler gratuitement.",
+      title: "Évaluez gratuitement votre profil",
+      cta: "Évaluer gratuitement mon profil",
+      lead: "Six questions environ, deux minutes. Vous obtenez des pistes à étudier, leurs principales conditions et les points d'attention, puis vous pouvez demander à être rappelé.",
       q: {
         goal: "Quel est votre projet ?",
         education: "Votre plus haut diplôme ?",
         age: "Votre âge ?",
         language: "Quelles langues parlez-vous ?",
         budget: "Budget disponible pour le projet (hors billet d'avion) ?",
+        experience: "Votre expérience professionnelle ?",
+        destination: "Une destination en tête ?",
       },
       goalOptions: [
         { value: "study", label: "Faire mes études" },
@@ -191,14 +232,42 @@ export const GO_UI: Record<Lang, GoUi> = {
         { value: "mid", label: "3 à 8 millions FCFA" },
         { value: "high", label: "Plus de 8 millions FCFA" },
       ],
+      experienceOptions: [
+        { value: "none", label: "Pas encore d'expérience" },
+        { value: "1-2", label: "1 à 2 ans" },
+        { value: "3+", label: "3 ans ou plus" },
+      ],
+      destinationOptions: [
+        { value: "any", label: "Peu importe, je veux la meilleure voie" },
+        { value: "ca", label: "Canada" },
+        { value: "de", label: "Allemagne" },
+        { value: "fr", label: "France" },
+        { value: "be", label: "Belgique" },
+      ],
+      profileTitle: "Votre profil",
+      keyConditions: "Principales conditions à vérifier",
+      officialSource: "Source officielle",
+      seeProgram: "Voir la fiche complète",
+      restricted: "Accès restreint ou récemment modifié",
+      warningsTitle: "Points d'attention pour votre profil",
+      warnings: {
+        budgetStudy: "Les études à l'étranger demandent souvent de prouver des ressources importantes (compte bloqué en Allemagne, preuve de fonds au Canada, ressources mensuelles en France et en Belgique) : vérifiez ce montant en priorité.",
+        german: "Les voies allemandes demandent en général un certificat d'allemand reconnu (souvent B1 pour l'Ausbildung).",
+        french: "Les voies proposées supposent une bonne maîtrise du français, souvent attestée par un test reconnu (TCF, TEF).",
+        experience: "La plupart des voies de travail qualifié demandent un diplôme reconnu ou une expérience professionnelle dans le métier.",
+        age: "Pour l'Entrée express (Canada), l'âge fait baisser le score à partir de 30 ans environ : d'autres voies peuvent être plus adaptées.",
+        secondary: "Une admission à l'université demande en général le baccalauréat ou le GCE A Level.",
+        destination: "Votre destination préférée ne ressort pas en premier pour votre profil : comparez avec les autres pistes avant de décider.",
+      },
+      phoneError: "Numéro de téléphone invalide : saisissez un numéro camerounais (ex. 6 99 12 34 56) ou international avec l'indicatif.",
       next: "Suivant",
       back: "Retour",
       step: "Question",
-      resultTitle: "Les voies les plus adaptées à votre profil",
-      resultLead: "Une première orientation, pas une décision : un conseiller vérifiera votre dossier en détail.",
-      noResult: "Votre profil demande une étude personnalisée : laissez vos coordonnées, un conseiller vous rappelle.",
+      resultTitle: "Des pistes à étudier pour votre profil",
+      resultLead: "Orientation indicative calculée à partir de vos réponses, pas une décision d'éligibilité : les conditions exactes dépendent de votre dossier et des règles en vigueur.",
+      noResult: "Vos réponses ne permettent pas d'indiquer une piste fiable. Cela ne veut pas dire qu'aucune voie n'existe : un conseiller peut étudier votre situation.",
       contactTitle: "Être rappelé gratuitement",
-      contactLead: "Un conseiller Izimboa vous appelle pour faire le point sur votre profil, où que vous soyez au Cameroun.",
+      contactLead: "Un conseiller Izimboa vous appelle pour faire le point sur votre profil, où que vous soyez au Cameroun. Sans engagement ; vos coordonnées ne servent qu'à vous recontacter.",
       name: "Votre nom",
       phone: "Téléphone",
       phoneHint: "De préférence votre numéro WhatsApp.",
@@ -218,7 +287,7 @@ export const GO_UI: Record<Lang, GoUi> = {
       slug: "quel-pays-choisir",
       meta: {
         title: "Canada, Allemagne, France ou Belgique : quel pays choisir ?",
-        description: "Étudier ou travailler à l'étranger depuis le Cameroun : comparez langue, coût, travail et résidence permanente au Canada, en Allemagne, en France et en Belgique.",
+        description: "Étudier ou travailler à l'étranger depuis le Cameroun : comparez langue, coût, travail et installation au Canada, en Allemagne, en France et en Belgique.",
       },
       h1: "Canada, Allemagne, France ou Belgique : quel pays choisir depuis le Cameroun ?",
       intro: "Il n'existe pas de meilleure destination pour tout le monde, mais une meilleure voie pour votre profil. Voici l'essentiel pour comparer, avant d'entrer dans le détail de chaque programme.",
@@ -239,7 +308,7 @@ export const GO_UI: Record<Lang, GoUi> = {
       ],
       faq: [
         { q: "Quel est le pays le plus accessible depuis le Cameroun ?", a: "Cela dépend de votre profil : avec peu de budget et l'envie d'apprendre l'allemand, l'Ausbildung est souvent la plus accessible ; avec un diplôme et une bonne maîtrise du français, les programmes francophones du Canada sont intéressants. Le test d'éligibilité vous oriente en une minute." },
-        { q: "Peut-on préparer sa procédure sans habiter Douala ou Yaoundé ?", a: "Oui. Presque tout se fait en ligne. Le seul déplacement est en général le rendez-vous au centre de visa ou à l'ambassade, à Yaoundé ou Douala selon le pays : nous vous aidons à l'organiser en un seul voyage." },
+        { q: "Peut-on préparer sa procédure sans habiter Douala ou Yaoundé ?", a: "Oui. Une grande partie de la préparation se fait en ligne. Certaines étapes demandent de se déplacer, surtout le rendez-vous au centre de visa ou à l'ambassade (à Yaoundé, parfois Douala ou Garoua selon le pays), et parfois un examen de langue : nous vous aidons à les planifier pour limiter les allers-retours." },
         { q: "Izimboa travaille-t-il avec une seule destination ?", a: "Non. Notre rôle est de trouver la voie la plus adaptée à votre profil parmi plusieurs pays, puis de vous accompagner étape par étape." },
       ],
     },
@@ -257,7 +326,7 @@ export const GO_UI: Record<Lang, GoUi> = {
       compareText: "Language, study costs, work options, permanent residence: compare the destinations side by side.",
       compareLink: "Compare countries",
       citiesTitle: "Everywhere in Cameroon",
-      citiesLead: "Almost the whole process is done remotely. Wherever you are, we support you and help you plan the only trip you need: the visa centre appointment.",
+      citiesLead: "Much of the preparation can be done remotely. Wherever you are, we help you prepare your file and plan the trips you need (visa centre or embassy appointment, biometrics, sometimes a language test).",
       readMore: "See the program",
     },
     program: {
@@ -268,7 +337,10 @@ export const GO_UI: Record<Lang, GoUi> = {
       costLabel: "Fee",
       costAmount: "Amount",
       costFcfa: "In FCFA",
-      costsNote: "Official amounts at the date of verification; the FCFA conversion is indicative. Izimboa's support fees are quoted separately, before any commitment.",
+      costsNote: "Amounts published at the date of verification; the FCFA conversion is indicative. This table is not the total cost of the project (flight, housing, insurance, translations, language tests…). Official fees are paid directly to the authorities or their providers; any Izimboa support fees are separate and quoted before any commitment.",
+      costNature: "Type",
+      costKinds: { official: "Official fee", provider: "Service provider fee", employer: "Paid by the employer", requirement: "Funds requirement (not a fee)" },
+      uncertain: "to be confirmed",
       delays: "Timelines",
       biometrics: "Appointment and biometrics in Cameroon",
       faq: "FAQ",
@@ -277,8 +349,20 @@ export const GO_UI: Record<Lang, GoUi> = {
       disclaimer: "Izimboa is not a visa-issuing authority and does not guarantee any outcome. Only the destination country's authorities decide. Rules change often: always check the official sources below.",
       related: "Other routes for the same goal",
       paused: "Program currently paused or closed",
-      limited: "Limited places or rules being changed",
+      limited: "Restricted access or recently changed rules: read the requirements and verification date",
       hubLink: "All programs",
+    },
+    trust: {
+      title: "What Izimboa Go does, and what it does not",
+      lead: "To choose with confidence, here is exactly what we offer, and its limits.",
+      items: [
+        { title: "General information", text: "Program guides written from official websites, with their sources and verification date. Free." },
+        { title: "Guidance", text: "The eligibility test and a call with an adviser point you to routes worth exploring. This is indicative guidance, not an eligibility decision: only the authorities and institutions decide." },
+        { title: "Administrative assistance", text: "Document checklist, file organisation, calendar, appointment preparation. You submit your own application and pay official fees directly to the authorities or their providers." },
+        { title: "Regulated advice: the case of Canada", text: "For a Canadian application (including Québec), only authorised representatives (lawyers, Québec notaries, consultants regulated by the CICC) may be paid to advise or represent an applicant. Izimboa Go does not represent applicants before the authorities; for paid personalised advice on a Canadian application, we refer you to an authorised representative." },
+      ],
+      notAffiliated: "Izimboa Go is not a government body, an embassy, a visa centre (VFS Global, TLScontact) or Campus France, and has no official link with them.",
+      legalLink: "Legal notice",
     },
     city: {
       travel: "Getting to your visa appointment",
@@ -291,14 +375,17 @@ export const GO_UI: Record<Lang, GoUi> = {
       faq: "FAQ",
     },
     test: {
-      title: "Which program fits you?",
-      lead: "Five questions, one minute. We show you the routes that best fit your profile, then an adviser can call you back for free.",
+      title: "Assess your profile for free",
+      cta: "Assess my profile for free",
+      lead: "About six questions, two minutes. You get routes worth exploring, their main requirements and points to watch, then you can ask for a call back.",
       q: {
         goal: "What is your plan?",
         education: "Your highest qualification?",
         age: "Your age?",
         language: "Which languages do you speak?",
         budget: "Budget available for the project (excluding the flight)?",
+        experience: "Your work experience?",
+        destination: "A destination in mind?",
       },
       goalOptions: [
         { value: "study", label: "Study" },
@@ -329,14 +416,42 @@ export const GO_UI: Record<Lang, GoUi> = {
         { value: "mid", label: "3 to 8 million FCFA" },
         { value: "high", label: "Over 8 million FCFA" },
       ],
+      experienceOptions: [
+        { value: "none", label: "No experience yet" },
+        { value: "1-2", label: "1 to 2 years" },
+        { value: "3+", label: "3 years or more" },
+      ],
+      destinationOptions: [
+        { value: "any", label: "No preference, I want the best route" },
+        { value: "ca", label: "Canada" },
+        { value: "de", label: "Germany" },
+        { value: "fr", label: "France" },
+        { value: "be", label: "Belgium" },
+      ],
+      profileTitle: "Your profile",
+      keyConditions: "Main requirements to check",
+      officialSource: "Official source",
+      seeProgram: "See the full guide",
+      restricted: "Restricted or recently changed",
+      warningsTitle: "Points to watch for your profile",
+      warnings: {
+        budgetStudy: "Studying abroad often requires proof of substantial funds (blocked account in Germany, proof of funds in Canada, monthly resources in France and Belgium): check this amount first.",
+        german: "German routes usually require a recognised German certificate (often B1 for Ausbildung).",
+        french: "The suggested routes assume good French, often proven by a recognised test (TCF, TEF).",
+        experience: "Most skilled work routes require a recognised qualification or work experience in the occupation.",
+        age: "For Express Entry (Canada), age lowers the score from about 30: other routes may fit better.",
+        secondary: "University admission usually requires the GCE A Level or Baccalauréat.",
+        destination: "Your preferred destination does not come first for your profile: compare it with the other routes before deciding.",
+      },
+      phoneError: "Invalid phone number: enter a Cameroonian number (e.g. 6 99 12 34 56) or an international one with the country code.",
       next: "Next",
       back: "Back",
       step: "Question",
-      resultTitle: "The routes that best fit your profile",
-      resultLead: "A first orientation, not a decision: an adviser will check your file in detail.",
-      noResult: "Your profile needs a personalised review: leave your details and an adviser will call you back.",
+      resultTitle: "Routes worth exploring for your profile",
+      resultLead: "Indicative guidance based on your answers, not an eligibility decision: exact requirements depend on your file and the rules in force.",
+      noResult: "Your answers do not allow us to point to a reliable route. This does not mean none exists: an adviser can review your situation.",
       contactTitle: "Get a free call back",
-      contactLead: "An Izimboa adviser will call you to review your profile, wherever you are in Cameroon.",
+      contactLead: "An Izimboa adviser will call you to review your profile, wherever you are in Cameroon. No commitment; your details are only used to get back to you.",
       name: "Your name",
       phone: "Phone",
       phoneHint: "Your WhatsApp number if possible.",
@@ -377,7 +492,7 @@ export const GO_UI: Record<Lang, GoUi> = {
       ],
       faq: [
         { q: "Which country is the most accessible from Cameroon?", a: "It depends on your profile: with a small budget and willingness to learn German, Ausbildung is often the most accessible; with a degree and strong French, Canada's francophone programs are attractive. The eligibility test guides you in one minute." },
-        { q: "Can I prepare my application without living in Douala or Yaoundé?", a: "Yes. Almost everything is online. The only trip is usually the visa centre or embassy appointment, in Yaoundé or Douala depending on the country: we help you plan it as a single journey." },
+        { q: "Can I prepare my application without living in Douala or Yaoundé?", a: "Yes. Much of the preparation is done online. Some steps require travel, mainly the visa centre or embassy appointment (in Yaoundé, sometimes Douala or Garoua depending on the country), and sometimes a language test: we help you plan them to limit return trips." },
         { q: "Does Izimboa work with a single destination?", a: "No. Our role is to find the route that best fits your profile across several countries, then support you step by step." },
       ],
     },

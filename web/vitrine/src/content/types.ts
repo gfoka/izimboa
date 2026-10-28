@@ -28,6 +28,10 @@ export type ProductContent = {
   business?: BusinessForm;
   /** Le bouton d'équipe mène au test d'éligibilité de la page (#test). */
   testAnchor?: boolean;
+  /** Second bouton du premier écran (sinon : « Comment ça marche »). */
+  heroSecondary?: { label: string; href: string };
+  /** Ligne sous l'accroche : destinations couvertes, public visé. */
+  heroPoints?: string[];
 };
 
 export type BusinessForm = {
