@@ -1,1 +1,1145 @@
-[]
+[
+  {
+    "key": "bafoussam",
+    "name": "Bafoussam",
+    "region": {
+      "fr": "Ouest",
+      "en": "West"
+    },
+    "slug": {
+      "fr": "immigration-bafoussam",
+      "en": "immigration-bafoussam"
+    },
+    "toYaounde": {
+      "km": 293,
+      "time": {
+        "fr": "environ 4 à 5 h en bus (via Bafia)",
+        "en": "about 4–5 hours by bus (via Bafia)"
+      }
+    },
+    "toDouala": {
+      "km": 251,
+      "time": {
+        "fr": "environ 4 à 5 h en bus, parfois plus selon l'état de la route",
+        "en": "about 4–5 hours by bus, sometimes longer depending on road conditions"
+      }
+    },
+    "universities": [
+      "Université de Dschang (Dschang, à environ 50 km)",
+      "IUT Fotso Victor de Bandjoun (Université de Dschang)"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Bafoussam",
+      "metaDescription": "Vous vivez à Bafoussam ou dans l'Ouest ? Préparez votre projet d'études ou de travail au Canada, en Allemagne, en France ou en Belgique avec Izimboa Go.",
+      "h1": "Partir étudier ou travailler à l'étranger depuis Bafoussam",
+      "intro": "Bafoussam, chef-lieu de la région de l'Ouest, est entourée de pôles universitaires : l'Université de Dschang est à une cinquantaine de kilomètres et son IUT Fotso Victor se trouve à Bandjoun. Beaucoup de diplômés de la région visent un master ou un emploi au Canada, en Allemagne, en France ou en Belgique. La quasi-totalité de la démarche se fait en ligne depuis Bafoussam ; seul le rendez-vous visa ou biométrie impose un déplacement à Yaoundé ou à Douala. Izimboa Go vous aide à choisir la bonne voie pour votre profil et à préparer ce déplacement.",
+      "travel": "Depuis Bafoussam, Douala (environ 250 km) et Yaoundé (environ 290 km) sont toutes deux accessibles en bus dans la journée. Le choix de la ville dépend du pays : la biométrie pour le Canada se fait uniquement au centre VFS Global de Yaoundé, tandis que les demandes de visa pour la France peuvent être déposées chez TLScontact à Yaoundé ou à Douala. Partez la veille si votre rendez-vous est tôt le matin, car la durée du trajet varie selon l'état de la route et les contrôles.",
+      "local": [
+        "Étudiants de l'Université de Dschang : vos relevés de notes et diplômes doivent souvent être fournis en version originale et traduite selon le pays visé ; anticipez les demandes auprès de votre établissement.",
+        "Pour un projet Canada ou France nécessitant le TCF, l'Alliance française de Dschang fait partie des centres d'examen recensés dans la région.",
+        "Canada : les empreintes se donnent uniquement à Yaoundé ; France : Yaoundé ou Douala, choisissez la ville la plus pratique pour vous.",
+        "Regroupez le rendez-vous biométrique et vos autres démarches en ville (banque, retrait de documents) pour éviter un second voyage."
+      ],
+      "faq": [
+        {
+          "q": "Dois-je aller à Yaoundé ou à Douala depuis Bafoussam ?",
+          "a": "Cela dépend du pays. Pour le Canada, la biométrie se fait au centre VFS Global de Yaoundé. Pour la France, TLScontact a des centres à Yaoundé et à Douala : Douala est un peu plus proche de Bafoussam par la route."
+        },
+        {
+          "q": "Où passer le TCF près de Bafoussam ?",
+          "a": "L'Alliance française de Dschang, à environ 50 km, figure parmi les centres TCF du Cameroun. Vérifiez les dates de session et les modalités d'inscription directement auprès du centre."
+        },
+        {
+          "q": "Peut-on faire toute la procédure depuis Bafoussam ?",
+          "a": "Presque. La recherche d'école ou d'emploi, la constitution du dossier et le paiement se font en ligne. Seuls le rendez-vous visa ou la prise d'empreintes nécessitent un déplacement à Yaoundé ou à Douala."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Bafoussam",
+      "metaDescription": "Living in Bafoussam or the West Region? Plan your study or work project in Canada, Germany, France or Belgium with Izimboa Go, mostly online from home.",
+      "h1": "Study or work abroad from Bafoussam",
+      "intro": "Bafoussam, capital of the West Region, sits close to major campuses: the University of Dschang is about 50 km away and its IUT Fotso Victor is in Bandjoun. Many graduates from the region aim for a master's degree or a job in Canada, Germany, France or Belgium. Almost the whole process can be done online from Bafoussam; only the visa or biometrics appointment requires a trip to Yaoundé or Douala. Izimboa Go helps you pick the right route for your profile and plan that trip.",
+      "travel": "From Bafoussam, both Douala (about 250 km) and Yaoundé (about 290 km) can be reached by bus in a day. Which city you go to depends on the country: biometrics for Canada are taken only at the VFS Global centre in Yaoundé, while French visa applications can be lodged with TLScontact in Yaoundé or Douala. Travel the day before if your appointment is early, as journey times vary with road conditions and checkpoints.",
+      "local": [
+        "University of Dschang students: transcripts and degrees are often required as originals plus translations depending on the destination; request them from your institution early.",
+        "If your Canada or France plan requires the TCF, the Alliance française de Dschang is listed among the test centres in the region.",
+        "Canada: fingerprints are taken only in Yaoundé; France: Yaoundé or Douala, choose whichever is more convenient.",
+        "Combine your biometrics appointment with other errands in the city (bank, document collection) to avoid a second trip."
+      ],
+      "faq": [
+        {
+          "q": "Should I go to Yaoundé or Douala from Bafoussam?",
+          "a": "It depends on the country. For Canada, biometrics are taken at the VFS Global centre in Yaoundé. For France, TLScontact has centres in both Yaoundé and Douala; Douala is slightly closer to Bafoussam by road."
+        },
+        {
+          "q": "Where can I take the TCF near Bafoussam?",
+          "a": "The Alliance française de Dschang, about 50 km away, is among the TCF test centres in Cameroon. Check session dates and registration rules directly with the centre."
+        },
+        {
+          "q": "Can I do the whole process from Bafoussam?",
+          "a": "Almost. Finding a school or job, building your file and paying fees are done online. Only the visa appointment or fingerprinting requires a trip to Yaoundé or Douala."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Bafoussam → Yaoundé (distance routière)",
+        "url": "https://www.rome2rio.com/fr/s/Bafoussam/Yaound%C3%A9"
+      },
+      {
+        "label": "Rome2rio – Douala → Bafoussam (distance routière)",
+        "url": "https://www.rome2rio.com/fr/s/Douala/Bafoussam"
+      },
+      {
+        "label": "Rome2rio – Dschang → Bafoussam",
+        "url": "https://www.rome2rio.com/s/Dschang/Bafoussam"
+      },
+      {
+        "label": "Stop Blablacam – durée Yaoundé–Bafoussam en transport public",
+        "url": "https://www.stopblablacam.com/culture-and-society/0611-2227-no-it-does-not-take-48-hours-to-reach-bafoussam-from-yaounde"
+      },
+      {
+        "label": "WHED – Université de Dschang (dont IUT Fotso Victor de Bandjoun)",
+        "url": "https://whed.net/institutions/IAU-019578"
+      },
+      {
+        "label": "CameroonDesks – Centres TCF Canada au Cameroun",
+        "url": "https://www.cameroondesks.com/2024/11/centres-tcf-canada-2024-au-cameroun-ou-passer-l-examen-nel.html"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun (centre de Yaoundé)",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      },
+      {
+        "label": "Cameroon Tribune – Centres TLScontact Yaoundé et Douala",
+        "url": "https://cameroon-tribune.cm/article.html/60491/fr.html/details_2"
+      }
+    ]
+  },
+  {
+    "key": "bamenda",
+    "name": "Bamenda",
+    "region": {
+      "fr": "Nord-Ouest",
+      "en": "North-West"
+    },
+    "slug": {
+      "fr": "immigration-bamenda",
+      "en": "immigration-bamenda"
+    },
+    "toYaounde": {
+      "km": 368,
+      "time": {
+        "fr": "environ 7 h en bus, selon les conditions de route",
+        "en": "about 7 hours by bus, depending on road conditions"
+      }
+    },
+    "toDouala": {
+      "km": 288,
+      "time": {
+        "fr": "environ 6 h en bus, selon les conditions de route",
+        "en": "about 6 hours by bus, depending on road conditions"
+      }
+    },
+    "universities": [
+      "University of Bamenda (Bambili)"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Bamenda",
+      "metaDescription": "Vous êtes à Bamenda ou dans le Nord-Ouest ? GCE, diplômes anglophones, rendez-vous visa : Izimboa Go prépare votre projet Canada, Allemagne, France.",
+      "h1": "Étudier ou travailler à l'étranger depuis Bamenda",
+      "intro": "Bamenda, chef-lieu du Nord-Ouest, accueille l'University of Bamenda à Bambili, université anglophone créée en 2010. Les candidats de la région ont souvent un parcours GCE et des diplômes en anglais, un atout pour les programmes anglophones au Canada ou en Allemagne. La procédure se fait essentiellement en ligne ; seul le rendez-vous visa ou biométrie se tient à Yaoundé ou à Douala. Izimboa Go vous aide à valoriser votre parcours anglophone et à choisir la destination la plus adaptée.",
+      "travel": "Le rendez-vous visa ou biométrie a lieu à Yaoundé (environ 370 km) ou à Douala (environ 290 km) selon le pays. Pour le Canada, la biométrie se fait uniquement au centre VFS Global de Yaoundé. Avant de réserver une date, renseignez-vous sur les conditions de circulation du moment sur votre itinéraire et prévoyez d'arriver la veille, afin qu'un retard sur la route ne vous fasse pas manquer votre créneau.",
+      "local": [
+        "Vos certificats GCE O Level et A Level sont délivrés par le Cameroon GCE Board, qui dispose d'un bureau régional à Bamenda : utile pour toute démarche concernant vos certificats.",
+        "Diplômés de l'University of Bamenda : votre parcours en anglais facilite l'accès aux formations anglophones, au Canada comme en Allemagne (masters enseignés en anglais).",
+        "Pour un projet vers la France ou le Québec, un test de français (TCF/TEF) peut être exigé : les centres les plus proches sont à Dschang, Douala ou Yaoundé.",
+        "Prévoyez une marge de plusieurs jours entre votre arrivée et le rendez-vous si les conditions de route sont incertaines."
+      ],
+      "faq": [
+        {
+          "q": "Mon GCE est-il reconnu pour étudier à l'étranger ?",
+          "a": "Le GCE A Level est le diplôme de fin de secondaire du système anglophone camerounais et il est utilisé pour les admissions à l'étranger. Chaque établissement fixe toutefois ses propres exigences : vérifiez les conditions d'admission du programme visé."
+        },
+        {
+          "q": "Où dois-je donner mes empreintes depuis Bamenda ?",
+          "a": "Pour le Canada, au centre VFS Global de Yaoundé. Pour la France, chez TLScontact à Yaoundé ou à Douala. Les autres pays ont leurs propres lieux de dépôt, à Yaoundé ou à Douala."
+        },
+        {
+          "q": "Comment organiser le voyage vers le rendez-vous ?",
+          "a": "Consultez les conditions de circulation avant de partir, voyagez de jour si possible et arrivez la veille. Ainsi, un imprévu sur la route ne compromet pas votre rendez-vous."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Bamenda",
+      "metaDescription": "Based in Bamenda or the North-West? GCE results, English-taught degrees, visa appointments: Izimboa Go helps you plan Canada, Germany, France or Belgium.",
+      "h1": "Study or work abroad from Bamenda",
+      "intro": "Bamenda, capital of the North-West Region, is home to the University of Bamenda in Bambili, an English-speaking university founded in 2010. Applicants from the region often hold GCE certificates and English-taught degrees, a strength for English-language programmes in Canada or Germany. Most of the process is online; only the visa or biometrics appointment takes place in Yaoundé or Douala. Izimboa Go helps you make the most of your Anglophone background and choose the best-fitting destination.",
+      "travel": "Your visa or biometrics appointment will be in Yaoundé (about 370 km) or Douala (about 290 km), depending on the country. For Canada, biometrics are taken only at the VFS Global centre in Yaoundé. Before booking a date, check current travel conditions on your route and plan to arrive the day before, so a delay on the road does not make you miss your slot.",
+      "local": [
+        "Your GCE O Level and A Level certificates are issued by the Cameroon GCE Board, which has a regional office in Bamenda – useful for any certificate-related request.",
+        "University of Bamenda graduates: an English-taught background opens doors to English-language programmes in Canada and Germany (many master's degrees are taught in English).",
+        "For France or Quebec, a French test (TCF/TEF) may be required; the nearest centres are in Dschang, Douala or Yaoundé.",
+        "Allow a margin of several days between your arrival and the appointment if road conditions are uncertain."
+      ],
+      "faq": [
+        {
+          "q": "Is my GCE recognised for studying abroad?",
+          "a": "The GCE A Level is the secondary-school leaving qualification of Cameroon's English-speaking system and is used for admission abroad. Each institution sets its own requirements, so check the admission rules of the programme you target."
+        },
+        {
+          "q": "Where do I give my fingerprints from Bamenda?",
+          "a": "For Canada, at the VFS Global centre in Yaoundé. For France, at TLScontact in Yaoundé or Douala. Other countries have their own application points in Yaoundé or Douala."
+        },
+        {
+          "q": "How should I plan the trip to my appointment?",
+          "a": "Check travel conditions before leaving, travel by day where possible and arrive the day before. That way an unexpected delay on the road will not put your appointment at risk."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Yaoundé → Bamenda",
+        "url": "https://www.rome2rio.com/fr/s/Yaound%C3%A9/Bamenda"
+      },
+      {
+        "label": "Rome2rio – Bamenda → Douala",
+        "url": "https://www.rome2rio.com/s/Bamenda/Douala"
+      },
+      {
+        "label": "Wikipedia – University of Bamenda",
+        "url": "https://en.wikipedia.org/wiki/University_of_Bamenda"
+      },
+      {
+        "label": "Wikipedia – Cameroon GCE Board (siège à Buea, bureau régional à Bamenda)",
+        "url": "https://en.wikipedia.org/wiki/Cameroon_GCE_Board"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      },
+      {
+        "label": "Cameroon Tribune – Centres TLScontact",
+        "url": "https://cameroon-tribune.cm/article.html/60491/fr.html/details_2"
+      }
+    ]
+  },
+  {
+    "key": "garoua",
+    "name": "Garoua",
+    "region": {
+      "fr": "Nord",
+      "en": "North"
+    },
+    "slug": {
+      "fr": "immigration-garoua",
+      "en": "immigration-garoua"
+    },
+    "toYaounde": {
+      "km": 914,
+      "time": {
+        "fr": "environ 1 h 30 à 2 h en avion (Camair-Co) ; par voie terrestre, route jusqu'à Ngaoundéré puis train de nuit Camrail (plus d'une journée)",
+        "en": "about 1.5–2 hours by plane (Camair-Co); overland, road to Ngaoundéré then the Camrail night train (more than a day)"
+      }
+    },
+    "toDouala": {
+      "km": 1103,
+      "time": {
+        "fr": "vol direct Camair-Co selon les jours ; par voie terrestre, plus d'une journée via Ngaoundéré et Yaoundé",
+        "en": "direct Camair-Co flights on some days; overland, more than a day via Ngaoundéré and Yaoundé"
+      }
+    },
+    "universities": [
+      "Université de Garoua (créée en 2022)",
+      "École de faune de Garoua"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Garoua",
+      "metaDescription": "Vous vivez à Garoua ou dans le Nord ? Préparez en ligne votre projet Canada, Allemagne, France ou Belgique et faites un seul voyage pour le rendez-vous.",
+      "h1": "Étudier ou travailler à l'étranger depuis Garoua",
+      "intro": "Garoua, chef-lieu de la région du Nord, dispose depuis 2022 de sa propre université d'État, qui forme notamment en médecine, en droit et en sciences de l'éducation. Pour un candidat du Nord, la distance avec Yaoundé et Douala (plus de 900 km par la route) est la principale contrainte. La bonne nouvelle : presque tout se prépare en ligne depuis Garoua. Izimboa Go vous aide à monter un dossier complet du premier coup, pour ne faire qu'un seul voyage.",
+      "travel": "Camair-Co dessert Garoua au départ de Yaoundé et de Douala ; le vol dure environ 1 h 30 à 2 h, mais les fréquences changent : vérifiez-les avant de réserver. Par voie terrestre, il faut rejoindre Ngaoundéré (environ 280 km) puis prendre le train de nuit Camrail jusqu'à Yaoundé. Pour la France, un point de dépôt TLScontact à Garoua a été annoncé en 2023 : vérifiez sur france-visas.gouv.fr s'il est proposé pour votre demande avant de vous déplacer.",
+      "local": [
+        "L'Alliance française de Garoua est un centre d'examen TCF : pratique pour les projets Canada (francophone) ou France sans quitter la ville.",
+        "Planifiez un seul déplacement : dossier complet, copies, photos et justificatifs prêts avant de partir, pour éviter un second voyage de plus de 900 km.",
+        "Si vous prenez l'avion, réservez le vol après avoir obtenu la date de rendez-vous, avec une marge d'au moins un jour.",
+        "Renseignez-vous sur les conditions de circulation dans la région avant tout trajet routier."
+      ],
+      "faq": [
+        {
+          "q": "Peut-on déposer une demande de visa pour la France à Garoua ?",
+          "a": "En 2023, l'ambassade de France a annoncé un point de dépôt TLScontact à Garoua pour les demandeurs du Nord, en plus de Yaoundé et Douala. Vérifiez sur france-visas.gouv.fr et le site TLScontact qu'il est toujours proposé pour votre type de visa."
+        },
+        {
+          "q": "Où donner ses empreintes pour le Canada depuis Garoua ?",
+          "a": "Uniquement au centre VFS Global de Yaoundé. Comptez le voyage aller-retour (avion ou route + train) et au moins une nuit sur place."
+        },
+        {
+          "q": "Où passer le TCF à Garoua ?",
+          "a": "À l'Alliance française de Garoua, où l'inscription se fait en ligne. Vérifiez les dates de session à l'avance, car les places peuvent être limitées."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Garoua",
+      "metaDescription": "Living in Garoua or the North Region? Prepare your Canada, Germany, France or Belgium plan online and organise a single trip for your visa appointment.",
+      "h1": "Study or work abroad from Garoua",
+      "intro": "Garoua, capital of the North Region, has had its own state university since 2022, offering programmes in medicine, law and education among others. For applicants in the North, the distance to Yaoundé and Douala (over 900 km by road) is the main constraint. The good news: almost everything can be prepared online from Garoua. Izimboa Go helps you build a complete file the first time, so you only need one trip.",
+      "travel": "Camair-Co flies to Garoua from Yaoundé and Douala; the flight takes about 1.5–2 hours, but frequencies change, so check before booking. Overland, you travel to Ngaoundéré (about 280 km) and then take the Camrail night train to Yaoundé. For France, a TLScontact application point in Garoua was announced in 2023; check france-visas.gouv.fr to see whether it is offered for your application before travelling.",
+      "local": [
+        "The Alliance française de Garoua is a TCF test centre, convenient for French-language Canada plans or France without leaving town.",
+        "Plan a single trip: have your complete file, copies, photos and supporting documents ready before leaving, to avoid a second 900+ km journey.",
+        "If flying, book after you get your appointment date, leaving at least one day of margin.",
+        "Check travel conditions in the region before any road journey."
+      ],
+      "faq": [
+        {
+          "q": "Can I apply for a French visa in Garoua?",
+          "a": "In 2023 the French embassy announced a TLScontact application point in Garoua for applicants from the North, in addition to Yaoundé and Douala. Check france-visas.gouv.fr and the TLScontact site to confirm it is still offered for your visa type."
+        },
+        {
+          "q": "Where do I give fingerprints for Canada from Garoua?",
+          "a": "Only at the VFS Global centre in Yaoundé. Allow for the round trip (plane, or road plus train) and at least one night there."
+        },
+        {
+          "q": "Where can I take the TCF in Garoua?",
+          "a": "At the Alliance française de Garoua, where registration is online. Check session dates early, as places can be limited."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Yaoundé → Garoua",
+        "url": "https://www.rome2rio.com/fr/s/Yaound%C3%A9/Garoua"
+      },
+      {
+        "label": "Rome2rio – Douala → Garoua",
+        "url": "https://www.rome2rio.com/fr/s/Douala/Garoua"
+      },
+      {
+        "label": "Rome2rio – Garoua → Ngaoundéré",
+        "url": "https://www.rome2rio.com/s/Garoua/Ngaound%C3%A9r%C3%A9"
+      },
+      {
+        "label": "EcoMatin – Camair-Co, vols vers Ngaoundéré, Garoua et Maroua (2023)",
+        "url": "https://ecomatin.net/reseau-domestique-camair-co-procede-a-la-restructuration-de-ses-vols-vers-ngaoundere-garoua-et-maroua"
+      },
+      {
+        "label": "Cameroon Tribune – Création des universités de Bertoua, Garoua, Ebolowa",
+        "url": "https://www.cameroon-tribune.cm/article.html/44559/en.html/details_2"
+      },
+      {
+        "label": "Cameroon Tribune – Université de Garoua, rentrée 2022",
+        "url": "https://cameroon-tribune.cm/article.html/51493/fr.html/details_2"
+      },
+      {
+        "label": "Cameroon Tribune – TLScontact Yaoundé, Douala, Garoua (2023)",
+        "url": "https://cameroon-tribune.cm/article.html/60491/fr.html/details_2"
+      },
+      {
+        "label": "CameroonDesks – Centres TCF (Alliance française de Garoua)",
+        "url": "https://www.cameroondesks.com/2024/11/centres-tcf-canada-2024-au-cameroun-ou-passer-l-examen-nel.html"
+      },
+      {
+        "label": "Seat61 – Train Yaoundé–Ngaoundéré",
+        "url": "https://seat61.com/Cameroon.htm"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ]
+  },
+  {
+    "key": "maroua",
+    "name": "Maroua",
+    "region": {
+      "fr": "Extrême-Nord",
+      "en": "Far North"
+    },
+    "slug": {
+      "fr": "immigration-maroua",
+      "en": "immigration-maroua"
+    },
+    "toYaounde": {
+      "km": 1121,
+      "time": {
+        "fr": "environ 1 h 30 en vol direct Camair-Co (Maroua-Salak – Yaoundé-Nsimalen) ; par la route, plus d'une journée",
+        "en": "about 1.5 hours on a direct Camair-Co flight (Maroua-Salak – Yaoundé-Nsimalen); by road, more than a day"
+      }
+    },
+    "toDouala": {
+      "km": 1298,
+      "time": {
+        "fr": "en avion (Camair-Co) selon les jours ; par la route, plus d'une journée",
+        "en": "by plane (Camair-Co) on some days; by road, more than a day"
+      }
+    },
+    "universities": [
+      "Université de Maroua (créée en 2008), dont l'École normale supérieure de Maroua"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Maroua",
+      "metaDescription": "Vous êtes à Maroua ou dans l'Extrême-Nord ? Préparez tout en ligne avec Izimboa Go et organisez un seul voyage pour votre rendez-vous visa à Yaoundé.",
+      "h1": "Étudier ou travailler à l'étranger depuis Maroua",
+      "intro": "Maroua, chef-lieu de l'Extrême-Nord, abrite l'Université de Maroua, créée en 2008 autour de son École normale supérieure bilingue et qui compte aujourd'hui plusieurs dizaines de milliers d'étudiants. C'est la ville la plus éloignée des centres de visa : plus de 1 100 km par la route jusqu'à Yaoundé. Le dossier se prépare en ligne depuis Maroua ; l'enjeu est de n'effectuer qu'un seul déplacement. Izimboa Go vérifie votre dossier avant le départ pour que ce voyage suffise.",
+      "travel": "Le moyen le plus pratique est l'avion : Camair-Co relie Maroua-Salak à Yaoundé-Nsimalen en vol direct d'environ 1 h 30, plusieurs fois par semaine selon la saison. Les horaires changent régulièrement : réservez seulement après avoir obtenu votre date de rendez-vous et gardez une journée de marge. Par la route, le trajet dépasse une journée ; renseignez-vous sur les conditions de circulation avant de partir.",
+      "local": [
+        "Étudiants et diplômés de l'Université de Maroua (y compris l'ENS) : préparez relevés et attestations bien avant le rendez-vous, ils sont difficiles à obtenir une fois sur place à Yaoundé.",
+        "Le centre TCF le plus proche recensé est l'Alliance française de Garoua (avec une annexe à Ngaoundéré).",
+        "Un seul voyage : copies, photos d'identité, preuves de fonds et justificatifs doivent être complets avant l'embarquement.",
+        "Pour la France, un point de dépôt TLScontact à Garoua a été annoncé en 2023 : vérifiez s'il est disponible pour votre demande, il peut éviter le voyage vers le Sud."
+      ],
+      "faq": [
+        {
+          "q": "Faut-il obligatoirement aller à Yaoundé depuis Maroua ?",
+          "a": "Pour la biométrie Canada, oui : elle se fait uniquement au centre VFS Global de Yaoundé. Pour la France, les centres TLScontact sont à Yaoundé et Douala, et un point de dépôt à Garoua a été annoncé en 2023 ; vérifiez sa disponibilité sur france-visas.gouv.fr."
+        },
+        {
+          "q": "Combien de temps prévoir pour le voyage ?",
+          "a": "En avion, environ 1 h 30 de vol, mais comptez une nuit sur place. Par la route, plus d'une journée dans chaque sens. Gardez au moins une journée de marge avant le rendez-vous."
+        },
+        {
+          "q": "Mon diplôme de l'ENS de Maroua peut-il servir à l'étranger ?",
+          "a": "Oui, comme tout diplôme d'État camerounais, sous réserve de l'évaluation prévue par le pays visé (par exemple une évaluation des diplômes pour le Canada). Izimboa Go vous indique la démarche selon votre projet."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Maroua",
+      "metaDescription": "Based in Maroua or the Far North? Prepare everything online with Izimboa Go and plan one single trip for your visa appointment in Yaoundé or Douala.",
+      "h1": "Study or work abroad from Maroua",
+      "intro": "Maroua, capital of the Far North Region, is home to the University of Maroua, founded in 2008 around its bilingual Higher Teacher Training College and now counting tens of thousands of students. It is the city furthest from the visa centres: over 1,100 km by road to Yaoundé. Your file can be prepared online from Maroua; the key is to make only one trip. Izimboa Go checks your file before you leave so that one trip is enough.",
+      "travel": "Flying is the most practical option: Camair-Co links Maroua-Salak and Yaoundé-Nsimalen with a direct flight of about 1.5 hours, several times a week depending on the season. Schedules change regularly, so book only after you have your appointment date and keep a day of margin. By road the journey takes more than a day; check travel conditions before setting off.",
+      "local": [
+        "University of Maroua students and graduates (including the ENS): get transcripts and certificates well before your appointment – they are hard to obtain once you are in Yaoundé.",
+        "The nearest listed TCF centre is the Alliance française de Garoua (with an annex in Ngaoundéré).",
+        "One trip only: copies, ID photos, proof of funds and supporting documents must be complete before you board.",
+        "For France, a TLScontact application point in Garoua was announced in 2023; check whether it is available for your application, as it may save the trip south."
+      ],
+      "faq": [
+        {
+          "q": "Do I have to go to Yaoundé from Maroua?",
+          "a": "For Canadian biometrics, yes: they are taken only at the VFS Global centre in Yaoundé. For France, TLScontact centres are in Yaoundé and Douala, and an application point in Garoua was announced in 2023; check availability on france-visas.gouv.fr."
+        },
+        {
+          "q": "How much time should I allow for the trip?",
+          "a": "By plane, about 1.5 hours of flying, but plan a night there. By road, more than a day each way. Keep at least one day of margin before the appointment."
+        },
+        {
+          "q": "Can my ENS Maroua degree be used abroad?",
+          "a": "Yes, like any Cameroonian state degree, subject to the assessment required by the destination country (for example a credential assessment for Canada). Izimboa Go explains the steps for your plan."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Yaoundé → Maroua",
+        "url": "https://www.rome2rio.com/fr/s/Yaound%C3%A9/Maroua"
+      },
+      {
+        "label": "Rome2rio – Douala → Maroua",
+        "url": "https://www.rome2rio.com/fr/s/Douala/Maroua"
+      },
+      {
+        "label": "FlightConnections – Vols directs Yaoundé → Maroua",
+        "url": "https://www.flightconnections.com/flights-from-nsi-to-mvr"
+      },
+      {
+        "label": "EcoMatin – Camair-Co, vols vers le Nord (2023)",
+        "url": "https://ecomatin.net/reseau-domestique-camair-co-procede-a-la-restructuration-de-ses-vols-vers-ngaoundere-garoua-et-maroua"
+      },
+      {
+        "label": "Cameroon Tribune – Université de Maroua (2023)",
+        "url": "https://cameroon-tribune.cm/article.html/60715/fr.html/details_2"
+      },
+      {
+        "label": "Wikipedia – École normale supérieure de Maroua",
+        "url": "https://en.wikipedia.org/wiki/%C3%89cole_normale_sup%C3%A9rieure_de_Maroua"
+      },
+      {
+        "label": "Cameroon Tribune – TLScontact Yaoundé, Douala, Garoua (2023)",
+        "url": "https://cameroon-tribune.cm/article.html/60491/fr.html/details_2"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ]
+  },
+  {
+    "key": "ngaoundere",
+    "name": "Ngaoundéré",
+    "region": {
+      "fr": "Adamaoua",
+      "en": "Adamawa"
+    },
+    "slug": {
+      "fr": "immigration-ngaoundere",
+      "en": "immigration-ngaoundere"
+    },
+    "toYaounde": {
+      "km": 641,
+      "time": {
+        "fr": "environ 16 h en train de nuit Camrail (quotidien, 622 km de voie ferrée)",
+        "en": "about 16 hours on the daily Camrail night train (622 km of track)"
+      }
+    },
+    "toDouala": {
+      "km": 878,
+      "time": {
+        "fr": "train de nuit jusqu'à Yaoundé puis correspondance (train ou bus) vers Douala ; vols Camair-Co selon les jours",
+        "en": "night train to Yaoundé then a connection (train or bus) to Douala; Camair-Co flights on some days"
+      }
+    },
+    "universities": [
+      "Université de Ngaoundéré (campus de Dang, créée en 1993)",
+      "École nationale supérieure des sciences agro-industrielles (ENSAI, Université de Ngaoundéré)"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Ngaoundéré",
+      "metaDescription": "Vous vivez à Ngaoundéré ? Train Camrail, TCF, rendez-vous visa : Izimboa Go prépare votre projet d'études ou de travail au Canada, en Allemagne, en France.",
+      "h1": "Étudier ou travailler à l'étranger depuis Ngaoundéré",
+      "intro": "Ngaoundéré, chef-lieu de l'Adamaoua, est le terminus nord de la ligne ferroviaire Camrail et le siège de l'Université de Ngaoundéré, créée en 1993 sur le campus de Dang. Ses écoles d'ingénieurs (agro-industrie, géologie et mines, génie chimique) et sa faculté de médecine forment des profils recherchés à l'étranger. La procédure se prépare en ligne depuis Ngaoundéré ; seul le rendez-vous visa demande d'aller à Yaoundé ou à Douala. Izimboa Go vous aide à cibler les programmes adaptés à votre spécialité.",
+      "travel": "Le train de nuit Camrail relie Ngaoundéré à Yaoundé tous les jours, avec places assises et couchettes ; le trajet dure environ 16 heures et les retards sont fréquents. Arrivez donc au moins la veille de votre rendez-vous. Camair-Co dessert aussi Ngaoundéré depuis Yaoundé et Douala, avec des fréquences variables. Vérifiez horaires et tarifs sur le site de Camrail avant de réserver.",
+      "local": [
+        "Une annexe de l'Alliance française de Garoua à Ngaoundéré fait passer le TCF : utile pour un projet Canada (francophone) ou France.",
+        "Ingénieurs de l'ENSAI ou des écoles de l'Université de Ngaoundéré : l'agroalimentaire, les mines et le génie chimique font partie des domaines recherchés, notamment en Allemagne et au Canada.",
+        "Réservez une couchette pour arriver reposé au rendez-vous, et gardez vos documents originaux dans un bagage à main.",
+        "Faites coïncider le rendez-vous avec les dates de train disponibles : réservez le billet dès que la date est connue."
+      ],
+      "faq": [
+        {
+          "q": "Le train est-il une bonne option pour aller au rendez-vous visa ?",
+          "a": "Oui, c'est le moyen terrestre le plus utilisé : un train de nuit quotidien relie Ngaoundéré à Yaoundé en environ 16 h. Prévoyez d'arriver la veille, car les retards sont courants."
+        },
+        {
+          "q": "Où passer le TCF à Ngaoundéré ?",
+          "a": "L'annexe de l'Alliance française de Garoua à Ngaoundéré organise le TCF ; l'inscription se fait en ligne. Vérifiez les sessions à l'avance."
+        },
+        {
+          "q": "Où se fait la biométrie pour le Canada ?",
+          "a": "Au centre VFS Global de Yaoundé, le seul au Cameroun pour le Canada. Le train vous y amène directement depuis Ngaoundéré."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Ngaoundéré",
+      "metaDescription": "Living in Ngaoundéré? Camrail train, TCF, visa appointment: Izimboa Go helps you prepare your study or work plan for Canada, Germany, France or Belgium.",
+      "h1": "Study or work abroad from Ngaoundéré",
+      "intro": "Ngaoundéré, capital of the Adamawa Region, is the northern terminus of the Camrail railway and home to the University of Ngaoundéré, founded in 1993 on the Dang campus. Its engineering schools (agro-industry, geology and mining, chemical engineering) and medical faculty train profiles in demand abroad. The process is prepared online from Ngaoundéré; only the visa appointment requires a trip to Yaoundé or Douala. Izimboa Go helps you target programmes that fit your field.",
+      "travel": "The Camrail night train links Ngaoundéré and Yaoundé every day, with seats and sleeper berths; the journey takes about 16 hours and delays are common. Arrive at least the day before your appointment. Camair-Co also serves Ngaoundéré from Yaoundé and Douala, with varying frequencies. Check times and fares on the Camrail website before booking.",
+      "local": [
+        "An annex of the Alliance française de Garoua in Ngaoundéré runs the TCF – useful for French-language Canada plans or France.",
+        "ENSAI and University of Ngaoundéré engineers: food processing, mining and chemical engineering are sought-after fields, notably in Germany and Canada.",
+        "Book a sleeper berth so you arrive rested, and keep original documents in your hand luggage.",
+        "Match your appointment to available train dates: book your ticket as soon as you know the date."
+      ],
+      "faq": [
+        {
+          "q": "Is the train a good way to get to my visa appointment?",
+          "a": "Yes, it is the most common overland option: a daily night train links Ngaoundéré and Yaoundé in about 16 hours. Plan to arrive the day before, as delays are common."
+        },
+        {
+          "q": "Where can I take the TCF in Ngaoundéré?",
+          "a": "The Ngaoundéré annex of the Alliance française de Garoua holds TCF sessions; registration is online. Check session dates in advance."
+        },
+        {
+          "q": "Where are Canadian biometrics taken?",
+          "a": "At the VFS Global centre in Yaoundé, the only one in Cameroon for Canada. The train takes you straight there from Ngaoundéré."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Yaoundé → Ngaoundéré",
+        "url": "https://www.rome2rio.com/fr/s/Yaound%C3%A9/Ngaound%C3%A9r%C3%A9"
+      },
+      {
+        "label": "Rome2rio – Douala → Ngaoundéré",
+        "url": "https://www.rome2rio.com/fr/s/Douala/Ngaound%C3%A9r%C3%A9"
+      },
+      {
+        "label": "Seat61 – Train Yaoundé–Ngaoundéré (Camrail)",
+        "url": "https://seat61.com/Cameroon.htm"
+      },
+      {
+        "label": "EcoMatin – Camair-Co, vols vers Ngaoundéré (2023)",
+        "url": "https://ecomatin.net/reseau-domestique-camair-co-procede-a-la-restructuration-de-ses-vols-vers-ngaoundere-garoua-et-maroua"
+      },
+      {
+        "label": "Wikipedia – University of Ngaoundéré",
+        "url": "https://en.wikipedia.org/wiki/University_of_Ngaound%C3%A9r%C3%A9"
+      },
+      {
+        "label": "CameroonDesks – Centres TCF (annexe AF Garoua à Ngaoundéré)",
+        "url": "https://www.cameroondesks.com/2024/11/centres-tcf-canada-2024-au-cameroun-ou-passer-l-examen-nel.html"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ]
+  },
+  {
+    "key": "bertoua",
+    "name": "Bertoua",
+    "region": {
+      "fr": "Est",
+      "en": "East"
+    },
+    "slug": {
+      "fr": "immigration-bertoua",
+      "en": "immigration-bertoua"
+    },
+    "toYaounde": {
+      "km": 333,
+      "time": {
+        "fr": "environ 6 à 7 h en bus",
+        "en": "about 6–7 hours by bus"
+      }
+    },
+    "toDouala": {
+      "km": 571,
+      "time": {
+        "fr": "environ 11 à 12 h par la route, via Yaoundé",
+        "en": "about 11–12 hours by road, via Yaoundé"
+      }
+    },
+    "universities": [
+      "Université de Bertoua (créée en 2022)",
+      "ISABEE – Institut supérieur d'agriculture, du bois, de l'eau et de l'environnement (Bélabo, Université de Bertoua)"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Bertoua",
+      "metaDescription": "Vous êtes à Bertoua ou dans l'Est ? Izimboa Go prépare en ligne votre projet d'études ou de travail au Canada, en Allemagne, en France ou en Belgique.",
+      "h1": "Étudier ou travailler à l'étranger depuis Bertoua",
+      "intro": "Bertoua, chef-lieu de la région de l'Est, accueille depuis 2022 l'Université de Bertoua, créée par le décret n° 2022/0008 du 6 janvier 2022. Elle compte quatre facultés, une École normale supérieure et des écoles orientées vers les mines, l'urbanisme et le tourisme, ainsi qu'un institut d'agriculture, du bois et de l'environnement à Bélabo. Depuis Bertoua, le dossier se prépare en ligne ; le rendez-vous visa se tient généralement à Yaoundé, la ville la plus proche. Izimboa Go vous aide à transformer cette formation en projet à l'étranger.",
+      "travel": "Yaoundé est à environ 330 km : comptez 6 à 7 heures de bus. C'est la destination logique pour la biométrie Canada (centre VFS Global) et pour les visas France (TLScontact, qui a aussi un centre à Douala, mais à plus de 570 km). Prévoyez d'arriver la veille et gardez une marge, car la durée du trajet varie selon l'état de la route.",
+      "local": [
+        "Diplômés de l'ISABEE ou de l'École des mines de l'Université de Bertoua : la foresterie, l'environnement et les mines sont des domaines où des formations spécialisées existent en Allemagne et au Canada.",
+        "Yaoundé est plus proche que Douala : privilégiez les centres de Yaoundé lorsque le pays visé le permet.",
+        "La gare de Bélabo est desservie par le train Yaoundé–Ngaoundéré de Camrail, une alternative à la route selon votre point de départ.",
+        "Les centres TCF les plus proches recensés se trouvent à Yaoundé (Institut français du Cameroun)."
+      ],
+      "faq": [
+        {
+          "q": "Où aller pour mon rendez-vous visa depuis Bertoua ?",
+          "a": "Le plus souvent à Yaoundé, à environ 330 km : c'est là que se trouvent le centre VFS Global (Canada) et un centre TLScontact (France). Douala est bien plus loin (environ 570 km)."
+        },
+        {
+          "q": "L'Université de Bertoua est-elle reconnue ?",
+          "a": "Oui, c'est une université d'État créée par décret présidentiel en janvier 2022. Ses diplômes sont des diplômes nationaux camerounais, que les pays d'accueil évaluent selon leurs propres règles."
+        },
+        {
+          "q": "Où passer le TCF depuis Bertoua ?",
+          "a": "Les centres les plus proches sont à Yaoundé, notamment l'Institut français du Cameroun. Vous pouvez combiner l'examen et un autre rendez-vous en un seul voyage."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Bertoua",
+      "metaDescription": "Living in Bertoua or the East Region? Izimboa Go helps you prepare your study or work plan for Canada, Germany, France or Belgium, mostly online.",
+      "h1": "Study or work abroad from Bertoua",
+      "intro": "Bertoua, capital of the East Region, has been home since 2022 to the University of Bertoua, created by decree No. 2022/0008 of 6 January 2022. It has four faculties, a Higher Teacher Training College and schools focused on mining, urban planning and tourism, plus an agriculture, wood and environment institute in Bélabo. From Bertoua, your file is prepared online; the visa appointment is usually in Yaoundé, the nearest city. Izimboa Go helps you turn that training into a project abroad.",
+      "travel": "Yaoundé is about 330 km away: allow 6–7 hours by bus. It is the natural choice for Canadian biometrics (VFS Global centre) and French visas (TLScontact, which also has a centre in Douala, over 570 km away). Plan to arrive the day before and keep a margin, as travel time varies with road conditions.",
+      "local": [
+        "ISABEE or mining-school graduates of the University of Bertoua: forestry, environment and mining are fields with specialised programmes in Germany and Canada.",
+        "Yaoundé is closer than Douala: choose Yaoundé centres whenever your destination country allows it.",
+        "Bélabo station is served by Camrail's Yaoundé–Ngaoundéré train, an alternative to the road depending on where you start.",
+        "The nearest listed TCF centres are in Yaoundé (Institut français du Cameroun)."
+      ],
+      "faq": [
+        {
+          "q": "Where do I go for my visa appointment from Bertoua?",
+          "a": "Usually Yaoundé, about 330 km away: it hosts the VFS Global centre (Canada) and a TLScontact centre (France). Douala is much further (about 570 km)."
+        },
+        {
+          "q": "Is the University of Bertoua recognised?",
+          "a": "Yes, it is a state university created by presidential decree in January 2022. Its degrees are Cameroonian national degrees, which host countries assess under their own rules."
+        },
+        {
+          "q": "Where can I take the TCF from Bertoua?",
+          "a": "The nearest centres are in Yaoundé, including the Institut français du Cameroun. You can combine the test with another appointment in a single trip."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Yaoundé → Bertoua",
+        "url": "https://www.rome2rio.com/fr/s/Yaound%C3%A9/Bertoua"
+      },
+      {
+        "label": "Rome2rio – Bertoua → Douala",
+        "url": "https://www.rome2rio.com/fr/s/Bertoua/Douala"
+      },
+      {
+        "label": "Wikipedia – University of Bertoua",
+        "url": "https://en.wikipedia.org/wiki/University_of_Bertoua"
+      },
+      {
+        "label": "Cameroon Tribune – Création des universités de Bertoua, Garoua, Ebolowa",
+        "url": "https://www.cameroon-tribune.cm/article.html/44559/en.html/details_2"
+      },
+      {
+        "label": "Seat61 – Train Yaoundé–Ngaoundéré (arrêt Bélabo)",
+        "url": "https://seat61.com/Cameroon.htm"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      },
+      {
+        "label": "Cameroon Tribune – Centres TLScontact",
+        "url": "https://cameroon-tribune.cm/article.html/60491/fr.html/details_2"
+      }
+    ]
+  },
+  {
+    "key": "kribi",
+    "name": "Kribi",
+    "region": {
+      "fr": "Sud",
+      "en": "South"
+    },
+    "slug": {
+      "fr": "immigration-kribi",
+      "en": "immigration-kribi"
+    },
+    "toYaounde": {
+      "km": 281,
+      "time": {
+        "fr": "environ 5 h en bus",
+        "en": "about 5 hours by bus"
+      }
+    },
+    "toDouala": {
+      "km": 177,
+      "time": {
+        "fr": "environ 3 h en bus, via Édéa",
+        "en": "about 3 hours by bus, via Edéa"
+      }
+    },
+    "universities": [
+      "ENSTMO – École nationale supérieure des sciences et technologies maritimes et océaniques (Kribi, Université d'Ebolowa)"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Kribi",
+      "metaDescription": "Vous vivez à Kribi ? Métiers maritimes et portuaires, études, emploi : Izimboa Go prépare votre projet Canada, Allemagne, France ou Belgique à distance.",
+      "h1": "Étudier ou travailler à l'étranger depuis Kribi",
+      "intro": "Kribi, ville portuaire de la région du Sud, accueille l'École nationale supérieure des sciences et technologies maritimes et océaniques (ENSTMO) de l'Université d'Ebolowa : pêche, génie maritime, architecture navale, océanographie, gestion maritime et portuaire. Avec le port en eau profonde, ces profils maritimes et logistiques sont une spécificité locale. La procédure se fait en ligne depuis Kribi ; seul le rendez-vous visa se tient à Douala ou à Yaoundé. Izimboa Go vous aide à trouver les programmes et débouchés qui correspondent à ce profil.",
+      "travel": "Douala n'est qu'à environ 180 km (3 heures de bus via Édéa) : c'est la ville la plus proche pour un dépôt de visa France chez TLScontact. Pour la biométrie Canada, il faut en revanche aller à Yaoundé (environ 280 km, 5 heures de bus), seul centre VFS Global du pays. Un départ tôt le matin permet souvent l'aller-retour vers Douala dans la journée, mais une nuit sur place reste plus sûre.",
+      "local": [
+        "Étudiants et diplômés de l'ENSTMO : les filières maritimes, portuaires et océanographiques ont des équivalents spécialisés en Allemagne, en France, en Belgique et au Canada.",
+        "France : déposez à Douala (TLScontact, Douala Grand Mall), plus proche que Yaoundé.",
+        "Canada : la biométrie se fait uniquement à Yaoundé ; prévoyez le trajet plus long.",
+        "Pour le TCF, les centres les plus proches recensés sont à Douala (Institut français du Cameroun)."
+      ],
+      "faq": [
+        {
+          "q": "Depuis Kribi, vaut-il mieux aller à Douala ou à Yaoundé ?",
+          "a": "Douala est plus proche (environ 3 h) et convient pour les visas France chez TLScontact. Pour la biométrie Canada, Yaoundé est obligatoire, car le centre VFS Global n'existe que là."
+        },
+        {
+          "q": "Une formation maritime de l'ENSTMO peut-elle mener à des études à l'étranger ?",
+          "a": "Oui, ces filières (génie maritime, océanographie, gestion portuaire) ont des prolongements en master à l'étranger. Les conditions d'admission dépendent de chaque établissement ; Izimboa Go vous aide à identifier les programmes adaptés."
+        },
+        {
+          "q": "Où passer le TCF depuis Kribi ?",
+          "a": "Les centres les plus proches sont à Douala, notamment l'Institut français du Cameroun. Vérifiez les sessions et inscrivez-vous en ligne à l'avance."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Kribi",
+      "metaDescription": "Living in Kribi? Maritime and port careers, studies, jobs: Izimboa Go helps you prepare your Canada, Germany, France or Belgium plan from home.",
+      "h1": "Study or work abroad from Kribi",
+      "intro": "Kribi, the port city of the South Region, hosts the University of Ebolowa's National Higher School of Maritime and Ocean Sciences and Technologies (ENSTMO): fisheries, marine engineering, naval architecture, oceanography, maritime and port management. With the deep-sea port, maritime and logistics profiles are a local speciality. The process is done online from Kribi; only the visa appointment takes place in Douala or Yaoundé. Izimboa Go helps you find programmes and opportunities that match this profile.",
+      "travel": "Douala is only about 180 km away (3 hours by bus via Edéa), the closest city for a French visa application at TLScontact. For Canadian biometrics, however, you must go to Yaoundé (about 280 km, 5 hours by bus), the country's only VFS Global centre. Leaving early often makes a Douala round trip possible in one day, but staying a night is safer.",
+      "local": [
+        "ENSTMO students and graduates: maritime, port and ocean-science programmes have specialised counterparts in Germany, France, Belgium and Canada.",
+        "France: apply in Douala (TLScontact, Douala Grand Mall), closer than Yaoundé.",
+        "Canada: biometrics are taken only in Yaoundé; plan for the longer trip.",
+        "For the TCF, the nearest listed centres are in Douala (Institut français du Cameroun)."
+      ],
+      "faq": [
+        {
+          "q": "From Kribi, should I go to Douala or Yaoundé?",
+          "a": "Douala is closer (about 3 hours) and works for French visas at TLScontact. For Canadian biometrics, Yaoundé is mandatory, as the VFS Global centre is only there."
+        },
+        {
+          "q": "Can ENSTMO maritime training lead to studies abroad?",
+          "a": "Yes, these fields (marine engineering, oceanography, port management) lead on to master's programmes abroad. Admission rules depend on each institution; Izimboa Go helps you identify suitable programmes."
+        },
+        {
+          "q": "Where can I take the TCF from Kribi?",
+          "a": "The nearest centres are in Douala, including the Institut français du Cameroun. Check session dates and register online in advance."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Douala → Kribi",
+        "url": "https://www.rome2rio.com/fr/s/Douala/Kribi"
+      },
+      {
+        "label": "Rome2rio – Yaoundé → Kribi",
+        "url": "https://www.rome2rio.com/fr/s/Yaound%C3%A9/Kribi"
+      },
+      {
+        "label": "Rome2rio – Édéa → Kribi (bus Yaoundé–Kribi, temps moyen)",
+        "url": "https://www.rome2rio.com/fr/s/%C3%89d%C3%A9a/Kribi"
+      },
+      {
+        "label": "Cameroon Tribune – Université d'Ebolowa, établissements dont l'ENSTMO à Kribi (déc. 2025)",
+        "url": "https://cameroon-tribune.cm/article.html/74695/fr.html/details_2"
+      },
+      {
+        "label": "Cameroon Tribune – TLScontact Douala (Douala Grand Mall)",
+        "url": "https://cameroon-tribune.cm/article.html/60543/fr.html/details_2"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ]
+  },
+  {
+    "key": "buea",
+    "name": "Buea",
+    "region": {
+      "fr": "Sud-Ouest",
+      "en": "South-West"
+    },
+    "slug": {
+      "fr": "immigration-buea",
+      "en": "immigration-buea"
+    },
+    "toYaounde": {
+      "km": 303,
+      "time": {
+        "fr": "environ 5 à 6 h par la route, via Douala",
+        "en": "about 5–6 hours by road, via Douala"
+      }
+    },
+    "toDouala": {
+      "km": 68,
+      "time": {
+        "fr": "environ 1 h 30 en bus ou taxi, selon la circulation",
+        "en": "about 1.5 hours by bus or taxi, depending on traffic"
+      }
+    },
+    "universities": [
+      "University of Buea (Molyko)"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Buea",
+      "metaDescription": "Vous êtes à Buea ? University of Buea, GCE, programmes en anglais : Izimboa Go prépare votre projet d'études ou de travail au Canada ou en Allemagne.",
+      "h1": "Étudier ou travailler à l'étranger depuis Buea",
+      "intro": "Buea, chef-lieu du Sud-Ouest, accueille l'University of Buea, université anglophone de tradition britannique, ainsi que le siège du Cameroon GCE Board, l'organisme qui délivre les GCE O Level et A Level. Les candidats de Buea arrivent donc souvent avec un dossier entièrement en anglais, un atout pour les programmes anglophones au Canada et en Allemagne. Douala n'est qu'à environ 70 km pour le rendez-vous visa. Izimboa Go vous aide à valoriser ce parcours et à choisir la bonne destination.",
+      "travel": "Douala, à environ 70 km, se rejoint en 1 h 30 environ selon la circulation : c'est là que se trouve le centre TLScontact pour la France. Pour la biométrie Canada, il faut aller au centre VFS Global de Yaoundé, à environ 300 km. Avant de partir, renseignez-vous sur les conditions de circulation du moment et prévoyez une marge pour ne pas manquer votre créneau.",
+      "local": [
+        "Le siège du Cameroon GCE Board se trouve à Molyko, Buea : pratique pour toute démarche concernant vos certificats GCE.",
+        "Diplômés de l'University of Buea : votre formation de tradition anglo-saxonne s'aligne bien sur les programmes enseignés en anglais au Canada et en Allemagne.",
+        "Pour un projet France ou Québec, un test de français peut être exigé : les centres les plus proches sont à Douala.",
+        "France : Douala (TLScontact) est à environ 1 h 30 ; Canada : Yaoundé (VFS Global) demande une journée de route."
+      ],
+      "faq": [
+        {
+          "q": "Où se trouve le Cameroon GCE Board ?",
+          "a": "Son siège est à Molyko, à Buea, et il dispose d'un bureau régional à Bamenda. C'est l'organisme qui organise et délivre les GCE O Level et A Level."
+        },
+        {
+          "q": "Où faire ma biométrie depuis Buea ?",
+          "a": "Pour la France, chez TLScontact à Douala, à environ 70 km. Pour le Canada, uniquement au centre VFS Global de Yaoundé, à environ 300 km."
+        },
+        {
+          "q": "Un diplôme de l'University of Buea est-il utile pour étudier au Canada ?",
+          "a": "Oui, c'est une université anglophone membre de l'Association of Commonwealth Universities. Chaque établissement canadien fixe ses conditions d'admission ; Izimboa Go vous aide à vérifier celles du programme visé."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Buea",
+      "metaDescription": "Based in Buea? University of Buea, GCE, English-taught programmes: Izimboa Go helps you plan studies or work in Canada, Germany, France or Belgium.",
+      "h1": "Study or work abroad from Buea",
+      "intro": "Buea, capital of the South-West Region, is home to the University of Buea, an English-speaking university in the British tradition, and to the headquarters of the Cameroon GCE Board, which issues the GCE O Level and A Level. Applicants from Buea therefore often have a fully English-language file, a strength for English-taught programmes in Canada and Germany. Douala is only about 70 km away for the visa appointment. Izimboa Go helps you make the most of this background and choose the right destination.",
+      "travel": "Douala, about 70 km away, takes roughly 1.5 hours depending on traffic; it hosts the TLScontact centre for France. For Canadian biometrics you must go to the VFS Global centre in Yaoundé, about 300 km away. Before leaving, check current travel conditions and allow a margin so you do not miss your slot.",
+      "local": [
+        "The Cameroon GCE Board's headquarters is in Molyko, Buea – handy for any request about your GCE certificates.",
+        "University of Buea graduates: your British-tradition training aligns well with English-taught programmes in Canada and Germany.",
+        "For France or Quebec, a French test may be required; the nearest centres are in Douala.",
+        "France: Douala (TLScontact) is about 1.5 hours away; Canada: Yaoundé (VFS Global) takes a day on the road."
+      ],
+      "faq": [
+        {
+          "q": "Where is the Cameroon GCE Board?",
+          "a": "Its headquarters is in Molyko, Buea, with a regional office in Bamenda. It organises and issues the GCE O Level and A Level."
+        },
+        {
+          "q": "Where do I give biometrics from Buea?",
+          "a": "For France, at TLScontact in Douala, about 70 km away. For Canada, only at the VFS Global centre in Yaoundé, about 300 km away."
+        },
+        {
+          "q": "Is a University of Buea degree useful for studying in Canada?",
+          "a": "Yes, it is an English-speaking university and a member of the Association of Commonwealth Universities. Each Canadian institution sets its own admission rules; Izimboa Go helps you check those of your target programme."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Buea → Douala",
+        "url": "https://www.rome2rio.com/s/Buea/Douala"
+      },
+      {
+        "label": "Rome2rio – Buea → Yaoundé",
+        "url": "https://www.rome2rio.com/s/Buea/Yaound%C3%A9"
+      },
+      {
+        "label": "Wikipedia – University of Buea",
+        "url": "https://en.wikipedia.org/wiki/University_of_Buea"
+      },
+      {
+        "label": "Wikipedia – Cameroon GCE Board",
+        "url": "https://en.wikipedia.org/wiki/Cameroon_GCE_Board"
+      },
+      {
+        "label": "Cameroon Tribune – TLScontact Douala",
+        "url": "https://cameroon-tribune.cm/article.html/60543/fr.html/details_2"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ]
+  },
+  {
+    "key": "limbe",
+    "name": "Limbé",
+    "region": {
+      "fr": "Sud-Ouest",
+      "en": "South-West"
+    },
+    "slug": {
+      "fr": "immigration-limbe",
+      "en": "immigration-limbe"
+    },
+    "toYaounde": {
+      "km": 305,
+      "time": {
+        "fr": "environ 5 à 6 h par la route, via Douala",
+        "en": "about 5–6 hours by road, via Douala"
+      }
+    },
+    "toDouala": {
+      "km": 70,
+      "time": {
+        "fr": "environ 1 h 30 à 2 h en bus ou taxi, selon la circulation",
+        "en": "about 1.5–2 hours by bus or taxi, depending on traffic"
+      }
+    },
+    "universities": [
+      "University of Buea (Buea, à environ 20 km)"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Limbé",
+      "metaDescription": "Vous vivez à Limbé ? À 70 km de Douala et 20 km de Buea, préparez avec Izimboa Go votre projet d'études ou de travail au Canada, en Allemagne ou en Europe.",
+      "h1": "Étudier ou travailler à l'étranger depuis Limbé",
+      "intro": "Limbé, ville côtière du Sud-Ouest, est à une vingtaine de kilomètres de Buea et de son université anglophone, et à environ 70 km de Douala. Beaucoup de candidats de Limbé ont un parcours GCE et des diplômes en anglais, ou travaillent déjà et visent un emploi qualifié à l'étranger. Toute la préparation se fait en ligne ; le rendez-vous visa se tient à Douala ou à Yaoundé selon le pays. Izimboa Go vous aide à choisir la voie la plus réaliste pour votre profil.",
+      "travel": "Douala est à environ 70 km, soit 1 h 30 à 2 h de route selon la circulation : c'est la ville du centre TLScontact pour la France. Pour la biométrie Canada, comptez le trajet jusqu'à Yaoundé (environ 305 km), seul centre VFS Global du pays. Renseignez-vous sur les conditions de circulation avant de partir et prévoyez une marge horaire.",
+      "local": [
+        "Le Cameroon GCE Board a son siège à Buea, à environ 20 km : pratique pour une démarche liée à vos certificats GCE.",
+        "L'University of Buea est la plus proche pour un relevé ou une attestation si vous y avez étudié.",
+        "France : Douala (TLScontact, Douala Grand Mall) reste accessible en aller-retour dans la journée en partant tôt.",
+        "Canada : prévoyez une nuit à Yaoundé pour la biométrie si votre rendez-vous est le matin."
+      ],
+      "faq": [
+        {
+          "q": "Puis-je faire mon rendez-vous visa à Douala depuis Limbé ?",
+          "a": "Pour la France, oui : TLScontact a un centre à Douala, à environ 70 km. Pour le Canada, la biométrie se fait uniquement au centre VFS Global de Yaoundé."
+        },
+        {
+          "q": "Je travaille déjà à Limbé : puis-je partir travailler à l'étranger ?",
+          "a": "C'est possible selon votre métier, vos diplômes et votre langue. Le Canada et l'Allemagne ont des voies pour les travailleurs qualifiés ; Izimboa Go évalue votre profil et vous indique les options réalistes, sans promesse de résultat."
+        },
+        {
+          "q": "Où passer un test de langue près de Limbé ?",
+          "a": "Les centres TCF les plus proches recensés sont à Douala, notamment l'Institut français du Cameroun. Inscrivez-vous en ligne et vérifiez les sessions à l'avance."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Limbe",
+      "metaDescription": "Living in Limbe? Just 70 km from Douala and 20 km from Buea, plan your study or work project in Canada, Germany, France or Belgium with Izimboa Go.",
+      "h1": "Study or work abroad from Limbe",
+      "intro": "Limbe, the coastal city of the South-West Region, is about 20 km from Buea and its English-speaking university, and about 70 km from Douala. Many applicants from Limbe have GCE certificates and English-taught degrees, or are already working and aim for a skilled job abroad. All the preparation is online; the visa appointment is in Douala or Yaoundé depending on the country. Izimboa Go helps you choose the most realistic route for your profile.",
+      "travel": "Douala is about 70 km away, 1.5–2 hours by road depending on traffic; it hosts the TLScontact centre for France. For Canadian biometrics, plan the trip to Yaoundé (about 305 km), the country's only VFS Global centre. Check travel conditions before leaving and allow extra time.",
+      "local": [
+        "The Cameroon GCE Board is headquartered in Buea, about 20 km away – convenient for any GCE certificate request.",
+        "The University of Buea is the closest place to get transcripts or certificates if you studied there.",
+        "France: a Douala round trip (TLScontact, Douala Grand Mall) is doable in one day if you leave early.",
+        "Canada: plan a night in Yaoundé for biometrics if your appointment is in the morning."
+      ],
+      "faq": [
+        {
+          "q": "Can I attend my visa appointment in Douala from Limbe?",
+          "a": "For France, yes: TLScontact has a centre in Douala, about 70 km away. For Canada, biometrics are taken only at the VFS Global centre in Yaoundé."
+        },
+        {
+          "q": "I already work in Limbe – can I move abroad for work?",
+          "a": "It depends on your occupation, qualifications and languages. Canada and Germany have routes for skilled workers; Izimboa Go assesses your profile and shows you realistic options, with no promise of a result."
+        },
+        {
+          "q": "Where can I take a language test near Limbe?",
+          "a": "The nearest listed TCF centres are in Douala, including the Institut français du Cameroun. Register online and check session dates in advance."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Limbe → Douala",
+        "url": "https://www.rome2rio.com/s/Limbe/Douala"
+      },
+      {
+        "label": "Rome2rio – Limbe → Yaoundé",
+        "url": "https://www.rome2rio.com/s/Limbe/Yaound%C3%A9"
+      },
+      {
+        "label": "Rome2rio – Buea → Limbe",
+        "url": "https://www.rome2rio.com/s/Buea/Limbe"
+      },
+      {
+        "label": "Wikipedia – University of Buea",
+        "url": "https://en.wikipedia.org/wiki/University_of_Buea"
+      },
+      {
+        "label": "Wikipedia – Cameroon GCE Board",
+        "url": "https://en.wikipedia.org/wiki/Cameroon_GCE_Board"
+      },
+      {
+        "label": "Cameroon Tribune – TLScontact Douala",
+        "url": "https://cameroon-tribune.cm/article.html/60543/fr.html/details_2"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      }
+    ]
+  },
+  {
+    "key": "ebolowa",
+    "name": "Ebolowa",
+    "region": {
+      "fr": "Sud",
+      "en": "South"
+    },
+    "slug": {
+      "fr": "immigration-ebolowa",
+      "en": "immigration-ebolowa"
+    },
+    "toYaounde": {
+      "km": 155,
+      "time": {
+        "fr": "environ 2 h 30 à 3 h en bus",
+        "en": "about 2.5–3 hours by bus"
+      }
+    },
+    "toDouala": {
+      "km": 316,
+      "time": {
+        "fr": "environ une demi-journée de route",
+        "en": "about half a day by road"
+      }
+    },
+    "universities": [
+      "Université d'Ebolowa (créée en 2022) : ENSET, Faculté des sciences, Faculté des arts, lettres et sciences humaines, ISABEE",
+      "Faculté de médecine de l'Université d'Ebolowa (Sangmélima)"
+    ],
+    "fr": {
+      "metaTitle": "Étudier ou travailler à l'étranger depuis Ebolowa",
+      "metaDescription": "Vous êtes à Ebolowa ou dans le Sud ? À environ 155 km de Yaoundé, préparez avec Izimboa Go votre projet d'études ou de travail au Canada ou en Europe.",
+      "h1": "Étudier ou travailler à l'étranger depuis Ebolowa",
+      "intro": "Ebolowa, chef-lieu de la région du Sud, est le siège de l'Université d'Ebolowa, créée en 2022 et organisée en neuf établissements répartis dans la région : ENSET, faculté des sciences, faculté des lettres, institut d'agriculture et d'environnement, faculté de médecine à Sangmélima, école maritime à Kribi ou école de transport et logistique à Ambam. À environ 155 km de Yaoundé, Ebolowa est l'une des villes de l'intérieur les plus proches d'un centre de visa. Izimboa Go vous aide à faire de votre formation un projet concret au Canada ou en Europe.",
+      "travel": "Yaoundé est à environ 155 km, soit 2 h 30 à 3 h de bus : un aller-retour dans la journée est souvent possible pour un rendez-vous en fin de matinée. C'est là que se trouvent le centre VFS Global (biométrie Canada) et un centre TLScontact (France). Pour un rendez-vous tôt le matin, mieux vaut dormir à Yaoundé la veille.",
+      "local": [
+        "Yaoundé à environ 155 km : un aller-retour dans la journée est souvent réalisable pour le rendez-vous visa.",
+        "Étudiants de l'ENSET et de l'ISABEE d'Ebolowa : les filières techniques et agricoles ont des équivalents en formation professionnelle et en master, notamment en Allemagne.",
+        "Étudiants en médecine à Sangmélima : les études et l'exercice de la médecine à l'étranger obéissent à des règles spécifiques ; renseignez-vous tôt sur les équivalences.",
+        "Pour le TCF, les centres les plus proches recensés sont à Yaoundé (Institut français du Cameroun)."
+      ],
+      "faq": [
+        {
+          "q": "Peut-on faire l'aller-retour Ebolowa–Yaoundé dans la journée pour le rendez-vous ?",
+          "a": "Souvent oui, le trajet dure environ 2 h 30 à 3 h en bus. Pour un rendez-vous tôt le matin, il est plus prudent d'arriver la veille."
+        },
+        {
+          "q": "L'Université d'Ebolowa est-elle une université d'État ?",
+          "a": "Oui, elle a été créée par décret présidentiel en janvier 2022, en même temps que les universités de Bertoua et de Garoua. Ses diplômes sont des diplômes nationaux camerounais."
+        },
+        {
+          "q": "Où se fait la biométrie Canada depuis Ebolowa ?",
+          "a": "Au centre VFS Global de Yaoundé, le seul au Cameroun pour le Canada. Pour la France, TLScontact a un centre à Yaoundé et un autre à Douala."
+        }
+      ]
+    },
+    "en": {
+      "metaTitle": "Study or work abroad from Ebolowa",
+      "metaDescription": "Living in Ebolowa or the South Region? About 155 km from Yaoundé, plan your study or work project in Canada, Germany, France or Belgium with Izimboa Go.",
+      "h1": "Study or work abroad from Ebolowa",
+      "intro": "Ebolowa, capital of the South Region, is the seat of the University of Ebolowa, founded in 2022 and organised into nine institutions across the region: a technical teacher training college (ENSET), science and arts faculties, an agriculture and environment institute, a medical faculty in Sangmélima, a maritime school in Kribi and a transport and logistics school in Ambam. About 155 km from Yaoundé, Ebolowa is one of the inland cities closest to a visa centre. Izimboa Go helps you turn your training into a concrete plan in Canada or Europe.",
+      "travel": "Yaoundé is about 155 km away, 2.5–3 hours by bus: a same-day round trip is often possible for a late-morning appointment. It hosts the VFS Global centre (Canadian biometrics) and a TLScontact centre (France). For an early-morning appointment, it is better to spend the night before in Yaoundé.",
+      "local": [
+        "Yaoundé is about 155 km away: a same-day round trip for the visa appointment is often feasible.",
+        "ENSET and ISABEE students in Ebolowa: technical and agricultural fields have counterparts in vocational training and master's programmes, notably in Germany.",
+        "Medical students in Sangmélima: studying or practising medicine abroad follows specific rules; look into recognition early.",
+        "For the TCF, the nearest listed centres are in Yaoundé (Institut français du Cameroun)."
+      ],
+      "faq": [
+        {
+          "q": "Can I do an Ebolowa–Yaoundé round trip in one day for my appointment?",
+          "a": "Often yes, the bus takes about 2.5–3 hours. For an early-morning appointment, it is safer to arrive the day before."
+        },
+        {
+          "q": "Is the University of Ebolowa a state university?",
+          "a": "Yes, it was created by presidential decree in January 2022, together with the universities of Bertoua and Garoua. Its degrees are Cameroonian national degrees."
+        },
+        {
+          "q": "Where are Canadian biometrics taken from Ebolowa?",
+          "a": "At the VFS Global centre in Yaoundé, the only one in Cameroon for Canada. For France, TLScontact has centres in Yaoundé and Douala."
+        }
+      ]
+    },
+    "sources": [
+      {
+        "label": "Rome2rio – Yaoundé → Ébolowa",
+        "url": "https://www.rome2rio.com/s/Yaound%C3%A9/%C3%89bolowa"
+      },
+      {
+        "label": "Rome2rio – Douala → Ébolowa",
+        "url": "https://www.rome2rio.com/s/Douala/%C3%89bolowa"
+      },
+      {
+        "label": "Rome2rio – Ebolowa → Yaoundé (bus)",
+        "url": "https://www.rome2rio.com/fr/s/Ebolowa-Cameroun/Yaound%C3%A9"
+      },
+      {
+        "label": "Cameroon Tribune – Université d'Ebolowa, offre de formation (déc. 2025)",
+        "url": "https://cameroon-tribune.cm/article.html/74695/fr.html/details_2"
+      },
+      {
+        "label": "Cameroon Tribune – Création des universités de Bertoua, Garoua, Ebolowa",
+        "url": "https://www.cameroon-tribune.cm/article.html/44559/en.html/details_2"
+      },
+      {
+        "label": "VFS Global – Canada au Cameroun",
+        "url": "https://visa.vfsglobal.com/cmr/en/can"
+      },
+      {
+        "label": "Cameroon Tribune – Centres TLScontact",
+        "url": "https://cameroon-tribune.cm/article.html/60491/fr.html/details_2"
+      }
+    ]
+  }
+]
