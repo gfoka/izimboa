@@ -4,8 +4,11 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
-// Numéro de version : celui du run GitHub Actions en CI (toujours croissant pour Google Play), 1 en local.
-val ciBuildNumber = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
+// Numéro de version, toujours croissant pour Google Play : 100 + numéro du run GitHub Actions en CI,
+// VERSION_CODE pour une construction manuelle (ex. le tout premier envoi), 1 sinon.
+val ciBuildNumber = System.getenv("VERSION_CODE")?.toIntOrNull()
+    ?: System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull()?.plus(100)
+    ?: 1
 
 android {
     namespace = "com.izimboa.livreur"

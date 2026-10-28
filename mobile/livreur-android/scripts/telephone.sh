@@ -4,6 +4,7 @@
 #
 #   bash mobile/livreur-android/scripts/telephone.sh            # installe la dernière version de test
 #   bash mobile/livreur-android/scripts/telephone.sh journal    # seulement récupérer le journal
+#   bash mobile/livreur-android/scripts/telephone.sh release    # installer la version Play Store (signée, optimisée)
 #
 # Prérequis sur le téléphone : Paramètres > À propos > appuyer 7 fois sur « Numéro de build »,
 # puis Options pour les développeurs > « Débogage USB » activé, et accepter l'empreinte du Mac.
@@ -36,9 +37,10 @@ echo "Téléphone : $("${ADB}" shell getprop ro.product.manufacturer | tr -d '\r
 
 mkdir -p build
 PKG=com.izimboa.livreur.debug
+APK=build/izimboa-livreur.apk
+if [ "${1:-}" = "release" ]; then PKG=com.izimboa.livreur; APK=build/izimboa-livreur-release.apk; fi
 
 if [ "${1:-}" != "journal" ]; then
-  APK=build/izimboa-livreur.apk
   if [ ! -f "${APK}" ]; then echo "APK absent : ${APK} (Claude le dépose ici)"; exit 1; fi
   echo "Installation de ${APK}..."
   # Pas d'option -g : Xiaomi (HyperOS) la refuse ; les autorisations se donnent dans l'application.

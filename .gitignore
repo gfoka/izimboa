@@ -30,3 +30,6 @@ target/
 # Next.js
 next-env.d.ts
 *.tsbuildinfo
+
+# Clés et mots de passe locaux (jamais dans Git)
+.secrets/
