@@ -41,7 +41,14 @@ if [ "${1:-}" != "journal" ]; then
   APK=build/izimboa-livreur.apk
   if [ ! -f "${APK}" ]; then echo "APK absent : ${APK} (Claude le dépose ici)"; exit 1; fi
   echo "Installation de ${APK}..."
-  "${ADB}" install -r -g "${APK}" || { echo "Échec de l'installation."; exit 1; }
+  # Pas d'option -g : Xiaomi (HyperOS) la refuse ; les autorisations se donnent dans l'application.
+  if ! "${ADB}" install -r "${APK}"; then
+    echo "Échec de l'installation."
+    echo "Sur Xiaomi : Options pour les développeurs > activer « Installer via USB » (compte Xiaomi requis),"
+    echo "puis accepter la fenêtre qui s'affiche sur le téléphone pendant l'installation."
+    echo "Si l'erreur parle de signature : désinstallez d'abord Izimboa Livreur du téléphone, puis relancez."
+    exit 1
+  fi
   "${ADB}" logcat -c
   echo "Lancement de l'application..."
   "${ADB}" shell monkey -p "${PKG}" -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
