@@ -91,12 +91,14 @@
 
 ## 11. Google Play (application livreur)
 
-- [ ] Créer l'application « Izimboa Livreur » dans la console (compte organisation existant)
+- [x] Application « Izimboa Livreur » créée (compte Play « Data Engineering Consulting », contact@dataengineeringconsulting.com)
 - [ ] Compte de service Google Cloud avec accès à la console Play → clé JSON en secret GitHub (publication automatique)
 - [ ] Clé de signature de l'application (upload key) en secret GitHub ; signature Play App Signing activée
 - [ ] Fiche : titre, descriptions FR / EN, icône, bannière, captures (dès que l'application tourne)
 - [x] Politique de confidentialité publiée sur la vitrine : https://izimboa.com/cm/fr/confidentialite/ (EN : /cm/en/privacy-policy/)
 - [x] Page de suppression de compte (exigée par Play) : https://izimboa.com/cm/fr/confidentialite/#suppression-compte
 - [ ] Déclaration « localisation en arrière-plan » avec une courte vidéo (avant la production)
-- [ ] Piste de test interne : liste des testeurs
+- [x] Test interne actif : version 100 (0.1.100) publiée le 28/10/2026, liste « Testeurs Izimboa Livreur ». Lien d'inscription : https://play.google.com/apps/internaltest/4701175208671766825
+- [x] Déclarations faites : règles de confidentialité, annonces (aucune), identifiant publicitaire (non)
+- [ ] Déclarations restantes : informations de connexion (compte de test livreur pour Google), classification, cible et contenu, sécurité des données, applis gouvernementales, fonctionnalités financières, santé, service de premier plan (localisation, vidéo), intent plein écran
 - [ ] Projet Firebase (Cloud Messaging) pour l'alerte de course qui sonne sur le téléphone du livreur
