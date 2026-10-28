@@ -109,15 +109,15 @@ export function ContactView({ country, lang, dict }: P) {
   );
 }
 
-export function LegalView({ country, lang, dict }: P) {
-  const l = dict.legal;
+export function LegalView({ country, lang, dict, page = "legal" }: P & { page?: "legal" | "privacy" }) {
+  const l = dict[page];
   return (
     <>
       <Breadcrumbs
         label={dict.common.home}
         items={[
           { name: dict.common.home, href: pathFor(country, lang, "home") },
-          { name: l.h1, href: pathFor(country, lang, "legal") },
+          { name: l.h1, href: pathFor(country, lang, page) },
         ]}
       />
       <section className="container page-head narrow">
@@ -126,9 +126,9 @@ export function LegalView({ country, lang, dict }: P) {
       <section className="section section-first">
         <div className="container narrow legal">
           {l.sections.map((s) => (
-            <section key={s.title}>
+            <section key={s.title} id={s.id}>
               <h2>{s.title}</h2>
-              <p>{s.text}</p>
+              {s.text.split("\n\n").map((p) => <p key={p}>{p}</p>)}
             </section>
           ))}
         </div>

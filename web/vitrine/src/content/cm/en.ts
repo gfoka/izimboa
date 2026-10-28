@@ -22,6 +22,7 @@ const en: Dict = {
     footerTagline: "Delivery, immigration, travel and international shopping. Born in Cameroon, built for Central Africa.",
     footerCompany: "Company",
     legal: "Legal notice",
+    privacy: "Privacy policy",
     rights: "All rights reserved.",
   },
   home: {
@@ -296,6 +297,25 @@ const en: Dict = {
       { title: "Hosting", text: "[Hosting provider name and address: to be completed]" },
       { title: "Personal data", text: "Data sent through this site is used only to answer your requests. In accordance with Cameroonian personal data protection law, you may request access to, correction or deletion of your data by writing to contact@izimboa.com." },
       { title: "Photo credits", text: "Photographs from Unsplash, used under the Unsplash licence. Authors are credited under each image." },
+    ],
+  },
+  privacy: {
+    meta: {
+      title: "Privacy policy | Izimboa",
+      description: "How Izimboa collects, uses and protects your data: website, seller space and the Izimboa Livreur app.",
+    },
+    h1: "Privacy policy",
+    sections: [
+      { title: "Who we are", text: "Izimboa is a delivery, immigration, travel and shopping services platform based in Cameroon. This policy covers the izimboa.com website, the delivery.izimboa.com seller space and the \"Izimboa Livreur\" Android app. Contact: contact@izimboa.com." },
+      { title: "Data we collect", text: "Account: name, e-mail address or phone number, and your account role (customer, seller, courier).\n\nDeliveries: pickup and drop-off addresses and points, recipient name and phone, status and history of the delivery.\n\nLocation (Izimboa Livreur app only): the phone's GPS location, only while the courier is \"online\" or on a delivery, including when the app is in the background. No location is collected while the courier is offline.\n\nDiagnostics: phone model and Android version, app version and, if the app crashes, the technical error report. These reports contain no location and no personal content." },
+      { title: "Why we use it", text: "To offer a delivery to the nearest available courier, compute price and distance, let the sender and recipient track the parcel live, prove the handover (handover code and route travelled), handle complaints, prevent fraud and fix app errors. We do not sell your data and do not use it for advertising." },
+      { title: "Sharing", text: "The courier's location and route since pickup are visible to the sender and recipient of the current delivery through the tracking link. The courier sees the addresses and phone numbers needed for the delivery. Our technical providers (server hosting, authentication, OpenStreetMap map tiles) process data only to run the service. Data may be disclosed to authorities where required by law." },
+      { title: "Security", text: "Traffic is encrypted (HTTPS). On the courier's phone, data waiting to be sent is kept in an encrypted database whose key is protected by the phone. Server-side access is limited to people who need it." },
+      { title: "Retention", text: "Detailed courier locations: 90 days at most, unless a dispute is open. Delivery history: as long as accounting and legal obligations require. Diagnostic reports: 90 days. Account: while active, then deleted on request." },
+      { id: "account-deletion", title: "Delete your account and data", text: "You can ask for your Izimboa account (including your courier account) and its data to be deleted by writing to contact@izimboa.com from the e-mail or phone linked to the account, with the subject \"Account deletion\". We confirm deletion within 30 days. Data we are legally required to keep (invoices, for example) is kept for the legal period and then deleted.\n\nIn the Izimboa Livreur app, \"Se déconnecter\" (sign out) also erases all data kept on the phone." },
+      { title: "Your rights", text: "Under Cameroonian personal data protection law, you may request access to, correction or deletion of your data, or object to its processing, by writing to contact@izimboa.com. Couriers can stop location collection at any time by going offline." },
+      { title: "Minors", text: "Izimboa services and the Izimboa Livreur app are not intended for people under 18." },
+      { title: "Changes", text: "This policy may change. The current version is always published on this page. Last updated: 28 October 2026." },
     ],
   },
 };

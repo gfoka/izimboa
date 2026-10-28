@@ -97,6 +97,7 @@ export function Footer({ country, lang, dict, pageKey }: Ctx) {
             <li><a href={pathFor(country, lang, "contact")}>{dict.common.contact}</a></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
             <li><a href={pathFor(country, lang, "legal")}>{dict.common.legal}</a></li>
+            <li><a href={pathFor(country, lang, "privacy")}>{dict.common.privacy}</a></li>
           </ul>
         </div>
         <div>

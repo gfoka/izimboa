@@ -2,7 +2,7 @@ import type { PhotoKey } from "@/config/photos";
 import type { ProductKey } from "@/config/site";
 
 export type Meta = { title: string; description: string };
-export type Item = { title: string; text: string };
+export type Item = { title: string; text: string; id?: string };
 export type Faq = { q: string; a: string };
 
 export type ProductContent = {
@@ -45,6 +45,7 @@ export type Dict = {
     footerTagline: string;
     footerCompany: string;
     legal: string;
+    privacy: string;
     rights: string;
   };
   home: {
@@ -88,6 +89,12 @@ export type Dict = {
     responseNote: string;
   };
   legal: {
+    meta: Meta;
+    h1: string;
+    sections: Item[];
+  };
+
+  privacy: {
     meta: Meta;
     h1: string;
     sections: Item[];

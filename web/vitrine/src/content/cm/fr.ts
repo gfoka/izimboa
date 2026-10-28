@@ -22,6 +22,7 @@ const fr: Dict = {
     footerTagline: "Livraison, immigration, voyages et achats à l'international. Né au Cameroun, pensé pour l'Afrique centrale.",
     footerCompany: "Entreprise",
     legal: "Mentions légales",
+    privacy: "Confidentialité",
     rights: "Tous droits réservés.",
   },
   home: {
@@ -296,6 +297,25 @@ const fr: Dict = {
       { title: "Hébergement", text: "[Nom et adresse de l'hébergeur : à compléter]" },
       { title: "Données personnelles", text: "Les données transmises via ce site sont utilisées uniquement pour répondre à vos demandes. Conformément à la loi camerounaise sur la protection des données personnelles, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à contact@izimboa.com." },
       { title: "Crédits photos", text: "Photographies issues d'Unsplash, utilisées selon la licence Unsplash. Les auteurs sont crédités sous chaque image." },
+    ],
+  },
+  privacy: {
+    meta: {
+      title: "Politique de confidentialité | Izimboa",
+      description: "Comment Izimboa collecte, utilise et protège vos données : site, espace vendeur et application Izimboa Livreur.",
+    },
+    h1: "Politique de confidentialité",
+    sections: [
+      { title: "Qui sommes-nous", text: "Izimboa est une plateforme de services de livraison, d'immigration, de voyage et d'achat basée au Cameroun. Cette politique s'applique au site izimboa.com, à l'espace vendeur delivery.izimboa.com et à l'application Android « Izimboa Livreur ». Contact : contact@izimboa.com." },
+      { title: "Données que nous collectons", text: "Compte : nom, adresse e-mail ou numéro de téléphone, et le rôle de votre compte (client, vendeur, livreur).\n\nLivraisons : adresses et points de ramassage et de remise, nom et téléphone du destinataire, statut et historique de la course.\n\nPosition (application Izimboa Livreur uniquement) : la position GPS du téléphone, seulement lorsque le livreur est « en ligne » ou en course, y compris quand l'application est en arrière-plan. Aucune position n'est collectée lorsque le livreur est hors ligne.\n\nDiagnostic : modèle et version Android du téléphone, version de l'application et, en cas de plantage, le rapport technique de l'erreur. Ces rapports ne contiennent ni position, ni contenu personnel." },
+      { title: "Pourquoi nous les utilisons", text: "Proposer une course au livreur disponible le plus proche, calculer le prix et la distance, permettre à l'expéditeur et au destinataire de suivre le colis en direct, prouver la remise (code de remise et trajet effectué), traiter les réclamations, prévenir la fraude, et corriger les erreurs de l'application. Nous ne vendons pas vos données et ne les utilisons pas pour de la publicité." },
+      { title: "Partage", text: "La position du livreur et le trajet depuis le ramassage sont visibles par l'expéditeur et le destinataire de la course en cours, via le lien de suivi. Le livreur voit les adresses et le téléphone nécessaires à la course. Nos prestataires techniques (hébergement des serveurs, authentification, fonds de carte OpenStreetMap) traitent les données uniquement pour faire fonctionner le service. Les données peuvent être communiquées aux autorités si la loi l'exige." },
+      { title: "Sécurité", text: "Les échanges sont chiffrés (HTTPS). Sur le téléphone du livreur, les données en attente d'envoi sont gardées dans une base chiffrée dont la clé est protégée par le téléphone. L'accès aux données côté serveur est limité aux personnes qui en ont besoin." },
+      { title: "Durée de conservation", text: "Positions détaillées des livreurs : 90 jours au plus, sauf litige en cours. Historique des livraisons : la durée exigée par les obligations comptables et légales. Rapports de diagnostic : 90 jours. Compte : tant qu'il est actif, puis supprimé sur demande." },
+      { id: "suppression-compte", title: "Supprimer votre compte et vos données", text: "Vous pouvez demander la suppression de votre compte Izimboa (y compris votre compte livreur) et des données associées en écrivant à contact@izimboa.com depuis l'adresse ou le numéro lié au compte, avec l'objet « Suppression de compte ». Nous confirmons la suppression sous 30 jours. Les données que la loi nous oblige à conserver (factures, par exemple) sont gardées pour la durée légale puis supprimées.\n\nDans l'application Izimboa Livreur, « Se déconnecter » efface aussi toutes les données gardées sur le téléphone." },
+      { title: "Vos droits", text: "Conformément à la législation camerounaise sur la protection des données personnelles, vous pouvez demander l'accès, la rectification, la suppression de vos données ou vous opposer à leur traitement en écrivant à contact@izimboa.com. Le livreur peut à tout moment arrêter la collecte de sa position en passant hors ligne." },
+      { title: "Mineurs", text: "Les services Izimboa et l'application Izimboa Livreur ne sont pas destinés aux personnes de moins de 18 ans." },
+      { title: "Modifications", text: "Cette politique peut évoluer. La version en vigueur est toujours publiée sur cette page. Dernière mise à jour : 28 octobre 2026." },
     ],
   },
 };

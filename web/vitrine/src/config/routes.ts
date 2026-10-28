@@ -5,7 +5,7 @@ import { SITE_URL, OPEN_COUNTRIES, type Lang, type ProductKey } from "./site";
  * Une page = une clé ; chaque langue a son propre slug (meilleur pour les recherches dans chaque langue).
  * Modifier un slug publié = prévoir une redirection 301 (voir docs/08-referencement.md).
  */
-export type PageKey = "home" | ProductKey | "about" | "contact" | "legal";
+export type PageKey = "home" | ProductKey | "about" | "contact" | "legal" | "privacy";
 
 export const SLUGS: Record<Exclude<PageKey, "home">, Record<Lang, string>> = {
   delivery: { fr: "livraison-colis", en: "parcel-delivery" },
@@ -15,6 +15,7 @@ export const SLUGS: Record<Exclude<PageKey, "home">, Record<Lang, string>> = {
   about: { fr: "a-propos", en: "about" },
   contact: { fr: "contact", en: "contact" },
   legal: { fr: "mentions-legales", en: "legal-notice" },
+  privacy: { fr: "confidentialite", en: "privacy-policy" },
 };
 
 /** Pages exclues de l'index Google (contenu juridique, sans valeur de recherche). */

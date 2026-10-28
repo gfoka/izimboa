@@ -95,7 +95,8 @@
 - [ ] Compte de service Google Cloud avec accès à la console Play → clé JSON en secret GitHub (publication automatique)
 - [ ] Clé de signature de l'application (upload key) en secret GitHub ; signature Play App Signing activée
 - [ ] Fiche : titre, descriptions FR / EN, icône, bannière, captures (dès que l'application tourne)
-- [ ] Politique de confidentialité publiée sur la vitrine (obligatoire)
+- [x] Politique de confidentialité publiée sur la vitrine : https://izimboa.com/cm/fr/confidentialite/ (EN : /cm/en/privacy-policy/)
+- [x] Page de suppression de compte (exigée par Play) : https://izimboa.com/cm/fr/confidentialite/#suppression-compte
 - [ ] Déclaration « localisation en arrière-plan » avec une courte vidéo (avant la production)
 - [ ] Piste de test interne : liste des testeurs
 - [ ] Projet Firebase (Cloud Messaging) pour l'alerte de course qui sonne sur le téléphone du livreur

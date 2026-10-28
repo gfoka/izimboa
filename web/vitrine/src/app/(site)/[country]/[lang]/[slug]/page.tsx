@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const key = resolve(lang, slug);
   const dict = getDict(country, lang);
   const isProduct = (PRODUCT_KEYS as string[]).includes(key);
-  const meta = isProduct ? dict.products[key as ProductKey].meta : dict[key as "about" | "contact" | "legal"].meta;
+  const meta = isProduct ? dict.products[key as ProductKey].meta : dict[key as "about" | "contact" | "legal" | "privacy"].meta;
   const photo: PhotoKey = isProduct ? dict.products[key as ProductKey].photo : "douala";
   return pageMetadata({ country, lang, key, meta, photo });
 }
@@ -48,6 +48,7 @@ export default async function Page({ params }: { params: Params }) {
   if ((PRODUCT_KEYS as string[]).includes(key)) body = <ProductView {...ctx} product={key as ProductKey} />;
   else if (key === "about") body = <AboutView {...ctx} />;
   else if (key === "contact") body = <ContactView {...ctx} />;
+  else if (key === "privacy") body = <LegalView {...ctx} page="privacy" />;
   else body = <LegalView {...ctx} />;
 
   return (
