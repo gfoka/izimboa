@@ -30,10 +30,14 @@
 
 ## 4. WhatsApp Business
 
-- [ ] Compte Meta Business vérifié (documents de l'entreprise)
-- [ ] Numéro WhatsApp Business dédié (le numéro ne doit pas être actif sur l'application WhatsApp classique s'il passe par l'API)
-- [ ] Connexion directe à l'API Cloud de Meta (décision n° 29) : numéro neutre Data Engineering Consulting pour les codes de connexion
-- [ ] Modèles de messages à faire approuver par Meta : code de connexion (OTP), suivi de livraison
+- [x] Portefeuille business « Data Engineering Consulting Sarl » (ID 773626450132033) : vérification de l'entreprise terminée
+- [x] Application Meta « Izimboa » créée le 29/10/2026 (ID 3769090063229208), cas d'utilisation WhatsApp, rattachée au portefeuille
+- [x] Numéro de test Meta (+1 555 017 9613) : ID du numéro 117113727949627, compte WhatsApp de test 116592728035046 (90 jours, 5 destinataires)
+- [x] Modèle d'authentification `izimboa_code` (français, « copier le code », expiration 10 min) : **approuvé** dans le compte WhatsApp « Data Engineering Consulting Sarl » (qui contient déjà le numéro Kingston Print +237 6 93 25 48 30)
+- [ ] Numéro WhatsApp dédié aux codes Izimboa, ajouté au compte WhatsApp Data Engineering Consulting (ne doit pas être actif dans l'application WhatsApp)
+- [ ] Version anglaise du modèle `izimboa_code`
+- [ ] Utilisateur système + jeton permanent (droits whatsapp_business_messaging) → secret GitHub, jamais dans le dépôt
+- [ ] Modèles « suivi de livraison » (utilitaires)
 - [ ] Ajouter le numéro sur la vitrine (WHATSAPP\_NUMBER dans src/config/site.ts)
 
 ## 5. Google Search Console et Analytics
