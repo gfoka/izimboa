@@ -39,6 +39,7 @@ jobs:
           echo "=== Keycloak : extensions et flux ==="
           ls -la /srv/izimboa/keycloak/providers 2>&1 | tail -3
           cd /srv/izimboa && docker compose exec -T keycloak ls /opt/keycloak/providers < /dev/null 2>&1 | tail -3
+          docker compose logs --since 30m api 2>&1 | grep -iE "Recherche de lieux|Lien de localisation" | tail -5
           docker compose logs --since 2h keycloak 2>&1 | grep -iE "izimboa-whatsapp|KC-SERVICES0047|ERROR|Updating the configuration" | tail -8
           echo "=== Jeton WhatsApp (lecture seule, le jeton n'est jamais affiché) ==="
           T=$(grep '^WHATSAPP_TOKEN=' /srv/izimboa/.env | cut -d= -f2-)
@@ -59,7 +60,10 @@ jobs:
           curl -s "https://auth.izimboa.com/realms/izimboa/protocol/openid-connect/auth?client_id=izimboa-web&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fizimboa.com%2F&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&ui_locales=fr" \
             | grep -oE "template: [a-z-]+\.ftl|Recevoir mon code|try-another-way" | sort -u >> check.txt || echo "page introuvable" >> check.txt
           echo "=== Lieux (recherche OpenStreetMap via l'API) ===" >> check.txt
-          curl -s "https://api.izimboa.com/v1/delivery/places?q=carrefour%20kotto&lat=4.088&lng=9.75" | head -c 400 >> check.txt; echo >> check.txt
+          for q in "carrefour%20kotto" "bonamoussadi" "akwa" "rond%20point%20deido"; do
+            echo "$q -> $(curl -s "https://api.izimboa.com/v1/delivery/places?q=$q&lat=4.088&lng=9.75" | head -c 300)" >> check.txt
+            sleep 1.2
+          done
           echo "resolve sans connexion -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/locations/resolve -H 'Content-Type: application/json' -d '{\"text\":\"4.06,9.74\"}')" >> check.txt
           echo "dropoff jeton inconnu -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/track/inconnu/dropoff -H 'Content-Type: application/json' -d '{\"lat\":4.06,\"lng\":9.74}')" >> check.txt
           echo "=== Postgres depuis Internet (doit échouer) ===" >> check.txt
