@@ -38,7 +38,8 @@
 - [ ] Profil du numéro (description Izimboa, contact@izimboa.com, izimboa.com, logo) : à enregistrer après la validation du nom (Meta bloque la modification pendant l'examen)
 - [x] Modèle d'authentification `izimboa_code` (« copier le code », expiration 10 min) : **actif en français et en anglais** dans le compte 112090771912051
 - Autres numéros du portefeuille, à ne pas utiliser pour Izimboa : Kingston Print +237 6 93 25 48 30 (compte 1806899227122606, qui contient aussi une ancienne copie de `izimboa_code`) ; compte « production » 115373118247817 vide
-- [ ] Utilisateur système + jeton permanent (droits whatsapp_business_messaging) → secret GitHub, jamais dans le dépôt
+- [x] Utilisateur système Meta « izimboa-serveur » (ID 61595664736508, rôle Employé) : accès à l'app Izimboa (développer) et au compte WhatsApp 112090771912051 (total) uniquement ; jeton sans expiration, droits whatsapp_business_messaging + whatsapp_business_management
+- [ ] Jeton → secret GitHub WHATSAPP_TOKEN (créé par Gilles), recopié dans /srv/izimboa/.env par le déploiement ; à révoquer dans Meta si fuite
 - [ ] Modèles « suivi de livraison » (utilitaires)
 - [ ] Ajouter le numéro sur la vitrine (WHATSAPP\_NUMBER dans src/config/site.ts)
 

@@ -73,6 +73,12 @@ izimboa:
     from-name: Izimboa
     # Adresse qui reçoit les demandes des formulaires du site.
     team: ${MAIL_TEAM:contact@izimboa.com}
+  whatsapp:
+    # Jeton permanent de l'utilisateur système Meta « izimboa-serveur ». Vide = envoi WhatsApp désactivé.
+    token: ${WHATSAPP_TOKEN:}
+    # Numéro +237 6 72 76 99 08 (compte WhatsApp 112090771912051), modèle d'authentification FR/EN.
+    phone-number-id: ${WHATSAPP_PHONE_NUMBER_ID:112115108576086}
+    code-template: izimboa_code
   cors:
     # *.izimboa.pages.dev : préversions Cloudflare Pages du site (relecture avant mise en ligne).
     allowed-origin-patterns: https://izimboa.com,https://*.izimboa.com,https://*.izimboa.pages.dev,http://localhost:3000,http://localhost:3001
