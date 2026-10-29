@@ -36,6 +36,10 @@ jobs:
           echo "=== Sauvegardes ==="; ls -la /srv/izimboa/backups 2>/dev/null | tail -5 || echo "AUCUNE SAUVEGARDE"
           echo "=== Disque ==="; df -h / | tail -1
           echo "=== Utilisateurs avec shell ==="; getent passwd | awk -F: '$7 ~ /(bash|sh)$/ {print $1}'
+          echo "=== Keycloak : extensions et flux ==="
+          ls -la /srv/izimboa/keycloak/providers 2>&1 | tail -3
+          cd /srv/izimboa && docker compose exec -T keycloak ls /opt/keycloak/providers 2>&1 | tail -3
+          docker compose logs --since 2h keycloak 2>&1 | grep -iE "izimboa-whatsapp|KC-SERVICES0047|ERROR|Updating the configuration" | tail -8
           echo "=== Jeton WhatsApp (lecture seule, le jeton n'est jamais affiché) ==="
           T=$(grep '^WHATSAPP_TOKEN=' /srv/izimboa/.env | cut -d= -f2-)
           if [ -z "$T" ]; then echo "absent du .env"; else
