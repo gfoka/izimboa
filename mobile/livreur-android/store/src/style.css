@@ -1,0 +1,4 @@
+@font-face{font-family:Outfit;src:url(outfit-latin-wght-normal.woff2);font-weight:100 900}
+@font-face{font-family:Inter;src:url(inter-latin-wght-normal.woff2);font-weight:100 900}
+*{margin:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif}
