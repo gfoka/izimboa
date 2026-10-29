@@ -78,6 +78,7 @@ class MainActivity : ComponentActivity() {
             s == null -> LoginScreen(onLogin = { loginMessage = null; login.launch(app.auth.loginIntent()) }, message = loginMessage)
             "livreur" !in s.roles -> NotCourierScreen(
                 name = s.name,
+                phone = s.phone,
                 onLogout = { app.signOut()?.let { logout.launch(it) } },
                 onRetry = { scope.launch { app.auth.reloadRoles() } },
             )

@@ -38,6 +38,8 @@ class DomainTest {
         assertEquals("600 m", distance(600))
         assertEquals("1,5 km", distance(1450))
         assertEquals("237699123456", digits("+237 6 99 12 34 56"))
+        assertEquals("+237 6 99 12 34 56", com.izimboa.livreur.ui.formatPhone("+237699123456"))
+        assertEquals("+33612345678", com.izimboa.livreur.ui.formatPhone("+33612345678"))
     }
 
     @Test fun rolesDuJetonKeycloak() {

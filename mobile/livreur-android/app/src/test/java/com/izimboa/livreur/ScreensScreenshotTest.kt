@@ -11,6 +11,7 @@ import com.izimboa.livreur.data.Pricing
 import com.izimboa.livreur.data.Stop
 import com.izimboa.livreur.domain.Status
 import com.izimboa.livreur.ui.DeliveryScreen
+import com.izimboa.livreur.ui.NotCourierScreen
 import com.izimboa.livreur.ui.HomeScreen
 import com.izimboa.livreur.ui.IzimboaTheme
 import com.izimboa.livreur.ui.LoginScreen
@@ -44,6 +45,7 @@ class ScreensScreenshotTest {
     )
 
     @Test fun connexion() = shot("1-connexion") { LoginScreen(onLogin = {}, message = null) }
+    @Test fun nonActive() = shot("1b-non-active") { NotCourierScreen(name = null, onLogout = {}, onRetry = {}, phone = "+237699123456") }
     @Test fun horsLigne() = shot("2-hors-ligne") { HomeScreen("Jean", false, false, null, {}, {}, {}) }
     @Test fun enLigne() = shot("3-en-ligne") { HomeScreen("Jean", true, false, null, {}, {}, {}) }
 

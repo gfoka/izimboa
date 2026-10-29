@@ -26,7 +26,8 @@ import net.openid.appauth.ResponseTypeValues
  */
 class Auth(context: Context) {
 
-    data class Session(val name: String?, val roles: Set<String>)
+    /** [phone] : numéro vérifié par code WhatsApp (+237…), absent pour une connexion par e-mail. */
+    data class Session(val name: String?, val roles: Set<String>, val phone: String? = null)
 
     private val store = SecureStore(context)
     private val service = AuthorizationService(context.applicationContext)
@@ -46,7 +47,7 @@ class Auth(context: Context) {
     /** Intention à lancer pour ouvrir la page de connexion Izimboa. */
     fun loginIntent(): Intent {
         val request = AuthorizationRequest.Builder(config, BuildConfig.CLIENT_ID, ResponseTypeValues.CODE, Uri.parse(BuildConfig.REDIRECT_URI))
-            .setScopes("openid", "profile", "email", "offline_access")
+            .setScopes("openid", "profile", "email", "phone", "offline_access")
             .setUiLocales("fr")
             .build()
         return service.getAuthorizationRequestIntent(request)
@@ -107,7 +108,8 @@ class Auth(context: Context) {
         if (!s.isAuthorized) return null
         val claims = s.parsedIdToken?.additionalClaims
         val name = (claims?.get("given_name") ?: claims?.get("name")) as? String
-        return Session(name, realmRoles(s.accessToken))
+        val phone = (claims?.get("phone_number") as? String).takeIf { claims?.get("phone_number_verified") == true }
+        return Session(name, realmRoles(s.accessToken), phone)
     }
 
     private companion object { const val KEY = "auth_state" }

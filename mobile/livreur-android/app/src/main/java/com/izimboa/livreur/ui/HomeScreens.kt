@@ -74,7 +74,7 @@ fun LoginScreen(onLogin: () -> Unit, message: String?) {
 }
 
 @Composable
-fun NotCourierScreen(name: String?, onLogout: () -> Unit, onRetry: () -> Unit) {
+fun NotCourierScreen(name: String?, onLogout: () -> Unit, onRetry: () -> Unit, phone: String? = null) {
     Column(
         Modifier.fillMaxSize().background(Brand.Cloud).statusBarsPadding().navigationBarsPadding().padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -85,6 +85,11 @@ fun NotCourierScreen(name: String?, onLogout: () -> Unit, onRetry: () -> Unit) {
             "Votre compte n'est pas encore activé comme livreur. Après la vérification de vos documents, Izimboa l'active et vous pourrez recevoir des courses.",
             style = MaterialTheme.typography.bodyLarge, color = Brand.Ink,
         )
+        // Connexion par WhatsApp : le livreur donne ce numéro à Izimboa pour que son compte soit activé.
+        if (phone != null) {
+            Text("Numéro du compte : ${formatPhone(phone)}", style = MaterialTheme.typography.titleLarge, color = Brand.Navy)
+            Text("Donnez ce numéro à Izimboa pour activer votre compte.", style = MaterialTheme.typography.bodyLarge, color = Brand.Slate)
+        }
         Spacer(Modifier.weight(1f))
         BigButton("J'AI ÉTÉ ACTIVÉ, RÉESSAYER", onRetry)
         SecondaryButton("Se déconnecter", onLogout)
@@ -173,3 +178,10 @@ private fun GpsLine(s: GpsStatus) {
     if (bad) Banner(text) else Text(text, style = MaterialTheme.typography.bodyMedium, color = Color.White.copy(alpha = 0.75f),
         textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
 }
+
+/** « +237699123456 » → « +237 6 99 12 34 56 » ; autres pays : inchangé. */
+fun formatPhone(e164: String): String =
+    if (e164.startsWith("+237") && e164.length == 13) {
+        val d = e164.substring(4)
+        "+237 ${d[0]} ${d.substring(1, 3)} ${d.substring(3, 5)} ${d.substring(5, 7)} ${d.substring(7, 9)}"
+    } else e164
