@@ -54,8 +54,12 @@ services:
       KC_HEALTH_ENABLED: "true"
       JAVA_OPTS_KC_HEAP: "-XX:MaxRAMPercentage=50"
       TZ: Africa/Douala
+      # Extension « code WhatsApp » (infra/keycloak-whatsapp) : jeton de l'utilisateur système Meta.
+      WHATSAPP_TOKEN: ${WHATSAPP_TOKEN:-}
+      WHATSAPP_PHONE_NUMBER_ID: ${WHATSAPP_PHONE_NUMBER_ID:-112115108576086}
     volumes:
       - ./keycloak/import:/opt/keycloak/data/import:ro
+      - ./keycloak/providers:/opt/keycloak/providers:ro
       - ./keycloak-theme/izimboa:/opt/keycloak/themes/izimboa:ro
     depends_on:
       postgres:

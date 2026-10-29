@@ -50,4 +50,28 @@ class MeControllerTest {
                 .andExpect(jsonPath("$.roles.length()").value(2))
                 .andExpect(jsonPath("$.memberSince").value("2026-10-24T00:00:00Z"));
     }
+
+    @Test
+    void leNumeroVerifieParWhatsAppEstRenvoye() throws Exception {
+        when(profiles.touch(any())).thenReturn(new UserProfile(UUID.fromString(SUB), Instant.parse("2026-10-24T00:00:00Z")));
+
+        mvc.perform(get("/v1/me").with(jwt()
+                        .jwt(j -> j.subject(SUB).claim("phone_number", "+237699123456").claim("phone_number_verified", true)
+                                .claim("realm_access", Map.of("roles", List.of("client"))))
+                        .authorities(KeycloakJwtConverter::authorities)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.phone").value("+237699123456"))
+                .andExpect(jsonPath("$.email").doesNotExist());
+    }
+
+    @Test
+    void unNumeroNonVerifieEstIgnore() throws Exception {
+        when(profiles.touch(any())).thenReturn(new UserProfile(UUID.fromString(SUB), Instant.parse("2026-10-24T00:00:00Z")));
+
+        mvc.perform(get("/v1/me").with(jwt()
+                        .jwt(j -> j.subject(SUB).claim("phone_number", "+237699123456"))
+                        .authorities(KeycloakJwtConverter::authorities)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.phone").doesNotExist());
+    }
 }

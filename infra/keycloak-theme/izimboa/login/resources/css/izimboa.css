@@ -104,3 +104,15 @@ body#keycloak-bg {
 
 /* Liens */
 #kc-registration a, .pf-v5-c-helper-text__item-text a { font-weight: 600; }
+
+/* Connexion par code WhatsApp */
+.izimboa-wa-lead { margin: 0 0 1rem; color: var(--izb-navy); line-height: 1.5; }
+.izimboa-wa-note { margin: 0 0 1rem; padding: .75rem 1rem; border-radius: 10px; background: var(--izb-cloud); }
+.izimboa-wa-hint { margin: .4rem 0 0; font-size: .875rem; color: #5b6475; }
+#phone, #code { font-size: 1.125rem; letter-spacing: .02em; }
+#code { letter-spacing: .3em; font-variant-numeric: tabular-nums; }
+.izimboa-wa-secondary { display: grid; gap: .5rem; margin-top: .75rem; }
+.izimboa-wa-link {
+  background: none; border: 0; padding: .5rem; cursor: pointer;
+  color: var(--izb-navy); font-weight: 600; text-decoration: underline; font: inherit;
+}

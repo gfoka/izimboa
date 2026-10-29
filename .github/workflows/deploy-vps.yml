@@ -8,6 +8,7 @@ on:
     paths:
       - "infra/vps/**"
       - "infra/keycloak-theme/**"
+      - "infra/keycloak-whatsapp/**"
       - "backend/**"
       - ".github/workflows/deploy-vps.yml"
   workflow_dispatch:
@@ -37,6 +38,14 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Tests de l'API (on ne déploie jamais une API qui échoue)
         run: ./gradlew test --no-daemon
+      - name: Extension Keycloak « code WhatsApp » (tests + .jar)
+        working-directory: infra/keycloak-whatsapp
+        run: ./gradlew build --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: keycloak-providers
+          path: infra/keycloak-whatsapp/build/libs/izimboa-whatsapp-otp.jar
+          retention-days: 7
 
   deploy:
     needs: test-api
@@ -44,6 +53,10 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: keycloak-providers
+          path: infra/vps/keycloak/providers
 
       - name: Vérifier la configuration Compose
         run: |

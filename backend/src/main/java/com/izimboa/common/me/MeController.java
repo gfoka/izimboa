@@ -25,8 +25,8 @@ public class MeController {
     public MeResponse me(JwtAuthenticationToken auth) {
         var user = CurrentUserResolver.from(auth);
         var profile = profiles.touch(user.id());
-        return new MeResponse(user.id(), user.email(), user.name(), user.roles(), profile.getFirstSeenAt());
+        return new MeResponse(user.id(), user.email(), user.name(), user.phone(), user.roles(), profile.getFirstSeenAt());
     }
 
-    public record MeResponse(UUID id, String email, String name, Set<String> roles, Instant memberSince) {}
+    public record MeResponse(UUID id, String email, String name, String phone, Set<String> roles, Instant memberSince) {}
 }

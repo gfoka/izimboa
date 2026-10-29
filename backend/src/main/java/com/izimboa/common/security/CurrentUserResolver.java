@@ -19,6 +19,8 @@ public final class CurrentUserResolver {
                 .map(a -> a.substring("ROLE_".length()))
                 .collect(Collectors.toUnmodifiableSet());
         String name = jwt.getClaimAsString("name");
-        return new CurrentUser(UUID.fromString(jwt.getSubject()), jwt.getClaimAsString("email"), name, roles);
+        // Numéro pris en compte seulement s'il a été vérifié (connexion par code WhatsApp).
+        String phone = Boolean.TRUE.equals(jwt.getClaimAsBoolean("phone_number_verified")) ? jwt.getClaimAsString("phone_number") : null;
+        return new CurrentUser(UUID.fromString(jwt.getSubject()), jwt.getClaimAsString("email"), name, phone, roles);
     }
 }
