@@ -58,6 +58,10 @@ jobs:
           echo "=== Page de connexion (doit proposer le code WhatsApp) ===" >> check.txt
           curl -s "https://auth.izimboa.com/realms/izimboa/protocol/openid-connect/auth?client_id=izimboa-web&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fizimboa.com%2F&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&ui_locales=fr" \
             | grep -oE "template: [a-z-]+\.ftl|Recevoir mon code|try-another-way" | sort -u >> check.txt || echo "page introuvable" >> check.txt
+          echo "=== Lieux (recherche OpenStreetMap via l'API) ===" >> check.txt
+          curl -s "https://api.izimboa.com/v1/delivery/places?q=carrefour%20kotto&lat=4.088&lng=9.75" | head -c 400 >> check.txt; echo >> check.txt
+          echo "resolve sans connexion -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/locations/resolve -H 'Content-Type: application/json' -d '{\"text\":\"4.06,9.74\"}')" >> check.txt
+          echo "dropoff jeton inconnu -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/track/inconnu/dropoff -H 'Content-Type: application/json' -d '{\"lat\":4.06,\"lng\":9.74}')" >> check.txt
           echo "=== Postgres depuis Internet (doit échouer) ===" >> check.txt
           (timeout 5 bash -c "</dev/tcp/$VPS_HOST/5432" && echo "5432 OUVERT !") >> check.txt 2>&1 || echo "5432 fermé" >> check.txt
           (timeout 5 bash -c "</dev/tcp/$VPS_HOST/8080" && echo "8080 OUVERT !") >> check.txt 2>&1 || echo "8080 fermé" >> check.txt
