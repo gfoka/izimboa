@@ -40,7 +40,7 @@ function loadGa(id: string) {
   };
   w.gtag("consent", "default", { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "granted" });
   w.gtag("js", new Date());
-  w.gtag("config", id, { anonymize_ip: true });
+  w.gtag("config", id);
   const s = document.createElement("script");
   s.id = "ga4";
   s.async = true;

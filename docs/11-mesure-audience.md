@@ -1,7 +1,7 @@
 # Mesure d'audience (Google Analytics 4)
 
 - Chargée **uniquement après accord** du visiteur (bandeau, `components/Analytics.tsx`), mode consentement Google, aucune publicité.
-- Identifiant : `GA_MEASUREMENT_ID` dans `web/vitrine/src/config/site.ts` (null = rien n'est chargé ni affiché).
+- Identifiant : `G-PWHLTW9CYG` (`GA_MEASUREMENT_ID` dans `web/vitrine/src/config/site.ts` ; null = rien n'est chargé ni affiché). Propriété « izimboa.com », fuseau Cameroun, devise XAF.
 - Envoi des événements : `web/vitrine/src/lib/track.ts`. **Jamais de donnée personnelle** (ni nom, ni téléphone, ni e-mail, ni ville).
 
 | Événement | Quand | Paramètres |
