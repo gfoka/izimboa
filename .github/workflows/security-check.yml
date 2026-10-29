@@ -64,8 +64,8 @@ jobs:
             echo "$q -> $(curl -s "https://api.izimboa.com/v1/delivery/places?q=$q&lat=4.088&lng=9.75" | head -c 300)" >> check.txt
             sleep 1.2
           done
-          echo "resolve sans connexion -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/locations/resolve -H 'Content-Type: application/json' -d '{\"text\":\"4.06,9.74\"}')" >> check.txt
-          echo "dropoff jeton inconnu -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/track/inconnu/dropoff -H 'Content-Type: application/json' -d '{\"lat\":4.06,\"lng\":9.74}')" >> check.txt
+          echo "resolve sans connexion -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/locations/resolve -H 'Content-Type: application/json' -d '{"text":"4.06,9.74"}')" >> check.txt
+          echo "dropoff jeton inconnu -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/track/inconnu/dropoff -H 'Content-Type: application/json' -d '{"lat":4.06,"lng":9.74}')" >> check.txt
           echo "=== Postgres depuis Internet (doit échouer) ===" >> check.txt
           (timeout 5 bash -c "</dev/tcp/$VPS_HOST/5432" && echo "5432 OUVERT !") >> check.txt 2>&1 || echo "5432 fermé" >> check.txt
           (timeout 5 bash -c "</dev/tcp/$VPS_HOST/8080" && echo "8080 OUVERT !") >> check.txt 2>&1 || echo "8080 fermé" >> check.txt
