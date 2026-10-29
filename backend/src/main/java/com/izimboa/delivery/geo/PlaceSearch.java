@@ -84,25 +84,41 @@ public class PlaceSearch {
                 log.info("Recherche de lieux : HTTP {}", response.statusCode());
                 return null;
             }
+            // Ordre de pertinence d'OpenStreetMap (la zone autour du client est déjà favorisée par « viewbox »).
             List<Place> out = new ArrayList<>();
             for (JsonNode n : json.readTree(response.body())) {
                 double lat = n.path("lat").asDouble(), lng = n.path("lon").asDouble();
-                String name = n.path("name").asText("");
-                String display = n.path("display_name").asText("");
+                String display = clean(n.path("display_name").asText(""));
+                String name = clean(n.path("name").asText(""));
                 if (name.isBlank()) name = display.split(",")[0].strip();
-                String detail = display.startsWith(name) ? display.substring(name.length()).replaceFirst("^,\\s*", "") : display;
-                detail = detail.replaceAll(",\\s*(Cameroun|Cameroon)$", "");
-                out.add(new Place(name, detail, lat, lng));
-            }
-            if (near != null) {
-                out.sort((a, b) -> Double.compare(near.straightLineMetersTo(new GeoPoint(a.lat(), a.lng())),
-                        near.straightLineMetersTo(new GeoPoint(b.lat(), b.lng()))));
+                String detail = shortDetail(display, name);
+                var place = new Place(name, detail, lat, lng);
+                boolean duplicate = out.stream().anyMatch(o -> o.name().equalsIgnoreCase(place.name())
+                        && new GeoPoint(o.lat(), o.lng()).straightLineMetersTo(new GeoPoint(lat, lng)) < 300);
+                if (!duplicate) out.add(place);
             }
             return out;
         } catch (Exception e) {
             log.info("Recherche de lieux indisponible : {}", e.getMessage());
             return null;
         }
+    }
+
+    /** « Bonatene, Deido, Douala I » : trois repères au plus, sans la région ni le pays. */
+    static String shortDetail(String display, String name) {
+        List<String> parts = new ArrayList<>();
+        for (String part : display.split(",")) {
+            String p = part.strip();
+            if (p.isEmpty() || p.equalsIgnoreCase(name) || p.matches("\\d{3,}")
+                    || p.matches("(?i)(cameroun|cameroon|r[ée]gion .*|communaut[ée] urbaine .*|wouri|mfoundi|d[ée]partement .*)")) continue;
+            if (!parts.contains(p)) parts.add(p);
+            if (parts.size() == 3) break;
+        }
+        return String.join(", ", parts);
+    }
+
+    private static String clean(String s) {
+        return s.replace("&apos;", "'").replace("&quot;", "\"").replace("&amp;", "&").strip();
     }
 
     /** Une requête par seconde au plus vers le service public (attente courte, sinon on renonce). */
