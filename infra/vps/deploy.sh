@@ -63,8 +63,11 @@ done
 
 # Connexion par code WhatsApp (décision 40) : flux « izimboa-navigateur » = session existante, sinon
 # formulaire « code WhatsApp » proposé d'abord, e-mail + mot de passe en autre méthode. Idempotent.
-if kc get authentication/authenticator-providers -r izimboa 2>/dev/null | grep -q '"izimboa-whatsapp-otp"'; then
-  if ! kc get authentication/flows -r izimboa --fields alias --format csv --noquotes | grep -qx izimboa-navigateur; then
+# (sorties lues dans des variables : « grep -q » sur un tube échoue parfois avec pipefail)
+kc_providers=$(kc get authentication/authenticator-providers -r izimboa 2>&1 || true)
+if grep -q 'izimboa-whatsapp-otp' <<< "$kc_providers"; then
+  kc_flows=$(kc get authentication/flows -r izimboa --fields alias --format csv --noquotes)
+  if ! grep -qx izimboa-navigateur <<< "$kc_flows"; then
     kc create authentication/flows -r izimboa -s alias=izimboa-navigateur -s providerId=basic-flow \
       -s topLevel=true -s builtIn=false -s 'description=Connexion Izimboa : code WhatsApp, e-mail en option'
     kc create authentication/flows/izimboa-navigateur/executions/execution -r izimboa -s provider=auth-cookie
@@ -79,7 +82,7 @@ if kc get authentication/authenticator-providers -r izimboa 2>/dev/null | grep -
     echo "Flux de connexion « izimboa-navigateur » créé."
   fi
   kc update realms/izimboa -s browserFlow=izimboa-navigateur
-  echo "Connexion par code WhatsApp active."
+  echo "::notice title=keycloak::Connexion par code WhatsApp active (flux izimboa-navigateur)."
 
   # Profil utilisateur : numéro de téléphone (lu par l'API dans le jeton) ; e-mail et nom deviennent facultatifs,
   # sinon Keycloak exigerait un e-mail des comptes créés par WhatsApp.
@@ -112,18 +115,19 @@ PY
   fi
 
   # Le numéro de téléphone dans les jetons des applications (portée standard « phone »).
-  phone_scope=$(kc get client-scopes -r izimboa --fields id,name --format csv --noquotes | awk -F, '$2=="phone"{print $1}')
+  scopes=$(kc get client-scopes -r izimboa --fields id,name --format csv --noquotes)
+  phone_scope=$(awk -F, '$2=="phone"{print $1}' <<< "$scopes")
   for client in izimboa-web izimboa-mobile; do
     cid=$(kc get clients -r izimboa -q clientId=$client --fields id --format csv --noquotes | tail -1)
-    if [ -n "$phone_scope" ] && [ -n "$cid" ] && \
-       ! kc get "clients/$cid/default-client-scopes" -r izimboa --fields name --format csv --noquotes | grep -qx phone; then
+    defaults=$( [ -n "$cid" ] && kc get "clients/$cid/default-client-scopes" -r izimboa --fields name --format csv --noquotes || true)
+    if [ -n "$phone_scope" ] && [ -n "$cid" ] && ! grep -qx phone <<< "$defaults"; then
       # Une portée ne peut pas être à la fois facultative et par défaut.
       kc delete "clients/$cid/optional-client-scopes/$phone_scope" -r izimboa > /dev/null 2>&1 || true
       kc update "clients/$cid/default-client-scopes/$phone_scope" -r izimboa && echo "Client $client : numéro de téléphone dans les jetons."
     fi
   done
 else
-  echo "ATTENTION : extension izimboa-whatsapp-otp absente de Keycloak, connexion WhatsApp non activée."
+  echo "::warning title=keycloak::Extension izimboa-whatsapp-otp absente de Keycloak, connexion WhatsApp non activée : $(head -c 300 <<< "$kc_providers" | tr '\n' ' ')"
 fi
 
 # 5. Durcissement SSH : connexion par clé uniquement. Le fichier « 00- » passe avant celui de l'hébergeur
