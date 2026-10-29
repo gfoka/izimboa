@@ -36,6 +36,11 @@ jobs:
           echo "=== Sauvegardes ==="; ls -la /srv/izimboa/backups 2>/dev/null | tail -5 || echo "AUCUNE SAUVEGARDE"
           echo "=== Disque ==="; df -h / | tail -1
           echo "=== Utilisateurs avec shell ==="; getent passwd | awk -F: '$7 ~ /(bash|sh)$/ {print $1}'
+          echo "=== Jeton WhatsApp (lecture seule, le jeton n'est jamais affiché) ==="
+          T=$(grep '^WHATSAPP_TOKEN=' /srv/izimboa/.env | cut -d= -f2-)
+          if [ -z "$T" ]; then echo "absent du .env"; else
+            curl -s -H "Authorization: Bearer $T" "https://graph.facebook.com/v21.0/112115108576086?fields=display_phone_number,verified_name,name_status,quality_rating" | head -c 400; echo
+          fi
           SH
       - name: Certificats et en-têtes HTTPS (vu d'Internet)
         run: |
