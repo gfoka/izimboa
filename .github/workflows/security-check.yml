@@ -38,7 +38,7 @@ jobs:
           echo "=== Utilisateurs avec shell ==="; getent passwd | awk -F: '$7 ~ /(bash|sh)$/ {print $1}'
           echo "=== Keycloak : extensions et flux ==="
           ls -la /srv/izimboa/keycloak/providers 2>&1 | tail -3
-          cd /srv/izimboa && docker compose exec -T keycloak ls /opt/keycloak/providers 2>&1 | tail -3
+          cd /srv/izimboa && docker compose exec -T keycloak ls /opt/keycloak/providers < /dev/null 2>&1 | tail -3
           docker compose logs --since 2h keycloak 2>&1 | grep -iE "izimboa-whatsapp|KC-SERVICES0047|ERROR|Updating the configuration" | tail -8
           echo "=== Jeton WhatsApp (lecture seule, le jeton n'est jamais affiché) ==="
           T=$(grep '^WHATSAPP_TOKEN=' /srv/izimboa/.env | cut -d= -f2-)
@@ -55,6 +55,9 @@ jobs:
           done
           echo "=== Exposition de l'API ===" >> check.txt
           for p in /actuator/env /actuator/health /v1/contact-requests /v3/api-docs; do echo "$p -> $(curl -s -o /dev/null -w '%{http_code}' https://api.izimboa.com$p)" >> check.txt; done
+          echo "=== Page de connexion (doit proposer le code WhatsApp) ===" >> check.txt
+          curl -s "https://auth.izimboa.com/realms/izimboa/protocol/openid-connect/auth?client_id=izimboa-web&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fizimboa.com%2F&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256&ui_locales=fr" \
+            | grep -oE "template: [a-z-]+\.ftl|Recevoir mon code|try-another-way" | sort -u >> check.txt || echo "page introuvable" >> check.txt
           echo "=== Postgres depuis Internet (doit échouer) ===" >> check.txt
           (timeout 5 bash -c "</dev/tcp/$VPS_HOST/5432" && echo "5432 OUVERT !") >> check.txt 2>&1 || echo "5432 fermé" >> check.txt
           (timeout 5 bash -c "</dev/tcp/$VPS_HOST/8080" && echo "8080 OUVERT !") >> check.txt 2>&1 || echo "8080 fermé" >> check.txt
