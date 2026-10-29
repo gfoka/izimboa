@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { AppShell, RequireLogin } from "@/components/AppShell";
+import { AppShell } from "@/components/AppShell";
+import { Welcome } from "@/components/Welcome";
 import { StatusBadge } from "@/components/Status";
 import { api, ApiError, type DeliverySummary, type Status } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -18,11 +19,16 @@ const FILTERS: { key: Filter; label: string }[] = [
 export default function Home() {
   return (
     <AppShell>
-      <RequireLogin>
-        <Dashboard />
-      </RequireLogin>
+      <HomeContent />
     </AppShell>
   );
+}
+
+/** Connecté : le tableau de bord. Pas encore connecté : la présentation et les deux portes d'entrée. */
+function HomeContent() {
+  const { user, ready } = useAuth();
+  if (!ready) return <div className="container page"><div className="skeleton tall" /></div>;
+  return user ? <Dashboard /> : <Welcome />;
 }
 
 function Dashboard() {
