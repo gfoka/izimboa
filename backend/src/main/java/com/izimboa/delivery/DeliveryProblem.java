@@ -51,6 +51,16 @@ public class DeliveryProblem extends ErrorResponseException {
                 "Trop de codes incorrects : un opérateur doit débloquer la livraison.");
     }
 
+    public static DeliveryProblem dropoffLocked() {
+        return new DeliveryProblem(HttpStatus.CONFLICT, "dropoff-locked",
+                "Le colis a déjà été récupéré : le lieu de livraison ne peut plus changer. Contactez le vendeur.");
+    }
+
+    public static DeliveryProblem dropoffTooFar() {
+        return new DeliveryProblem(HttpStatus.UNPROCESSABLE_CONTENT, "dropoff-too-far",
+                "Ce lieu est à plus de 3 km du quartier indiqué par le vendeur. Contactez-le pour modifier la livraison.");
+    }
+
     public static DeliveryProblem invalid(String detail) {
         return new DeliveryProblem(HttpStatus.UNPROCESSABLE_CONTENT, "invalid-request", detail);
     }

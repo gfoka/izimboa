@@ -22,15 +22,22 @@ final class DeliveryViews {
                         StopView pickup, String pickupPhone, StopView dropoff, String recipientName,
                         String recipientPhone, String packageDescription, boolean express, BigDecimal distanceKm,
                         PricingView pricing, String handoverCode, int handoverFailures, UUID courierId,
-                        int deliveryAttempts, Instant createdAt, Instant updatedAt, List<EventView> timeline) {}
+                        int deliveryAttempts, Instant createdAt, Instant updatedAt, List<EventView> timeline,
+                        String dropoffState) {}
 
     record DeliverySummary(UUID id, String reference, DeliveryStatus status, String dropoffAddress,
                            String recipientName, boolean express, long codAmount, long totalFee,
-                           UUID courierId, Instant createdAt, Instant updatedAt) {}
+                           UUID courierId, Instant createdAt, Instant updatedAt, String dropoffState) {}
 
     /** Suivi public (lien WhatsApp du destinataire) : aucune donnée personnelle. */
     record TrackingView(String reference, DeliveryStatus status, boolean express, String dropoffLandmark,
-                        long amountToPay, String currency, List<EventView> timeline) {}
+                        long amountToPay, String currency, List<EventView> timeline, DropoffRequest dropoffRequest) {}
+
+    /**
+     * Pour le destinataire qui doit indiquer le lieu (sinon null) : le point actuel (quartier du vendeur ou lieu
+     * déjà indiqué), le quartier écrit par le vendeur, et s'il peut encore le modifier.
+     */
+    record DropoffRequest(String state, boolean editable, double lat, double lng, String area, int maxShiftMeters) {}
 
     static DeliveryView full(Delivery d, String trackingBaseUrl, boolean showHandoverCode) {
         return new DeliveryView(d.getId(), d.getReference(), d.getStatus(), trackingBaseUrl + d.getTrackingToken(),
@@ -42,18 +49,22 @@ final class DeliveryViews {
                 new PricingView("XAF", d.getBasePrice(), d.getExpressSurcharge(), d.getCodAmount(), d.getCodCommission(),
                         d.getTotalFee(), d.getFeePayment(), d.getReturnFee(), d.sellerPayout()),
                 showHandoverCode ? d.getHandoverCode() : null, d.getHandoverFailures(), d.getCourierId(),
-                d.getDeliveryAttempts(), d.getCreatedAt(), d.getUpdatedAt(), timeline(d));
+                d.getDeliveryAttempts(), d.getCreatedAt(), d.getUpdatedAt(), timeline(d), d.dropoffState());
     }
 
     static DeliverySummary summary(Delivery d) {
         return new DeliverySummary(d.getId(), d.getReference(), d.getStatus(), d.getDropoffAddress(),
                 d.getRecipientName(), d.isExpress(), d.getCodAmount(), d.getTotalFee(), d.getCourierId(),
-                d.getCreatedAt(), d.getUpdatedAt());
+                d.getCreatedAt(), d.getUpdatedAt(), d.dropoffState());
     }
 
     static TrackingView tracking(Delivery d) {
+        DropoffRequest request = d.isDropoffByClient()
+                ? new DropoffRequest(d.dropoffState(), d.isDropoffEditableByClient(), d.getDropoffLat(), d.getDropoffLng(),
+                        d.getDropoffAddress(), (int) Delivery.MAX_CLIENT_DROPOFF_SHIFT_M)
+                : null;
         return new TrackingView(d.getReference(), d.getStatus(), d.isExpress(), d.getDropoffLandmark(),
-                d.getCodAmount(), "XAF", timeline(d));
+                d.getCodAmount(), "XAF", timeline(d), request);
     }
 
     private static List<EventView> timeline(Delivery d) {

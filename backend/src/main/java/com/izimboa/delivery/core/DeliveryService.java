@@ -30,6 +30,7 @@ class DeliveryService {
     private final IdentifierGenerator identifiers;
     private final Clock clock;
     private final String trackingBaseUrl;
+    private final DeliveryProperties properties;
 
     DeliveryService(DeliveryRepository repository, PricingService pricing, IdentifierGenerator identifiers,
                     Clock clock, DeliveryProperties properties) {
@@ -38,6 +39,7 @@ class DeliveryService {
         this.identifiers = identifiers;
         this.clock = clock;
         this.trackingBaseUrl = properties.trackingBaseUrl();
+        this.properties = properties;
     }
 
     // ---- Création ----
@@ -45,7 +47,7 @@ class DeliveryService {
     record NewDelivery(GeoPoint pickup, String pickupAddress, String pickupLandmark, String pickupPhone,
                        GeoPoint dropoff, String dropoffAddress, String dropoffLandmark,
                        String recipientName, String recipientPhone, String packageDescription,
-                       boolean express, long codAmount) {}
+                       boolean express, long codAmount, boolean dropoffByClient) {}
 
     record Created(DeliveryViews.DeliveryView view, boolean replayed) {}
 
@@ -71,7 +73,8 @@ class DeliveryService {
                 new Delivery.Stop(in.dropoff().lat(), in.dropoff().lng(), in.dropoffAddress().strip(), blankToNull(in.dropoffLandmark())),
                 in.recipientName().strip(), recipientPhone, blankToNull(in.packageDescription()),
                 in.express(), in.codAmount());
-        var delivery = Delivery.create(identifiers.next(), sender.id(), idempotencyKey, details, quote, clock.instant());
+        var delivery = Delivery.create(identifiers.next(), sender.id(), idempotencyKey, details, quote,
+                in.dropoffByClient(), clock.instant());
         return new Created(view(repository.save(delivery), sender), false);
     }
 
@@ -107,6 +110,21 @@ class DeliveryService {
     DeliveryViews.TrackingView track(String token) {
         return repository.findByTrackingToken(token).map(DeliveryViews::tracking)
                 .orElseThrow(DeliveryProblem::notFound);
+    }
+
+    /**
+     * Le destinataire indique le lieu exact depuis son lien de suivi (décision 72) : dans la ville du ramassage,
+     * à 3 km au plus du quartier choisi par le vendeur, avant le ramassage.
+     */
+    @Transactional
+    DeliveryViews.TrackingView confirmDropoff(String token, GeoPoint point, String landmark) {
+        var d = repository.findByTrackingToken(token).orElseThrow(DeliveryProblem::notFound);
+        var area = properties.areaOf(d.getPickupLat(), d.getPickupLng());
+        if (area.isPresent() && !area.get().contains(point.lat(), point.lng())) {
+            throw DeliveryProblem.outsideServiceArea(area.get().name());
+        }
+        d.setDropoffByClient(point.lat(), point.lng(), blankToNull(landmark), clock.instant());
+        return DeliveryViews.tracking(d);
     }
 
     // ---- Étapes ----

@@ -109,6 +109,7 @@ function Dashboard() {
                 <div className="row-main">
                   <p className="row-title">{d.recipientName}{d.express && <span className="chip-express">Express</span>}</p>
                   <p className="row-sub">{d.dropoffAddress}</p>
+                  {d.dropoffState === "TO_CONFIRM" && !FINAL.includes(d.status) && <p className="dropoff-chip wait">Lieu à indiquer par le client</p>}
                   <p className="row-meta">{d.reference} · {formatDateTime(d.createdAt)}</p>
                 </div>
                 <div className="row-side">

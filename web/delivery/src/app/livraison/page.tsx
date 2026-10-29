@@ -110,7 +110,8 @@ function DeliveryDetail() {
 
       {justCreated && (
         <div className="alert alert-ok" role="status">
-          <strong>Livraison créée.</strong> Envoyez maintenant le lien de suivi et le code à votre client sur WhatsApp.
+          <strong>Livraison créée.</strong> Envoyez maintenant le lien de suivi et le code à votre client sur WhatsApp
+          {d?.dropoffState === "TO_CONFIRM" ? " : il y indiquera le lieu exact de livraison." : "."}
         </div>
       )}
 
@@ -165,6 +166,8 @@ function DeliveryDetail() {
                 <div>
                   <p className="route-label">Livraison</p>
                   <p>{d.dropoff.address}</p>
+                  {d.dropoffState === "TO_CONFIRM" && <p className="dropoff-chip wait">Lieu exact à indiquer par le client</p>}
+                  {d.dropoffState === "CONFIRMED" && <p className="dropoff-chip ok">✓ Lieu indiqué par le client</p>}
                   {d.dropoff.landmark && <p className="muted small">{d.dropoff.landmark}</p>}
                   <p className="muted small">{d.recipientName} · <a href={`tel:${d.recipientPhone}`}>{formatPhone(d.recipientPhone)}</a></p>
                 </div>
@@ -213,7 +216,9 @@ function DeliveryDetail() {
 function recipientMessage(d: Delivery): string {
   const lines = [
     `Bonjour ${d.recipientName}, votre colis${d.packageDescription ? ` (${d.packageDescription})` : ""} est livré par Izimboa Delivery.`,
-    `Suivez-le ici : ${d.trackingUrl}`,
+    d.dropoffState === "TO_CONFIRM"
+      ? `Indiquez le lieu exact de livraison et suivez votre colis ici : ${d.trackingUrl}`
+      : `Suivez-le ici : ${d.trackingUrl}`,
     `Code de remise à donner au livreur à la réception : ${d.handoverCode}`,
   ];
   if (d.pricing.codAmount > 0) lines.push(`Montant à payer à la livraison : ${fcfa(d.pricing.codAmount)}`);

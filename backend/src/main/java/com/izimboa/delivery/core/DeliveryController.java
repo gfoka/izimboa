@@ -66,6 +66,13 @@ class DeliveryController {
         return service.track(token);
     }
 
+    /** Le destinataire indique le lieu exact de livraison (lien de suivi, sans connexion). */
+    @PostMapping("/track/{token}/dropoff")
+    DeliveryViews.TrackingView confirmDropoff(@PathVariable @Size(max = 32) String token,
+                                              @Valid @RequestBody DropoffRequest body) {
+        return service.confirmDropoff(token, new GeoPoint(body.lat(), body.lng()), body.landmark());
+    }
+
     @PostMapping("/deliveries/{id}/cancel")
     DeliveryViews.DeliveryView cancel(@PathVariable UUID id, @Valid @RequestBody(required = false) ReasonRequest body,
                                       CurrentUser user) {
@@ -139,14 +146,19 @@ class DeliveryController {
             @NotBlank @Size(max = 25) String recipientPhone,
             @Size(max = 200) String packageDescription,
             Boolean express,
-            @PositiveOrZero Long codAmount) {
+            @PositiveOrZero Long codAmount,
+            Boolean dropoffByClient) {
 
         DeliveryService.NewDelivery toCommand() {
             return new DeliveryService.NewDelivery(pickup, pickupAddress, pickupLandmark, pickupPhone,
                     dropoff, dropoffAddress, dropoffLandmark, recipientName, recipientPhone, packageDescription,
-                    Boolean.TRUE.equals(express), codAmount == null ? 0 : codAmount);
+                    Boolean.TRUE.equals(express), codAmount == null ? 0 : codAmount, Boolean.TRUE.equals(dropoffByClient));
         }
     }
+
+    record DropoffRequest(@NotNull @DecimalMin("-90") @DecimalMax("90") Double lat,
+                          @NotNull @DecimalMin("-180") @DecimalMax("180") Double lng,
+                          @Size(max = 300) String landmark) {}
 
     record AssignRequest(@NotNull UUID courierId) {}
 

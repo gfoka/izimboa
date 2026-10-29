@@ -60,6 +60,12 @@ public class Delivery {
     @Column(name = "dropoff_lng", nullable = false) private double dropoffLng;
     @Column(name = "dropoff_address", nullable = false, length = 300) private String dropoffAddress;
     @Column(name = "dropoff_landmark", length = 300) private String dropoffLandmark;
+    // Lieu précisé par le destinataire (décision 72) : point initial du vendeur, confirmation, nombre de modifications.
+    @Column(name = "dropoff_by_client", nullable = false) private boolean dropoffByClient;
+    @Column(name = "dropoff_initial_lat") private Double dropoffInitialLat;
+    @Column(name = "dropoff_initial_lng") private Double dropoffInitialLng;
+    @Column(name = "dropoff_confirmed_at") private Instant dropoffConfirmedAt;
+    @Column(name = "dropoff_client_updates", nullable = false) private short dropoffClientUpdates;
     @Column(name = "recipient_name", nullable = false, length = 120) private String recipientName;
     @Column(name = "recipient_phone", nullable = false, length = 20) private String recipientPhone;
 
@@ -100,7 +106,20 @@ public class Delivery {
     /** Identifiants générés à la création (références, code de remise). */
     record Identifiers(UUID id, String reference, String trackingToken, String handoverCode) {}
 
+    /** Le destinataire peut déplacer le point du vendeur de 3 km au plus, et 10 fois au plus. */
+    static final double MAX_CLIENT_DROPOFF_SHIFT_M = 3_000;
+    static final int MAX_CLIENT_DROPOFF_UPDATES = 10;
+
     static Delivery create(Identifiers ids, UUID senderId, String idempotencyKey, Details d, Quote quote, Instant now) {
+        return create(ids, senderId, idempotencyKey, d, quote, false, now);
+    }
+
+    /**
+     * {@code dropoffByClient} : le vendeur a placé l'épingle sur le quartier ; le destinataire indiquera
+     * le lieu exact depuis son lien de suivi.
+     */
+    static Delivery create(Identifiers ids, UUID senderId, String idempotencyKey, Details d, Quote quote,
+                           boolean dropoffByClient, Instant now) {
         if (quote.onRequest()) throw DeliveryProblem.quoteRequired();
         var x = new Delivery();
         x.id = ids.id();
@@ -130,6 +149,11 @@ public class Delivery {
         x.totalFee = quote.total();
         // Le vendeur n'avance rien si l'argent encaissé couvre les frais (décision n° 36).
         x.feePayment = d.codAmount() >= quote.total() ? FeePayment.DEDUCTED_FROM_COD : FeePayment.PREPAID;
+        x.dropoffByClient = dropoffByClient;
+        if (dropoffByClient) {
+            x.dropoffInitialLat = d.dropoff().lat();
+            x.dropoffInitialLng = d.dropoff().lng();
+        }
         x.createdAt = now;
         x.status = DeliveryStatus.CREATED;
         x.record(DeliveryStatus.CREATED, senderId, null, null, now);
@@ -200,6 +224,35 @@ public class Delivery {
         moveTo(DeliveryStatus.CANCELLED, actor, null, reason, now);
     }
 
+    /**
+     * Le destinataire indique le lieu exact (GPS, recherche ou épingle), avant le ramassage seulement.
+     * Seule la première indication apparaît dans l'historique.
+     */
+    void setDropoffByClient(double lat, double lng, String landmark, Instant now) {
+        if (!dropoffByClient) throw DeliveryProblem.invalid("Le lieu de livraison a été fixé par le vendeur.");
+        if (status != DeliveryStatus.CREATED && status != DeliveryStatus.ASSIGNED) {
+            throw DeliveryProblem.dropoffLocked();
+        }
+        if (dropoffClientUpdates >= MAX_CLIENT_DROPOFF_UPDATES) {
+            throw DeliveryProblem.invalid("Trop de modifications du lieu. Contactez le vendeur.");
+        }
+        var initial = new com.izimboa.delivery.geo.GeoPoint(dropoffInitialLat, dropoffInitialLng);
+        if (initial.straightLineMetersTo(new com.izimboa.delivery.geo.GeoPoint(lat, lng)) > MAX_CLIENT_DROPOFF_SHIFT_M) {
+            throw DeliveryProblem.dropoffTooFar();
+        }
+        boolean first = dropoffConfirmedAt == null;
+        this.dropoffLat = lat;
+        this.dropoffLng = lng;
+        if (landmark != null && !landmark.isBlank()) this.dropoffLandmark = landmark.strip();
+        this.dropoffConfirmedAt = now;
+        this.dropoffClientUpdates++;
+        if (first) {
+            record(status, null, new Position(lat, lng), "Lieu de livraison indiqué par le destinataire", now);
+        } else {
+            this.updatedAt = now;
+        }
+    }
+
     void unlockHandover(UUID actor, Instant now) {
         this.handoverFailures = 0;
         record(status, actor, null, "Code de remise débloqué", now);
@@ -265,6 +318,17 @@ public class Delivery {
     public double getDropoffLng() { return dropoffLng; }
     public String getDropoffAddress() { return dropoffAddress; }
     public String getDropoffLandmark() { return dropoffLandmark; }
+    public boolean isDropoffByClient() { return dropoffByClient; }
+    public Instant getDropoffConfirmedAt() { return dropoffConfirmedAt; }
+    /** Le destinataire peut encore indiquer ou corriger le lieu (avant le ramassage). */
+    public boolean isDropoffEditableByClient() {
+        return dropoffByClient && (status == DeliveryStatus.CREATED || status == DeliveryStatus.ASSIGNED)
+                && dropoffClientUpdates < MAX_CLIENT_DROPOFF_UPDATES;
+    }
+    /** FIXED : fixé par le vendeur ; TO_CONFIRM : en attente du destinataire ; CONFIRMED : indiqué par lui. */
+    public String dropoffState() {
+        return !dropoffByClient ? "FIXED" : dropoffConfirmedAt == null ? "TO_CONFIRM" : "CONFIRMED";
+    }
     public String getRecipientName() { return recipientName; }
     public String getRecipientPhone() { return recipientPhone; }
     public String getPackageDescription() { return packageDescription; }

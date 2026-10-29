@@ -278,3 +278,28 @@ legend.card-title + * { clear: both; }
 .welcome-business { background: var(--sun-soft); border-radius: var(--radius); padding: 22px; display: grid; gap: 14px; align-items: center; }
 .welcome-business p { color: var(--ink); margin-top: 6px; }
 @media (min-width: 720px) { .welcome-business { grid-template-columns: 1fr auto; } }
+
+/* ----- Lieu de livraison : coller une localisation, lieu indiqué par le client ----- */
+.paste { display: grid; gap: 6px; min-width: 0; }
+.paste-row { display: flex; gap: 8px; }
+.paste-row input { flex: 1; min-width: 0; min-height: 44px; padding: 8px 12px; border: 1.5px solid var(--line); border-radius: 12px; font: inherit; color: var(--ink); background: #fff; }
+.paste-row input:focus { border-color: var(--navy); outline: none; box-shadow: 0 0 0 3px rgb(11 37 69 / 12%); }
+.paste-row input[aria-invalid="true"] { border-color: var(--bad); }
+.dropoff-chip { display: inline-block; margin-top: 4px; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+.dropoff-chip.wait { background: var(--sun-soft); color: #7a3d00; }
+.dropoff-chip.ok { background: var(--ok-soft); color: var(--ok); }
+.dropoff-ask { border: 2px solid var(--sun); grid-template-columns: minmax(0, 1fr); }
+.dropoff-ask > * { min-width: 0; }
+.dropoff-ask.done { border: 1px solid var(--ok); background: var(--ok-soft); }
+.dropoff-ask.done .card-title { color: var(--ok); }
+.ask-options { display: grid; gap: 8px; }
+@media (min-width: 560px) { .ask-options { grid-template-columns: repeat(3, 1fr); } }
+.ask-option { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 12px; align-items: center; text-align: left; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 14px; background: #fff; color: var(--ink); }
+.ask-option > span:first-child { font-size: 1.4rem; grid-row: span 2; }
+@media (min-width: 560px) { .ask-option { grid-template-columns: minmax(0, 1fr); justify-items: start; } .ask-option > span:first-child { grid-row: auto; } }
+.ask-option.on { border-color: var(--navy); box-shadow: 0 0 0 3px rgb(11 37 69 / 10%); }
+.place-search { display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr); }
+.paste-row .btn { flex-shrink: 0; }
+.place-results { display: grid; gap: 6px; }
+.place-results button { width: 100%; display: grid; gap: 2px; text-align: left; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); }
+.place-results button:hover, .place-results button:focus-visible { border-color: var(--navy); }

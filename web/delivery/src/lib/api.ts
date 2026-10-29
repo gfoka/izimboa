@@ -71,16 +71,24 @@ export type Delivery = {
   handoverCode: string | null; handoverFailures: number; courierId: string | null; deliveryAttempts: number;
   createdAt: string; updatedAt: string;
   timeline: { status: Status; at: string; note: string | null }[];
+  dropoffState: DropoffState;
 };
+
+/** FIXED : lieu fixé par le vendeur ; TO_CONFIRM : le destinataire doit l'indiquer ; CONFIRMED : indiqué par lui. */
+export type DropoffState = "FIXED" | "TO_CONFIRM" | "CONFIRMED";
 
 export type DeliverySummary = {
   id: string; reference: string; status: Status; dropoffAddress: string; recipientName: string;
   express: boolean; codAmount: number; totalFee: number; courierId: string | null; createdAt: string; updatedAt: string;
+  dropoffState: DropoffState;
 };
 
 export type Tracking = {
   reference: string; status: Status; express: boolean; dropoffLandmark: string | null;
   amountToPay: number; currency: string; timeline: { status: Status; at: string; note: string | null }[];
+  dropoffRequest: { state: DropoffState; editable: boolean; lat: number; lng: number; area: string; maxShiftMeters: number } | null;
 };
+
+export type Place = { name: string; detail: string; lat: number; lng: number };
 
 export type Me = { id: string; email: string | null; name: string | null; roles: string[]; memberSince: string };

@@ -10,11 +10,15 @@ import { DOUALA } from "@/lib/config";
  * Carte pour épingler une adresse : un appui pose l'épingle, on peut la glisser, ou utiliser sa position.
  * Fond de carte OpenStreetMap (sera remplacé par nos propres tuiles, lot 5).
  */
-export function MapPicker({ value, onChange, color, label }: {
+export function MapPicker({ value, onChange, color, label, center, hint }: {
   value: GeoPoint | null;
   onChange: (p: GeoPoint) => void;
   color: string;
   label: string;
+  /** Centre de départ quand aucune épingle n'est posée (ex. le quartier du client). */
+  center?: GeoPoint;
+  /** Texte d'aide à la place de « Touchez la carte… ». */
+  hint?: string;
 }) {
   const box = useRef<HTMLDivElement>(null);
   const map = useRef<LeafletMap | null>(null);
@@ -29,7 +33,7 @@ export function MapPicker({ value, onChange, color, label }: {
     import("leaflet").then((L) => {
       if (cancelled || !box.current || map.current) return;
       const m = L.map(box.current, { zoomControl: true, attributionControl: true })
-        .setView([value?.lat ?? DOUALA.lat, value?.lng ?? DOUALA.lng], value ? 16 : 13);
+        .setView([value?.lat ?? center?.lat ?? DOUALA.lat, value?.lng ?? center?.lng ?? DOUALA.lng], value ? 16 : center ? 15 : 13);
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -69,6 +73,16 @@ export function MapPicker({ value, onChange, color, label }: {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Épingle placée depuis l'extérieur (localisation collée, lieu cherché) : on la montre et on recentre.
+  useEffect(() => {
+    const m = map.current as (LeafletMap & { _place?: (lat: number, lng: number) => void }) | null;
+    if (!m || !value) return;
+    const cur = marker.current?.getLatLng();
+    if (cur && Math.abs(cur.lat - value.lat) < 1e-6 && Math.abs(cur.lng - value.lng) < 1e-6) return;
+    m._place?.(value.lat, value.lng);
+    m.setView([value.lat, value.lng], Math.max(m.getZoom(), 16), { animate: false });
+  }, [value]);
+
   const locate = () => {
     if (!navigator.geolocation) return setGeoError("Votre appareil ne donne pas sa position.");
     setLocating(true);
@@ -95,7 +109,7 @@ export function MapPicker({ value, onChange, color, label }: {
       <div ref={box} className="map" role="application" aria-label={`Carte : ${label}`} />
       <div className="map-bar">
         <span className={value ? "map-hint ok" : "map-hint"}>
-          {value ? "Épingle placée — glissez-la pour ajuster" : "Touchez la carte pour placer l'épingle"}
+          {value ? "Épingle placée — glissez-la pour ajuster" : hint ?? "Touchez la carte pour placer l'épingle"}
         </span>
         <button type="button" className="btn btn-outline btn-xs" onClick={locate} disabled={locating}>
           {locating ? "Localisation…" : "Ma position"}

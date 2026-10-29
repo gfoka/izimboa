@@ -132,4 +132,45 @@ class DeliveryTest {
         assertThatThrownBy(() -> Delivery.create(ids, VENDEUR, null, details, new Quote(20_000, true, 0, 0, 0, 0), T))
                 .isInstanceOf(DeliveryProblem.class);
     }
+
+    static Delivery lieuParLeClient() {
+        var ids = new Delivery.Identifiers(UUID.randomUUID(), "IZ-ABC235", "jeton2", "4821");
+        var details = new Delivery.Details(new Delivery.Stop(4.05, 9.76, "Akwa", null), "+237699000001",
+                new Delivery.Stop(4.088, 9.75, "Bonamoussadi", null), "Awa", "+237699000002", null, false, 0);
+        return Delivery.create(ids, VENDEUR, null, details, new Quote(4000, false, 1500, 0, 0, 1500), true, T);
+    }
+
+    @Test
+    void leClientIndiqueLeLieuExactAvantLeRamassage() {
+        var d = lieuParLeClient();
+        assertThat(d.dropoffState()).isEqualTo("TO_CONFIRM");
+        assertThat(d.isDropoffEditableByClient()).isTrue();
+        d.setDropoffByClient(4.0901, 9.7534, "Portail bleu", T);
+        assertThat(d.dropoffState()).isEqualTo("CONFIRMED");
+        assertThat(d.getDropoffLat()).isEqualTo(4.0901);
+        assertThat(d.getDropoffLandmark()).isEqualTo("Portail bleu");
+        d.setDropoffByClient(4.0905, 9.7530, null, T);
+        assertThat(d.getDropoffLandmark()).isEqualTo("Portail bleu");
+        assertThat(d.getEvents()).hasSize(2); // création + première indication seulement
+        assertThat(d.getTotalFee()).isEqualTo(1500); // le prix ne change pas
+    }
+
+    @Test
+    void leLieuDuClientEstLimiteAuQuartierEtVerrouilleAuRamassage() {
+        var d = lieuParLeClient();
+        assertThatThrownBy(() -> d.setDropoffByClient(4.12, 9.75, null, T)) // ≈ 3,5 km
+                .isInstanceOf(DeliveryProblem.class).hasMessageContaining("3 km");
+        d.assign(LIVREUR, OPERATEUR, T);
+        d.setDropoffByClient(4.089, 9.751, null, T);
+        d.pickUp(LIVREUR, null, T);
+        assertThat(d.isDropoffEditableByClient()).isFalse();
+        assertThatThrownBy(() -> d.setDropoffByClient(4.089, 9.751, null, T)).isInstanceOf(DeliveryProblem.class);
+    }
+
+    @Test
+    void unLieuFixeParLeVendeurNeChangePas() {
+        var d = nouvelle(0);
+        assertThat(d.dropoffState()).isEqualTo("FIXED");
+        assertThatThrownBy(() -> d.setDropoffByClient(4.06, 9.77, null, T)).isInstanceOf(DeliveryProblem.class);
+    }
 }

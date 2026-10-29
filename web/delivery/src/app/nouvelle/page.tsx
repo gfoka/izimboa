@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { AppShell, RequireLogin } from "@/components/AppShell";
+import { LocationPaste } from "@/components/LocationPaste";
 import { MapPicker } from "@/components/MapPicker";
 import { api, ApiError, type Delivery, type GeoPoint, type Quote } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -31,6 +32,8 @@ function NewDelivery() {
   const [dropoff, setDropoff] = useState<GeoPoint | null>(null);
   const [dropoffAddress, setDropoffAddress] = useState("");
   const [dropoffLandmark, setDropoffLandmark] = useState("");
+  // Le vendeur ne connaît que le quartier : le client indiquera le lieu exact depuis son lien (décision 72).
+  const [clientWillConfirm, setClientWillConfirm] = useState(false);
   const [recipientName, setRecipientName] = useState("");
   const [recipientPhone, setRecipientPhone] = useState("");
   const [description, setDescription] = useState("");
@@ -87,13 +90,13 @@ function NewDelivery() {
     if (!pickup.point) m.push("l'épingle de ramassage");
     if (!pickup.address.trim()) m.push("l'adresse de ramassage");
     if (!pickup.phone.trim()) m.push("le téléphone de ramassage");
-    if (!dropoff) m.push("l'épingle de livraison");
-    if (!dropoffAddress.trim()) m.push("l'adresse de livraison");
+    if (!dropoff) m.push(clientWillConfirm ? "l'épingle sur le quartier du client" : "l'épingle de livraison");
+    if (!dropoffAddress.trim()) m.push(clientWillConfirm ? "le quartier de livraison" : "l'adresse de livraison");
     if (!recipientName.trim()) m.push("le nom du destinataire");
     if (!recipientPhone.trim()) m.push("le téléphone du destinataire");
     if (!codValid) m.push("un montant à encaisser valide");
     return m;
-  }, [pickup, dropoff, dropoffAddress, recipientName, recipientPhone, codValid]);
+  }, [pickup, dropoff, dropoffAddress, recipientName, recipientPhone, codValid, clientWillConfirm]);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -109,7 +112,7 @@ function NewDelivery() {
         body: {
           pickup: pickup.point, pickupAddress: pickup.address, pickupLandmark: pickup.landmark, pickupPhone: pickup.phone,
           dropoff, dropoffAddress, dropoffLandmark, recipientName, recipientPhone,
-          packageDescription: description, express, codAmount,
+          packageDescription: description, express, codAmount, dropoffByClient: clientWillConfirm,
         },
       });
       try { localStorage.setItem(PICKUP_KEY, JSON.stringify(pickup)); } catch { /* ignoré */ }
@@ -153,10 +156,24 @@ function NewDelivery() {
 
           <fieldset className="card">
             <legend className="card-title"><span className="step-num">2</span> Livraison</legend>
-            <MapPicker label="point de livraison" color="#F28C28" value={dropoff} onChange={setDropoff} />
+            <label className="switch">
+              <input type="checkbox" checked={clientWillConfirm} onChange={(e) => setClientWillConfirm(e.target.checked)} />
+              <span className="switch-ui" aria-hidden="true" />
+              <span><strong>Je ne connais que le quartier</strong> — le client indiquera le lieu exact depuis son lien de suivi</span>
+            </label>
+            {clientWillConfirm ? (
+              <p className="alert alert-info small">
+                Placez l&apos;épingle sur le <strong>quartier</strong> du client. Il précisera le lieu exact (à 3 km au plus) depuis le lien
+                que vous lui enverrez sur WhatsApp, avant le ramassage. Le prix est calculé maintenant et ne change pas.
+              </p>
+            ) : (
+              <LocationPaste token={token} onFound={setDropoff} />
+            )}
+            <MapPicker label="point de livraison" color="#F28C28" value={dropoff} onChange={setDropoff}
+              hint={clientWillConfirm ? "Touchez la carte sur le quartier du client" : undefined} />
             <div className="fields">
-              <Field label="Adresse" required>
-                <input value={dropoffAddress} onChange={(e) => setDropoffAddress(e.target.value)} placeholder="Ex. Bonamoussadi, carrefour Kotto" maxLength={300} />
+              <Field label={clientWillConfirm ? "Quartier" : "Adresse"} required>
+                <input value={dropoffAddress} onChange={(e) => setDropoffAddress(e.target.value)} placeholder={clientWillConfirm ? "Ex. Bonamoussadi" : "Ex. Bonamoussadi, carrefour Kotto"} maxLength={300} />
               </Field>
               <Field label="Repère" hint="Le plus important à Douala">
                 <input value={dropoffLandmark} onChange={(e) => setDropoffLandmark(e.target.value)} placeholder="Ex. Derrière la boulangerie, portail bleu" maxLength={300} />

@@ -160,6 +160,58 @@ class DeliveryFlowIntegrationTest extends PostgresIntegrationTest {
     }
 
     @Test
+    void leDestinataireIndiqueLeLieuDepuisSonLienDeSuivi() throws Exception {
+        String body = livraison(AKWA, BONAMOUSSADI, false, 0).replace("\"codAmount\":0", "\"codAmount\":0,\"dropoffByClient\":true");
+        var res = postJson("/v1/delivery/deliveries", vendeur, body).andExpect(status().isCreated())
+                .andExpect(jsonPath("$.dropoffState").value("TO_CONFIRM")).andReturn();
+        String json = res.getResponse().getContentAsString();
+        String id = JsonPath.read(json, "$.id");
+        String trackingUrl = JsonPath.read(json, "$.trackingUrl");
+        String token = trackingUrl.substring(trackingUrl.lastIndexOf('/') + 1);
+
+        mvc.perform(get("/v1/delivery/track/" + token)).andExpect(status().isOk())
+                .andExpect(jsonPath("$.dropoffRequest.state").value("TO_CONFIRM"))
+                .andExpect(jsonPath("$.dropoffRequest.editable").value(true))
+                .andExpect(jsonPath("$.dropoffRequest.maxShiftMeters").value(3000));
+
+        // Sans connexion, depuis le lien : trop loin, puis le bon lieu.
+        postJson("/v1/delivery/track/" + token + "/dropoff", null, "{\"lat\":4.13,\"lng\":9.75}")
+                .andExpect(status().isUnprocessableContent()).andExpect(jsonPath("$.code").value("dropoff-too-far"));
+        postJson("/v1/delivery/track/" + token + "/dropoff", null, "{\"lat\":4.0901,\"lng\":9.7534,\"landmark\":\"Portail bleu\"}")
+                .andExpect(status().isOk()).andExpect(jsonPath("$.dropoffRequest.state").value("CONFIRMED"))
+                .andExpect(jsonPath("$.dropoffLandmark").value("Portail bleu"));
+
+        mvc.perform(get(url(id, null)).with(vendeur)).andExpect(jsonPath("$.dropoffState").value("CONFIRMED"))
+                .andExpect(jsonPath("$.dropoff.lat").value(4.0901)).andExpect(jsonPath("$.pricing.totalFee").value(1500));
+
+        // Après le ramassage, le lieu est verrouillé.
+        assignAndStart(id);
+        postJson("/v1/delivery/track/" + token + "/dropoff", null, "{\"lat\":4.0902,\"lng\":9.7534}")
+                .andExpect(status().isConflict()).andExpect(jsonPath("$.code").value("dropoff-locked"));
+
+        // Une livraison au lieu fixé par le vendeur ne se modifie pas depuis le lien.
+        var fixed = postJson("/v1/delivery/deliveries", vendeur, livraison(AKWA, BONAMOUSSADI, false, 0)).andReturn();
+        String fixedUrl = JsonPath.read(fixed.getResponse().getContentAsString(), "$.trackingUrl");
+        String fixedToken = fixedUrl.substring(fixedUrl.lastIndexOf('/') + 1);
+        mvc.perform(get("/v1/delivery/track/" + fixedToken)).andExpect(jsonPath("$.dropoffRequest").doesNotExist());
+        postJson("/v1/delivery/track/" + fixedToken + "/dropoff", null, "{\"lat\":4.0901,\"lng\":9.7534}")
+                .andExpect(status().isUnprocessableContent());
+        // Ne pas laisser de course à attribuer aux autres tests (répartition automatique).
+        postJson(url(JsonPath.read(fixed.getResponse().getContentAsString(), "$.id"), "cancel"), vendeur, "{}")
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void lectureDUneLocalisationColleeParLeVendeur() throws Exception {
+        postJson("/v1/delivery/locations/resolve", null, "{\"text\":\"4.06,9.74\"}").andExpect(status().isUnauthorized());
+        postJson("/v1/delivery/locations/resolve", vendeur,
+                "{\"text\":\"Voici ma position https://maps.google.com/maps?q=4.0612%2C9.7421&z=17\"}")
+                .andExpect(status().isOk()).andExpect(jsonPath("$.lat").value(4.0612)).andExpect(jsonPath("$.lng").value(9.7421));
+        postJson("/v1/delivery/locations/resolve", vendeur, "{\"text\":\"Bonamoussadi\"}")
+                .andExpect(status().isUnprocessableContent());
+    }
+
+    @Test
     void destinataireAbsentDeuxFoisPuisRetourAuVendeur() throws Exception {
         String id = create(livraison(AKWA, AKWA_VOISIN, false, 0));
         assignAndStart(id);
