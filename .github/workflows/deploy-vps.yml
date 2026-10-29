@@ -84,6 +84,19 @@ jobs:
             infra/keycloak-theme \
             "$VPS_USER@$VPS_HOST:$VPS_DIR/"
 
+      # Clé Brevo (secret GitHub BREVO_API_KEY) recopiée dans le .env du serveur, transmise par l'entrée standard
+      # (jamais dans une ligne de commande ni dans les journaux). Sans secret : rien ne change.
+      - name: Clé Brevo vers le serveur
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: |
+          if [ -n "$BREVO_API_KEY" ]; then
+            printf '%s' "$BREVO_API_KEY" | ssh -o StrictHostKeyChecking=yes "$VPS_USER@$VPS_HOST" \
+              'cd /srv/izimboa && K=$(cat) && umask 077 && touch .env && sed -i "/^BREVO_API_KEY=/d" .env && printf "BREVO_API_KEY=%s\n" "$K" >> .env && echo "Clé Brevo à jour."'
+          else
+            echo "Pas de secret BREVO_API_KEY : e-mails seulement inscrits au journal."
+          fi
+
       - name: Relancer les services
         run: ssh -o StrictHostKeyChecking=yes "$VPS_USER@$VPS_HOST" "bash $VPS_DIR/deploy.sh"
 
