@@ -114,10 +114,16 @@
 - [x] Fiche Play Store (29/10/2026) : descriptions FR, icône, image de présentation, 6 captures (sources : mobile/livreur-android/store/), catégorie « Professionnel », contact contact@izimboa.com, site izimboa.com
 - [x] Déclarations envoyées : applis gouvernementales (non), fonctions financières (aucune), santé (aucune), classification IARC (tout public, « partage la position »), intent plein écran (« Autre » : l'alerte de course peut s'afficher en notification si Android ne l'accorde pas d'office)
 - [x] Sécurité des données : brouillon prêt (position exacte, nom, e-mail, ID utilisateur, téléphone, interactions ; rien de partagé ; chiffré ; lien de suppression) — à envoyer après « Cible et contenu »
-- [ ] Informations de connexion pour l'examen Google : compte e-mail + mot de passe avec le rôle livreur (créé et saisi par Gilles)
-- [ ] Cible et contenu : 18 ans et plus (après les informations de connexion)
-- [ ] Service de premier plan (localisation) : vidéo YouTube non répertoriée à fournir
-- [ ] Version de production 101, pays : Cameroun, puis envoi en examen
+- [x] Informations de connexion pour l'examen Google : test-google@izimboa.com (rôle livreur, mot de passe saisi par Gilles le 29/10/2026)
+- [x] Cible et contenu : 18 ans et plus
+- [x] Sécurité des données envoyée ; pays de production : Cameroun ; version de production 101 préparée (bloquée par la déclaration ci-dessous)
+- [ ] **À FAIRE (Gilles, soir du 29/10)** — Service de premier plan (localisation) : vidéo YouTube non répertoriée, 20-30 s
+  - Filmer avec l'enregistreur d'écran du téléphone (Xiaomi : volet des raccourcis → « Enregistreur d'écran »), version de test, compte avec le rôle livreur
+  - Scénario : appuyer sur EN LIGNE → accepter la position → ouvrir le volet des notifications (notification de suivi) → écran d'accueil du téléphone (la notification reste) → revenir dans l'appli et passer hors ligne
+  - Galerie → partager vers YouTube → visibilité « Non répertoriée » → copier le lien et l'envoyer à Claude
+  - Ensuite : déclaration « Partage de position à l'initiative de l'utilisateur » + lien, enregistrement de la version de production 101, envoi en examen
+- [ ] Envoi en examen de la version de production (après la vidéo)
+- [ ] Plus tard : demander dans l'appli l'autorisation des alertes plein écran (Android 14+)
 - [x] Déclarations faites : règles de confidentialité, annonces (aucune), identifiant publicitaire (non)
 - [ ] Déclarations restantes : informations de connexion (compte de test livreur pour Google), classification, cible et contenu, sécurité des données, applis gouvernementales, fonctionnalités financières, santé, service de premier plan (localisation, vidéo), intent plein écran
 - [ ] Projet Firebase (Cloud Messaging) pour l'alerte de course qui sonne sur le téléphone du livreur
