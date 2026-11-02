@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: [infra/whatsapp/templates/**]
+    paths: [infra/whatsapp/**]
 
 permissions:
   contents: read
@@ -20,6 +20,13 @@ jobs:
       WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+      - name: Supprimer les modèles retirés
+        run: |
+          grep -v '^#' infra/whatsapp/retired.txt | while read -r name; do
+            [ -z "$name" ] && continue
+            res=$(curl -s -X DELETE "$GRAPH/$WABA_ID/message_templates?name=$name" -H "Authorization: Bearer $WHATSAPP_TOKEN")
+            echo "::notice title=$name::suppression $(echo "$res" | jq -c '.success // .error.message')"
+          done
       - name: Déposer les modèles
         run: |
           set -u

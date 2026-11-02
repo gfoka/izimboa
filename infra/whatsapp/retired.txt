@@ -1,0 +1,5 @@
+# Modèles retirés : supprimés chez Meta par le workflow « Modèles WhatsApp ».
+# Le code de remise dans le texte les faisait classer en « authentification » (refus INCORRECT_CATEGORY).
+izimboa_colis_cree
+izimboa_colis_lieu
+izimboa_colis_en_route
