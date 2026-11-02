@@ -1,0 +1,18 @@
+{
+  "name": "izimboa_colis_cree",
+  "language": "fr",
+  "category": "UTILITY",
+  "components": [
+    {
+      "type": "BODY",
+      "text": "Bonjour {{1}}, votre colis ({{2}}) vous sera livré par Izimboa Delivery.\n\nRéférence : {{3}}\nÀ payer à la livraison : {{4}}\nCode de remise à donner au livreur : {{5}}\n\nGardez ce code pour vous jusqu'à l'arrivée du livreur. Suivez votre colis en direct avec le bouton ci-dessous.",
+      "example": { "body_text": [["Aïcha", "robe en wax", "IZ-4KQ7MZ", "15 000 FCFA", "4821"]] }
+    },
+    {
+      "type": "BUTTONS",
+      "buttons": [
+        { "type": "URL", "text": "Suivre mon colis", "url": "https://delivery.izimboa.com/suivi/{{1}}", "example": ["https://delivery.izimboa.com/suivi/q2Xh7Lw0aB3cD4eF5gH6iJ"] }
+      ]
+    }
+  ]
+}

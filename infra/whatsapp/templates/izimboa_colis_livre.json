@@ -1,0 +1,12 @@
+{
+  "name": "izimboa_colis_livre",
+  "language": "fr",
+  "category": "UTILITY",
+  "components": [
+    {
+      "type": "BODY",
+      "text": "Bonjour {{1}}, votre colis ({{2}}) a bien été livré. Merci d'avoir choisi Izimboa Delivery !\n\nUn souci avec cette livraison ? Répondez simplement à ce message.",
+      "example": { "body_text": [["Aïcha", "robe en wax"]] }
+    }
+  ]
+}

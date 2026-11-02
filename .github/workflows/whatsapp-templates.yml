@@ -1,0 +1,40 @@
+# Dépose les modèles de messages WhatsApp (infra/whatsapp/templates) chez Meta pour examen,
+# puis affiche l'état de chacun. Un modèle déjà déposé n'est pas modifié.
+name: Modèles WhatsApp
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [infra/whatsapp/templates/**]
+
+permissions:
+  contents: read
+
+jobs:
+  templates:
+    runs-on: ubuntu-latest
+    env:
+      WABA_ID: "112090771912051"
+      GRAPH: https://graph.facebook.com/v21.0
+      WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Déposer les modèles
+        run: |
+          set -u
+          for f in infra/whatsapp/templates/*.json; do
+            name=$(jq -r .name "$f")
+            res=$(curl -s -X POST "$GRAPH/$WABA_ID/message_templates" \
+              -H "Authorization: Bearer $WHATSAPP_TOKEN" -H 'Content-Type: application/json' --data @"$f")
+            if echo "$res" | jq -e .id >/dev/null; then
+              echo "::notice title=$name::déposé, état $(echo "$res" | jq -r .status)"
+            else
+              echo "::notice title=$name::$(echo "$res" | jq -c '.error | {code, error_subcode, message: (.error_user_msg // .message)}')"
+            fi
+          done
+      - name: État des modèles Izimboa
+        run: |
+          curl -s -G "$GRAPH/$WABA_ID/message_templates" -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+            --data-urlencode 'fields=name,language,status,category,rejected_reason' --data-urlencode 'limit=100' \
+            | jq -r '.data[] | select(.name | startswith("izimboa_")) | "::notice title=\(.name) (\(.language))::\(.status) \(.category) \(.rejected_reason // "")"'
