@@ -94,8 +94,15 @@ export default function TrackingPage() {
                 <p className="track-amount">{fcfa(t.amountToPay)}</p>
               </div>
             )}
-            {!FINAL.includes(t.status) && (
-              <p className="alert alert-info">À l&apos;arrivée du livreur, donnez-lui le <strong>code de remise</strong> reçu sur WhatsApp. Ne le communiquez à personne d&apos;autre.</p>
+            {t.handoverCode && !FINAL.includes(t.status) && (
+              <section className="card code-card">
+                <h2 className="card-title">Votre code de remise</h2>
+                <p className="code" aria-label={`Code ${t.handoverCode.split("").join(" ")}`}>{t.handoverCode}</p>
+                <p className="muted small">
+                  Donnez-le au livreur seulement quand vous avez votre colis en main : c&apos;est la preuve de livraison.
+                  Ne le communiquez à personne d&apos;autre.
+                </p>
+              </section>
             )}
             <section className="card">
               <h2 className="card-title">Étapes</h2>

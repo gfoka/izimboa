@@ -128,7 +128,9 @@ class DeliveryFlowIntegrationTest extends PostgresIntegrationTest {
         postJson(url(id, "assign"), operateur, "{\"courierId\":\"" + livreurId + "\"}")
                 .andExpect(status().isOk()).andExpect(jsonPath("$.status").value("ASSIGNED"));
         mvc.perform(get(url(id, null)).with(livreur)).andExpect(status().isOk())
-                .andExpect(jsonPath("$.handoverCode").doesNotExist());
+                .andExpect(jsonPath("$.handoverCode").doesNotExist())
+                .andExpect(jsonPath("$.trackingUrl").doesNotExist())
+                .andExpect(jsonPath("$.recipientNotices.length()").value(0));
         mvc.perform(get(url(id, null)).with(autreLivreur)).andExpect(status().isNotFound());
         mvc.perform(get("/v1/delivery/deliveries").with(livreur)).andExpect(status().isOk())
                 .andExpect(jsonPath("$[*].id", hasItem(id)));
@@ -137,6 +139,9 @@ class DeliveryFlowIntegrationTest extends PostgresIntegrationTest {
         postJson(url(id, "pickup"), livreur, "{\"lat\":4.0511,\"lng\":9.7679}").andExpect(status().isOk());
         postJson(url(id, "cancel"), vendeur, "{}").andExpect(status().isConflict());
         postJson(url(id, "depart"), livreur, "{}").andExpect(status().isOk());
+        String token = trackingUrl.substring(trackingUrl.lastIndexOf('/') + 1);
+        // Le destinataire retrouve son code de remise sur son lien de suivi tant que le colis n'est pas remis.
+        mvc.perform(get("/v1/delivery/track/" + token)).andExpect(jsonPath("$.handoverCode").value(code));
 
         // 4. Remise : un code faux est compté (même si la requête échoue), puis le bon code valide.
         String wrong = code.equals("0000") ? "1111" : "0000";
@@ -150,13 +155,26 @@ class DeliveryFlowIntegrationTest extends PostgresIntegrationTest {
                 .andExpect(jsonPath("$.timeline.length()").value(5));
 
         // 5. Suivi public du destinataire : l'étape, sans données personnelles.
-        String token = trackingUrl.substring(trackingUrl.lastIndexOf('/') + 1);
         mvc.perform(get("/v1/delivery/track/" + token)).andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("DELIVERED"))
                 .andExpect(jsonPath("$.amountToPay").value(15000))
                 .andExpect(jsonPath("$.recipientPhone").doesNotExist())
                 .andExpect(jsonPath("$.handoverCode").doesNotExist());
         mvc.perform(get("/v1/delivery/track/inconnu")).andExpect(status().isNotFound());
+
+        // 6. Un message WhatsApp par étape (création, en route, livré), une seule fois malgré le double envoi.
+        //    Ici sans jeton WhatsApp : rien ne part, et le vendeur le voit (DISABLED).
+        String notices = "";
+        for (int i = 0; i < 50; i++) {
+            notices = mvc.perform(get(url(id, null)).with(vendeur)).andReturn().getResponse().getContentAsString();
+            java.util.List<String> st = JsonPath.read(notices, "$.recipientNotices[*].status");
+            if (st.size() == 3 && !st.contains("SENDING")) break;
+            Thread.sleep(100);
+        }
+        org.assertj.core.api.Assertions.assertThat((java.util.List<String>) JsonPath.read(notices, "$.recipientNotices[*].kind"))
+                .containsExactly("CREATED", "IN_TRANSIT", "DELIVERED");
+        org.assertj.core.api.Assertions.assertThat((java.util.List<String>) JsonPath.read(notices, "$.recipientNotices[*].status"))
+                .containsOnly("DISABLED");
     }
 
     @Test

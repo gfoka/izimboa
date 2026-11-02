@@ -6,10 +6,13 @@ import com.izimboa.common.Roles;
 import com.izimboa.delivery.DeliveryProblem;
 import com.izimboa.delivery.DeliveryProperties;
 import com.izimboa.delivery.geo.GeoPoint;
+import com.izimboa.delivery.notify.RecipientNotice;
+import com.izimboa.delivery.notify.RecipientNotifier;
 import com.izimboa.delivery.pricing.PricingService;
 import java.time.Clock;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
@@ -31,9 +34,14 @@ class DeliveryService {
     private final Clock clock;
     private final String trackingBaseUrl;
     private final DeliveryProperties properties;
+    private final ApplicationEventPublisher events;
+    private final RecipientNotifier notifier;
 
     DeliveryService(DeliveryRepository repository, PricingService pricing, IdentifierGenerator identifiers,
-                    Clock clock, DeliveryProperties properties) {
+                    Clock clock, DeliveryProperties properties, ApplicationEventPublisher events,
+                    RecipientNotifier notifier) {
+        this.events = events;
+        this.notifier = notifier;
         this.repository = repository;
         this.pricing = pricing;
         this.identifiers = identifiers;
@@ -75,7 +83,9 @@ class DeliveryService {
                 in.express(), in.codAmount());
         var delivery = Delivery.create(identifiers.next(), sender.id(), idempotencyKey, details, quote,
                 in.dropoffByClient(), clock.instant());
-        return new Created(view(repository.save(delivery), sender), false);
+        var saved = repository.save(delivery);
+        events.publishEvent(saved.notice(RecipientNotice.Kind.CREATED));
+        return new Created(view(saved, sender), false);
     }
 
     // ---- Lecture ----
@@ -148,6 +158,7 @@ class DeliveryService {
     DeliveryViews.DeliveryView depart(UUID id, Delivery.Position at, CurrentUser user) {
         var d = loadForCourier(id, user);
         d.depart(user.id(), at, clock.instant());
+        events.publishEvent(d.notice(RecipientNotice.Kind.IN_TRANSIT));
         return view(d, user);
     }
 
@@ -156,6 +167,7 @@ class DeliveryService {
     DeliveryViews.DeliveryView deliver(UUID id, String code, Delivery.Position at, CurrentUser user) {
         var d = loadForCourier(id, user);
         d.deliver(code == null ? "" : code.strip(), user.id(), at, clock.instant());
+        events.publishEvent(d.notice(RecipientNotice.Kind.DELIVERED));
         return view(d, user);
     }
 
@@ -216,10 +228,10 @@ class DeliveryService {
         if (!user.isStaff()) throw DeliveryProblem.notFound();
     }
 
-    /** Le code de remise est visible du vendeur et des opérateurs, jamais du livreur. */
+    /** Le code de remise et le lien de suivi sont visibles du vendeur et des opérateurs, jamais du livreur. */
     private DeliveryViews.DeliveryView view(Delivery d, CurrentUser user) {
-        boolean showCode = user.isStaff() || d.getSenderId().equals(user.id());
-        return DeliveryViews.full(d, trackingBaseUrl, showCode);
+        boolean forSender = user.isStaff() || d.getSenderId().equals(user.id());
+        return DeliveryViews.full(d, trackingBaseUrl, forSender, forSender ? notifier.notices(d.getId()) : List.of());
     }
 
     private static String blankToNull(String s) {

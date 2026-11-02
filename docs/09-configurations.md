@@ -41,6 +41,8 @@
 - [x] Utilisateur système Meta « izimboa-serveur » (ID 61595664736508, rôle Employé) : accès à l'app Izimboa (développer) et au compte WhatsApp 112090771912051 (total) uniquement ; jeton sans expiration, droits whatsapp_business_messaging + whatsapp_business_management
 - [x] Jeton → secret GitHub WHATSAPP_TOKEN (créé par Gilles le 29/10/2026), recopié dans /srv/izimboa/.env par le déploiement ; à révoquer dans Meta si fuite. Vérifiable par le workflow « Contrôle de sécurité du serveur »
 - [x] Connexion Keycloak par code WhatsApp (décision 71) : extension `infra/keycloak-whatsapp`, flux `izimboa-navigateur`, configuré automatiquement par `deploy.sh`
+- [x] Notifications au destinataire (décision 73) : modèles `izimboa_livraison_creee`, `izimboa_livraison_lieu`, `izimboa_livraison_en_route`, `izimboa_colis_livre` déposés le 02/11/2026 (workflow « Modèles WhatsApp » : relancer pour voir leur état)
+- [ ] Webhook Meta des accusés (distribué, lu, échec : client sans WhatsApp) pour l'afficher au vendeur
 - [ ] Comptes existants (livreurs, opérateurs) : ajouter leur numéro (attribut `phoneNumber`, format +237…) dans la console Keycloak pour qu'ils se connectent par WhatsApp
 - [ ] Modèles « suivi de livraison » (utilitaires)
 - [ ] Ajouter le numéro sur la vitrine (WHATSAPP\_NUMBER dans src/config/site.ts)

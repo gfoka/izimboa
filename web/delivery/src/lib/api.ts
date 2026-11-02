@@ -72,6 +72,14 @@ export type Delivery = {
   createdAt: string; updatedAt: string;
   timeline: { status: Status; at: string; note: string | null }[];
   dropoffState: DropoffState;
+  recipientNotices: RecipientNotice[];
+};
+
+/** Message WhatsApp envoyé automatiquement au destinataire, par étape (décision 73). */
+export type RecipientNotice = {
+  kind: "CREATED" | "IN_TRANSIT" | "DELIVERED";
+  status: "SENDING" | "SENT" | "FAILED" | "DISABLED";
+  at: string;
 };
 
 /** FIXED : lieu fixé par le vendeur ; TO_CONFIRM : le destinataire doit l'indiquer ; CONFIRMED : indiqué par lui. */
@@ -87,6 +95,8 @@ export type Tracking = {
   reference: string; status: Status; express: boolean; dropoffLandmark: string | null;
   amountToPay: number; currency: string; timeline: { status: Status; at: string; note: string | null }[];
   dropoffRequest: { state: DropoffState; editable: boolean; lat: number; lng: number; area: string; maxShiftMeters: number } | null;
+  /** Tant que le colis n'est pas remis. */
+  handoverCode: string | null;
 };
 
 export type Place = { name: string; detail: string; lat: number; lng: number };

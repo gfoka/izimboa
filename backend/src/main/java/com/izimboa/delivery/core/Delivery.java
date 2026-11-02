@@ -253,6 +253,12 @@ public class Delivery {
         }
     }
 
+    /** Ce qu'il faut pour écrire au destinataire à cette étape (lien de suivi, montant à payer, quartier). */
+    com.izimboa.delivery.notify.RecipientNotice notice(com.izimboa.delivery.notify.RecipientNotice.Kind kind) {
+        return new com.izimboa.delivery.notify.RecipientNotice(id, kind, recipientPhone, recipientName, packageDescription,
+                reference, codAmount, dropoffAddress, dropoffByClient && dropoffConfirmedAt == null, trackingToken);
+    }
+
     void unlockHandover(UUID actor, Instant now) {
         this.handoverFailures = 0;
         record(status, actor, null, "Code de remise débloqué", now);

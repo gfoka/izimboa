@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AppShell, RequireLogin } from "@/components/AppShell";
 import { LiveMap, type LivePosition, type TracePoint } from "@/components/LiveMap";
 import { Progress, StatusBadge, Timeline } from "@/components/Status";
-import { api, ApiError, type Delivery } from "@/lib/api";
+import { api, ApiError, type Delivery, type RecipientNotice } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { FINAL, fcfa, formatDateTime, formatPhone, km, whatsappLink } from "@/lib/format";
 
@@ -56,6 +56,15 @@ function DeliveryDetail() {
     const t = setInterval(load, 15_000);
     return () => clearInterval(t);
   }, [d, load]);
+
+  // Juste après la création, l'envoi WhatsApp au client prend quelques secondes : on revient voir vite.
+  const created = d?.recipientNotices?.find((n) => n.kind === "CREATED");
+  const waitingNotice = d !== null && d.status === "CREATED" && (!created || created.status === "SENDING");
+  useEffect(() => {
+    if (!waitingNotice) return;
+    const t = setTimeout(load, 3_000);
+    return () => clearTimeout(t);
+  }, [waitingNotice, d, load]);
 
   // Position du livreur en direct, de l'attribution à la remise.
   const live = d !== null && (d.status === "ASSIGNED" || d.status === "PICKED_UP" || d.status === "IN_TRANSIT");
@@ -110,7 +119,7 @@ function DeliveryDetail() {
 
       {justCreated && (
         <div className="alert alert-ok" role="status">
-          <strong>Livraison créée.</strong> Envoyez maintenant le lien de suivi et le code à votre client sur WhatsApp
+          <strong>Livraison créée.</strong> Izimboa envoie le lien de suivi à votre client sur WhatsApp
           {d?.dropoffState === "TO_CONFIRM" ? " : il y indiquera le lieu exact de livraison." : "."}
         </div>
       )}
@@ -135,9 +144,11 @@ function DeliveryDetail() {
                 <p className="muted small">Le destinataire le donne au livreur : c'est la preuve de livraison. Ne le donnez jamais au livreur.</p>
               </div>
               <p className="code" aria-label={`Code ${d.handoverCode.split("").join(" ")}`}>{d.handoverCode}</p>
+              <NoticeLine notice={created} askDropoff={d.dropoffState === "TO_CONFIRM"} />
               <div className="code-actions">
-                <a className="btn btn-whatsapp" href={whatsappLink(d.recipientPhone, message)} target="_blank" rel="noopener noreferrer">
-                  Envoyer au client sur WhatsApp
+                <a className={`btn ${created?.status === "SENT" ? "btn-outline-light" : "btn-whatsapp"}`}
+                  href={whatsappLink(d.recipientPhone, message)} target="_blank" rel="noopener noreferrer">
+                  {created?.status === "SENT" ? "Renvoyer depuis mon WhatsApp" : "Envoyer au client sur WhatsApp"}
                 </a>
                 <button type="button" className="btn btn-outline btn-sm" onClick={async () => {
                   try { await navigator.clipboard.writeText(d.trackingUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* ignoré */ }
@@ -211,6 +222,30 @@ function DeliveryDetail() {
       </div>
     </div>
   );
+}
+
+/** Ce qu'est devenu le message WhatsApp automatique au client (lien de suivi, code de remise). */
+function NoticeLine({ notice, askDropoff }: { notice: RecipientNotice | undefined; askDropoff: boolean }) {
+  if (!notice || notice.status === "SENDING") {
+    return <p className="notice-line" role="status">Envoi du lien de suivi à votre client sur WhatsApp…</p>;
+  }
+  if (notice.status === "SENT") {
+    return (
+      <p className="notice-line ok" role="status">
+        ✓ Envoyé à votre client sur WhatsApp à {formatTime(notice.at)} : il {askDropoff ? "y indique le lieu exact, " : ""}suit
+        le livreur et retrouve ce code sur son lien de suivi.
+      </p>
+    );
+  }
+  return (
+    <p className="notice-line warn" role="status">
+      L&apos;envoi automatique n&apos;a pas abouti : envoyez le lien et le code à votre client vous-même.
+    </p>
+  );
+}
+
+function formatTime(iso: string): string {
+  return new Date(iso).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", timeZone: "Africa/Douala" });
 }
 
 function recipientMessage(d: Delivery): string {
