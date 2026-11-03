@@ -41,6 +41,16 @@ jobs:
           cd /srv/izimboa && docker compose exec -T keycloak ls /opt/keycloak/providers < /dev/null 2>&1 | tail -3
           docker compose logs --since 30m api 2>&1 | grep -iE "Recherche de lieux|Lien de localisation" | tail -5
           docker compose logs --since 2h keycloak 2>&1 | grep -iE "izimboa-whatsapp|KC-SERVICES0047|ERROR|Updating the configuration" | tail -8
+          echo "=== Compte de service izimboa-api (rôles des livreurs) ==="
+          sec=$(sudo grep '^KEYCLOAK_API_CLIENT_SECRET=' .env | cut -d= -f2-)
+          [ -n "$sec" ] && echo "secret présent dans .env" || echo "secret ABSENT"
+          docker compose exec -T api printenv KEYCLOAK_API_CLIENT_SECRET < /dev/null > /dev/null 2>&1 && echo "secret transmis à l'API" || echo "secret NON transmis à l'API"
+          tok=$(curl -s -d grant_type=client_credentials -d client_id=izimboa-api --data-urlencode "client_secret=$sec" \
+            https://auth.izimboa.com/realms/izimboa/protocol/openid-connect/token | python3 -c 'import json,sys; print(json.load(sys.stdin).get("access_token",""))')
+          [ -n "$tok" ] && echo "jeton du compte de service : OK" || echo "jeton du compte de service : ÉCHEC"
+          for r in livreur validateur admin; do
+            echo "rôle $r : $(curl -s -H "Authorization: Bearer $tok" "https://auth.izimboa.com/admin/realms/izimboa/roles/$r/users?max=500" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(len(d) if isinstance(d,list) else d)') compte(s)"
+          done
           echo "=== Jeton WhatsApp (lecture seule, le jeton n'est jamais affiché) ==="
           T=$(grep '^WHATSAPP_TOKEN=' /srv/izimboa/.env | cut -d= -f2-)
           if [ -z "$T" ]; then echo "absent du .env"; else
@@ -65,6 +75,7 @@ jobs:
             sleep 1.2
           done
           echo "resolve sans connexion -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/locations/resolve -H 'Content-Type: application/json' -d '{"text":"4.06,9.74"}')" >> check.txt
+          for p in /v1/delivery/onboarding /v1/delivery/couriers /v1/delivery/document-types /v1/admin/team; do echo "$p sans connexion -> $(curl -s -o /dev/null -w '%{http_code}' https://api.izimboa.com$p)" >> check.txt; done
           echo "dropoff jeton inconnu -> $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.izimboa.com/v1/delivery/track/inconnu/dropoff -H 'Content-Type: application/json' -d '{"lat":4.06,"lng":9.74}')" >> check.txt
           echo "=== Postgres depuis Internet (doit échouer) ===" >> check.txt
           (timeout 5 bash -c "</dev/tcp/$VPS_HOST/5432" && echo "5432 OUVERT !") >> check.txt 2>&1 || echo "5432 fermé" >> check.txt
