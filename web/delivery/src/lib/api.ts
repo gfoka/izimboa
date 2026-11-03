@@ -102,3 +102,34 @@ export type Tracking = {
 export type Place = { name: string; detail: string; lat: number; lng: number };
 
 export type Me = { id: string; email: string | null; name: string | null; roles: string[]; memberSince: string };
+
+// ---- Administration : livreurs, documents, équipe (décision 74) ----
+
+export type CourierFileStatus = "DRAFT" | "PENDING" | "ACTIVE" | "REJECTED" | "SUSPENDED";
+
+export type DocPage = { id: number; name: string; camera: "BACK" | "FRONT" };
+
+export type DocumentType = {
+  id: number; code: string; name: string; help: string | null; mandatory: boolean;
+  numberRequirement: "NONE" | "OPTIONAL" | "REQUIRED"; expiryRequired: boolean; active: boolean; position: number;
+  pages: DocPage[];
+};
+
+export type DocRequirement = {
+  type: DocumentType;
+  submitted: { id: string; number: string | null; expiresOn: string | null; submittedAt: string; pages: number[]; reviewed: boolean } | null;
+  state: "MISSING" | "EXPIRED" | "EXPIRING_SOON" | "OK";
+};
+
+export type CourierSummary = {
+  userId: string; name: string | null; phone: string | null; status: CourierFileStatus;
+  submittedAt: string | null; updatedAt: string; toReview: boolean; missing: number;
+};
+
+export type CourierDetail = {
+  userId: string; firstName: string | null; lastName: string | null; email: string | null; phone: string | null;
+  status: CourierFileStatus; reason: string | null; submittedAt: string | null; reviewedAt: string | null; createdAt: string;
+  documents: DocRequirement[]; warnings: string[]; complete: boolean; canWork: boolean;
+};
+
+export type TeamMember = { id: string; name: string | null; login: string | null; phone: string | null; email: string | null; roles: string[] };

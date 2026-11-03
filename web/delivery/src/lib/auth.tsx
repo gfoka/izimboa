@@ -29,6 +29,8 @@ function userManager(): UserManager {
 
 type AuthState = {
   user: User | null;
+  /** Rôles du realm (livreur, validateur, admin…), lus dans le jeton d'accès. */
+  roles: string[];
   ready: boolean;
   login: (returnTo?: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -82,9 +84,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return u.access_token;
   }, []);
 
-  const value = useMemo(() => ({ user, ready, login, logout, token }), [user, ready, login, logout, token]);
+  const roles = useMemo(() => rolesOf(user?.access_token), [user]);
+  const value = useMemo(() => ({ user, roles, ready, login, logout, token }), [user, roles, ready, login, logout, token]);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+
+/** Rôles du realm contenus dans le jeton (lecture seule : l'API vérifie elle-même chaque droit). */
+function rolesOf(accessToken?: string): string[] {
+  if (!accessToken) return [];
+  try {
+    const part = accessToken.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    const json = JSON.parse(decodeURIComponent(escape(atob(part)))) as { realm_access?: { roles?: string[] } };
+    return json.realm_access?.roles ?? [];
+  } catch {
+    return [];
+  }
+}
+
+/** Accès à l'administration : validateurs, opérateurs, administrateurs. */
+export const TEAM_ROLES = ["validateur", "operateur", "admin"];
 
 export function useAuth(): AuthState {
   const ctx = useContext(AuthContext);

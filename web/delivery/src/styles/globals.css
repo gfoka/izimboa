@@ -308,3 +308,25 @@ legend.card-title + * { clear: both; }
 .place-results { display: grid; gap: 6px; }
 .place-results button { width: 100%; display: grid; gap: 2px; text-align: left; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); }
 .place-results button:hover, .place-results button:focus-visible { border-color: var(--navy); }
+
+/* ----- Administration : livreurs, documents, équipe (décision 74) ----- */
+.fields.two { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 720px) { .fields.two { grid-template-columns: 1fr 1fr; } }
+.field select, .select { width: 100%; min-height: 48px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 12px; font: inherit; color: var(--ink); background: #fff; }
+.textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 12px; font: inherit; color: var(--ink); resize: vertical; }
+.textarea:focus, .select:focus { border-color: var(--navy); outline: none; box-shadow: 0 0 0 3px rgb(11 37 69 / 12%); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; }
+.check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--navy); flex-shrink: 0; }
+.actions-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.page-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; }
+.page-row input { width: 100%; min-height: 44px; padding: 8px 12px; border: 1.5px solid var(--line); border-radius: 10px; font: inherit; }
+@media (min-width: 720px) { .page-row { grid-template-columns: 1fr 1fr auto; align-items: center; } }
+.row-button { width: 100%; text-align: left; font: inherit; cursor: pointer; }
+.doc-pages { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.doc-page { margin: 0; display: grid; gap: 6px; }
+.doc-page img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); background: var(--cloud); display: block; }
+.doc-page-empty { aspect-ratio: 4 / 3; border-radius: 12px; border: 1px dashed var(--line); display: grid; place-items: center; color: var(--slate); font-size: .9rem; }
+.doc-page figcaption { font-size: .85rem; color: var(--slate); font-weight: 600; }
+.role-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--info-soft); color: var(--navy); border-radius: 999px; padding: 4px 6px 4px 12px; font-size: .85rem; font-weight: 700; }
+.role-remove { border: 0; background: rgb(11 37 69 / 10%); color: var(--navy); width: 24px; height: 24px; border-radius: 50%; font-weight: 800; line-height: 1; cursor: pointer; }
+.role-remove:hover { background: rgb(11 37 69 / 20%); }

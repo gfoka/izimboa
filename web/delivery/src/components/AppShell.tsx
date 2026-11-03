@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
-import { useAuth } from "@/lib/auth";
+import { TEAM_ROLES, useAuth } from "@/lib/auth";
 import { Logo } from "./Logo";
 
 /** Cadre de l'espace vendeur : en-tête, navigation, contenu. Demande la connexion si besoin. */
 export function AppShell({ children }: { children: ReactNode }) {
-  const { user, ready, login, logout } = useAuth();
+  const { user, roles, ready, login, logout } = useAuth();
+  const team = roles.some((r) => TEAM_ROLES.includes(r));
   const path = usePathname();
   const [menu, setMenu] = useState(false);
   useEffect(() => setMenu(false), [path]);
@@ -25,6 +26,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <nav className="main-nav" aria-label="Navigation principale">
               <Link href="/" className={path === "/" ? "active" : undefined}>Mes livraisons</Link>
               <Link href="/nouvelle/" className={path.startsWith("/nouvelle") ? "active" : undefined}>Nouvelle livraison</Link>
+              {team && <Link href="/admin/livreurs/" className={path.startsWith("/admin") ? "active" : undefined}>Administration</Link>}
             </nav>
           )}
           <div className="header-end">
@@ -49,7 +51,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
       <main id="contenu" className="app-main">{children}</main>
-      {user && path !== "/nouvelle/" && (
+      {user && path !== "/nouvelle/" && !path.startsWith("/admin") && (
         <Link href="/nouvelle/" className="fab" aria-label="Nouvelle livraison">
           <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
         </Link>
