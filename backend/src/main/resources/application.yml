@@ -4,6 +4,11 @@ spring:
   threads:
     virtual:
       enabled: true
+  servlet:
+    multipart:
+      # Photos des documents des livreurs (réduites par l'application, 6 Mo au plus par page).
+      max-file-size: 6MB
+      max-request-size: 30MB
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/izimboa}
     username: ${DB_USER:izimboa}
@@ -79,6 +84,12 @@ izimboa:
     # Numéro +237 6 72 76 99 08 (compte WhatsApp 112090771912051), modèle d'authentification FR/EN.
     phone-number-id: ${WHATSAPP_PHONE_NUMBER_ID:112115108576086}
     code-template: izimboa_code
+  identity:
+    # Compte de service Keycloak « izimboa-api » (rôles des livreurs, de l'équipe). Vide = rôles gardés en mémoire.
+    admin-base: ${KEYCLOAK_ADMIN_BASE:http://keycloak:8080}
+    realm: izimboa
+    client-id: izimboa-api
+    client-secret: ${KEYCLOAK_API_CLIENT_SECRET:}
   cors:
     # *.izimboa.pages.dev : préversions Cloudflare Pages du site (relecture avant mise en ligne).
     allowed-origin-patterns: https://izimboa.com,https://*.izimboa.com,https://*.izimboa.pages.dev,http://localhost:3000,http://localhost:3001

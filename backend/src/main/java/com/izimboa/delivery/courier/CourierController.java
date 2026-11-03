@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 class CourierController {
 
     private final CourierService couriers;
+    private final com.izimboa.delivery.onboarding.OnboardingService onboarding;
 
-    CourierController(CourierService couriers) {
+    CourierController(CourierService couriers, com.izimboa.delivery.onboarding.OnboardingService onboarding) {
         this.couriers = couriers;
+        this.onboarding = onboarding;
     }
 
     record PointRequest(
@@ -55,6 +57,7 @@ class CourierController {
 
     @PostMapping("/online")
     CourierService.Status online(@Valid @RequestBody(required = false) OnlineRequest body, CurrentUser user) {
+        onboarding.requireCanWork(user);   // dossier validé et documents à jour (décision 74)
         return couriers.goOnline(user.id(), body == null || body.position() == null ? null : body.position().toPoint());
     }
 

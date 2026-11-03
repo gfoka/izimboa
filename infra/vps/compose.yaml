@@ -89,6 +89,9 @@ services:
       KEYCLOAK_ISSUER: https://auth.izimboa.com/realms/izimboa
       BREVO_API_KEY: ${BREVO_API_KEY:-}
       WHATSAPP_TOKEN: ${WHATSAPP_TOKEN:-}
+      # Compte de service Keycloak « izimboa-api » (créé par deploy.sh) : rôles des livreurs et de l'équipe.
+      KEYCLOAK_API_CLIENT_SECRET: ${KEYCLOAK_API_CLIENT_SECRET:-}
+      KEYCLOAK_ADMIN_BASE: http://keycloak:8080
       TZ: Africa/Douala
     depends_on:
       postgres:

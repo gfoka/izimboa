@@ -53,13 +53,33 @@ kc update "clients/$web_id" -r izimboa \
 
 # Rôles ajoutés après la création du realm (idempotent).
 for role in operateur:"Opérateur : suit les courses en direct, réassigne, support" \
-            partenaire:"Partenaire de flotte : gère ses motos et ses livreurs"; do
+            partenaire:"Partenaire de flotte : gère ses motos et ses livreurs" \
+            validateur:"Validateur : vérifie les documents des livreurs, les active ou les suspend"; do
   name=${role%%:*}; desc=${role#*:}
   if ! kc get "roles/$name" -r izimboa > /dev/null 2>&1; then
     kc create roles -r izimboa -s "name=$name" -s "description=$desc"
     echo "Rôle « $name » créé."
   fi
 done
+
+# Compte de service « izimboa-api » : l'API gère les rôles (livreurs validés, équipe) sans la console (décision 74).
+api_client=$(kc get clients -r izimboa -q clientId=izimboa-api --fields id --format csv --noquotes | tail -1 || true)
+if [ -z "$api_client" ]; then
+  kc create clients -r izimboa -s clientId=izimboa-api -s enabled=true -s publicClient=false \
+    -s serviceAccountsEnabled=true -s standardFlowEnabled=false -s directAccessGrantsEnabled=false \
+    -s 'description=API Izimboa : gestion des rôles des comptes'
+  api_client=$(kc get clients -r izimboa -q clientId=izimboa-api --fields id --format csv --noquotes | tail -1)
+  echo "Client de service izimboa-api créé."
+fi
+kc add-roles -r izimboa --uusername service-account-izimboa-api --cclientid realm-management \
+  --rolename manage-users --rolename view-users --rolename query-users --rolename view-realm > /dev/null
+api_secret=$(kc get "clients/$api_client/client-secret" -r izimboa --fields value --format csv --noquotes | tail -1)
+if [ -n "$api_secret" ] && ! grep -qx "KEYCLOAK_API_CLIENT_SECRET=$api_secret" .env; then
+  sed -i '/^KEYCLOAK_API_CLIENT_SECRET=/d' .env
+  echo "KEYCLOAK_API_CLIENT_SECRET=$api_secret" >> .env
+  docker compose up -d api
+  echo "::notice title=keycloak::Compte de service izimboa-api branché sur l'API."
+fi
 
 # Connexion par code WhatsApp (décision 40) : flux « izimboa-navigateur » = session existante, sinon
 # formulaire « code WhatsApp » proposé d'abord, e-mail + mot de passe en autre méthode. Idempotent.

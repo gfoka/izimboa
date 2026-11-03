@@ -22,6 +22,11 @@ public class DeliveryProblem extends ErrorResponseException {
         return p;
     }
 
+    /** Erreur d'un autre cas d'usage du module (inscription des livreurs…), avec son propre code. */
+    public static DeliveryProblem of(HttpStatus status, String code, String detail) {
+        return new DeliveryProblem(status, code, detail);
+    }
+
     public static DeliveryProblem notFound() {
         return new DeliveryProblem(HttpStatus.NOT_FOUND, "delivery-not-found", "Livraison introuvable.");
     }

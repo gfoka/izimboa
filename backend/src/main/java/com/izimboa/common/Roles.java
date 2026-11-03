@@ -9,6 +9,8 @@ public final class Roles {
     public static final String OPERATEUR = "operateur";
     /** Partenaire de flotte : possède des motos, gère ses propres livreurs. */
     public static final String PARTENAIRE = "partenaire";
+    /** Vérifie les documents des livreurs, les active, les refuse ou les suspend (décision 74). */
+    public static final String VALIDATEUR = "validateur";
     public static final String ADMIN = "admin";
 
     /** Rôles qui peuvent tout voir et intervenir sur n'importe quelle livraison. */
