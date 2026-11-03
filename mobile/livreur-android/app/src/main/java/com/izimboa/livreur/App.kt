@@ -17,6 +17,7 @@ class App : Application() {
     lateinit var store: LocalStore private set
     lateinit var courier: Courier private set
     lateinit var sync: Sync private set
+    lateinit var file: com.izimboa.livreur.onboarding.CourierFile private set
 
     override fun onCreate() {
         super.onCreate()
@@ -25,6 +26,7 @@ class App : Application() {
         api = Api { auth.accessToken() }
         store = openStore()
         courier = Courier(this, api, store)
+        file = com.izimboa.livreur.onboarding.CourierFile(api, auth)
         sync = Sync(store, api, onDelivery = courier::onServerDelivery, onRejected = courier::onRejected, scheduleRetry = { Sync.schedule(this) }, onPositionsSent = { courier.onPositionsSent(it) })
         courier.sync = sync
         Notifications.createChannels(this)
@@ -39,6 +41,7 @@ class App : Application() {
         stopService(android.content.Intent(this, com.izimboa.livreur.tracking.TrackingService::class.java))
         store.clear()
         courier.closeFinishedDelivery()
+        file.reset()
     }
 
     /** Clé perdue (restauration, réinitialisation du Keystore) : la base illisible est recréée vide. */

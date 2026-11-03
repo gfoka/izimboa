@@ -16,7 +16,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import com.izimboa.livreur.ui.CourierFileScreen
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -52,6 +54,8 @@ class MainActivity : ComponentActivity() {
     private fun Root(app: App) {
         val session by app.auth.session.collectAsStateWithLifecycle()
         val state by app.courier.state.collectAsStateWithLifecycle()
+        val fileState by app.file.state.collectAsStateWithLifecycle()
+        var showFile by rememberSaveable { mutableStateOf(false) }
         val scope = rememberCoroutineScope()
         var loginMessage by remember { mutableStateOf<String?>(null) }
 
@@ -66,7 +70,7 @@ class MainActivity : ComponentActivity() {
 
         // Retour dans l'application : on se recale sur le serveur.
         LifecycleResumeEffect(session) {
-            if (session != null) scope.launch { app.courier.sync() }
+            if (session != null) scope.launch { app.courier.sync(); app.file.refresh() }
             onPauseOrDispose { }
         }
         LaunchedEffect(state.offer != null) { showOverLockScreen(state.offer != null) }
@@ -74,14 +78,34 @@ class MainActivity : ComponentActivity() {
         val s = session
         val delivery = state.delivery
         val offer = state.offer
+        val file = fileState.file
+        val doLogout = { app.signOut()?.let { logout.launch(it) }; Unit }
+        val fileActions = remember {
+            com.izimboa.livreur.ui.FileActions(
+                saveProfile = { f, l, e -> app.file.saveProfile(f, l, e) },
+                upload = { code, number, expires, pages -> app.file.upload(code, number, expires, pages) },
+                submit = { app.file.submit() },
+                refresh = { app.file.refresh() },
+                logout = { app.signOut()?.let { logout.launch(it) } },
+                dismiss = { app.file.clearMessage() },
+            )
+        }
+        val isCourier = s != null && "livreur" in s.roles
         when {
             s == null -> LoginScreen(onLogin = { loginMessage = null; login.launch(app.auth.loginIntent()) }, message = loginMessage)
-            "livreur" !in s.roles -> NotCourierScreen(
+            // Pas encore livreur : son dossier (identité, documents), puis l'attente de la validation (décision 74).
+            !isCourier && file == null -> NotCourierScreen(
                 name = s.name,
                 phone = s.phone,
-                onLogout = { app.signOut()?.let { logout.launch(it) } },
-                onRetry = { scope.launch { app.auth.reloadRoles() } },
+                onLogout = doLogout,
+                onRetry = { scope.launch { app.file.refresh(); app.auth.reloadRoles() } },
+                message = fileState.message,
             )
+            !isCourier && file != null -> CourierFileScreen(file, fileState.busy, fileState.message, fileActions, onClose = null)
+            // Livreur actif dont le dossier bloque (document expiré, délai dépassé) ou qui l'ouvre lui-même.
+            delivery == null && offer == null && file != null && (!file.canWork || showFile) ->
+                CourierFileScreen(file, fileState.busy, fileState.message, fileActions,
+                    onClose = if (file.canWork) ({ showFile = false }) else null)
             delivery != null -> DeliveryScreen(
                 d = delivery, busy = state.busy, message = state.message, info = state.info,
                 pendingActions = state.pendingActions,
@@ -118,6 +142,7 @@ class MainActivity : ComponentActivity() {
                 },
                 onLogout = { app.signOut()?.let { logout.launch(it) } },
                 onDismiss = { app.courier.clearMessage(); loginMessage = null },
+                reminder = file?.let { f -> { com.izimboa.livreur.ui.FileReminder(f) { showFile = true } } },
             )
         }
     }

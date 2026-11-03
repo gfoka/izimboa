@@ -63,15 +63,33 @@ class Api(private val token: suspend () -> String?) : com.izimboa.livreur.offlin
     override suspend fun step(id: String, action: String, body: String): Delivery =
         call("POST", "/v1/delivery/deliveries/$id/$action", body)!!
 
+    // ---- Dossier du livreur (identité, documents) : décision 74 ----
+
+    suspend fun myFile(): MyFile = call("GET", "/v1/delivery/onboarding")!!
+    suspend fun saveProfile(body: ProfileBody): MyFile = call("PUT", "/v1/delivery/onboarding/profile", json.encodeToString(body))!!
+    suspend fun submitFile(): MyFile = call("POST", "/v1/delivery/onboarding/submit", "{}")!!
+
+    /** Un document : toutes ses pages (JPEG réduits) avec son numéro et sa date de validité. Envoi plus long : 60 s. */
+    suspend fun uploadDocument(code: String, number: String?, expiresOn: String?, pages: Map<Int, ByteArray>): MyFile {
+        val form = okhttp3.MultipartBody.Builder().setType(okhttp3.MultipartBody.FORM)
+        if (!number.isNullOrBlank()) form.addFormDataPart("number", number)
+        if (!expiresOn.isNullOrBlank()) form.addFormDataPart("expiresOn", expiresOn)
+        val jpeg = "image/jpeg".toMediaType()
+        pages.forEach { (id, bytes) -> form.addFormDataPart("page-$id", "page-$id.jpg", bytes.toRequestBody(jpeg)) }
+        val slow = http.newBuilder().writeTimeout(60, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS).build()
+        return call("POST", "/v1/delivery/onboarding/documents/$code", client = slow, raw = form.build())!!
+    }
+
     /** Retourne null pour une réponse 204 (rien à montrer). */
     private suspend inline fun <reified T> call(
         method: String, path: String, body: String? = null, parse: Boolean = true, client: OkHttpClient = http,
+        raw: okhttp3.RequestBody? = null,
     ): T? {
         val req = Request.Builder()
             .url(BuildConfig.API_URL + path)
             .header("Accept", "application/json")
             .apply { token()?.let { header("Authorization", "Bearer $it") } }
-            .method(method, body?.toRequestBody(jsonType))
+            .method(method, raw ?: body?.toRequestBody(jsonType))
             .build()
         val response = try {
             client.newCall(req).executeAsync()

@@ -73,8 +73,9 @@ fun LoginScreen(onLogin: () -> Unit, message: String?) {
     }
 }
 
+/** Avant le dossier : chargement, ou réseau absent (le dossier se charge depuis le serveur). */
 @Composable
-fun NotCourierScreen(name: String?, onLogout: () -> Unit, onRetry: () -> Unit, phone: String? = null) {
+fun NotCourierScreen(name: String?, onLogout: () -> Unit, onRetry: () -> Unit, phone: String? = null, message: String? = null) {
     Column(
         Modifier.fillMaxSize().background(Brand.Cloud).statusBarsPadding().navigationBarsPadding().padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -82,23 +83,21 @@ fun NotCourierScreen(name: String?, onLogout: () -> Unit, onRetry: () -> Unit, p
         Spacer(Modifier.weight(1f))
         Text("Bonjour${name?.let { " $it" } ?: ""} 👋", style = MaterialTheme.typography.headlineLarge, color = Brand.Navy)
         Text(
-            "Votre compte n'est pas encore activé comme livreur. Après la vérification de vos documents, Izimboa l'active et vous pourrez recevoir des courses.",
+            "Pour devenir livreur Izimboa, vous allez donner votre nom et photographier votre carte d'identité. Izimboa vérifie puis active votre compte.",
             style = MaterialTheme.typography.bodyLarge, color = Brand.Ink,
         )
-        // Connexion par WhatsApp : le livreur donne ce numéro à Izimboa pour que son compte soit activé.
-        if (phone != null) {
-            Text("Numéro du compte : ${formatPhone(phone)}", style = MaterialTheme.typography.titleLarge, color = Brand.Navy)
-            Text("Donnez ce numéro à Izimboa pour activer votre compte.", style = MaterialTheme.typography.bodyLarge, color = Brand.Slate)
-        }
+        if (phone != null) Text("Numéro du compte : ${formatPhone(phone)}", style = MaterialTheme.typography.titleLarge, color = Brand.Navy)
+        if (message != null) Banner(message)
+        else CircularProgressIndicator(color = Brand.Sun)
         Spacer(Modifier.weight(1f))
-        BigButton("J'AI ÉTÉ ACTIVÉ, RÉESSAYER", onRetry)
+        BigButton("RÉESSAYER", onRetry)
         SecondaryButton("Se déconnecter", onLogout)
     }
 }
 
 /** Accueil : un énorme bouton rond pour passer en ligne. Rien d'autre à comprendre. */
 @Composable
-fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, onToggle: () -> Unit, onLogout: () -> Unit, onDismiss: () -> Unit, info: String? = null, gps: GpsStatus? = null) {
+fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, onToggle: () -> Unit, onLogout: () -> Unit, onDismiss: () -> Unit, info: String? = null, gps: GpsStatus? = null, reminder: (@Composable () -> Unit)? = null) {
     Column(Modifier.fillMaxSize().background(if (online) Brand.Navy else Brand.Cloud).statusBarsPadding().navigationBarsPadding()) {
         Row(Modifier.fillMaxWidth().padding(start = 24.dp, end = 8.dp, top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
@@ -119,6 +118,7 @@ fun HomeScreen(name: String?, online: Boolean, busy: Boolean, message: String?, 
         }
 
         Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            if (!online) reminder?.invoke()
             if (message != null) Banner(message, onClose = onDismiss)
             else if (info != null) Banner(info, error = false, onClose = onDismiss)
             if (online && gps != null) GpsLine(gps)

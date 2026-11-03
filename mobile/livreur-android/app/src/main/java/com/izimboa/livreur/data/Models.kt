@@ -94,3 +94,32 @@ data class ReasonBody(val reason: String, val lat: Double? = null, val lng: Doub
 
 @Serializable
 data class LatLngBody(val lat: Double? = null, val lng: Double? = null, val occurredAt: String? = null)
+
+// ---- Dossier du livreur (décision 74) ----
+
+@Serializable
+data class DocPage(val id: Int, val name: String, val camera: String)
+
+@Serializable
+data class DocType(
+    val id: Int, val code: String, val name: String, val help: String? = null, val mandatory: Boolean,
+    val numberRequirement: String, val expiryRequired: Boolean, val pages: List<DocPage> = emptyList(),
+)
+
+@Serializable
+data class DocSubmitted(val id: String, val number: String? = null, val expiresOn: String? = null, val pages: List<Int> = emptyList())
+
+/** state : MISSING, EXPIRED, EXPIRING_SOON, OK. */
+@Serializable
+data class DocRequirement(val type: DocType, val submitted: DocSubmitted? = null, val state: String)
+
+/** status : DRAFT, PENDING, ACTIVE, REJECTED, SUSPENDED. */
+@Serializable
+data class MyFile(
+    val status: String, val reason: String? = null, val firstName: String? = null, val lastName: String? = null,
+    val email: String? = null, val phone: String? = null, val documents: List<DocRequirement> = emptyList(),
+    val complete: Boolean, val canWork: Boolean, val deadline: String? = null,
+)
+
+@Serializable
+data class ProfileBody(val firstName: String, val lastName: String, val email: String?)
