@@ -43,7 +43,11 @@ jobs:
           echo "=== Thème de connexion : fichiers sur le serveur et dans Keycloak ==="
           wc -c keycloak-theme/izimboa/login/resources/css/izimboa.css
           docker compose exec -T keycloak sh -c 'wc -c /opt/keycloak/themes/izimboa/login/resources/css/izimboa.css; ls -la /opt/keycloak/themes/izimboa/login/' < /dev/null
-          curl -s https://auth.izimboa.com/resources/x/login/izimboa/css/izimboa.css | wc -c
+          v=$(curl -s "https://auth.izimboa.com/realms/izimboa/account" -o /dev/null -w '%{http_code}'; curl -s "https://auth.izimboa.com/realms/izimboa/protocol/openid-connect/auth?client_id=izimboa-web&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fdelivery.izimboa.com%2Fcallback%2F&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256" | grep -o 'resources/[a-z0-9]*/login/izimboa/css/izimboa.css' | head -1)
+          echo "page -> $v"
+          echo "public : $(curl -s "https://auth.izimboa.com/${v#*200}" | wc -c) octets"
+          echo "conteneur : $(docker compose exec -T keycloak sh -c "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /${v#*200} HTTP/1.0\r\nHost: auth.izimboa.com\r\n\r\n' >&3 && cat <&3" < /dev/null | wc -c) octets (en-têtes compris)"
+          docker compose ps keycloak --format '{{.Status}}'
           echo "=== Keycloak : erreurs de l'API d'administration (2 h) ==="
           docker compose logs --since 2h keycloak 2>&1 | grep -iE "izimboa-api|validation|error" | grep -v "KC-SERVICES0047" | tail -12
           docker compose logs --since 2h api 2>&1 | grep -iE "identity|Keycloak|400 Bad|onboarding/profile" | tail -8
