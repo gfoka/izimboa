@@ -1,0 +1,44 @@
+# Applique le nom affiché approuvé par Meta : redéfinit le code PIN de vérification en deux étapes
+# (secret GitHub WHATSAPP_PIN, saisi par Gilles, jamais affiché) puis enregistre à nouveau le numéro.
+# Lancement manuel uniquement.
+name: Réenregistrer le numéro WhatsApp
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    env:
+      PHONE_ID: "112115108576086"
+      GRAPH: https://graph.facebook.com/v21.0
+      WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
+      WHATSAPP_PIN: ${{ secrets.WHATSAPP_PIN }}
+    steps:
+      - name: Vérifier le code PIN
+        run: |
+          if ! [[ "$WHATSAPP_PIN" =~ ^[0-9]{6}$ ]]; then
+            echo "::error title=PIN::Le secret WHATSAPP_PIN doit contenir exactement 6 chiffres."; exit 1
+          fi
+      - name: Définir le code PIN (vérification en deux étapes)
+        run: |
+          r=$(curl -s -X POST "$GRAPH/$PHONE_ID" -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+            -H 'Content-Type: application/json' -d "{\"pin\":\"$WHATSAPP_PIN\"}")
+          echo "::notice title=code PIN::$(echo "$r" | jq -c '{success, error: (.error.error_user_msg // .error.message)}')"
+          echo "$r" | jq -e '.success == true' > /dev/null
+      - name: Enregistrer à nouveau le numéro
+        run: |
+          r=$(curl -s -X POST "$GRAPH/$PHONE_ID/register" -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+            -H 'Content-Type: application/json' -d "{\"messaging_product\":\"whatsapp\",\"pin\":\"$WHATSAPP_PIN\"}")
+          echo "::notice title=enregistrement::$(echo "$r" | jq -c '{success, error: (.error.error_user_msg // .error.message)}')"
+          echo "$r" | jq -e '.success == true' > /dev/null
+      - name: Nom affiché après l'opération
+        if: always()
+        run: |
+          sleep 10
+          r=$(curl -s -G "$GRAPH/$PHONE_ID" -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+            --data-urlencode 'fields=verified_name,name_status,new_name_status,new_display_name,status,quality_rating')
+          echo "::notice title=numéro::$(echo "$r" | jq -c .)"
