@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
 
         // Retour dans l'application : on se recale sur le serveur.
         LifecycleResumeEffect(session) {
-            if (session != null) scope.launch { app.courier.sync(); app.file.refresh() }
+            if (session != null) scope.launch { app.courier.sync(); app.file.refresh(); app.registerPush() }
             onPauseOrDispose { }
         }
         LaunchedEffect(state.offer != null) { showOverLockScreen(state.offer != null) }

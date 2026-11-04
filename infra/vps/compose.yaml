@@ -95,6 +95,8 @@ services:
       # Compte de service Keycloak « izimboa-api » (créé par deploy.sh) : rôles des livreurs et de l'équipe.
       KEYCLOAK_API_CLIENT_SECRET: ${KEYCLOAK_API_CLIENT_SECRET:-}
       KEYCLOAK_ADMIN_BASE: http://keycloak:8080
+      # Notifications push des nouvelles courses (Firebase, décision 76).
+      FIREBASE_SERVICE_ACCOUNT_B64: ${FIREBASE_SERVICE_ACCOUNT_B64:-}
       TZ: Africa/Douala
     depends_on:
       postgres:

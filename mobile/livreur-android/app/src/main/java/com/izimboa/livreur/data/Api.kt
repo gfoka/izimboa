@@ -37,6 +37,15 @@ class Api(private val token: suspend () -> String?) : com.izimboa.livreur.offlin
         call<Unit>("POST", "/v1/mobile/reports", json.encodeToString(r), parse = false)
     }
 
+    /** Jeton Firebase du téléphone : le serveur s'en sert pour annoncer les nouvelles courses (décision 76). */
+    suspend fun registerPushToken(token: String) {
+        val body = kotlinx.serialization.json.buildJsonObject {
+            put("token", kotlinx.serialization.json.JsonPrimitive(token))
+            put("appVersion", kotlinx.serialization.json.JsonPrimitive(BuildConfig.VERSION_NAME))
+        }
+        call<Unit>("PUT", "/v1/delivery/courier/push-token", body.toString(), parse = false)
+    }
+
     suspend fun status(): CourierStatus = call("GET", "/v1/delivery/courier/status")!!
     suspend fun online(at: PointBody?): CourierStatus = call("POST", "/v1/delivery/courier/online", json.encodeToString(OnlineBody(at)))!!
     suspend fun offline(): CourierStatus = call("POST", "/v1/delivery/courier/offline", "{}")!!

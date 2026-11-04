@@ -30,15 +30,24 @@ class App : Application() {
         sync = Sync(store, api, onDelivery = courier::onServerDelivery, onRejected = courier::onRejected, scheduleRetry = { Sync.schedule(this) }, onPositionsSent = { courier.onPositionsSent(it) })
         courier.sync = sync
         Notifications.createChannels(this)
+        com.izimboa.livreur.push.Push.init(this)
         if (sync.pending() > 0) Sync.schedule(this)
         kotlinx.coroutines.MainScope().launch(kotlinx.coroutines.Dispatchers.IO) {
             com.izimboa.livreur.diagnostics.Reports.sendAtStartup(this@App, api)
         }
     }
 
+    /** Enregistre le jeton Firebase du téléphone (livreurs seulement), sans gêner si cela échoue. */
+    suspend fun registerPush() {
+        if (auth.session.value?.roles?.contains("livreur") != true) return
+        val token = com.izimboa.livreur.push.Push.token() ?: return
+        runCatching { api.registerPushToken(token) }
+    }
+
     /** Déconnexion : plus rien du livreur ne reste sur le téléphone. */
     fun signOut() = auth.logoutIntent().also {
         stopService(android.content.Intent(this, com.izimboa.livreur.tracking.TrackingService::class.java))
+        com.izimboa.livreur.push.Push.forget()
         store.clear()
         courier.closeFinishedDelivery()
         file.reset()

@@ -90,6 +90,10 @@ izimboa:
     # Vides = webhook refusé (403).
     app-secret: ${WHATSAPP_APP_SECRET:}
     verify-token: ${WHATSAPP_VERIFY_TOKEN:}
+  push:
+    # Compte de service Firebase du projet « izimboa » (JSON en base64, secret GitHub FIREBASE_SERVICE_ACCOUNT).
+    # Vide = notifications push désactivées (les offres sonnent quand même tant que l'application est en ligne).
+    service-account: ${FIREBASE_SERVICE_ACCOUNT_B64:}
   identity:
     # Compte de service Keycloak « izimboa-api » (rôles des livreurs, de l'équipe). Vide = rôles gardés en mémoire.
     admin-base: ${KEYCLOAK_ADMIN_BASE:http://keycloak:8080}

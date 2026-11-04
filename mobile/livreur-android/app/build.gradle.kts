@@ -26,6 +26,13 @@ android {
         buildConfigField("String", "CLIENT_ID", "\"izimboa-mobile\"")
         buildConfigField("String", "REDIRECT_URI", "\"izimboa://livreur/callback\"")
         manifestPlaceholders["appAuthRedirectScheme"] = "izimboa"
+
+        // Firebase (notifications des nouvelles courses, décision 76) : configuration publique de l'application
+        // com.izimboa.livreur dans le projet « izimboa » (pas un secret ; clé restreinte à l'application).
+        buildConfigField("String", "FIREBASE_PROJECT_ID", "\"izimboa\"")
+        buildConfigField("String", "FIREBASE_APP_ID", "\"1:271680540184:android:d4d50695bc740564da7d6d\"")
+        buildConfigField("String", "FIREBASE_SENDER_ID", "\"271680540184\"")
+        buildConfigField("String", "FIREBASE_API_KEY", "\"AIzaSyAnbkPolMt_rOwA54B3XXG6Cc-_55IWDAs\"")
     }
 
     // Signature de publication : fournie par la CI (secrets GitHub), jamais dans le dépôt.
@@ -90,6 +97,7 @@ dependencies {
     implementation(libs.sqlcipher)          // base locale chiffrée (AES-256)
     implementation(libs.androidx.sqlite)
     implementation(libs.androidx.work)      // envoi automatique au retour du réseau, même application fermée
+    implementation(libs.firebase.messaging) // réveil de l'application pour une nouvelle course (décision 76)
     debugImplementation(libs.compose.ui.tooling)
 
     testImplementation(libs.junit)

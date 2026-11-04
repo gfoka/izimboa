@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,9 +35,11 @@ public class DispatchService {
     private final CourierService couriers;
     private final DispatchProperties properties;
     private final Clock clock;
+    private final ApplicationEventPublisher events;
 
     DispatchService(DeliveryOfferRepository offers, DeliveryAssignments deliveries, CourierService couriers,
-                    DispatchProperties properties, Clock clock) {
+                    DispatchProperties properties, Clock clock, ApplicationEventPublisher events) {
+        this.events = events;
         this.offers = offers;
         this.deliveries = deliveries;
         this.couriers = couriers;
@@ -85,8 +88,9 @@ public class DispatchService {
                     .min(Comparator.comparingDouble(Candidate::meters));
             if (best.isEmpty()) continue;
             var c = best.get();
-            offers.save(new DeliveryOffer(w.id(), c.courierId(), (int) Math.round(c.meters()), now,
+            var offer = offers.save(new DeliveryOffer(w.id(), c.courierId(), (int) Math.round(c.meters()), now,
                     now.plusSeconds(properties.offerTimeoutSeconds())));
+            events.publishEvent(new OfferMade(offer.id(), c.courierId(), properties.offerTimeoutSeconds()));
             taken.add(c.courierId());
             made++;
             log.info("Course {} proposée au livreur {} ({} m)", w.id(), c.courierId(), Math.round(c.meters()));
