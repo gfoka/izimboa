@@ -40,6 +40,9 @@ jobs:
           ls -la /srv/izimboa/keycloak/providers 2>&1 | tail -3
           cd /srv/izimboa && docker compose exec -T keycloak ls /opt/keycloak/providers < /dev/null 2>&1 | tail -3
           docker compose logs --since 30m api 2>&1 | grep -iE "Recherche de lieux|Lien de localisation" | tail -5
+          echo "=== Keycloak : erreurs de l'API d'administration (2 h) ==="
+          docker compose logs --since 2h keycloak 2>&1 | grep -iE "izimboa-api|validation|error" | grep -v "KC-SERVICES0047" | tail -12
+          docker compose logs --since 2h api 2>&1 | grep -iE "identity|Keycloak|400 Bad|onboarding/profile" | tail -8
           echo "=== E-mails et webhook WhatsApp (journal de l'API) ==="
           docker compose logs api 2>&1 | grep -iE "E-mails désactivés|E-mail envoyé|Échec d'envoi d'e-mail|Webhook WhatsApp|WhatsApp envoyé : texte" | tail -8
           sudo grep -c '^BREVO_API_KEY=.' .env | sed 's/^/clé Brevo présente : /'
