@@ -58,4 +58,5 @@ jobs:
           roles=$(curl -s -H "$A" "$KC/admin/realms/izimboa/users/$id/role-mappings/realm" | python3 -c 'import json,sys; print(", ".join(sorted(r["name"] for r in json.load(sys.stdin))))')
           echo "RÉSULTAT : rôle $ROLE pour $LOGIN -> HTTP $code ; rôles du compte : $roles"
           SH
-          grep "RÉSULTAT" out.txt | sed 's/^/::notice title=role::/' || { cat out.txt; exit 1; }
+          cat out.txt
+          if grep -q "RÉSULTAT" out.txt; then grep "RÉSULTAT" out.txt | sed 's/^/::notice title=role::/'; else exit 1; fi
