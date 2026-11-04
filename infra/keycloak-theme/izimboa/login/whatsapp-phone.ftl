@@ -27,6 +27,15 @@
                 <@buttons.button id="kc-login" name="login" label="waSendCode" class=["kcButtonPrimaryClass", "kcButtonBlockClass"] />
             </@buttons.actionGroup>
         </form>
+        <#-- Autre méthode : séparée par « ou », libellé explicite (le lien générique de Keycloak est masqué sur cette page). -->
+        <#if auth?has_content && auth.showTryAnotherWayLink()>
+            <div class="izimboa-or" role="separator"><span>${msg("waOr")}</span></div>
+            <button type="button" id="izimboa-use-email" class="${properties.kcButtonSecondaryClass!} ${properties.kcButtonBlockClass!} izimboa-alt"
+                    onclick="document.forms['kc-select-try-another-way-form'].requestSubmit()">
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M4 6h16v12H4z M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                <span>${msg("waUseEmail")}</span>
+            </button>
+        </#if>
     <#elseif section = "socialProviders">
         <#if social.providers?? && social.providers?has_content>
             <@identityProviders.show social=social />

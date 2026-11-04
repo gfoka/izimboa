@@ -106,7 +106,7 @@ body#keycloak-bg {
 #kc-registration a, .pf-v5-c-helper-text__item-text a { font-weight: 600; }
 
 /* Connexion par code WhatsApp */
-.izimboa-wa-lead { margin: 0 0 1rem; color: var(--izb-navy); line-height: 1.5; }
+.izimboa-wa-lead { margin: 0 0 1.25rem; color: var(--izb-navy); line-height: 1.5; }
 .izimboa-wa-note { margin: 0 0 1rem; padding: .75rem 1rem; border-radius: 10px; background: var(--izb-cloud); }
 .izimboa-wa-hint { margin: .4rem 0 0; font-size: .875rem; color: #5b6475; }
 #phone, #code { font-size: 1.125rem; letter-spacing: .02em; }
@@ -116,3 +116,49 @@ body#keycloak-bg {
   background: none; border: 0; padding: .5rem; cursor: pointer;
   color: var(--izb-navy); font-weight: 600; text-decoration: underline; font: inherit;
 }
+
+
+/* Choix de la méthode de connexion (page commune à tous les produits Izimboa) */
+/* Séparateur « ou » entre la méthode principale et l'autre méthode */
+.izimboa-or { display: flex; align-items: center; gap: .75rem; margin: 1.5rem 0 1rem; color: var(--izb-slate); font-size: .875rem; }
+.izimboa-or::before, .izimboa-or::after { content: ""; flex: 1; height: 1px; background: var(--izb-line); }
+.izimboa-alt { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 48px; font-weight: 600;
+  white-space: normal; text-align: center; padding-inline: 1rem; line-height: 1.25; }
+.izimboa-alt svg { flex-shrink: 0; }
+/* Page du numéro et page du code : le lien générique est remplacé par le bouton ci-dessus (ou par « Changer de numéro ») */
+body:has(#kc-whatsapp-phone-form) #try-another-way,
+body:has(#kc-whatsapp-resend-form) #try-another-way { display: none; }
+/* Page e-mail + mot de passe : même séparateur « ou » avant le retour au code WhatsApp */
+#kc-select-try-another-way-form { margin-top: 0; }
+#kc-select-try-another-way-form::before {
+  content: "ou"; display: flex; align-items: center; margin: 1.5rem 0 1rem; color: var(--izb-slate); font-size: .875rem;
+  background: linear-gradient(var(--izb-line), var(--izb-line)) left center / calc(50% - 1.5rem) 1px no-repeat,
+              linear-gradient(var(--izb-line), var(--izb-line)) right center / calc(50% - 1.5rem) 1px no-repeat;
+  justify-content: center;
+}
+html[lang|="en"] #kc-select-try-another-way-form::before { content: "or"; }
+body:has(#kc-whatsapp-phone-form) #kc-select-try-another-way-form::before,
+body:has(#kc-whatsapp-resend-form) #kc-select-try-another-way-form::before { content: none; display: none; }
+#try-another-way { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; }
+
+/* Liste des méthodes (« Choisissez comment vous connecter ») : deux cartes nettes au lieu des barres grises */
+.select-auth-container.pf-v5-c-data-list { --pf-v5-c-data-list--BorderTopWidth: 0; border: 0; display: grid; gap: .75rem; background: none; }
+.select-auth-container .pf-v5-c-data-list__item {
+  --pf-v5-c-data-list__item--BorderBottomWidth: 0; border: 1.5px solid var(--izb-line); border-radius: 16px;
+  background: #fff; transition: border-color .12s ease, box-shadow .12s ease;
+}
+.select-auth-container .pf-v5-c-data-list__item::before, .select-auth-container .pf-v5-c-data-list__item::after { display: none; }
+.select-auth-container .pf-v5-c-data-list__item:hover { border-color: var(--izb-navy); box-shadow: 0 2px 10px rgb(11 37 69 / 8%); }
+.select-auth-box-parent { cursor: pointer; padding: 1rem 1.25rem; align-items: center; }
+.select-auth-box-parent .pf-v5-c-data-list__item-content { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: .75rem; padding: 0; }
+.select-auth-box-parent .pf-m-icon { grid-row: span 2; align-self: center; padding: 0; }
+.select-auth-box-parent .pf-m-icon i { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--izb-cloud); font-style: normal; }
+.select-auth-container li:nth-child(1) .pf-m-icon i::before { content: "💬"; font-size: 1.2rem; }
+.select-auth-container li:nth-child(2) .pf-m-icon i::before { content: "✉️"; font-size: 1.2rem; }
+.select-auth-box-headline { margin: 0; padding: 0; font-size: 1.05rem; font-weight: 700; color: var(--izb-navy); }
+.select-auth-box-parent .pf-v5-c-data-list__cell { padding: 0; }
+.select-auth-box-desc { color: var(--izb-slate); font-size: .9rem; line-height: 1.4; }
+.select-auth-box-parent .pf-v5-c-data-list__item-action::after { content: "›"; font-size: 1.6rem; color: var(--izb-slate); }
+.select-auth-box-parent .pf-m-icon { grid-column: 1; grid-row: 1 / span 2; min-width: 40px; }
+.select-auth-box-parent .pf-v5-c-data-list__cell:not(.pf-m-icon) { grid-column: 2; padding: 0 !important; }
+.select-auth-box-desc { margin-top: .15rem; }
