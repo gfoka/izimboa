@@ -139,7 +139,8 @@ body:has(#kc-whatsapp-resend-form) #try-another-way { display: none; }
 html[lang|="en"] #kc-select-try-another-way-form::before { content: "or"; }
 body:has(#kc-whatsapp-phone-form) #kc-select-try-another-way-form::before,
 body:has(#kc-whatsapp-resend-form) #kc-select-try-another-way-form::before { content: none; display: none; }
-#try-another-way { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; }
+#try-another-way { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
+  white-space: normal; text-align: center; line-height: 1.25; padding-inline: 1rem; }
 
 /* Liste des méthodes (« Choisissez comment vous connecter ») : deux cartes nettes au lieu des barres grises */
 .select-auth-container.pf-v5-c-data-list { --pf-v5-c-data-list--BorderTopWidth: 0; border: 0; display: grid; gap: .75rem; background: none; }
