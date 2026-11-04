@@ -79,16 +79,28 @@ class KeycloakIdentityAdmin implements IdentityAdmin {
     @SuppressWarnings("unchecked")
     public void updateName(UUID id, String firstName, String lastName, String email) {
         Map<String, Object> user = new LinkedHashMap<>((Map<String, Object>) get("/users/" + id, Map.class));
+        boolean hasEmail = user.get("email") != null && !String.valueOf(user.get("email")).isBlank();
+        boolean newEmail = email != null && !email.isBlank();
+        // Le realm partagé par tous les produits exige un e-mail pour toute mise à jour d'un compte. Un livreur
+        // inscrit par WhatsApp peut ne pas en avoir (e-mail facultatif dans Delivery) : son nom reste alors dans
+        // le dossier Delivery seulement, sans changer les règles de Keycloak pour les autres produits.
+        if (!hasEmail && !newEmail) {
+            log.info("Compte {} sans e-mail : nom gardé dans Izimboa seulement (Keycloak exige un e-mail pour le modifier).", id);
+            return;
+        }
         user.put("firstName", firstName);
         user.put("lastName", lastName);
-        if (email != null && !email.isBlank()) user.put("email", email.strip().toLowerCase());
+        if (newEmail) user.put("email", email.strip().toLowerCase());
         try {
             http.put().uri(admin("/users/" + id)).headers(h -> h.setBearerAuth(token()))
                     .contentType(MediaType.APPLICATION_JSON).body(user).retrieve().toBodilessEntity();
         } catch (HttpClientErrorException.Conflict e) {
             throw new IdentityException(409, "Cette adresse e-mail est déjà utilisée par un autre compte.");
         } catch (HttpClientErrorException.BadRequest e) {
-            throw new IdentityException(400, "Nom ou adresse e-mail refusé : vérifiez la saisie.");
+            log.warn("Keycloak refuse la mise à jour du compte {} : {}", id, e.getResponseBodyAsString());
+            String body = e.getResponseBodyAsString();
+            throw new IdentityException(400, body.contains("\"email\"") ? "Adresse e-mail refusée : vérifiez la saisie."
+                    : "Prénom ou nom refusé : évitez les caractères spéciaux.");
         }
     }
 
