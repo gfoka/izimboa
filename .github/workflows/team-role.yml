@@ -1,0 +1,61 @@
+# Donne un rôle d'équipe (admin, validateur, operateur) à un compte Izimboa existant, retrouvé par e-mail ou numéro.
+# Lancement manuel ; utile pour le premier administrateur (ensuite : delivery.izimboa.com/admin/equipe).
+name: Rôle d'équipe
+
+on:
+  workflow_dispatch:
+    inputs:
+      login:
+        description: "E-mail ou numéro (+237…) du compte"
+        required: true
+      role:
+        description: "Rôle à donner"
+        required: true
+        type: choice
+        options: [admin, validateur, operateur]
+
+permissions:
+  contents: read
+
+env:
+  VPS_HOST: 212.47.78.167
+  VPS_USER: deploy
+
+jobs:
+  role:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Attribuer le rôle
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          LOGIN: ${{ inputs.login }}
+          ROLE: ${{ inputs.role }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+          cp infra/vps/known_hosts ~/.ssh/known_hosts
+          printf '%s\n%s\n' "$LOGIN" "$ROLE" | ssh "$VPS_USER@$VPS_HOST" 'bash -s' > out.txt 2>&1 <<'SH' || true
+          set -e
+          read -r LOGIN; read -r ROLE
+          cd /srv/izimboa
+          sec=$(sudo grep '^KEYCLOAK_API_CLIENT_SECRET=' .env | cut -d= -f2-)
+          KC=https://auth.izimboa.com
+          tok=$(curl -s -d grant_type=client_credentials -d client_id=izimboa-api --data-urlencode "client_secret=$sec" \
+            $KC/realms/izimboa/protocol/openid-connect/token | python3 -c 'import json,sys; print(json.load(sys.stdin)["access_token"])')
+          A="Authorization: Bearer $tok"
+          case "$LOGIN" in
+            *@*) q="email=$(python3 -c 'import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))' "$LOGIN")" ;;
+            *)   p=$(echo "$LOGIN" | tr -cd '0-9'); [ ${#p} -eq 9 ] && p="237$p"; q="q=phoneNumber:%2B$p" ;;
+          esac
+          users=$(curl -s -H "$A" "$KC/admin/realms/izimboa/users?exact=true&briefRepresentation=true&$q")
+          n=$(echo "$users" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)))')
+          if [ "$n" != "1" ]; then echo "RÉSULTAT : $n compte(s) trouvé(s) pour $LOGIN : rien n'est changé."; exit 0; fi
+          id=$(echo "$users" | python3 -c 'import json,sys; print(json.load(sys.stdin)[0]["id"])')
+          rep=$(curl -s -H "$A" "$KC/admin/realms/izimboa/roles/$ROLE")
+          code=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H "$A" -H 'Content-Type: application/json' \
+            -d "[$rep]" "$KC/admin/realms/izimboa/users/$id/role-mappings/realm")
+          roles=$(curl -s -H "$A" "$KC/admin/realms/izimboa/users/$id/role-mappings/realm" | python3 -c 'import json,sys; print(", ".join(sorted(r["name"] for r in json.load(sys.stdin))))')
+          echo "RÉSULTAT : rôle $ROLE pour $LOGIN -> HTTP $code ; rôles du compte : $roles"
+          SH
+          grep "RÉSULTAT" out.txt | sed 's/^/::notice title=role::/' || { cat out.txt; exit 1; }
