@@ -40,6 +40,10 @@ jobs:
           ls -la /srv/izimboa/keycloak/providers 2>&1 | tail -3
           cd /srv/izimboa && docker compose exec -T keycloak ls /opt/keycloak/providers < /dev/null 2>&1 | tail -3
           docker compose logs --since 30m api 2>&1 | grep -iE "Recherche de lieux|Lien de localisation" | tail -5
+          echo "=== Thème de connexion : fichiers sur le serveur et dans Keycloak ==="
+          wc -c keycloak-theme/izimboa/login/resources/css/izimboa.css
+          docker compose exec -T keycloak sh -c 'wc -c /opt/keycloak/themes/izimboa/login/resources/css/izimboa.css; ls -la /opt/keycloak/themes/izimboa/login/' < /dev/null
+          curl -s https://auth.izimboa.com/resources/x/login/izimboa/css/izimboa.css | wc -c
           echo "=== Keycloak : erreurs de l'API d'administration (2 h) ==="
           docker compose logs --since 2h keycloak 2>&1 | grep -iE "izimboa-api|validation|error" | grep -v "KC-SERVICES0047" | tail -12
           docker compose logs --since 2h api 2>&1 | grep -iE "identity|Keycloak|400 Bad|onboarding/profile" | tail -8
