@@ -39,11 +39,12 @@ final class OnboardingViews {
                       List<RequirementView> documents, boolean complete, boolean canWork, LocalDate deadline) {}
 
     record ProfileSummary(UUID userId, String name, String phone, String status, Instant submittedAt,
-                          Instant updatedAt, boolean toReview, int missing) {}
+                          Instant updatedAt, boolean toReview, int missing, Double ratingAverage, long ratingCount) {}
 
     record ProfileDetail(UUID userId, String firstName, String lastName, String email, String phone, String status,
                          String reason, Instant submittedAt, Instant reviewedAt, Instant createdAt,
-                         List<RequirementView> documents, List<String> warnings, boolean complete, boolean canWork) {}
+                         List<RequirementView> documents, List<String> warnings, boolean complete, boolean canWork,
+                         Double ratingAverage, long ratingCount) {}
 
     static PageView page(DocumentType.Page p) {
         return new PageView(p.getId(), p.getName(), p.getCamera().name());

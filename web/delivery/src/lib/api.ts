@@ -73,6 +73,7 @@ export type Delivery = {
   timeline: { status: Status; at: string; note: string | null }[];
   dropoffState: DropoffState;
   recipientNotices: RecipientNotice[];
+  rating: Rating | null;
 };
 
 /** Message WhatsApp envoyé automatiquement au destinataire, par étape (décision 73). */
@@ -80,6 +81,9 @@ export type RecipientNotice = {
   kind: "CREATED" | "IN_TRANSIT" | "DELIVERED";
   status: "SENDING" | "SENT" | "FAILED" | "DISABLED";
   at: string;
+  /** Accusé WhatsApp (webhook) : sent, delivered, read, failed. */
+  whatsApp: "sent" | "delivered" | "read" | "failed" | null;
+  whatsAppError: string | null;
 };
 
 /** FIXED : lieu fixé par le vendeur ; TO_CONFIRM : le destinataire doit l'indiquer ; CONFIRMED : indiqué par lui. */
@@ -97,7 +101,11 @@ export type Tracking = {
   dropoffRequest: { state: DropoffState; editable: boolean; lat: number; lng: number; area: string; maxShiftMeters: number } | null;
   /** Tant que le colis n'est pas remis. */
   handoverCode: string | null;
+  /** Note du destinataire ; open : il peut noter maintenant (7 jours après la remise). */
+  rating: Rating | null;
 };
+
+export type Rating = { stars: number | null; comment: string | null; open: boolean };
 
 export type Place = { name: string; detail: string; lat: number; lng: number };
 
@@ -124,12 +132,14 @@ export type DocRequirement = {
 export type CourierSummary = {
   userId: string; name: string | null; phone: string | null; status: CourierFileStatus;
   submittedAt: string | null; updatedAt: string; toReview: boolean; missing: number;
+  ratingAverage: number | null; ratingCount: number;
 };
 
 export type CourierDetail = {
   userId: string; firstName: string | null; lastName: string | null; email: string | null; phone: string | null;
   status: CourierFileStatus; reason: string | null; submittedAt: string | null; reviewedAt: string | null; createdAt: string;
   documents: DocRequirement[]; warnings: string[]; complete: boolean; canWork: boolean;
+  ratingAverage: number | null; ratingCount: number;
 };
 
 export type TeamMember = { id: string; name: string | null; login: string | null; phone: string | null; email: string | null; roles: string[] };

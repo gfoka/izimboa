@@ -1,0 +1,18 @@
+{
+  "name": "izimboa_livraison_livree",
+  "language": "fr",
+  "category": "UTILITY",
+  "components": [
+    {
+      "type": "BODY",
+      "text": "Bonjour {{1}}, votre colis ({{2}}) a bien été livré. Merci d'avoir choisi Izimboa Delivery !\n\nDonnez votre avis sur la livraison en un instant avec le bouton ci-dessous.",
+      "example": { "body_text": [["Aïcha", "robe en wax"]] }
+    },
+    {
+      "type": "BUTTONS",
+      "buttons": [
+        { "type": "URL", "text": "Noter la livraison", "url": "https://delivery.izimboa.com/suivi/{{1}}", "example": ["https://delivery.izimboa.com/suivi/q2Xh7Lw0aB3cD4eF5gH6iJ"] }
+      ]
+    }
+  ]
+}

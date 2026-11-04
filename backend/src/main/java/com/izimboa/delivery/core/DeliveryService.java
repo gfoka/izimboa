@@ -36,10 +36,17 @@ class DeliveryService {
     private final DeliveryProperties properties;
     private final ApplicationEventPublisher events;
     private final RecipientNotifier notifier;
+    private final DeliveryRatingRepository ratings;
+    private final com.izimboa.common.mail.Mailer mailer;
+    private final String supportEmail;
 
     DeliveryService(DeliveryRepository repository, PricingService pricing, IdentifierGenerator identifiers,
                     Clock clock, DeliveryProperties properties, ApplicationEventPublisher events,
-                    RecipientNotifier notifier) {
+                    RecipientNotifier notifier, DeliveryRatingRepository ratings, com.izimboa.common.mail.Mailer mailer,
+                    @org.springframework.beans.factory.annotation.Value("${izimboa.mail.support}") String supportEmail) {
+        this.ratings = ratings;
+        this.mailer = mailer;
+        this.supportEmail = supportEmail;
         this.events = events;
         this.notifier = notifier;
         this.repository = repository;
@@ -118,7 +125,7 @@ class DeliveryService {
 
     @Transactional(readOnly = true)
     DeliveryViews.TrackingView track(String token) {
-        return repository.findByTrackingToken(token).map(DeliveryViews::tracking)
+        return repository.findByTrackingToken(token).map(this::tracking)
                 .orElseThrow(DeliveryProblem::notFound);
     }
 
@@ -134,7 +141,44 @@ class DeliveryService {
             throw DeliveryProblem.outsideServiceArea(area.get().name());
         }
         d.setDropoffByClient(point.lat(), point.lng(), blankToNull(landmark), clock.instant());
-        return DeliveryViews.tracking(d);
+        return tracking(d);
+    }
+
+    /**
+     * Note du destinataire depuis son lien de suivi (décision 75) : après la remise, pendant 7 jours, modifiable.
+     * Une note d'une ou deux étoiles est envoyée tout de suite au support.
+     */
+    @Transactional
+    DeliveryViews.TrackingView rate(String token, int stars, String comment) {
+        var d = repository.findByTrackingToken(token).orElseThrow(DeliveryProblem::notFound);
+        var now = clock.instant();
+        var existing = ratings.findById(d.getId()).orElse(null);
+        var view = DeliveryViews.rating(d, existing, now);
+        if (view == null || !view.open()) {
+            throw DeliveryProblem.of(org.springframework.http.HttpStatus.CONFLICT, "rating-closed",
+                    "La note n'est possible qu'après la remise du colis, pendant 7 jours.");
+        }
+        if (stars < 1 || stars > 5) throw DeliveryProblem.invalid("Choisissez de 1 à 5 étoiles.");
+        String text = blankToNull(comment);
+        if (text != null && text.length() > 500) text = text.substring(0, 500);
+        Integer before = existing == null ? null : existing.getStars();
+        var r = existing != null ? existing : new DeliveryRating(d.getId(), now);
+        r.set(stars, text, now);
+        ratings.save(r);
+        if (stars <= 2 && (before == null || before > 2 || !java.util.Objects.equals(existing == null ? null : existing.getComment(), text))) {
+            mailer.send(new com.izimboa.common.mail.Mailer.Message(supportEmail, "Support Izimboa", null,
+                    "[Izimboa Delivery] Mauvaise note " + stars + "/5 : " + d.getReference(),
+                    "Le destinataire a noté la livraison " + d.getReference() + " : " + stars + "/5.\n\n"
+                            + "Remarque : " + (text == null ? "(aucune)" : text) + "\n\n"
+                            + "Destinataire : " + d.getRecipientName() + " (" + d.getRecipientPhone() + ")\n"
+                            + "Livraison : https://delivery.izimboa.com/livraison/?id=" + d.getId() + "\n"
+                            + (d.getCourierId() == null ? "" : "Livreur : https://delivery.izimboa.com/admin/livreur/?id=" + d.getCourierId() + "\n")));
+        }
+        return tracking(d);
+    }
+
+    private DeliveryViews.TrackingView tracking(Delivery d) {
+        return DeliveryViews.tracking(d, DeliveryViews.rating(d, ratings.findById(d.getId()).orElse(null), clock.instant()));
     }
 
     // ---- Étapes ----
@@ -231,7 +275,8 @@ class DeliveryService {
     /** Le code de remise et le lien de suivi sont visibles du vendeur et des opérateurs, jamais du livreur. */
     private DeliveryViews.DeliveryView view(Delivery d, CurrentUser user) {
         boolean forSender = user.isStaff() || d.getSenderId().equals(user.id());
-        return DeliveryViews.full(d, trackingBaseUrl, forSender, forSender ? notifier.notices(d.getId()) : List.of());
+        return DeliveryViews.full(d, trackingBaseUrl, forSender, forSender ? notifier.notices(d.getId()) : List.of(),
+                forSender ? DeliveryViews.rating(d, ratings.findById(d.getId()).orElse(null), clock.instant()) : null);
     }
 
     private static String blankToNull(String s) {

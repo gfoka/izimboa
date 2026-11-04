@@ -135,6 +135,14 @@ function DeliveryDetail() {
 
       <div className="card"><Progress status={d.status} /></div>
 
+      {d.rating?.stars != null && (
+        <div className="card rating-card">
+          <h2 className="card-title">Avis de votre client</h2>
+          <p className="stars-static" aria-label={`${d.rating.stars} étoiles sur 5`}>{"★".repeat(d.rating.stars)}<span>{"★".repeat(5 - d.rating.stars)}</span></p>
+          {d.rating.comment && <p className="muted">« {d.rating.comment} »</p>}
+        </div>
+      )}
+
       <div className="detail-grid">
         <div className="detail-main">
           {d.handoverCode && !FINAL.includes(d.status) && (
@@ -229,10 +237,18 @@ function NoticeLine({ notice, askDropoff }: { notice: RecipientNotice | undefine
   if (!notice || notice.status === "SENDING") {
     return <p className="notice-line" role="status">Envoi du lien de suivi à votre client sur WhatsApp…</p>;
   }
+  if (notice.status === "SENT" && notice.whatsApp === "failed") {
+    return (
+      <p className="notice-line warn" role="status">
+        WhatsApp n&apos;a pas pu remettre le message (numéro sans WhatsApp ?) : envoyez le lien et le code à votre client vous-même.
+      </p>
+    );
+  }
   if (notice.status === "SENT") {
+    const seen = notice.whatsApp === "read" ? "lu" : notice.whatsApp === "delivered" ? "reçu" : "envoyé";
     return (
       <p className="notice-line ok" role="status">
-        ✓ Envoyé à votre client sur WhatsApp à {formatTime(notice.at)} : il {askDropoff ? "y indique le lieu exact, " : ""}suit
+        ✓ {seen.charAt(0).toUpperCase() + seen.slice(1)} par votre client sur WhatsApp ({formatTime(notice.at)}) : il {askDropoff ? "y indique le lieu exact, " : ""}suit
         le livreur et retrouve ce code sur son lien de suivi.
       </p>
     );

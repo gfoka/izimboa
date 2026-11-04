@@ -88,6 +88,7 @@ function CourierList() {
               </div>
               <div className="row-side">
                 <FileBadge status={r.status} />
+                {r.ratingCount > 0 && <span className="row-amount">★ {r.ratingAverage?.toFixed(1)} ({r.ratingCount})</span>}
                 {r.toReview && r.status === "ACTIVE" && <span className="badge badge-wait">Documents à revoir</span>}
               </div>
             </Link>

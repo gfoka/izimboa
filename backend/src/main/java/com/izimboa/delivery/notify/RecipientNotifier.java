@@ -27,7 +27,7 @@ public class RecipientNotifier {
     private static final Logger log = LoggerFactory.getLogger(RecipientNotifier.class);
 
     /** Ce que le vendeur voit de l'envoi automatique, étape par étape. */
-    public record NoticeView(String kind, String status, Instant at) {}
+    public record NoticeView(String kind, String status, Instant at, String whatsApp, String whatsAppError) {}
 
     private final RecipientNotificationRepository repository;
     private final WhatsAppMessages whatsApp;
@@ -61,6 +61,11 @@ public class RecipientNotifier {
                 return;
             }
             var result = whatsApp.send(template);
+            // Nouveau modèle « livré » (bouton « Noter la livraison ») pas encore validé par Meta : ancien modèle.
+            if (result.status() == WhatsAppMessages.Status.FAILED && notice.kind() == RecipientNotice.Kind.DELIVERED) {
+                var fallback = RecipientMessages.deliveredFallback(notice);
+                result = whatsApp.send(fallback);
+            }
             row.finish(RecipientNotification.Status.valueOf(result.status().name()), result.messageId(), result.error(), clock.instant());
             repository.save(row);
         } catch (Exception e) {
@@ -70,6 +75,7 @@ public class RecipientNotifier {
 
     public List<NoticeView> notices(UUID deliveryId) {
         return repository.findByDeliveryIdOrderByCreatedAtAsc(deliveryId).stream()
-                .map(n -> new NoticeView(n.getKind().name(), n.getStatus().name(), n.getUpdatedAt())).toList();
+                .map(n -> new NoticeView(n.getKind().name(), n.getStatus().name(), n.getUpdatedAt(),
+                        n.getDeliveryStatus(), n.getDeliveryError())).toList();
     }
 }

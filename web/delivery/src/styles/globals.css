@@ -330,3 +330,14 @@ legend.card-title + * { clear: both; }
 .role-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--info-soft); color: var(--navy); border-radius: 999px; padding: 4px 6px 4px 12px; font-size: .85rem; font-weight: 700; }
 .role-remove { border: 0; background: rgb(11 37 69 / 10%); color: var(--navy); width: 24px; height: 24px; border-radius: 50%; font-weight: 800; line-height: 1; cursor: pointer; }
 .role-remove:hover { background: rgb(11 37 69 / 20%); }
+
+/* ----- Note de la livraison (décision 75) ----- */
+.rating-card { justify-items: center; text-align: center; }
+.stars { display: flex; gap: 6px; justify-content: center; }
+.star { border: 0; background: none; font-size: 2.6rem; line-height: 1; color: var(--line); cursor: pointer; padding: 4px; min-width: 48px; min-height: 48px; transition: transform .1s ease, color .1s ease; }
+.star.on { color: var(--sun); }
+.star:hover { transform: scale(1.1); }
+.star:focus-visible { outline: 3px solid var(--navy); border-radius: 8px; }
+.stars-static { font-size: 1.8rem; color: var(--sun); letter-spacing: 2px; }
+.stars-static span { color: var(--line); }
+.rating-card .field { width: 100%; text-align: left; }

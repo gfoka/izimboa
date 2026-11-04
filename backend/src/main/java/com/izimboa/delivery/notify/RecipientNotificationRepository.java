@@ -9,4 +9,6 @@ interface RecipientNotificationRepository extends JpaRepository<RecipientNotific
     boolean existsByDeliveryIdAndKind(UUID deliveryId, RecipientNotice.Kind kind);
 
     List<RecipientNotification> findByDeliveryIdOrderByCreatedAtAsc(UUID deliveryId);
+
+    java.util.Optional<RecipientNotification> findFirstByMessageId(String messageId);
 }

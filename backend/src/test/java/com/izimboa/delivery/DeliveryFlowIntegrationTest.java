@@ -162,6 +162,15 @@ class DeliveryFlowIntegrationTest extends PostgresIntegrationTest {
                 .andExpect(jsonPath("$.handoverCode").doesNotExist());
         mvc.perform(get("/v1/delivery/track/inconnu")).andExpect(status().isNotFound());
 
+        // 5 bis. Note du destinataire depuis son lien (sans connexion) : 1 à 5 étoiles, modifiable.
+        postJson("/v1/delivery/track/" + token + "/rating", null, "{\"stars\":6}").andExpect(status().isUnprocessableContent());
+        postJson("/v1/delivery/track/" + token + "/rating", null, "{\"stars\":2,\"comment\":\"Livreur en retard\"}")
+                .andExpect(status().isOk()).andExpect(jsonPath("$.rating.stars").value(2))
+                .andExpect(jsonPath("$.rating.open").value(true));
+        postJson("/v1/delivery/track/" + token + "/rating", null, "{\"stars\":4}")
+                .andExpect(status().isOk()).andExpect(jsonPath("$.rating.stars").value(4));
+        mvc.perform(get(url(id, null)).with(vendeur)).andExpect(jsonPath("$.rating.stars").value(4));
+
         // 6. Un message WhatsApp par étape (création, en route, livré), une seule fois malgré le double envoi.
         //    Ici sans jeton WhatsApp : rien ne part, et le vendeur le voit (DISABLED).
         String notices = "";
@@ -191,6 +200,9 @@ class DeliveryFlowIntegrationTest extends PostgresIntegrationTest {
                 .andExpect(jsonPath("$.dropoffRequest.state").value("TO_CONFIRM"))
                 .andExpect(jsonPath("$.dropoffRequest.editable").value(true))
                 .andExpect(jsonPath("$.dropoffRequest.maxShiftMeters").value(3000));
+        // Pas de note avant la remise du colis.
+        postJson("/v1/delivery/track/" + token + "/rating", null, "{\"stars\":5}")
+                .andExpect(status().isConflict()).andExpect(jsonPath("$.code").value("rating-closed"));
 
         // Sans connexion, depuis le lien : trop loin, puis le bon lieu.
         postJson("/v1/delivery/track/" + token + "/dropoff", null, "{\"lat\":4.13,\"lng\":9.75}")

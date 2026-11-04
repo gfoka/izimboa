@@ -73,6 +73,14 @@ class DeliveryController {
         return service.confirmDropoff(token, new GeoPoint(body.lat(), body.lng()), body.landmark());
     }
 
+    record RatingRequest(int stars, @Size(max = 500) String comment) {}
+
+    /** Le destinataire note la livraison depuis son lien de suivi, sans connexion (décision 75). */
+    @PostMapping("/track/{token}/rating")
+    DeliveryViews.TrackingView rate(@PathVariable @Size(max = 32) String token, @Valid @RequestBody RatingRequest body) {
+        return service.rate(token, body.stars(), body.comment());
+    }
+
     @PostMapping("/deliveries/{id}/cancel")
     DeliveryViews.DeliveryView cancel(@PathVariable UUID id, @Valid @RequestBody(required = false) ReasonRequest body,
                                       CurrentUser user) {

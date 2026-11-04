@@ -25,4 +25,10 @@ public interface WhatsAppMessages {
     }
 
     Result send(Template template);
+
+    /**
+     * Message libre (texte simple), permis seulement dans les 24 heures qui suivent un message du client
+     * (réponse automatique, décision 75).
+     */
+    Result sendText(String to, String body);
 }

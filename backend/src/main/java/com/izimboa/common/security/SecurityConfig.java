@@ -32,7 +32,9 @@ public class SecurityConfig {
                 .requestMatchers("/actuator/health/**", "/actuator/info").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .requestMatchers(HttpMethod.GET, "/v1/delivery/zones", "/v1/delivery/tariffs", "/v1/delivery/track/*", "/v1/delivery/track/*/courier-position", "/v1/delivery/track/*/trace", "/v1/delivery/places").permitAll()
-                .requestMatchers(HttpMethod.POST, "/v1/delivery/quotes", "/v1/mobile/reports", "/v1/contact-requests", "/v1/delivery/track/*/dropoff").permitAll()
+                .requestMatchers(HttpMethod.POST, "/v1/delivery/quotes", "/v1/mobile/reports", "/v1/contact-requests", "/v1/delivery/track/*/dropoff", "/v1/delivery/track/*/rating").permitAll()
+                // Webhook Meta (WhatsApp) : authentifié par la signature HMAC du corps, pas par un jeton (décision 75).
+                .requestMatchers("/v1/whatsapp/webhook").permitAll()
                 .requestMatchers("/actuator/**").hasRole("admin")
                 .anyRequest().authenticated())
             .oauth2ResourceServer(o -> o.jwt(jwt -> jwt.jwtAuthenticationConverter(new KeycloakJwtConverter())));

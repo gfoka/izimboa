@@ -33,8 +33,11 @@ class RecipientMessagesTest {
         assertThat(route.name()).isEqualTo("izimboa_livraison_en_route");
         assertThat(route.body()).isEqualTo(List.of("Awa Ngo", "Chaussures", "2 500 FCFA"));
         var done = RecipientMessages.of(notice(Kind.DELIVERED, "Chaussures", 2500, false));
-        assertThat(done.name()).isEqualTo("izimboa_colis_livre");
-        assertThat(done.urlSuffix()).isNull();
+        assertThat(done.name()).isEqualTo("izimboa_livraison_livree");
+        assertThat(done.urlSuffix()).isEqualTo("tok123");
+        var old = RecipientMessages.deliveredFallback(notice(Kind.DELIVERED, "Chaussures", 2500, false));
+        assertThat(old.name()).isEqualTo("izimboa_colis_livre");
+        assertThat(old.urlSuffix()).isNull();
     }
 
     @Test

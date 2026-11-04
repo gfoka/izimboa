@@ -33,11 +33,14 @@ public class OnboardingService {
     private final IdentityAdmin identity;
     private final Clock clock;
     private final com.izimboa.delivery.courier.CourierService couriers;
+    private final com.izimboa.delivery.core.DeliveryLookup deliveries;
 
     OnboardingService(CourierProfileRepository profiles, CourierDocumentRepository documents, DocumentImageRepository images,
                       DocumentTypeRepository types, IdentityAdmin identity, Clock clock,
-                      com.izimboa.delivery.courier.CourierService couriers) {
+                      com.izimboa.delivery.courier.CourierService couriers,
+                      com.izimboa.delivery.core.DeliveryLookup deliveries) {
         this.couriers = couriers;
+        this.deliveries = deliveries;
         this.profiles = profiles;
         this.documents = documents;
         this.images = images;
@@ -139,10 +142,13 @@ public class OnboardingService {
             rows = profiles.findTop200ByStatusOrderByUpdatedAtDesc(parseStatus(status));
         }
         var allTypes = types.findAllByOrderByPositionAscIdAsc();
+        var stats = deliveries.ratingsByCourier(rows.stream().map(CourierProfile::getUserId).toList());
         return rows.stream().map(p -> {
             var a = assess(p, allTypes);
+            var r = stats.get(p.getUserId());
             return new OnboardingViews.ProfileSummary(p.getUserId(), p.displayName(), p.getPhone(), p.getStatus().name(),
-                    p.getSubmittedAt(), p.getUpdatedAt(), documents.existsByUserIdAndReviewedFalse(p.getUserId()), a.missing());
+                    p.getSubmittedAt(), p.getUpdatedAt(), documents.existsByUserIdAndReviewedFalse(p.getUserId()), a.missing(),
+                    r == null ? null : r.average(), r == null ? 0 : r.count());
         }).toList();
     }
 
@@ -150,6 +156,7 @@ public class OnboardingService {
     public OnboardingViews.ProfileDetail detail(UUID userId) {
         var p = profiles.findById(userId).orElseThrow(OnboardingService::notFound);
         var a = assess(p);
+        var rating = deliveries.ratingsByCourier(List.of(userId)).get(userId);
         var warnings = new java.util.ArrayList<String>();
         var byType = types.findAllByOrderByPositionAscIdAsc().stream().collect(Collectors.toMap(DocumentType::getId, t -> t));
         for (var d : documents.findByUserId(userId)) {
@@ -163,7 +170,8 @@ public class OnboardingService {
         }
         return new OnboardingViews.ProfileDetail(p.getUserId(), p.getFirstName(), p.getLastName(), p.getEmail(), p.getPhone(),
                 p.getStatus().name(), p.getStatusReason(), p.getSubmittedAt(), p.getReviewedAt(), p.getCreatedAt(),
-                a.documents(), warnings, a.complete(), a.canWork());
+                a.documents(), warnings, a.complete(), a.canWork(),
+                rating == null ? null : rating.average(), rating == null ? 0 : rating.count());
     }
 
     @Transactional(readOnly = true)

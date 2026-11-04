@@ -82,6 +82,7 @@ function CourierFile() {
           <p className="muted">
             {c.phone ? formatPhone(c.phone) : "Sans numéro"}{c.email ? ` · ${c.email}` : ""}
             {c.submittedAt ? ` · envoyé le ${formatDateTime(c.submittedAt)}` : ""}
+            {c.ratingCount > 0 ? ` · ★ ${c.ratingAverage?.toFixed(1)} sur ${c.ratingCount} avis` : ""}
           </p>
         </div>
         <FileBadge status={c.status} />

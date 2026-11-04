@@ -16,6 +16,11 @@ if [ ! -f .env ]; then
   echo "Fichier .env créé avec de nouveaux mots de passe."
 fi
 
+# Jeton de vérification du webhook WhatsApp (décision 75) : créé une fois, sur le serveur.
+if ! grep -q '^WHATSAPP_VERIFY_TOKEN=' .env; then
+  (umask 077; echo "WHATSAPP_VERIFY_TOKEN=$(openssl rand -hex 24)" >> .env)
+fi
+
 # 2. Services (apps/ : applications web statiques, déposées par leurs propres workflows)
 mkdir -p apps/delivery
 docker compose pull --quiet caddy postgres keycloak
@@ -176,3 +181,22 @@ ls backups/izimboa-"$(date +%F)"-*.sql.gz > /dev/null 2>&1 || ./backup.sh
 
 docker image prune -f > /dev/null
 docker compose ps
+
+# Webhook WhatsApp (décision 75) : Meta envoie à l'API les messages des clients et les accusés (distribué, lu, échec).
+# Idempotent : l'abonnement de l'application est reconfirmé à chaque déploiement (Meta vérifie l'adresse à cet instant).
+if grep -q '^WHATSAPP_APP_SECRET=.' .env && grep -q '^WHATSAPP_TOKEN=.' .env; then
+  set -a; . ./.env; set +a
+  for _ in $(seq 1 30); do
+    [ "$(curl -s -o /dev/null -w '%{http_code}' 'https://api.izimboa.com/v1/whatsapp/webhook?hub.mode=subscribe&hub.verify_token=x&hub.challenge=1')" = "403" ] && break
+    sleep 5
+  done
+  sub=$(curl -s -X POST "https://graph.facebook.com/v21.0/3769090063229208/subscriptions" \
+    --data-urlencode "access_token=3769090063229208|$WHATSAPP_APP_SECRET" \
+    -d object=whatsapp_business_account -d fields=messages \
+    --data-urlencode "callback_url=https://api.izimboa.com/v1/whatsapp/webhook" \
+    --data-urlencode "verify_token=$WHATSAPP_VERIFY_TOKEN")
+  waba=$(curl -s -X POST "https://graph.facebook.com/v21.0/112090771912051/subscribed_apps" -H "Authorization: Bearer $WHATSAPP_TOKEN")
+  echo "::notice title=webhook whatsapp::abonnement de l'application : $sub ; compte WhatsApp : $waba"
+else
+  echo "::notice title=webhook whatsapp::secret de l'application Meta absent : webhook non branché"
+fi

@@ -24,7 +24,20 @@ final class DeliveryViews {
                         String recipientPhone, String packageDescription, boolean express, BigDecimal distanceKm,
                         PricingView pricing, String handoverCode, int handoverFailures, UUID courierId,
                         int deliveryAttempts, Instant createdAt, Instant updatedAt, List<EventView> timeline,
-                        String dropoffState, List<RecipientNotifier.NoticeView> recipientNotices) {}
+                        String dropoffState, List<RecipientNotifier.NoticeView> recipientNotices, RatingView rating) {}
+
+    /** Note du destinataire ; {@code open} : il peut noter (ou changer sa note) maintenant. */
+    record RatingView(Integer stars, String comment, boolean open) {}
+
+    /** Durée pendant laquelle le destinataire peut noter la livraison après la remise. */
+    static final java.time.Duration RATING_WINDOW = java.time.Duration.ofDays(7);
+
+    static RatingView rating(Delivery d, DeliveryRating r, Instant now) {
+        Instant done = d.getStatus() == DeliveryStatus.DELIVERED ? d.finishedAt() : null;
+        boolean open = done != null && now.isBefore(done.plus(RATING_WINDOW));
+        if (r == null && !open) return null;
+        return new RatingView(r == null ? null : r.getStars(), r == null ? null : r.getComment(), open);
+    }
 
     record DeliverySummary(UUID id, String reference, DeliveryStatus status, String dropoffAddress,
                            String recipientName, boolean express, long codAmount, long totalFee,
@@ -36,7 +49,7 @@ final class DeliveryViews {
      */
     record TrackingView(String reference, DeliveryStatus status, boolean express, String dropoffLandmark,
                         long amountToPay, String currency, List<EventView> timeline, DropoffRequest dropoffRequest,
-                        String handoverCode) {}
+                        String handoverCode, RatingView rating) {}
 
     /**
      * Pour le destinataire qui doit indiquer le lieu (sinon null) : le point actuel (quartier du vendeur ou lieu
@@ -48,7 +61,8 @@ final class DeliveryViews {
      * {@code forSender} : vendeur ou opérateur. Le livreur ne voit ni le code de remise, ni le lien de suivi
      * (qui l'affiche), ni les messages envoyés au destinataire.
      */
-    static DeliveryView full(Delivery d, String trackingBaseUrl, boolean forSender, List<RecipientNotifier.NoticeView> notices) {
+    static DeliveryView full(Delivery d, String trackingBaseUrl, boolean forSender, List<RecipientNotifier.NoticeView> notices,
+                             RatingView rating) {
         boolean showHandoverCode = forSender;
         return new DeliveryView(d.getId(), d.getReference(), d.getStatus(),
                 forSender ? trackingBaseUrl + d.getTrackingToken() : null,
@@ -61,7 +75,7 @@ final class DeliveryViews {
                         d.getTotalFee(), d.getFeePayment(), d.getReturnFee(), d.sellerPayout()),
                 showHandoverCode ? d.getHandoverCode() : null, d.getHandoverFailures(), d.getCourierId(),
                 d.getDeliveryAttempts(), d.getCreatedAt(), d.getUpdatedAt(), timeline(d), d.dropoffState(),
-                forSender ? notices : List.of());
+                forSender ? notices : List.of(), rating);
     }
 
     static DeliverySummary summary(Delivery d) {
@@ -70,13 +84,13 @@ final class DeliveryViews {
                 d.getCreatedAt(), d.getUpdatedAt(), d.dropoffState());
     }
 
-    static TrackingView tracking(Delivery d) {
+    static TrackingView tracking(Delivery d, RatingView rating) {
         DropoffRequest request = d.isDropoffByClient()
                 ? new DropoffRequest(d.dropoffState(), d.isDropoffEditableByClient(), d.getDropoffLat(), d.getDropoffLng(),
                         d.getDropoffAddress(), (int) Delivery.MAX_CLIENT_DROPOFF_SHIFT_M)
                 : null;
         return new TrackingView(d.getReference(), d.getStatus(), d.isExpress(), d.getDropoffLandmark(),
-                d.getCodAmount(), "XAF", timeline(d), request, d.getStatus().isFinal() ? null : d.getHandoverCode());
+                d.getCodAmount(), "XAF", timeline(d), request, d.getStatus().isFinal() ? null : d.getHandoverCode(), rating);
     }
 
     private static List<EventView> timeline(Delivery d) {

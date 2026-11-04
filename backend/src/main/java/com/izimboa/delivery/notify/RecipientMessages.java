@@ -10,7 +10,10 @@ final class RecipientMessages {
     static final String CREATED = "izimboa_livraison_creee";
     static final String CREATED_ASK_DROPOFF = "izimboa_livraison_lieu";
     static final String IN_TRANSIT = "izimboa_livraison_en_route";
-    static final String DELIVERED = "izimboa_colis_livre";
+    /** « Livré » avec le bouton « Noter la livraison » (décision 75). */
+    static final String DELIVERED = "izimboa_livraison_livree";
+    /** Ancien modèle « livré », sans bouton, utilisé tant que le nouveau n'est pas validé par Meta. */
+    static final String DELIVERED_FALLBACK = "izimboa_colis_livre";
 
     private RecipientMessages() {}
 
@@ -26,8 +29,13 @@ final class RecipientMessages {
                     : new Template(n.recipientPhone(), CREATED, LANGUAGE,
                             List.of(name, pkg, n.reference(), amount), n.trackingToken());
             case IN_TRANSIT -> new Template(n.recipientPhone(), IN_TRANSIT, LANGUAGE, List.of(name, pkg, amount), n.trackingToken());
-            case DELIVERED -> new Template(n.recipientPhone(), DELIVERED, LANGUAGE, List.of(name, pkg), null);
+            case DELIVERED -> new Template(n.recipientPhone(), DELIVERED, LANGUAGE, List.of(name, pkg), n.trackingToken());
         };
+    }
+
+    static Template deliveredFallback(RecipientNotice n) {
+        var t = of(n);
+        return new Template(t.to(), DELIVERED_FALLBACK, LANGUAGE, t.body(), null);
     }
 
     /** 15000 → « 15 000 FCFA » ; rien à payer → phrase explicite. */

@@ -33,9 +33,16 @@ class WhatsAppConfig {
                                       @Value("${izimboa.whatsapp.api-base:https://graph.facebook.com/v21.0}") String apiBase) {
         if (token == null || token.isBlank()) {
             log.warn("WhatsApp désactivé : WHATSAPP_TOKEN absent (les notifications ne sont pas envoyées).");
-            return t -> {
-                log.info("WhatsApp (non envoyé) : modèle {} à {}", t.name(), mask(t.to()));
-                return Result.disabled();
+            return new WhatsAppMessages() {
+                @Override public Result send(WhatsAppMessages.Template t) {
+                    log.info("WhatsApp (non envoyé) : modèle {} à {}", t.name(), mask(t.to()));
+                    return Result.disabled();
+                }
+
+                @Override public Result sendText(String to, String body) {
+                    log.info("WhatsApp (non envoyé) : texte à {}", mask(to));
+                    return Result.disabled();
+                }
             };
         }
         var timeouts = new SimpleClientHttpRequestFactory();
@@ -43,22 +50,37 @@ class WhatsAppConfig {
         timeouts.setReadTimeout(Duration.ofSeconds(15));
         RestClient http = RestClient.builder().baseUrl(apiBase).requestFactory(timeouts)
                 .defaultHeader("Authorization", "Bearer " + token).build();
-        return t -> {
-            try {
-                Map<?, ?> res = http.post().uri("/{id}/messages", phoneNumberId).contentType(MediaType.APPLICATION_JSON)
-                        .body(payload(t)).retrieve().body(Map.class);
-                String id = messageId(res);
-                log.info("WhatsApp envoyé : modèle {} à {} ({})", t.name(), mask(t.to()), id);
-                return new Result(Status.SENT, id, null);
-            } catch (RestClientResponseException e) {
-                String error = shorten(e.getStatusCode().value() + " " + e.getResponseBodyAsString());
-                log.error("WhatsApp refusé : modèle {} à {} : {}", t.name(), mask(t.to()), error);
-                return new Result(Status.FAILED, null, error);
-            } catch (Exception e) {
-                log.error("WhatsApp en échec : modèle {} à {} : {}", t.name(), mask(t.to()), e.getMessage());
-                return new Result(Status.FAILED, null, shorten(String.valueOf(e.getMessage())));
+        return new WhatsAppMessages() {
+            @Override public Result send(WhatsAppMessages.Template t) {
+                return post(http, phoneNumberId, payload(t), "modèle " + t.name(), t.to());
+            }
+
+            @Override public Result sendText(String to, String body) {
+                var payload = new LinkedHashMap<String, Object>();
+                payload.put("messaging_product", "whatsapp");
+                payload.put("to", to.replace("+", ""));
+                payload.put("type", "text");
+                payload.put("text", Map.of("body", body, "preview_url", false));
+                return post(http, phoneNumberId, payload, "texte", to);
             }
         };
+    }
+
+    private static Result post(RestClient http, String phoneNumberId, Map<String, Object> body, String what, String to) {
+        try {
+            Map<?, ?> res = http.post().uri("/{id}/messages", phoneNumberId).contentType(MediaType.APPLICATION_JSON)
+                    .body(body).retrieve().body(Map.class);
+            String id = messageId(res);
+            log.info("WhatsApp envoyé : {} à {} ({})", what, mask(to), id);
+            return new Result(Status.SENT, id, null);
+        } catch (RestClientResponseException e) {
+            String error = shorten(e.getStatusCode().value() + " " + e.getResponseBodyAsString());
+            log.error("WhatsApp refusé : {} à {} : {}", what, mask(to), error);
+            return new Result(Status.FAILED, null, error);
+        } catch (Exception e) {
+            log.error("WhatsApp en échec : {} à {} : {}", what, mask(to), e.getMessage());
+            return new Result(Status.FAILED, null, shorten(String.valueOf(e.getMessage())));
+        }
     }
 
     /** Corps attendu par l'API Cloud pour un message à modèle (texte à variables, bouton lien facultatif). */

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { LiveMap, type LivePosition, type TracePoint } from "@/components/LiveMap";
 import { DropoffAsk } from "@/components/DropoffAsk";
 import { Logo } from "@/components/Logo";
+import { RatingBox } from "@/components/RatingBox";
 import { Progress, Timeline } from "@/components/Status";
 import { api, ApiError, type Tracking } from "@/lib/api";
 import { FINAL, fcfa, STATUS } from "@/lib/format";
@@ -77,6 +78,7 @@ export default function TrackingPage() {
           <>
             <p className="eyebrow">Colis {t.reference}{t.express && <span className="chip-express">Express</span>}</p>
             <h1 className="track-status">{headline(t)}</h1>
+            {t.rating && token && <RatingBox token={token} rating={t.rating} onSaved={setT} />}
             {t.dropoffRequest?.editable && token && (
               <DropoffAsk token={token} request={t.dropoffRequest} onSaved={setT} />
             )}
