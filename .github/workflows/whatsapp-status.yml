@@ -1,0 +1,25 @@
+# Lecture seule : état du numéro WhatsApp Izimboa chez Meta (nom affiché, examen, qualité, profil).
+name: État WhatsApp
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    env:
+      PHONE_ID: "112115108576086"
+      GRAPH: https://graph.facebook.com/v21.0
+      WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
+    steps:
+      - name: Numéro et nom affiché
+        run: |
+          r=$(curl -s -G "$GRAPH/$PHONE_ID" -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+            --data-urlencode 'fields=display_phone_number,verified_name,name_status,new_name_status,new_display_name,quality_rating,messaging_limit_tier,status,account_mode')
+          echo "::notice title=numéro::$(echo "$r" | jq -c .)"
+          p=$(curl -s -G "$GRAPH/$PHONE_ID/whatsapp_business_profile" -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+            --data-urlencode 'fields=about,description,email,websites,vertical,profile_picture_url')
+          echo "::notice title=profil::$(echo "$p" | jq -c '.data[0] | .profile_picture_url |= (if . then "présente" else "absente" end)')"
