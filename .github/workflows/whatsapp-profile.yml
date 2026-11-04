@@ -1,4 +1,5 @@
-# Met à jour la photo de profil du numéro WhatsApp Izimboa (infra/whatsapp/profile/izimboa-profil.png) par l'API.
+# Met à jour le profil du numéro WhatsApp Izimboa par l'API : textes (infra/whatsapp/profile/profile.json)
+# et photo (infra/whatsapp/profile/izimboa-profil.png).
 name: Profil WhatsApp
 
 on:
@@ -17,6 +18,14 @@ jobs:
       WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+      - name: Textes du profil
+        run: |
+          r=$(curl -s -X POST "$GRAPH/$PHONE_ID/whatsapp_business_profile" -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+            -H 'Content-Type: application/json' --data @infra/whatsapp/profile/profile.json)
+          echo "::notice title=textes::$(echo "$r" | jq -c '{success, error: (.error.error_user_msg // .error.message)}')"
+          p=$(curl -s -G "$GRAPH/$PHONE_ID/whatsapp_business_profile" -H "Authorization: Bearer $WHATSAPP_TOKEN" \
+            --data-urlencode 'fields=about,description,email,websites,vertical')
+          echo "::notice title=profil actuel::$(echo "$p" | jq -c '.data[0]')"
       - name: Photo de profil
         run: |
           f=infra/whatsapp/profile/izimboa-profil.png
