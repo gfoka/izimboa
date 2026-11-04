@@ -1,0 +1,50 @@
+# Diagnostic manuel : réenregistre un compte tel quel par l'API d'administration (comme le fait l'API Izimboa)
+# et affiche seulement le code et le message d'erreur de Keycloak. Aucune donnée personnelle affichée.
+name: Diagnostic Keycloak
+
+on:
+  workflow_dispatch:
+    inputs:
+      user_id:
+        description: "Identifiant Keycloak du compte"
+        required: true
+
+permissions:
+  contents: read
+
+env:
+  VPS_HOST: 212.47.78.167
+  VPS_USER: deploy
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Réenregistrer le compte
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          USER_ID: ${{ inputs.user_id }}
+        run: |
+          [[ "$USER_ID" =~ ^[0-9a-f-]{36}$ ]] || { echo "::error::identifiant invalide"; exit 1; }
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+          cp infra/vps/known_hosts ~/.ssh/known_hosts
+          ssh "$VPS_USER@$VPS_HOST" "USER_ID=$USER_ID bash -s" <<'SH'
+          cd /srv/izimboa
+          sec=$(sudo grep '^KEYCLOAK_API_CLIENT_SECRET=' .env | cut -d= -f2-)
+          KC=https://auth.izimboa.com
+          tok=$(curl -s -d grant_type=client_credentials -d client_id=izimboa-api --data-urlencode "client_secret=$sec" \
+            $KC/realms/izimboa/protocol/openid-connect/token | python3 -c 'import json,sys; print(json.load(sys.stdin)["access_token"])')
+          A="Authorization: Bearer $tok"
+          curl -s -H "$A" "$KC/admin/realms/izimboa/users/$USER_ID" > /tmp/u.json
+          python3 -c 'import json; u=json.load(open("/tmp/u.json")); print("champs :", sorted(u.keys())); print("attributs :", sorted((u.get("attributes") or {}).keys())); print("e-mail présent :", bool(u.get("email")))'
+          echo "--- PUT complet (comme aujourd'hui) ---"
+          curl -s -o /tmp/r1 -w 'HTTP %{http_code}\n' -X PUT -H "$A" -H 'Content-Type: application/json' --data @/tmp/u.json "$KC/admin/realms/izimboa/users/$USER_ID"; cat /tmp/r1; echo
+          echo "--- PUT réduit (id, username, noms, e-mail, attributs) ---"
+          python3 -c 'import json; u=json.load(open("/tmp/u.json")); print(json.dumps({k:u[k] for k in ("id","username","firstName","lastName","email","emailVerified","enabled","attributes") if k in u}))' > /tmp/u2.json
+          curl -s -o /tmp/r2 -w 'HTTP %{http_code}\n' -X PUT -H "$A" -H 'Content-Type: application/json' --data @/tmp/u2.json "$KC/admin/realms/izimboa/users/$USER_ID"; cat /tmp/r2; echo
+          echo "--- Profil utilisateur : règles de l'e-mail et des noms ---"
+          curl -s -H "$A" "$KC/admin/realms/izimboa/users/profile" | python3 -c 'import json,sys; p=json.load(sys.stdin); [print(a["name"], "required=", a.get("required"), "validations=", list((a.get("validations") or {}).keys()), "edit=", (a.get("permissions") or {}).get("edit")) for a in p["attributes"]]'
+          rm -f /tmp/u.json /tmp/u2.json /tmp/r1 /tmp/r2
+          SH
