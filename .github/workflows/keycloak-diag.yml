@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       user_id:
-        description: "Identifiant Keycloak du compte"
+        description: "Identifiant Keycloak du compte, ou « sans-email » (premier compte sans e-mail)"
         required: true
 
 permissions:
@@ -26,7 +26,7 @@ jobs:
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           USER_ID: ${{ inputs.user_id }}
         run: |
-          [[ "$USER_ID" =~ ^[0-9a-f-]{36}$ ]] || { echo "::error::identifiant invalide"; exit 1; }
+          [[ "$USER_ID" =~ ^([0-9a-f-]{36}|sans-email)$ ]] || { echo "::error::identifiant invalide"; exit 1; }
           install -m 700 -d ~/.ssh
           printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
           cp infra/vps/known_hosts ~/.ssh/known_hosts
@@ -37,8 +37,12 @@ jobs:
           tok=$(curl -s -d grant_type=client_credentials -d client_id=izimboa-api --data-urlencode "client_secret=$sec" \
             $KC/realms/izimboa/protocol/openid-connect/token | python3 -c 'import json,sys; print(json.load(sys.stdin)["access_token"])')
           A="Authorization: Bearer $tok"
+          if [ "$USER_ID" = "sans-email" ]; then
+            USER_ID=$(curl -s -H "$A" "$KC/admin/realms/izimboa/users?max=200&briefRepresentation=true" | python3 -c 'import json,sys; l=[u["id"] for u in json.load(sys.stdin) if not u.get("email") and u.get("username","").startswith("tel-")]; print(l[0] if l else "")')
+            echo "compte sans e-mail : ${USER_ID:-aucun}"; [ -n "$USER_ID" ] || exit 0
+          fi
           curl -s -H "$A" "$KC/admin/realms/izimboa/users/$USER_ID" > /tmp/u.json
-          python3 -c 'import json; u=json.load(open("/tmp/u.json")); print("champs :", sorted(u.keys())); print("attributs :", sorted((u.get("attributes") or {}).keys())); print("e-mail présent :", bool(u.get("email")))'
+          python3 -c 'import json; u=json.load(open("/tmp/u.json")); print("champs :", sorted(u.keys())); print("attributs :", sorted((u.get("attributes") or {}).keys())); print("e-mail :", repr(u.get("email","(absent)"))[:3] if u.get("email") else repr(u.get("email","(absent)"))); print("prénom présent :", bool(u.get("firstName")))'
           echo "--- PUT complet (comme aujourd'hui) ---"
           curl -s -o /tmp/r1 -w 'HTTP %{http_code}\n' -X PUT -H "$A" -H 'Content-Type: application/json' --data @/tmp/u.json "$KC/admin/realms/izimboa/users/$USER_ID"; cat /tmp/r1; echo
           echo "--- PUT réduit (id, username, noms, e-mail, attributs) ---"
