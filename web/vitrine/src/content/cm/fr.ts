@@ -25,6 +25,7 @@ const fr: Dict = {
     privacy: "Confidentialité",
     sellerSpace: "Espace vendeur",
     rights: "Tous droits réservés.",
+    phoneLabel: "Téléphone",
   },
   home: {
     meta: {
@@ -89,7 +90,7 @@ const fr: Dict = {
       photo: "moto",
       stepsTitle: "Comment ça marche",
       steps: [
-        { title: "Créez votre compte vendeur", text: "Gratuit, en deux minutes, avec votre e-mail ou Google. Aucun abonnement : vous payez seulement les courses." },
+        { title: "Créez votre compte vendeur", text: "Gratuit, en deux minutes, avec un code reçu sur WhatsApp ou votre e-mail. Aucun abonnement : vous payez seulement les courses." },
         { title: "Commandez une livraison", text: "Placez le départ et l'arrivée sur la carte, ajoutez un repère du quartier. Le prix s'affiche avant de valider." },
         { title: "Un livreur arrive", text: "Le livreur Izimboa disponible le plus proche accepte la course. Vous le voyez venir sur la carte." },
         { title: "Votre client suit, vous êtes payé", text: "Votre client reçoit un lien de suivi par WhatsApp et un code de remise. L'argent encaissé vous est reversé le jour même." },
@@ -117,6 +118,28 @@ const fr: Dict = {
         subject: "Izimboa Delivery - vendeur partenaire",
       },
       app: { button: "Créer mon compte vendeur", team: "Offre entreprise" },
+      join: {
+        title: "Rejoignez Izimboa Delivery",
+        lead: "Deux façons de travailler avec nous, et chacun crée son compte seul, en quelques minutes.",
+        heroCourier: "Devenir livreur",
+        businessLink: "Entreprise avec beaucoup de colis ? Demandez une offre sur mesure",
+        cards: [
+          {
+            target: "app",
+            title: "J'ai des colis à envoyer",
+            text: "Vendeur sur WhatsApp, Facebook ou Instagram, boutique, restaurant, entreprise : créez votre compte et commandez votre première livraison aujourd'hui.",
+            points: ["Inscription gratuite, sans abonnement", "Connexion par un code reçu sur WhatsApp", "Prix affiché avant de commander"],
+            button: "Créer mon compte vendeur",
+          },
+          {
+            target: "courier",
+            title: "Je veux devenir livreur",
+            text: "Vous avez une moto et un smartphone Android ? Recevez des courses près de vous, quand vous le voulez, et gardez 65 % de chaque course.",
+            points: ["Inscription gratuite dans l'application", "Vous choisissez vos heures", "Votre gain s'affiche avant d'accepter"],
+            button: "Devenir livreur",
+          },
+        ],
+      },
       business: {
         title: "Entreprises : parlons de vos livraisons",
         lead: "Boutique en ligne, restaurant, pharmacie, grossiste… Laissez vos coordonnées : nous vous rappelons sous un jour ouvré avec une offre adaptée à votre volume.",
@@ -324,6 +347,7 @@ const fr: Dict = {
     ],
     directTitle: "Nous joindre directement",
     emailLabel: "E-mail",
+    phoneLabel: "Téléphone",
     whatsappLabel: "WhatsApp",
     responseNote: "Nous répondons aux messages du lundi au samedi.",
   },

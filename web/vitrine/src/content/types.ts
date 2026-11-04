@@ -32,6 +32,41 @@ export type ProductContent = {
   heroSecondary?: { label: string; href: string };
   /** Ligne sous l'accroche : destinations couvertes, public visé. */
   heroPoints?: string[];
+  /** Deux portes d'entrée : envoyer des colis (espace vendeur) ou devenir livreur (page dédiée). */
+  join?: JoinBlock;
+};
+
+export type JoinBlock = {
+  title: string;
+  lead: string;
+  heroCourier: string;
+  businessLink: string;
+  cards: { target: "app" | "courier"; title: string; text: string; points: string[]; button: string }[];
+};
+
+/** Page « Devenir livreur » (sous-page de la livraison). */
+export type CourierPage = {
+  slug: string;
+  meta: Meta;
+  navLabel: string;
+  h1: string;
+  lead: string;
+  heroPoints: string[];
+  playButton: string;
+  playNote: string;
+  whyTitle: string;
+  why: Item[];
+  needsTitle: string;
+  needs: string[];
+  stepsTitle: string;
+  steps: Item[];
+  faqTitle: string;
+  faq: Faq[];
+  ctaTitle: string;
+  ctaText: string;
+  sellerTitle: string;
+  sellerText: string;
+  sellerButton: string;
 };
 
 export type BusinessForm = {
@@ -85,6 +120,7 @@ export type Dict = {
     privacy: string;
     sellerSpace: string;
     rights: string;
+    phoneLabel: string;
   };
   home: {
     meta: Meta;
@@ -124,6 +160,7 @@ export type Dict = {
     channels: { title: string; text: string; subject: string; button: string }[];
     directTitle: string;
     emailLabel: string;
+    phoneLabel: string;
     whatsappLabel: string;
     responseNote: string;
   };

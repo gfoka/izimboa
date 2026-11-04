@@ -1,13 +1,14 @@
 import type { ReactNode } from "react";
 import { CONTACT_EMAIL, PRODUCT_APPS, PRODUCT_COLORS, PRODUCT_DARK, PRODUCT_KEYS, type Lang, type ProductKey } from "@/config/site";
-import { pathFor } from "@/config/routes";
+import { pathFor, subPathFor } from "@/config/routes";
+import { COURIER_PAGE } from "@/content/cm/courier";
 import type { Dict } from "@/content/types";
 import { Photo, PhotoCredit } from "@/components/Photo";
 import { ProductSymbol } from "@/components/Logo";
 import { Icon } from "@/components/Icon";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
-import { serviceLd } from "@/lib/seo";
+import { faqLd, serviceLd } from "@/lib/seo";
 import { BusinessForm } from "@/components/BusinessForm";
 import { TrackedLink } from "@/components/TrackedLink";
 
@@ -17,10 +18,11 @@ export function ProductView({ country, lang, dict, product, extra }: { country: 
   const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(p.cta.subject)}`;
   const appUrl = PRODUCT_APPS[product].live && p.app ? PRODUCT_APPS[product].url : null;
   const teamHref = p.business ? "#entreprises" : p.testAnchor ? "#test" : mailto;
+  const courierHref = product === "delivery" && country === "cm" ? subPathFor(country, lang, "delivery", COURIER_PAGE[lang].slug) : null;
 
   return (
     <div style={{ ["--accent" as string]: color, ["--accent-strong" as string]: PRODUCT_DARK[product] }}>
-      <JsonLd data={serviceLd(country, lang, product, p)} />
+      <JsonLd data={[serviceLd(country, lang, product, p), faqLd(p.faq)]} />
       <Breadcrumbs
         label={dict.common.home}
         items={[
@@ -47,9 +49,15 @@ export function ProductView({ country, lang, dict, product, extra }: { country: 
                 <a className="btn btn-accent" href={appUrl}>
                   {p.app.button}
                 </a>
-                <a className="btn btn-outline" href={teamHref}>
-                  {p.app.team}
-                </a>
+                {p.join && courierHref ? (
+                  <TrackedLink className="btn btn-outline" href={courierHref} cta={`${product}_hero_courier`}>
+                    {p.join.heroCourier}
+                  </TrackedLink>
+                ) : (
+                  <a className="btn btn-outline" href={teamHref}>
+                    {p.app.team}
+                  </a>
+                )}
               </>
             ) : (
               <>
@@ -79,6 +87,45 @@ export function ProductView({ country, lang, dict, product, extra }: { country: 
           </figcaption>
         </figure>
       </section>
+
+      {p.join && (
+        <section id="rejoindre" className="section" aria-labelledby="rejoindre-titre">
+          <div className="container">
+            <h2 id="rejoindre-titre" className="section-title">{p.join.title}</h2>
+            <p className="section-lead">{p.join.lead}</p>
+            <ul className="join-grid">
+              {p.join.cards.map((card) => {
+                const href = card.target === "app" ? appUrl : courierHref;
+                if (!href) return null;
+                return (
+                  <li key={card.target} className={`join-card join-${card.target}`}>
+                    <h3>{card.title}</h3>
+                    <p>{card.text}</p>
+                    <ul className="biz-points">
+                      {card.points.map((pt) => (
+                        <li key={pt}>
+                          <span className="feature-check">
+                            <Icon name="check" />
+                          </span>
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <TrackedLink className={card.target === "app" ? "btn btn-accent" : "btn btn-navy"} href={href} cta={`${product}_join_${card.target}`}>
+                      {card.button} <Icon name="arrow" />
+                    </TrackedLink>
+                  </li>
+                );
+              })}
+            </ul>
+            {p.business && (
+              <p className="join-business">
+                <a href="#entreprises">{p.join.businessLink}</a>
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
       {extra}
 

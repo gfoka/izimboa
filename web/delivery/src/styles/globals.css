@@ -341,3 +341,8 @@ legend.card-title + * { clear: both; }
 .stars-static { font-size: 1.8rem; color: var(--sun); letter-spacing: 2px; }
 .stars-static span { color: var(--line); }
 .rating-card .field { width: 100%; text-align: left; }
+
+/* Pied de page : aide (téléphone public Izimboa, e-mail) et recrutement des livreurs. */
+.app-footer { border-top: 1px solid var(--line); padding: 20px 0 96px; color: var(--slate); font-size: .92rem; }
+.app-footer-inner { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+.app-footer a { font-weight: 600; }

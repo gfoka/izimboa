@@ -24,6 +24,7 @@ const en: Dict = {
     legal: "Legal notice",
     privacy: "Privacy policy",
     sellerSpace: "Seller space",
+    phoneLabel: "Phone",
     rights: "All rights reserved.",
   },
   home: {
@@ -89,7 +90,7 @@ const en: Dict = {
       photo: "moto",
       stepsTitle: "How it works",
       steps: [
-        { title: "Create your seller account", text: "Free, in two minutes, with your e-mail or Google. No subscription: you only pay for deliveries." },
+        { title: "Create your seller account", text: "Free, in two minutes, with a code sent to your WhatsApp or your e-mail. No subscription: you only pay for deliveries." },
         { title: "Order a delivery", text: "Drop the pickup and drop-off pins on the map and add a local landmark. The price shows before you confirm." },
         { title: "A rider comes", text: "The nearest available Izimboa rider accepts the job. You watch them arrive on the map." },
         { title: "Your customer tracks, you get paid", text: "Your customer gets a WhatsApp tracking link and a handover code. Cash collected is paid out to you the same day." },
@@ -117,6 +118,28 @@ const en: Dict = {
         subject: "Izimboa Delivery - seller partner",
       },
       app: { button: "Create my seller account", team: "Business offer" },
+      join: {
+        title: "Join Izimboa Delivery",
+        lead: "Two ways to work with us, and everyone signs up on their own in a few minutes.",
+        heroCourier: "Become a rider",
+        businessLink: "A business with lots of parcels? Ask for a tailored offer",
+        cards: [
+          {
+            target: "app",
+            title: "I have parcels to send",
+            text: "Selling on WhatsApp, Facebook or Instagram, a shop, a restaurant, a company: create your account and order your first delivery today.",
+            points: ["Free sign-up, no subscription", "Sign in with a code sent to your WhatsApp", "Price shown before you order"],
+            button: "Create my seller account",
+          },
+          {
+            target: "courier",
+            title: "I want to become a rider",
+            text: "Got a motorbike and an Android smartphone? Get delivery jobs near you, whenever you want, and keep 65% of every job.",
+            points: ["Free sign-up in the app", "You choose your hours", "Your earnings show before you accept"],
+            button: "Become a rider",
+          },
+        ],
+      },
       business: {
         title: "Businesses: let's talk about your deliveries",
         lead: "Online shop, restaurant, pharmacy, wholesaler… Leave your details and we will call you back within one business day with an offer that fits your volume.",
@@ -324,6 +347,7 @@ const en: Dict = {
     ],
     directTitle: "Reach us directly",
     emailLabel: "Email",
+    phoneLabel: "Phone",
     whatsappLabel: "WhatsApp",
     responseNote: "We answer messages Monday to Saturday.",
   },

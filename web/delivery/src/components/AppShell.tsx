@@ -51,6 +51,14 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
       <main id="contenu" className="app-main">{children}</main>
+      <footer className="app-footer">
+        <div className="container app-footer-inner">
+          <span>Besoin d&apos;aide ?</span>
+          <a href="tel:+237699786514">+237 6 99 78 65 14</a>
+          <a href="mailto:contact@izimboa.com">contact@izimboa.com</a>
+          <a href="https://izimboa.com/cm/fr/livraison-colis/devenir-livreur/">Devenir livreur</a>
+        </div>
+      </footer>
       {user && path !== "/nouvelle/" && !path.startsWith("/admin") && (
         <Link href="/nouvelle/" className="fab" aria-label="Nouvelle livraison">
           <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>

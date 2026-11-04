@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
-import { COUNTRIES, CONTACT_EMAIL, PRODUCT_APPS, PRODUCT_COLORS, PRODUCT_KEYS, getCountry, localeTag, type Lang } from "@/config/site";
+import { COUNTRIES, CONTACT_EMAIL, PHONE, PRODUCT_APPS, PRODUCT_COLORS, PRODUCT_KEYS, getCountry, localeTag, type Lang } from "@/config/site";
 import { pathFor, type PageKey } from "@/config/routes";
 import type { Dict } from "@/content/types";
 import { Logo, ProductSymbol } from "./Logo";
+import { Icon } from "./Icon";
 
 /** `alt` : adresse de la même page dans les autres langues (sous-pages, ex. un programme d'Izimboa Go). */
 type Ctx = { country: string; lang: Lang; dict: Dict; pageKey: PageKey; alt?: Partial<Record<Lang, string>> };
@@ -106,6 +107,7 @@ export function Footer({ country, lang, dict, pageKey }: Ctx) {
           <ul>
             <li><a href={pathFor(country, lang, "about")}>{dict.common.about}</a></li>
             <li><a href={pathFor(country, lang, "contact")}>{dict.common.contact}</a></li>
+            <li><a href={`tel:${PHONE.tel}`} className="footer-phone"><Icon name="phone" size={18} /> {PHONE.display}</a></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
             <li><a href={pathFor(country, lang, "legal")}>{dict.common.legal}</a></li>
             <li><a href={pathFor(country, lang, "privacy")}>{dict.common.privacy}</a></li>

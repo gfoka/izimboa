@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, WHATSAPP_NUMBER, type Lang } from "@/config/site";
+import { CONTACT_EMAIL, PHONE, WHATSAPP_NUMBER, type Lang } from "@/config/site";
 import { pathFor } from "@/config/routes";
 import type { Dict } from "@/content/types";
 import { Photo, PhotoCredit } from "@/components/Photo";
@@ -89,6 +89,12 @@ export function ContactView({ country, lang, dict }: P) {
               <dt>{c.emailLabel}</dt>
               <dd>
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+              </dd>
+            </div>
+            <div>
+              <dt>{c.phoneLabel}</dt>
+              <dd>
+                <a href={`tel:${PHONE.tel}`}>{PHONE.display}</a>
               </dd>
             </div>
             {WHATSAPP_NUMBER && (

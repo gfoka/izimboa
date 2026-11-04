@@ -7,16 +7,32 @@ import { findGoSub, goSubPages, goUi } from "@/content/cm/go";
 import { pathMetadata } from "@/lib/seo";
 import { Shell } from "@/components/Shell";
 import { CityView, CompareView, GuideView, ProgramView } from "@/views/GoViews";
+import { COURIER_PAGE, findCourierPage } from "@/content/cm/courier";
+import { CourierView } from "@/views/CourierView";
 
 export const dynamicParams = false;
 
 type Params = Promise<{ country: string; lang: string; slug: string; sub: string }>;
 
-/** Sous-pages d'Izimboa Go (Cameroun) : programmes, comparatif des pays, villes. */
+/** Sous-pages au Cameroun : Izimboa Go (programmes, comparatif des pays, villes) et « Devenir livreur ». */
 export function generateStaticParams() {
   return OPEN_COUNTRIES.filter((c) => c.code === "cm").flatMap((c) =>
-    c.langs.flatMap((lang) => goSubPages().map((p) => ({ country: c.code, lang, slug: SLUGS.go[lang], sub: p.slug[lang] }))),
+    c.langs.flatMap((lang) => [
+      ...goSubPages().map((p) => ({ country: c.code, lang, slug: SLUGS.go[lang], sub: p.slug[lang] })),
+      { country: c.code, lang, slug: SLUGS.delivery[lang], sub: COURIER_PAGE[lang].slug },
+    ]),
   );
+}
+
+async function resolveCourier(params: Params) {
+  const { country, lang: l, slug, sub } = await params;
+  const lang = l as Lang;
+  if (country !== "cm" || slug !== SLUGS.delivery[lang]) return null;
+  const page = findCourierPage(lang, sub);
+  if (!page) notFound();
+  const c = getCountry(country)!;
+  const alt = Object.fromEntries(c.langs.map((x) => [x, subPathFor(country, x, "delivery", COURIER_PAGE[x].slug)])) as Record<Lang, string>;
+  return { country, lang, page, alt };
 }
 
 async function resolve(params: Params) {
@@ -31,6 +47,8 @@ async function resolve(params: Params) {
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const courier = await resolveCourier(params);
+  if (courier) return pathMetadata({ country: courier.country, lang: courier.lang, paths: courier.alt, meta: courier.page.meta, photo: "moto" });
   const { country, lang, page, alt } = await resolve(params);
   const s = page.sub;
   const meta =
@@ -45,6 +63,15 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export default async function Page({ params }: { params: Params }) {
+  const courier = await resolveCourier(params);
+  if (courier) {
+    const dict = getDict(courier.country, courier.lang);
+    return (
+      <Shell country={courier.country} lang={courier.lang} dict={dict} pageKey="delivery" alt={courier.alt}>
+        <CourierView country={courier.country} lang={courier.lang} dict={dict} page={courier.page} />
+      </Shell>
+    );
+  }
   const { country, lang, page, alt } = await resolve(params);
   const dict = getDict(country, lang);
   const ctx = { country, lang, dict };

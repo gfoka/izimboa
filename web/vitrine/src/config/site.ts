@@ -20,6 +20,12 @@ export const GOOGLE_SITE_VERIFICATION: string | null = null;
 /** API Izimboa (formulaires du site). */
 export const API_URL = "https://api.izimboa.com";
 
+/** Téléphone public d'Izimboa (pied de page de tous les sites, page contact, données structurées). */
+export const PHONE = { display: "+237 6 99 78 65 14", tel: "+237699786514" } as const;
+
+/** Application Android des livreurs sur Google Play. */
+export const COURIER_APP_URL = "https://play.google.com/store/apps/details?id=com.izimboa.livreur";
+
 /** Numéro WhatsApp Business au format international (ex. "2376XXXXXXXX"). null = masqué. */
 export const WHATSAPP_NUMBER: string | null = null;
 

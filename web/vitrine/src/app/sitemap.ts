@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL, getCountry, localeTag } from "@/config/site";
 import { NOINDEX_PAGES, absoluteUrl, allPublishedPages, pathFor, subPathFor } from "@/config/routes";
 import { goSubPages } from "@/content/cm/go";
+import { COURIER_PAGE } from "@/content/cm/courier";
 
 export const dynamic = "force-static";
 
@@ -34,5 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }),
       )
     : [];
-  return [{ url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 0.5 }, ...entries, ...goEntries];
+  // Page « Devenir livreur » (recrutement), sous la livraison de colis.
+  const courierEntries: MetadataRoute.Sitemap = cm.open
+    ? cm.langs.map((lang) => {
+        const languages: Record<string, string> = {};
+        for (const l of cm.langs) languages[localeTag(l, "cm")] = absoluteUrl(subPathFor("cm", l, "delivery", COURIER_PAGE[l].slug));
+        return { url: absoluteUrl(subPathFor("cm", lang, "delivery", COURIER_PAGE[lang].slug)), changeFrequency: "monthly" as const, priority: 0.8, alternates: { languages } };
+      })
+    : [];
+  return [{ url: `${SITE_URL}/`, changeFrequency: "monthly", priority: 0.5 }, ...entries, ...goEntries, ...courierEntries];
 }

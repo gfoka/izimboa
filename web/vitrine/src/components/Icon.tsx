@@ -8,6 +8,7 @@ const PATHS: Record<string, string> = {
   mail: "M4 6h16v12H4zM4 7l8 6 8-6",
   info: "M12 8h.01M11 12h1v5h1M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z",
   plus: "M12 5v14M5 12h14",
+  phone: "M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z",
 };
 
 export function Icon({ name, size = 20 }: { name: keyof typeof PATHS | string; size?: number }) {

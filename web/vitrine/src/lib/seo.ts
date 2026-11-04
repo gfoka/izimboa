@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BRAND, CONTACT_EMAIL, SITE_URL, getCountry, localeTag, type Lang } from "@/config/site";
+import { BRAND, CONTACT_EMAIL, PHONE, SITE_URL, getCountry, localeTag, type Lang } from "@/config/site";
 import { NOINDEX_PAGES, absoluteUrl, pathFor, type PageKey } from "@/config/routes";
 import { ogImage, PHOTOS, type PhotoKey } from "@/config/photos";
 import type { Meta, ProductContent } from "@/content/types";
@@ -80,12 +80,14 @@ export function organizationLd(lang: Lang) {
     url: `${SITE_URL}/`,
     logo: `${SITE_URL}/logo-izimboa.svg`,
     email: CONTACT_EMAIL,
+    telephone: PHONE.tel,
     areaServed: { "@type": "Country", name: lang === "fr" ? "Cameroun" : "Cameroon" },
     contactPoint: [
       {
         "@type": "ContactPoint",
         contactType: "customer service",
         email: CONTACT_EMAIL,
+        telephone: PHONE.tel,
         areaServed: "CM",
         availableLanguage: ["French", "English"],
       },
